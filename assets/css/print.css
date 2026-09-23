@@ -1,0 +1,128 @@
+@page {
+  size: A4;
+  margin: 16mm;
+}
+:root {
+  background: white;
+  color: black;
+}
+body {
+  font-size: 10pt;
+  line-height: 1.4;
+  background: white;
+  color: black;
+}
+.site-header,
+.site-footer,
+.skip-link,
+.cv-download {
+  display: none !important;
+}
+.wrap {
+  max-width: none;
+  padding-inline: 0;
+}
+.page-heading {
+  padding: 0 0 18px;
+}
+.page-heading .intro-line {
+  font-size: 10pt;
+  margin-bottom: 8px;
+}
+.cv-page .page-heading h1 {
+  font-size: 27pt;
+}
+.page-lede {
+  font-size: 12pt;
+  margin-top: 10px;
+}
+.updated {
+  font-size: 9pt;
+  margin-top: 8px;
+}
+.print-profiles {
+  display: block;
+  margin-top: 10px;
+}
+.print-profiles p {
+  font-size: 8pt;
+  margin: 2px 0;
+  overflow-wrap: anywhere;
+}
+.cv-content {
+  padding: 0;
+}
+.cv-section {
+  padding: 16px 0;
+  border-top: 1px solid #aaa;
+}
+.cv-section h2 {
+  font-size: 16pt;
+  margin-bottom: 13px;
+  break-after: avoid;
+}
+.cv-row {
+  grid-template-columns: 100px 1fr;
+  gap: 18px;
+  margin-top: 12px;
+  break-inside: avoid;
+}
+.cv-row h3,
+.cv-paper h3 {
+  font-size: 11pt;
+}
+.cv-row p,
+.cv-row .cv-period,
+.cv-paper p {
+  font-size: 9pt;
+  margin-top: 3px;
+  color: black;
+}
+.cv-paper {
+  margin-top: 14px;
+  break-inside: avoid;
+}
+.cv-paper h3 {
+  line-height: 1.25;
+}
+.print-url {
+  display: block;
+  font-size: 8pt !important;
+  overflow-wrap: anywhere;
+}
+a {
+  color: black;
+  text-decoration: none;
+}
+h2,
+h3 {
+  break-after: avoid;
+}
+p {
+  orphans: 3;
+  widows: 3;
+}
+.cv-section > p {
+  font-size: 9pt;
+}
+.cv-publications {
+  break-before: page;
+}
+.cv-section {
+  padding-block: 11px;
+}
+.cv-section h2 {
+  margin-bottom: 10px;
+}
+.cv-row {
+  margin-top: 9px;
+}
+.cv-row p {
+  margin-top: 2px;
+}
+.page-heading {
+  padding-bottom: 12px;
+}
+.cv-activity {
+  break-before: page;
+}
