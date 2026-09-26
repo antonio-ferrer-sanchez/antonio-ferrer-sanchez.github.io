@@ -92,7 +92,7 @@ h3 {
   overflow-wrap: break-word;
 }
 .wrap {
-  max-width: 1320px;
+  max-width: 1520px;
   margin-inline: auto;
   padding-inline: 48px;
 }
@@ -190,7 +190,7 @@ main:focus {
 }
 .hero-description {
   font-size: 18px;
-  max-width: 430px;
+  max-width: 560px;
   color: var(--muted);
   margin-top: 20px;
 }
@@ -277,7 +277,7 @@ main:focus {
 .section-heading > p {
   color: var(--muted);
   font-size: 20px;
-  max-width: 480px;
+  max-width: 560px;
 }
 .research-directions {
   display: grid;
@@ -361,6 +361,7 @@ main:focus {
   font-size: 16px;
   color: var(--muted);
   margin-top: 12px;
+  max-width: 1000px;
 }
 .venue {
   font-size: 15px;
@@ -379,7 +380,7 @@ main:focus {
   gap: 60px;
 }
 .contact-section p {
-  max-width: 460px;
+  max-width: 560px;
   color: var(--muted);
   margin-bottom: 18px;
   font-size: 20px;
@@ -422,7 +423,7 @@ main:focus {
 .page-lede {
   font-size: 24px;
   color: var(--muted);
-  max-width: 760px;
+  max-width: 820px;
   line-height: 1.45;
   margin-top: 25px;
 }
@@ -463,6 +464,7 @@ main:focus {
 }
 .research-topic > div > p:not(.topic-subtitle) {
   font-size: 20px;
+  max-width: 36em;
 }
 .related-links {
   display: flex;
@@ -487,6 +489,7 @@ main:focus {
 }
 .project > div > p:not(.intro-line) {
   font-size: 22px;
+  max-width: 34em;
 }
 .activity-section {
   padding-bottom: 65px;
@@ -883,7 +886,7 @@ main:focus {
   text-decoration: underline;
 }
 .article-preview p {
-  max-width: 65ch;
+  max-width: 72ch;
   margin-block: 18px;
 }
 .article-heading {
@@ -916,7 +919,7 @@ main:focus {
 .article-layout {
   --article-gap: clamp(35px, 5vw, 80px);
   display: grid;
-  grid-template-columns: 210px minmax(0, 760px);
+  grid-template-columns: 230px minmax(0, 860px);
   gap: var(--article-gap);
   padding-bottom: 70px;
   align-items: start;
@@ -941,12 +944,12 @@ main:focus {
 }
 .article-body {
   min-width: 0;
-  font-size: 19px;
+  font-size: 20px;
   line-height: 1.7;
 }
 .article-body p,
 .article-body li {
-  max-width: 72ch;
+  max-width: 36em;
 }
 .article-body h2 {
   font-size: clamp(1.7rem, 3vw, 2.25rem);
@@ -982,6 +985,8 @@ main:focus {
 }
 .plot-holder {
   width: 100%;
+  min-width: 0;
+  overflow: hidden;
   height: clamp(320px, 52vw, 430px);
 }
 .plot-controls {
@@ -1011,7 +1016,7 @@ main:focus {
 }
 @media (min-width: 1001px) {
   .article-body .figure-wide {
-    margin-left: calc(-210px - var(--article-gap));
+    margin-left: calc(-230px - var(--article-gap));
   }
 }
 .article-body .figure-narrow img {
@@ -1073,7 +1078,7 @@ main:focus {
     gap: 12px 25px;
   }
   .article-body {
-    max-width: 760px;
+    max-width: 860px;
   }
 }
 @media (max-width: 650px) {
