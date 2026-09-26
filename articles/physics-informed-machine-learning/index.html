@@ -7,8 +7,8 @@
 <meta name="description" content="How physical knowledge shapes learning, how PINNs solve differential equations, and how to check whether a learned solution is reliable.">
 <meta name="theme-color" content="#153f36">
 <link rel="canonical" href="https://antonio-ferrer-sanchez.github.io/articles/physics-informed-machine-learning/">
-<link rel="stylesheet" href="/assets/css/site.css?v=1790437764">
-<link rel="stylesheet" href="/assets/css/print.css?v=1790437764" media="print">
+<link rel="stylesheet" href="/assets/css/site.css?v=1790438963">
+<link rel="stylesheet" href="/assets/css/print.css?v=1790438963" media="print">
 </head>
 <body class="article-page">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -27,7 +27,6 @@
 <h1>Physics-informed machine learning: from physical laws to neural solvers</h1><p class="page-lede">How physical knowledge shapes learning, how PINNs solve differential equations, and how to check whether a learned solution is reliable.</p>
 <p class="article-byline">By Antonio Ferrer-Sánchez</p>
 </header>
-<div class="article-layout">
 <aside class="article-contents" aria-labelledby="contents-heading"><h2 id="contents-heading">In this article</h2><nav aria-label="Article contents"><a href="#learning-from-measurements-and-physical-laws">Learning from measurements and physical laws</a><a href="#from-a-neural-network-to-a-differential-equation-solver">From a neural network to a differential-equation solver</a><a href="#a-concrete-example-diffusion-along-a-rod">A concrete example: diffusion along a rod</a><a href="#building-the-loss-function">Building the loss function</a><a href="#what-happens-during-training">What happens during training?</a><a href="#where-physics-informed-learning-helps">Where physics-informed learning helps</a><a href="#limitations-that-matter-in-practice">Limitations that matter in practice</a><a href="#connections-to-my-research">Connections to my research</a><a href="#a-practical-starting-point">A practical starting point</a></nav></aside>
 <div class="article-body"><h2 id="learning-from-measurements-and-physical-laws">Learning from measurements and physical laws</h2>
 
@@ -156,9 +155,8 @@
 
 <p>Start with a problem whose solution you can check independently, such as the rod above. Write down the units, the domain and every condition before choosing a network. Track each loss term on its own, and measure the error on points that were not used for training. Sparse data, unknown coefficients and harder equations can follow once this baseline works.</p>
 <footer class="article-end"><a href="/articles/">← All articles</a><a href="/research/">Explore the research →</a></footer></div>
-</div>
 </article>
-<script src="/assets/js/article-plots.js?v=1790437764" defer></script>
+<script src="/assets/js/article-plots.js?v=1790438963" defer></script>
 </main>
 <footer class="site-footer wrap">
 <span id="external-link-note" class="sr-only">Opens in a new tab.</span>

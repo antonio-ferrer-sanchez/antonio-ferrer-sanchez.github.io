@@ -889,8 +889,24 @@ main:focus {
   max-width: 72ch;
   margin-block: 18px;
 }
+/* Article page: a contents rail, one reading column shared by text,
+   equations and figures, and a free margin that wide figures may use. */
+.article-shell {
+  --measure: 720px;
+  --article-gap: clamp(40px, 4vw, 64px);
+  display: grid;
+  grid-template-columns:
+    [rail] minmax(190px, 1fr) [text] minmax(0, var(--measure))
+    [margin] minmax(0, 1fr) [end];
+  column-gap: var(--article-gap);
+  padding-bottom: 70px;
+}
 .article-heading {
+  grid-column: text / end;
   max-width: 1040px;
+}
+.article-heading .page-lede {
+  max-width: var(--measure);
 }
 .article-heading h1 {
   font-size: clamp(2.4rem, 5vw, 4.5rem);
@@ -916,15 +932,14 @@ main:focus {
   font-size: 16px;
   margin-top: 22px;
 }
-.article-layout {
-  --article-gap: clamp(35px, 5vw, 80px);
-  display: grid;
-  grid-template-columns: 230px minmax(0, 860px);
-  gap: var(--article-gap);
-  padding-bottom: 70px;
-  align-items: start;
-}
 .article-contents {
+  grid-column: rail;
+  align-self: start;
+  position: sticky;
+  top: 32px;
+  max-width: 240px;
+  max-height: calc(100vh - 64px);
+  overflow-y: auto;
   border-top: 1px solid var(--line);
   padding-top: 22px;
 }
@@ -943,13 +958,19 @@ main:focus {
   padding-block: 3px;
 }
 .article-body {
+  grid-column: text / end;
   min-width: 0;
   font-size: 20px;
   line-height: 1.7;
 }
-.article-body p,
-.article-body li {
-  max-width: 36em;
+.article-body > * {
+  max-width: var(--measure);
+}
+.article-body > .figure-wide {
+  max-width: none;
+}
+.article-body .figure-wide figcaption {
+  max-width: var(--measure);
 }
 .article-body h2 {
   font-size: clamp(1.7rem, 3vw, 2.25rem);
@@ -973,7 +994,7 @@ main:focus {
   margin-top: 16px;
 }
 .article-body figure {
-  margin-block: 32px;
+  margin-block: 44px;
 }
 .article-body figure img {
   width: 100%;
@@ -1014,11 +1035,6 @@ main:focus {
   color: var(--muted);
   font-size: 0.95rem;
 }
-@media (min-width: 1001px) {
-  .article-body .figure-wide {
-    margin-left: calc(-230px - var(--article-gap));
-  }
-}
 .article-body .figure-narrow img {
   display: block;
   max-width: 520px;
@@ -1033,7 +1049,7 @@ main:focus {
 .equation {
   overflow-x: auto;
   padding: 18px 12px;
-  margin-block: 25px;
+  margin-block: 28px;
   background: var(--surface);
 }
 .equation math {
@@ -1068,17 +1084,25 @@ main:focus {
   font-size: 17px;
 }
 @media (max-width: 1000px) {
-  .article-layout {
-    grid-template-columns: 1fr;
-    gap: 35px;
+  .article-shell {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .article-heading,
+  .article-contents,
+  .article-body {
+    grid-column: 1;
+  }
+  .article-contents {
+    position: static;
+    max-width: var(--measure);
+    max-height: none;
+    overflow: visible;
+    margin-bottom: 35px;
   }
   .article-contents nav {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px 25px;
-  }
-  .article-body {
-    max-width: 860px;
   }
 }
 @media (max-width: 650px) {
@@ -1111,10 +1135,11 @@ main:focus {
   .article-end {
     display: none;
   }
-  .article-layout {
+  .article-shell {
     display: block;
   }
-  .article-body {
+  .article-body,
+  .article-body > * {
     max-width: none;
   }
   .article-body figure,
