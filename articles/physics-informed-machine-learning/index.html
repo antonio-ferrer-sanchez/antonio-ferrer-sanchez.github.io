@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physics-informed machine learning: from physical laws to neural solvers · Antonio Ferrer-Sánchez</title>
+<meta name="description" content="How physical knowledge shapes learning, how PINNs solve differential equations, and how to check whether a learned solution is reliable.">
+<meta name="theme-color" content="#153f36">
+<link rel="canonical" href="https://antonio-ferrer-sanchez.github.io/articles/physics-informed-machine-learning/">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/print.css" media="print">
+</head>
+<body class="article-page">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header wrap">
+<a class="identity" href="/"><span class="identity-mark" aria-hidden="true">afs.</span><span>Antonio Ferrer-Sánchez<span class="identity-sub">Physics & scientific machine learning</span></span></a>
+<nav aria-label="Main navigation">
+
+
+<a href="/research/">Research</a><a href="/publications/">Publications</a><a href="/articles/" aria-current="location">Articles</a><a href="/software/">Software</a><a href="/activity/">Activity</a><a href="/cv/">CV</a>
+</nav>
+</header>
+<main id="main" tabindex="-1"><article class="wrap article-shell">
+<header class="page-heading article-heading">
+<a class="text-link article-back" href="/articles/">← All articles</a>
+<p class="article-meta"><span>Scientific machine learning</span><time datetime="2026-09-26">26 September 2026</time><span>14 min read</span></p>
+<h1>Physics-informed machine learning: from physical laws to neural solvers</h1><p class="page-lede">How physical knowledge shapes learning, how PINNs solve differential equations, and how to check whether a learned solution is reliable.</p>
+<p class="article-byline">By Antonio Ferrer-Sánchez</p>
+</header>
+<div class="article-layout">
+<aside class="article-contents" aria-labelledby="contents-heading"><h2 id="contents-heading">In this article</h2><nav aria-label="Article contents"><a href="#learning-from-measurements-and-physical-laws">Learning from measurements and physical laws</a><a href="#from-a-neural-network-to-a-differential-equation-solver">From a neural network to a differential-equation solver</a><a href="#a-concrete-example-diffusion-along-a-rod">A concrete example: diffusion along a rod</a><a href="#building-the-loss-function">Building the loss function</a><a href="#what-happens-during-training">What happens during training?</a><a href="#where-physics-informed-learning-helps">Where physics-informed learning helps</a><a href="#limitations-that-matter-in-practice">Limitations that matter in practice</a><a href="#connections-to-my-research">Connections to my research</a><a href="#a-practical-starting-point">A practical starting point</a></nav></aside>
+<div class="article-body"><h2 id="learning-from-measurements-and-physical-laws">Learning from measurements and physical laws</h2>
+
+<p>A temperature sensor tells us what happened at one place and time. A heat equation tells us how temperature can change throughout a domain. Physics-informed machine learning brings these two sources of knowledge into the same modelling process: observations constrain the model where measurements exist, while physical structure restricts what it can predict elsewhere.</p>
+
+<p>The physical knowledge might be a differential equation, a conservation law, a symmetry, a known boundary value, or a restriction such as positivity. It can shape the training data, the network architecture, or the objective used during training. This is a broad family of methods, rather than one neural-network design. A model that respects rotational symmetry and a network trained with a differential-equation residual both use physical knowledge, but they do so differently.</p>
+
+<p>Why is this useful? Measurements can be sparse or expensive, while unconstrained models can fit those measurements and still produce physically inconsistent predictions. A valid physical model can reduce the range of plausible solutions. It cannot repair an incorrect governing equation, remove measurement bias, or guarantee reliable predictions outside the conditions used for validation.</p>
+
+<h2 id="from-a-neural-network-to-a-differential-equation-solver">From a neural network to a differential-equation solver</h2>
+
+<p>A physics-informed neural network, or PINN, represents an unknown physical field with a trainable function. For a time-dependent problem, the inputs can be position and time; the output can be temperature, velocity, pressure, or a quantum-state component. The network parameters determine the shape of that function.</p>
+
+<div class="equation" role="region" aria-label="Neural approximation: u theta of x and t approximates u of x and t." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>u</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>≈</mo><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></math></div>
+
+<p>Here, theta denotes the trainable weights and biases. A conventional supervised model learns from pairs of coordinates and known field values. A PINN can also evaluate how well its own predictions satisfy a governing equation at coordinates where the solution is unknown. These locations are called collocation points. They are not labelled solution data.</p>
+
+<p>Automatic differentiation applies the chain rule through the network to compute derivatives with respect to its inputs. Those derivatives enter the equation residual. Training then differentiates the resulting loss with respect to the network parameters. These are two distinct uses of differentiation. Neither makes the approximate solution exact; floating-point error and optimization error remain.</p>
+
+<p>The <a href="https://arxiv.org/abs/1711.10561" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">early PINN formulation by Raissi, Perdikaris and Karniadakis</a> describes this route to differentiable surrogate solutions. In a standard forward problem, the equation coefficients and initial and boundary conditions are given. The network is optimized for that particular problem. Solving a new parameter setting can require another training run. A model trained to map whole families of inputs to solutions is an operator-learning problem, which has a different training setup.</p>
+
+<h2 id="a-concrete-example-diffusion-along-a-rod">A concrete example: diffusion along a rod</h2>
+
+<p>Consider a one-dimensional rod with both ends held at zero temperature relative to a reference. Use dimensionless position and time, a positive diffusion coefficient, and a sine-shaped initial temperature. The problem is:</p>
+
+<div class="equation" role="region" aria-label="Heat equation: partial u with respect to t equals alpha times the second partial derivative of u with respect to x." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mfrac><mrow><mo>∂</mo><mi>u</mi></mrow><mrow><mo>∂</mo><mi>t</mi></mrow></mfrac><mo>=</mo><mi>α</mi><mfrac><mrow><msup><mo>∂</mo><mn>2</mn></msup><mi>u</mi></mrow><mrow><mo>∂</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></mfrac><mo>,</mo><mtext> α &gt; 0</mtext></mrow></math></div>
+
+<div class="equation" role="region" aria-label="The initial temperature is sin pi x, and both boundary temperatures are zero." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mi>sin</mi><mo stretchy="false">(</mo><mi>π</mi><mi>x</mi><mo stretchy="false">)</mo><mo>,</mo><mi>u</mi><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mi>u</mi><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow></math></div>
+
+<p>The spatial domain runs from zero to one. Time runs from zero to one. For the figures below, the dimensionless diffusion coefficient is 0.1. Diffusion smooths the temperature profile and transfers heat to the fixed-temperature ends. The corresponding exact solution is:</p>
+
+<div class="equation" role="region" aria-label="Exact solution: u of x and t equals exponential of minus alpha pi squared t times sin pi x." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>α</mi><msup><mi>π</mi><mn>2</mn></msup><mi>t</mi></mrow></msup><mo>⁢</mo><mi>sin</mi><mo stretchy="false">(</mo><mi>π</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></math></div>
+
+<p>This analytic solution lets us explain and test the method without confusing a reference curve with a trained prediction. The plot shows exact temperature profiles at three times. It contains no PINN training result.</p>
+
+<figure><picture><source media="(max-width: 650px)" srcset="/assets/figures/piml-diffusion-mobile.svg" width="450" height="440" /><img src="/assets/figures/piml-diffusion.svg" width="760" height="420" alt="Exact sine-shaped temperature profiles decrease between dimensionless times zero, one half and one." loading="lazy" decoding="async" /></picture><figcaption>Exact diffusion profiles for α = 0.1. All curves satisfy the same zero-temperature boundary conditions. These analytic curves are reference solutions, not trained PINN predictions.</figcaption></figure>
+
+<p>A PINN replaces the unknown temperature with its network output. Substituting that output into the heat equation gives the residual:</p>
+
+<div class="equation" role="region" aria-label="Residual: r theta equals partial t u theta minus alpha partial x squared u theta." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>r</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mo>∂</mo><msub><mi>u</mi><mi>θ</mi></msub></mrow><mrow><mo>∂</mo><mi>t</mi></mrow></mfrac><mo>−</mo><mi>α</mi><mfrac><mrow><msup><mo>∂</mo><mn>2</mn></msup><msub><mi>u</mi><mi>θ</mi></msub></mrow><mrow><mo>∂</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></mfrac></mrow></math></div>
+
+<p>The residual is zero for an exact solution of the differential equation. A nonzero value measures a local equation violation in the chosen units. Its magnitude is not, by itself, the error in temperature.</p>
+
+<h2 id="building-the-loss-function">Building the loss function</h2>
+
+<p>Four kinds of information can contribute to training: the equation in the interior, the initial state, the boundary values, and any observations. A common soft-constraint formulation uses a weighted sum:</p>
+
+<div class="equation" role="region" aria-label="Total loss equals lambda r L r plus lambda i L i plus lambda b L b plus lambda d L d." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>ℒ</mi><mo>=</mo><msub><mi>λ</mi><mi>r</mi></msub><msub><mi>ℒ</mi><mi>r</mi></msub><mo>+</mo><msub><mi>λ</mi><mi>i</mi></msub><msub><mi>ℒ</mi><mi>i</mi></msub><mo>+</mo><msub><mi>λ</mi><mi>b</mi></msub><msub><mi>ℒ</mi><mi>b</mi></msub><mo>+</mo><msub><mi>λ</mi><mi>d</mi></msub><msub><mi>ℒ</mi><mi>d</mi></msub></mrow></math></div>
+
+<p>For this example, the individual terms can be written as:</p>
+
+<div class="equation" role="region" aria-label="Mean squared losses for equation residual, initial profile mismatch, zero boundary values and observational mismatch." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mtable columnalign="left" displaystyle="true" rowspacing="0.6em"><mtr><mtd><msub><mi>ℒ</mi><mi>r</mi></msub><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msub><mi>N</mi><mi>r</mi></msub></mrow></mfrac><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><msub><mi>N</mi><mi>r</mi></msub></munderover><msup><mrow><mo stretchy="false">|</mo><msub><mi>r</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><msub><mi>x</mi><mi>j</mi></msub><mo>,</mo><msub><mi>t</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow><mn>2</mn></msup></mtd></mtr><mtr><mtd><msub><mi>ℒ</mi><mi>i</mi></msub><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msub><mi>N</mi><mi>i</mi></msub></mrow></mfrac><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><msub><mi>N</mi><mi>i</mi></msub></munderover><msup><mrow><mo stretchy="false">|</mo><msub><mi>u</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><msub><mi>x</mi><mi>j</mi></msub><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo><mo>−</mo><mi>sin</mi><mo stretchy="false">(</mo><mi>π</mi><msub><mi>x</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow><mn>2</mn></msup></mtd></mtr><mtr><mtd><msub><mi>ℒ</mi><mi>b</mi></msub><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msub><mi>N</mi><mi>b</mi></msub></mrow></mfrac><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><msub><mi>N</mi><mi>b</mi></msub></munderover><msup><mrow><mo stretchy="false">|</mo><msub><mi>u</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><msub><mi>x</mi><mi>j</mi></msub><mo>,</mo><msub><mi>t</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow><mn>2</mn></msup></mtd></mtr><mtr><mtd><msub><mi>ℒ</mi><mi>d</mi></msub><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msub><mi>N</mi><mi>d</mi></msub></mrow></mfrac><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><msub><mi>N</mi><mi>d</mi></msub></munderover><msup><mrow><mo stretchy="false">|</mo><msub><mi>u</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><msub><mi>x</mi><mi>j</mi></msub><mo>,</mo><msub><mi>t</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mo>−</mo><msub><mi>y</mi><mi>j</mi></msub><mo stretchy="false">|</mo></mrow><mn>2</mn></msup></mtd></mtr></mtable></mrow></math></div>
+
+<p>Each sum is an average over its own point set. The residual points sample the interior in space and time. Initial points lie at time zero. Boundary points lie at either end of the rod; their target temperature is zero. Observation points carry measured temperatures, denoted by y. The counts refer to the corresponding point sets, not the network size.</p>
+
+<p>The coefficients multiplying the loss terms control their relative contribution. They need care: different physical quantities and derivatives can have different units and scales. Nondimensionalization and normalization make the optimization easier to interpret. Equal numerical weights do not imply equal physical importance or equal influence on parameter gradients.</p>
+
+<p>Observational data are optional for a forward problem when the physical problem is fully specified. If no observations are available, omit that term rather than divide by an empty point count. Initial and boundary conditions still carry essential information. In an inverse problem, observations can instead help identify unknown equation coefficients together with the solution. Recovering a coefficient requires informative measurements and an identifiable model; a small fitting error does not establish a unique answer.</p>
+
+<h3 id="soft-penalties-and-exact-constraints">Soft penalties and exact constraints</h3>
+
+<p>A soft penalty encourages a condition but generally does not enforce it exactly. For the rod, a different representation can impose both the initial profile and the zero boundary values by construction:</p>
+
+<div class="equation" role="region" aria-label="Hard constraint: u theta equals sin pi x plus t times x times one minus x times N theta of x and t." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>u</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mi>sin</mi><mo stretchy="false">(</mo><mi>π</mi><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mi>t</mi><mi>x</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>x</mi><mo stretchy="false">)</mo><msub><mi>N</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></math></div>
+
+<p>For a finite, sufficiently smooth network output, the extra term vanishes at time zero and at both endpoints. This representation is specific to these compatible conditions. More complex geometries, boundary operators, or inconsistent measurements need different constructions. A hard constraint can simplify one part of training while changing the conditioning of the remaining problem.</p>
+
+<h3 id="why-the-equation-alone-is-insufficient">Why the equation alone is insufficient</h3>
+
+<p>The identically zero temperature satisfies the heat equation and the zero boundary conditions. It does not satisfy the sine-shaped initial condition. A network that collapses to zero can therefore achieve zero equation residual while solving the wrong initial-value problem.</p>
+
+<figure><picture><source media="(max-width: 650px)" srcset="/assets/figures/piml-counterexample-mobile.svg" width="450" height="440" /><img src="/assets/figures/piml-counterexample.svg" width="760" height="420" alt="The required initial sine profile reaches one at the centre, while the zero-field candidate remains zero throughout the rod." loading="lazy" decoding="async" /></picture><figcaption>At t = 0, the zero field has zero equation residual and correct boundary values, yet misses the required initial temperature. The initial-condition loss distinguishes these candidates.</figcaption></figure>
+
+<p>This example exposes a practical distinction: residual, constraint error, observation error, and solution error measure different things. All relevant checks must be considered together. Even a small combined training loss is a finite-sample observation; it is not a proof of accuracy throughout the domain.</p>
+
+<h2 id="what-happens-during-training">What happens during training?</h2>
+
+<figure class="figure-narrow"><picture><img src="/assets/figures/piml-workflow.svg" width="617" height="662" alt="Sample coordinates, evaluate the neural field, compute coordinate derivatives, combine losses, and update parameters. A dashed arrow returns the updated parameters to the neural field." loading="lazy" decoding="async" /></picture><figcaption>A PINN training iteration. The update shown is a gradient-descent step with learning rate η; other optimizers can use the same loss. Initial, boundary and optional observation targets enter their corresponding losses. Independent validation follows training.</figcaption></figure>
+
+<ol>
+  <li>Specify the physical problem. Choose the field variables, coordinate domain, equation, and compatible initial and boundary conditions. Scale the variables and state which coefficients are known.</li>
+  <li>Choose a representation. Set the network inputs and outputs and decide whether some constraints will be imposed exactly. Strong-form residuals need enough differentiability for the equation: smooth activations are a natural starting point for a second-order diffusion equation.</li>
+  <li>Sample the point sets. Choose interior, initial, boundary, and optional observation points. Reserve independent points for validation. Collocation is a discretization of the training objective even though the network can be evaluated continuously.</li>
+  <li>Evaluate predictions and derivatives. Compute the network output, differentiate with respect to coordinates, and assemble each residual or mismatch.</li>
+  <li>Update the parameters. Differentiate the weighted loss with respect to the weights and biases, then take an optimizer step. Repeat while monitoring the separate loss terms. Adaptive sampling or loss weighting can help, but their effects must be checked.</li>
+  <li>Validate the result independently. Evaluate errors away from the training points, inspect initial and boundary conditions, and compare with an analytic solution or a trusted numerical solver where available. Repeat with different samples or initializations when reliability matters.</li>
+</ol>
+
+<p>For the rod, a useful quantitative check is the relative discrete L2 error on a separate space-time grid:</p>
+
+<div class="equation" role="region" aria-label="Relative discrete L2 error: the square root of the sum of squared prediction errors divided by the sum of squared reference values." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>E</mi><mtext>rel</mtext></msub><mo>=</mo><msqrt><mfrac><mrow><mo>∑</mo><msup><mrow><mo stretchy="false">(</mo><msub><mi>u</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><msub><mi>z</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mo>−</mo><mi>u</mi><mo stretchy="false">(</mo><msub><mi>z</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><mn>2</mn></msup></mrow><mrow><mo>∑</mo><msup><mrow><mi>u</mi><mo stretchy="false">(</mo><msub><mi>z</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow><mn>2</mn></msup></mrow></mfrac></msqrt></mrow></math></div>
+
+<p>The denominator must be nonzero. This diagnostic compares values on the chosen evaluation grid; it is not a continuous-domain certificate. Check maximum errors and boundary mismatches too, because an average can hide a localized failure. Use the analytic reference for validation, and state explicitly if it also supplies training labels.</p>
+
+<h2 id="where-physics-informed-learning-helps">Where physics-informed learning helps</h2>
+
+<p>PINNs offer a differentiable representation that can be evaluated at arbitrary coordinates within the modelled domain. They can combine sparse observations with equations, couple a forward model to unknown parameters, and place control objectives alongside physical constraints. These properties make inverse problems, data assimilation, and constrained design useful settings to investigate.</p>
+
+<p>In fluid dynamics, physical constraints can relate sparse measurements of a flow. In heat transfer, they can connect temperatures to transport parameters. In quantum dynamics, they can constrain state evolution while learning controls. In relativistic physics, they can encode coupled field equations or eigenvalue problems. Each application still needs a problem-specific representation, sampling strategy, and independent reference checks.</p>
+
+<p>A conventional finite-difference, finite-volume, finite-element, or spectral solver is an essential baseline. For many well-posed forward problems, established solvers are faster, more accurate, or easier to certify. A fair comparison includes training time, inference time, hardware, accuracy, and how often the trained model can be reused. Fast evaluation after training does not make training free.</p>
+
+<h2 id="limitations-that-matter-in-practice">Limitations that matter in practice</h2>
+
+<p>Optimization can fail even when a network can represent the desired solution. Different loss terms can compete, and differential operators can make the training problem poorly conditioned. <a href="https://arxiv.org/abs/2109.01050" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">Krishnapriyan and colleagues</a> demonstrate failure modes for convection, reaction, and diffusion problems, and investigate curriculum and sequential formulations.</p>
+
+<p>Sharp fronts, shocks, multiple scales, high frequencies, and long time intervals can be difficult. A smooth strong-form residual is particularly delicate at a discontinuity, where the classical derivative may not exist. Weak formulations, domain decomposition, conservative methods, or specialized losses may be more appropriate. Their conservation and admissibility properties require explicit checks.</p>
+
+<p>Automatic differentiation can also be costly, especially for higher derivatives, many outputs, or large collocation batches. Sparse sampling can miss narrow regions of error. A mis-specified physical model can bias predictions, and a deterministic network does not automatically provide calibrated uncertainty. Physics-informed training offers useful constraints, not a general guarantee of convergence, extrapolation, or computational advantage.</p>
+
+<h2 id="connections-to-my-research">Connections to my research</h2>
+
+<p>Several works listed on this website explore these ideas beyond the diffusion example. Their objectives differ: solving an evolution equation, learning a control protocol, and finding an eigenvalue are related but distinct tasks.</p>
+
+<section class="research-reading"><h3><a href="/publications/#ga-pinns">Gradient-annihilated PINNs for solving Riemann problems: Application to relativistic hydrodynamics</a></h3><p class="reading-status">2024 · Journal article · Computer Methods in Applied Mechanics and Engineering</p><p>Introduces a weighted physics loss that reduces the influence of steep gradients when learning discontinuous solutions. Tests on relativistic Riemann problems assess how well the method captures shocks and other fluid discontinuities.</p><p><a href="https://doi.org/10.1016/j.cma.2024.116906" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">Journal article ↗</a></p></section>
+
+<section class="research-reading"><h3><a href="/publications/#collapse">Addressing the gravitational collapse of a massless scalar field with physics-informed neural networks</a></h3><p class="reading-status">2026 · Journal article · Machine Learning: Science and Technology</p><p>Compares neural architectures for scalar-field dispersion and gravitational collapse, including the threshold of black-hole formation. The study examines how network design and adaptive sampling affect accuracy and stability.</p><p><a href="https://doi.org/10.1088/2632-2153/ae5459" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">Journal article ↗</a> · <a href="https://github.com/Netzuel/modpinn-gravitational-collapse" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">Code ↗</a></p></section>
+
+<section class="research-reading"><h3><a href="/publications/#counterdiabatic">Physics-informed neural networks for an optimal counterdiabatic quantum computation</a></h3><p class="reading-status">2024 · Journal article · Machine Learning: Science and Technology</p><p>Learns counterdiabatic controls from physical constraints to suppress unwanted transitions during quantum computation. A two-qubit molecular example demonstrates the joint design of control schedules and adiabatic gauge potentials.</p><p><a href="https://doi.org/10.1088/2632-2153/ad450f" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">Journal article ↗</a></p></section>
+
+<section class="research-reading"><h3><a href="/publications/#qfi">Physics-Informed Neural Networks for Maximizing Quantum Fisher Information in Time-Dependent Many-Body Systems</a></h3><p class="reading-status">2026 · Preprint · arXiv:2604.18506</p><p>Uses physics-informed neural networks to design control protocols that increase quantum Fisher information in driven spin systems. The work connects quantum dynamics and control with improved sensitivity for parameter estimation.</p><p><a href="https://arxiv.org/abs/2604.18506" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">Read preprint ↗</a></p></section>
+
+<section class="research-reading"><h3><a href="/publications/#kerr">Kerr Quasinormal Modes without Variable Separation: A Two-Dimensional Hyperboloidal Teukolsky Solver with Physics-Informed Neural Networks</a></h3><p class="reading-status">2026 · Preprint · arXiv:2608.19774</p><p>Computes the oscillation frequencies of rotating black holes with physics-informed neural networks. A two-dimensional solver keeps the radial and angular equations coupled, without variable separation.</p><p><a href="https://arxiv.org/abs/2608.19774" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">Read preprint ↗</a></p></section>
+
+<p>These examples show why the physical formulation matters as much as the neural architecture. A loss and sampling strategy that work for a smooth diffusion field cannot be assumed to handle a shock or a complex-frequency eigenproblem without modification.</p>
+
+<h2 id="a-practical-starting-point">A practical starting point</h2>
+
+<p>Begin with a problem whose solution you can check independently. Write down the units, the domain, and every required condition before designing the network. Inspect each loss term and evaluate on points not used during training. Only then move to sparse observations, unknown parameters, or more complex physics.</p>
+
+<p>The central idea is simple: use a trainable function to represent a physical quantity, and use the information available about the system to constrain that function. The scientific work lies in choosing valid constraints and showing, with independent evidence, that the learned solution is useful.</p>
+<footer class="article-end"><a href="/articles/">← All articles</a><a href="/research/">Explore the research →</a></footer></div>
+</div>
+</article>
+</main>
+<footer class="site-footer wrap">
+<span id="external-link-note" class="sr-only">Opens in a new tab.</span>
+<div><a class="footer-name" href="/">Antonio Ferrer-Sánchez</a><p>Quantum algorithms · Scientific machine learning</p></div>
+<div class="social-links"><a href="https://scholar.google.com/citations?user=Ajj7DC4AAAAJ" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">Google Scholar <span aria-hidden="true">↗</span></a><a href="https://orcid.org/0000-0002-2305-5261" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">ORCID <span aria-hidden="true">↗</span></a><a href="https://github.com/Netzuel" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">GitHub <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/antonio-ferrer-s%C3%A1nchez-67a50b197/" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">LinkedIn <span aria-hidden="true">↗</span></a></div>
+<p class="footer-note">© 2026 Antonio Ferrer-Sánchez. Built with Jekyll.</p>
+</footer>
+</body>
+</html>
