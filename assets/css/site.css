@@ -141,7 +141,7 @@ nav a {
   font-size: 16px;
   padding-block: 5px;
 }
-nav a[aria-current] {
+.site-header nav a[aria-current] {
   border-bottom: 2px solid var(--primary);
   font-weight: 600;
 }
@@ -954,8 +954,30 @@ main:focus {
   gap: 10px;
 }
 .article-contents nav a {
+  position: relative;
   font-size: 16px;
   padding-block: 3px;
+  padding-left: 16px;
+  color: var(--muted);
+}
+.article-contents nav a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.8em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: transparent;
+}
+.article-contents nav a:hover {
+  color: var(--ink);
+}
+.article-contents nav a[aria-current="true"] {
+  color: var(--primary);
+}
+.article-contents nav a[aria-current="true"]::before {
+  background: var(--primary);
 }
 .article-body {
   grid-column: text / end;
