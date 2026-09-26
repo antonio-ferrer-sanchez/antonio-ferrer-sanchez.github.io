@@ -976,6 +976,7 @@ main:focus {
   width: 100%;
   height: auto;
 }
+.article-body figure picture[hidden],
 .article-body figure.is-interactive picture {
   display: none;
 }

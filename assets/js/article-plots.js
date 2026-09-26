@@ -5,7 +5,10 @@
   const figures = [...document.querySelectorAll("figure[data-plot]")];
   const script = document.currentScript;
   if (!figures.length || !script) return;
-  const plotlySrc = new URL("plotly-basic.min.js", script.src).href;
+  const plotlySrc = new URL(
+    `plotly-basic.min.js${new URL(script.src).search}`,
+    script.src,
+  ).href;
 
   const INK = "#203c33";
   const MUTED = "#415950";
@@ -164,13 +167,17 @@
     const readout = document.createElement("p");
     readout.className = "plot-readout";
     readout.setAttribute("aria-live", "polite");
-    figure.querySelector("picture").after(holder, controls, readout);
+    // Hide the static fallback directly so a stale cached stylesheet cannot show both.
+    const picture = figure.querySelector("picture");
+    picture.after(holder, controls, readout);
+    picture.hidden = true;
     figure.classList.add("is-interactive");
     const caption = figure.querySelector("figcaption");
     if (caption && figure.dataset.interactiveCaption)
       caption.textContent = figure.dataset.interactiveCaption;
     Promise.resolve(make(holder, controls, readout)).catch(() => {
       figure.classList.remove("is-interactive");
+      picture.hidden = false;
       holder.remove();
       controls.remove();
       readout.remove();
