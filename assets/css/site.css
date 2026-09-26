@@ -914,9 +914,10 @@ main:focus {
   margin-top: 22px;
 }
 .article-layout {
+  --article-gap: clamp(35px, 5vw, 80px);
   display: grid;
   grid-template-columns: 210px minmax(0, 760px);
-  gap: clamp(35px, 5vw, 80px);
+  gap: var(--article-gap);
   padding-bottom: 70px;
   align-items: start;
 }
@@ -974,7 +975,43 @@ main:focus {
 .article-body figure img {
   width: 100%;
   height: auto;
-  background: var(--white);
+}
+.article-body figure.is-interactive picture {
+  display: none;
+}
+.plot-holder {
+  width: 100%;
+  height: clamp(320px, 52vw, 430px);
+}
+.plot-controls {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+.plot-control {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr) 3rem;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+}
+.plot-control input {
+  width: 100%;
+  accent-color: var(--primary);
+}
+.plot-control output {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.plot-readout {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+@media (min-width: 1001px) {
+  .article-body .figure-wide {
+    margin-left: calc(-210px - var(--article-gap));
+  }
 }
 .article-body .figure-narrow img {
   display: block;

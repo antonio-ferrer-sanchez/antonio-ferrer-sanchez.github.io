@@ -126,3 +126,11 @@ p {
 .cv-activity {
   break-before: page;
 }
+.plot-holder,
+.plot-controls,
+.plot-readout {
+  display: none !important;
+}
+.article-body figure.is-interactive picture {
+  display: block !important;
+}
