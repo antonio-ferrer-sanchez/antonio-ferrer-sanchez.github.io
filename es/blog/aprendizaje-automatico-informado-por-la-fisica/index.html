@@ -1,0 +1,172 @@
+<!doctype html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aprendizaje automático informado por la física: de las leyes físicas a los solvers neuronales · Antonio Ferrer-Sánchez</title>
+<meta name="description" content="Cómo el conocimiento físico orienta el aprendizaje, cómo resuelven las PINN ecuaciones diferenciales y cómo comprobar si una solución aprendida es fiable.">
+<meta name="theme-color" content="#153f36">
+<link rel="canonical" href="https://antonio-ferrer-sanchez.github.io/es/blog/aprendizaje-automatico-informado-por-la-fisica/">
+<link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/">
+<link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/aprendizaje-automatico-informado-por-la-fisica/">
+<link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/">
+<link rel="stylesheet" href="/assets/css/site.css?v=1790504617">
+<link rel="stylesheet" href="/assets/css/print.css?v=1790504617" media="print">
+</head>
+<body class="article-page">
+<a class="skip-link" href="#main">Saltar al contenido</a>
+<header class="site-header wrap">
+<a class="identity" href="/es/"><span class="identity-mark" aria-hidden="true">afs.</span><span>Antonio Ferrer-Sánchez<span class="identity-sub">Física y aprendizaje automático científico</span></span></a>
+<nav aria-label="Navegación principal">
+<a href="/es/investigacion/">Investigación</a><a href="/es/publicaciones/">Publicaciones</a><a href="/es/blog/" aria-current="location">Blog</a><a href="/es/software/">Software</a><a href="/es/actividad/">Actividad</a><a href="/es/cv/">CV</a>
+</nav>
+<div class="lang-switch" role="group" aria-label="Idioma"><a href="/blog/physics-informed-machine-learning/" lang="en" hreflang="en" title="Read this page in English"><svg class="flag" viewBox="0 0 30 20" width="21" height="14" aria-hidden="true" focusable="false"><defs><clipPath id="flag-us-half"><path d="M0 0h30L0 20z"/></clipPath><clipPath id="flag-uk-half"><path d="M30 0v20H0z"/></clipPath><clipPath id="flag-uk-saltire"><path d="M30 15h30v15zv15H0zH0V0zV0h30z"/></clipPath></defs><g clip-path="url(#flag-uk-half)"><g transform="translate(-5 0) scale(.6667)"><path fill="#012169" d="M0 0h60v30H0z"/><path stroke="#FFF" stroke-width="6" d="m0 0 60 30m0-30L0 30"/><path stroke="#C8102E" stroke-width="4" d="m0 0 60 30m0-30L0 30" clip-path="url(#flag-uk-saltire)"/><path stroke="#FFF" stroke-width="10" d="M30 0v30M0 15h60"/><path stroke="#C8102E" stroke-width="6" d="M30 0v30M0 15h60"/></g></g><g clip-path="url(#flag-us-half)"><path fill="#FFF" d="M0 0h30v20H0z"/><path stroke="#B31942" stroke-width="1.54" d="M0 .77h30m-30 3.08h30m-30 3.08h30M0 10h30M0 13.08h30M0 16.15h30M0 19.23h30"/><path fill="#0A3161" d="M0 0h12v10.77H0z"/><g fill="#FFF"><circle cx="2" cy="1.8" r=".55"/><circle cx="6" cy="1.8" r=".55"/><circle cx="10" cy="1.8" r=".55"/><circle cx="4" cy="4" r=".55"/><circle cx="8" cy="4" r=".55"/><circle cx="2" cy="6.2" r=".55"/><circle cx="6" cy="6.2" r=".55"/><circle cx="10" cy="6.2" r=".55"/><circle cx="4" cy="8.4" r=".55"/><circle cx="8" cy="8.4" r=".55"/></g></g><path stroke="#FFF" stroke-width=".9" d="M0 20 30 0"/></svg><span class="lang-code" aria-hidden="true">EN</span><span class="sr-only">English</span></a><a href="/es/blog/aprendizaje-automatico-informado-por-la-fisica/" lang="es" hreflang="es" aria-current="true"><svg class="flag" viewBox="0 0 30 20" width="21" height="14" aria-hidden="true" focusable="false"><path fill="#AA151B" d="M0 0h30v20H0z"/><path fill="#F1BF00" d="M0 5h30v10H0z"/></svg><span class="lang-code" aria-hidden="true">ES</span><span class="sr-only">Español</span></a></div>
+</header>
+<main id="main" tabindex="-1"><article class="wrap article-shell">
+<header class="page-heading article-heading">
+<a class="text-link article-back" href="/es/blog/">← Todas las entradas</a>
+<p class="article-meta"><span>Aprendizaje automático científico</span><time datetime="2026-09-26">26 de septiembre de 2026</time><span>13 min de lectura</span></p>
+<h1>Aprendizaje automático informado por la física: de las leyes físicas a los solvers neuronales</h1><p class="page-lede">Cómo el conocimiento físico orienta el aprendizaje, cómo resuelven las PINN ecuaciones diferenciales y cómo comprobar si una solución aprendida es fiable.</p>
+<p class="article-byline">Por Antonio Ferrer-Sánchez</p>
+</header>
+<aside class="article-contents" aria-labelledby="contents-heading"><h2 id="contents-heading">En esta entrada</h2><nav aria-label="Contenido de la entrada"><a href="#aprender-de-las-mediciones-y-de-las-leyes-fisicas">Aprender de las mediciones y de las leyes físicas</a><a href="#de-una-red-neuronal-a-un-solver-de-ecuaciones-diferenciales">De una red neuronal a un solver de ecuaciones diferenciales</a><a href="#un-ejemplo-concreto-difusion-en-una-barra">Un ejemplo concreto: difusión en una barra</a><a href="#construccion-de-la-funcion-de-perdida">Construcción de la función de pérdida</a><a href="#que-ocurre-durante-el-entrenamiento">¿Qué ocurre durante el entrenamiento?</a><a href="#donde-ayuda-el-aprendizaje-informado-por-la-fisica">Dónde ayuda el aprendizaje informado por la física</a><a href="#limitaciones-que-importan-en-la-practica">Limitaciones que importan en la práctica</a><a href="#relacion-con-mi-investigacion">Relación con mi investigación</a><a href="#un-punto-de-partida-practico">Un punto de partida práctico</a></nav></aside>
+<div class="article-body"><h2 id="aprender-de-las-mediciones-y-de-las-leyes-fisicas">Aprender de las mediciones y de las leyes físicas</h2>
+
+<p>Un sensor de temperatura registra lo que ocurrió en un lugar y en un instante. La ecuación del calor describe cómo puede cambiar la temperatura en todo el dominio. El aprendizaje automático informado por la física reúne ambos tipos de conocimiento en un mismo modelo. Las mediciones restringen el modelo allí donde existen, y la física limita lo que puede predecir entre ellas.</p>
+
+<p>Esa física puede adoptar varias formas: una ecuación diferencial, una ley de conservación, una simetría, un valor conocido en el contorno o una restricción como la positividad. Puede entrar a través de los datos de entrenamiento, de la arquitectura de la red o del objetivo de entrenamiento. Una red construida para respetar la simetría de rotación y una red entrenada con el residuo de una ecuación están ambas informadas por la física, aunque usen el conocimiento físico en lugares distintos.</p>
+
+<p>La motivación es práctica. Las mediciones suelen ser escasas o caras, y un modelo flexible puede ajustarse a todas ellas y predecir, en otras zonas, un comportamiento físicamente imposible. Un modelo físico correcto descarta muchas de esas soluciones candidatas.</p>
+
+<h2 id="de-una-red-neuronal-a-un-solver-de-ecuaciones-diferenciales">De una red neuronal a un solver de ecuaciones diferenciales</h2>
+
+<p>Una red neuronal informada por la física, o PINN (del inglés <em>physics-informed neural network</em>), representa un campo físico desconocido mediante una función entrenable. En un problema dependiente del tiempo, las entradas suelen ser la posición y el tiempo, y la salida es el propio campo, por ejemplo una temperatura o una componente de la velocidad.</p>
+
+<div class="equation" role="region" aria-label="Neural approximation: u theta of x and t approximates u of x and t." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>u</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>≈</mo><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></math></div>
+
+<p>Los parámetros θ son los pesos y sesgos de la red. Un modelo supervisado convencional aprendería solo de coordenadas emparejadas con valores medidos. Una PINN evalúa además la ecuación que rige el sistema en coordenadas donde la solución es desconocida. Estos puntos de colocación no llevan etiquetas: solo sirven para comprobar si la predicción es coherente con la ecuación.</p>
+
+<figure class="figure-wide"><picture><source media="(max-width: 650px)" srcset="/assets/figures/pinn-network-mobile-es.svg" width="339" height="693" /><img src="/assets/figures/pinn-network-es.svg" width="861" height="322" alt="Una red totalmente conectada transforma x y t, a través de dos capas ocultas, en u theta. La diferenciación automática proporciona su derivada temporal y su segunda derivada espacial, que forman el residuo de la EDP. La salida entra también en los desajustes inicial, de contorno y de observación. Todos los términos se combinan en una pérdida total ponderada, y un paso del optimizador, en línea discontinua, devuelve a la red los parámetros actualizados." loading="lazy" decoding="async" /></picture><figcaption>Estructura de una PINN para el ejemplo de difusión que sigue. La salida de la red entra en la diferenciación automática y en cada término de la pérdida, y la pérdida total ponderada guía la actualización de los parámetros.</figcaption></figure>
+
+<p>Intervienen dos derivadas diferentes. La diferenciación automática aplica la regla de la cadena a través de la red para obtener las derivadas de la salida respecto de las entradas, y estas entran en el residuo de la ecuación. El entrenamiento deriva después la pérdida respecto de θ para actualizar los parámetros.</p>
+
+<p><a href="https://arxiv.org/abs/1711.10561" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">Raissi, Perdikaris y Karniadakis</a> introdujeron esta formulación para resolver e identificar ecuaciones en derivadas parciales no lineales. En el problema directo estándar, los coeficientes y las condiciones inicial y de contorno son conocidos, y la red se entrena para ese único problema. Cambiar un coeficiente suele obligar a entrenar de nuevo. Los métodos que aprenden una aplicación de los datos del problema a sus soluciones pertenecen al aprendizaje de operadores, que se plantea de otra manera.</p>
+
+<h2 id="un-ejemplo-concreto-difusion-en-una-barra">Un ejemplo concreto: difusión en una barra</h2>
+
+<p>Consideremos una barra unidimensional cuyos extremos se mantienen a temperatura cero respecto de una referencia. Con posición y tiempo adimensionales, un coeficiente de difusión positivo α y una temperatura inicial con forma de seno, el problema es</p>
+
+<div class="equation" role="region" aria-label="Heat equation: partial u with respect to t equals alpha times the second partial derivative of u with respect to x." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mfrac><mrow><mo>∂</mo><mi>u</mi></mrow><mrow><mo>∂</mo><mi>t</mi></mrow></mfrac><mo>=</mo><mi>α</mi><mfrac><mrow><msup><mo>∂</mo><mn>2</mn></msup><mi>u</mi></mrow><mrow><mo>∂</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></mfrac><mo>,</mo><mtext> α &gt; 0</mtext></mrow></math></div>
+
+<div class="equation" role="region" aria-label="The initial temperature is sin pi x, and both boundary temperatures are zero." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mi>sin</mi><mo stretchy="false">(</mo><mi>π</mi><mi>x</mi><mo stretchy="false">)</mo><mo>,</mo><mi>u</mi><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mi>u</mi><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow></math></div>
+
+<p>La posición y el tiempo van de cero a uno. La difusión suaviza el perfil y evacua el calor por los extremos fríos. Este problema tiene la solución exacta</p>
+
+<div class="equation" role="region" aria-label="Exact solution: u of x and t equals exponential of minus alpha pi squared t times sin pi x." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>α</mi><msup><mi>π</mi><mn>2</mn></msup><mi>t</mi></mrow></msup><mo>⁢</mo><mi>sin</mi><mo stretchy="false">(</mo><mi>π</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></math></div>
+
+<p>Una solución exacta es útil para enseñar y para hacer pruebas, porque cada predicción de la PINN puede compararse con ella. La figura siguiente muestra solo esta solución analítica; no contiene ninguna red entrenada.</p>
+
+<figure data-plot="diffusion" data-interactive-caption="Solución exacta del problema de difusión. Mueva los controles deslizantes para cambiar el tiempo y la difusividad. La curva punteada es el perfil inicial."><picture><source media="(max-width: 650px)" srcset="/assets/figures/piml-diffusion-mobile-es.svg" width="450" height="440" /><img src="/assets/figures/piml-diffusion-es.svg" width="760" height="420" alt="Perfiles de temperatura exactos con forma de seno que disminuyen entre los tiempos adimensionales cero, un medio y uno." loading="lazy" decoding="async" /></picture><figcaption>Perfiles de difusión exactos para α = 0.1. Todas las curvas cumplen las mismas condiciones de contorno de temperatura cero.</figcaption></figure>
+
+<p>Una PINN sustituye la temperatura desconocida por la salida de la red. Al introducir esa salida en la ecuación del calor se obtiene el residuo</p>
+
+<div class="equation" role="region" aria-label="Residual: r theta equals partial t u theta minus alpha partial x squared u theta." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>r</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mo>∂</mo><msub><mi>u</mi><mi>θ</mi></msub></mrow><mrow><mo>∂</mo><mi>t</mi></mrow></mfrac><mo>−</mo><mi>α</mi><mfrac><mrow><msup><mo>∂</mo><mn>2</mn></msup><msub><mi>u</mi><mi>θ</mi></msub></mrow><mrow><mo>∂</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></mfrac></mrow></math></div>
+
+<p>El residuo es cero allí donde la red cumple exactamente la ecuación. Un residuo distinto de cero mide cuánto se viola la ecuación en ese punto. Es una magnitud distinta del error en la temperatura, y ambas no tienen por qué ser de tamaño parecido.</p>
+
+<h2 id="construccion-de-la-funcion-de-perdida">Construcción de la función de pérdida</h2>
+
+<p>El entrenamiento puede usar cuatro tipos de información: la ecuación en el interior, el estado inicial, los valores en el contorno y las mediciones disponibles. La formulación habitual con restricciones débiles los suma con pesos,</p>
+
+<div class="equation" role="region" aria-label="Total loss equals lambda r L r plus lambda i L i plus lambda b L b plus lambda d L d." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>ℒ</mi><mo>=</mo><msub><mi>λ</mi><mi>r</mi></msub><msub><mi>ℒ</mi><mi>r</mi></msub><mo>+</mo><msub><mi>λ</mi><mi>i</mi></msub><msub><mi>ℒ</mi><mi>i</mi></msub><mo>+</mo><msub><mi>λ</mi><mi>b</mi></msub><msub><mi>ℒ</mi><mi>b</mi></msub><mo>+</mo><msub><mi>λ</mi><mi>d</mi></msub><msub><mi>ℒ</mi><mi>d</mi></msub></mrow></math></div>
+
+<p>y, para la barra, los términos individuales son</p>
+
+<div class="equation" role="region" aria-label="Mean squared losses for equation residual, initial profile mismatch, zero boundary values and observational mismatch." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mtable columnalign="left" displaystyle="true" rowspacing="0.6em"><mtr><mtd><msub><mi>ℒ</mi><mi>r</mi></msub><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msub><mi>N</mi><mi>r</mi></msub></mrow></mfrac><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><msub><mi>N</mi><mi>r</mi></msub></munderover><msup><mrow><mo stretchy="false">|</mo><msub><mi>r</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><msub><mi>x</mi><mi>j</mi></msub><mo>,</mo><msub><mi>t</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow><mn>2</mn></msup></mtd></mtr><mtr><mtd><msub><mi>ℒ</mi><mi>i</mi></msub><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msub><mi>N</mi><mi>i</mi></msub></mrow></mfrac><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><msub><mi>N</mi><mi>i</mi></msub></munderover><msup><mrow><mo stretchy="false">|</mo><msub><mi>u</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><msub><mi>x</mi><mi>j</mi></msub><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo><mo>−</mo><mi>sin</mi><mo stretchy="false">(</mo><mi>π</mi><msub><mi>x</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow><mn>2</mn></msup></mtd></mtr><mtr><mtd><msub><mi>ℒ</mi><mi>b</mi></msub><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msub><mi>N</mi><mi>b</mi></msub></mrow></mfrac><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><msub><mi>N</mi><mi>b</mi></msub></munderover><msup><mrow><mo stretchy="false">|</mo><msub><mi>u</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><msub><mi>x</mi><mi>j</mi></msub><mo>,</mo><msub><mi>t</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow><mn>2</mn></msup></mtd></mtr><mtr><mtd><msub><mi>ℒ</mi><mi>d</mi></msub><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msub><mi>N</mi><mi>d</mi></msub></mrow></mfrac><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><msub><mi>N</mi><mi>d</mi></msub></munderover><msup><mrow><mo stretchy="false">|</mo><msub><mi>u</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><msub><mi>x</mi><mi>j</mi></msub><mo>,</mo><msub><mi>t</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mo>−</mo><msub><mi>y</mi><mi>j</mi></msub><mo stretchy="false">|</mo></mrow><mn>2</mn></msup></mtd></mtr></mtable></mrow></math></div>
+
+<p>Cada término es una media sobre su propio conjunto de puntos. Los puntos del residuo están en el interior del dominio espacio-temporal, los puntos iniciales en el tiempo cero y los puntos de contorno en los dos extremos de la barra, donde la temperatura objetivo es cero. Los puntos de observación llevan temperaturas medidas y.</p>
+
+<p>Los pesos λ fijan cuánto contribuye cada término. Elegirlos es más difícil de lo que parece, porque los residuos, los errores de contorno y los errores en los datos pueden diferir en varios órdenes de magnitud. Reescalar las variables para que sean de orden uno ayuda. Con pesos iguales, los términos no tienen la misma influencia en los gradientes respecto de los parámetros.</p>
+
+<p>En un problema directo con todas las condiciones especificadas, el término de observación es opcional y puede eliminarse. En un problema inverso, las mediciones sirven también para estimar coeficientes desconocidos como α. Que un coeficiente pueda recuperarse depende de lo informativas que sean las mediciones, así que un desajuste pequeño con los datos no demuestra por sí solo que la estimación sea única.</p>
+
+<h3 id="penalizaciones-débiles-y-restricciones-exactas">Penalizaciones débiles y restricciones exactas</h3>
+
+<p>Un término de penalización empuja la red hacia una condición sin imponerla. En la barra, el perfil inicial y los valores nulos en el contorno pueden incorporarse directamente en la representación:</p>
+
+<div class="equation" role="region" aria-label="Hard constraint: u theta equals sin pi x plus t times x times one minus x times N theta of x and t." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>u</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mi>sin</mi><mo stretchy="false">(</mo><mi>π</mi><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mi>t</mi><mi>x</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>x</mi><mo stretchy="false">)</mo><msub><mi>N</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></math></div>
+
+<p>El segundo término se anula en t = 0 y en x = 0 y x = 1 para cualquier salida acotada de la red, de modo que ambas condiciones se cumplen exactamente. Esta construcción funciona porque aquí las condiciones son sencillas y compatibles. Otras geometrías y otros operadores de contorno necesitan sus propias construcciones, y eliminar algunos términos de la pérdida puede mejorar o empeorar el condicionamiento de la optimización restante.</p>
+
+<h3 id="por-qué-no-basta-con-la-ecuación">Por qué no basta con la ecuación</h3>
+
+<p>El campo de temperatura nulo cumple la ecuación del calor y las condiciones de contorno nulas. Solo incumple la condición inicial. Una red que colapsa a cero tiene, por tanto, residuo nulo en todo el dominio y aun así resuelve un problema equivocado.</p>
+
+<figure data-plot="counterexample"><picture><source media="(max-width: 650px)" srcset="/assets/figures/piml-counterexample-mobile-es.svg" width="450" height="440" /><img src="/assets/figures/piml-counterexample-es.svg" width="760" height="420" alt="El perfil inicial requerido, con forma de seno, alcanza el valor uno en el centro, mientras que el candidato de campo nulo vale cero en toda la barra." loading="lazy" decoding="async" /></picture><figcaption>En t = 0, el campo nulo tiene residuo cero y los valores de contorno correctos, pero no reproduce el perfil inicial requerido.</figcaption></figure>
+
+<p>El campo nulo y la solución verdadera solo se diferencian en la pérdida de la condición inicial. Seguir cada término de la pérdida durante el entrenamiento, además de su suma, muestra qué condición incumple cada candidato.</p>
+
+<h2 id="que-ocurre-durante-el-entrenamiento">¿Qué ocurre durante el entrenamiento?</h2>
+
+<ol>
+  <li>Definir el problema físico: los campos, el dominio, la ecuación y unas condiciones inicial y de contorno compatibles. Reescalar las variables y decidir qué coeficientes son conocidos.</li>
+  <li>Elegir la red y decidir qué condiciones, si las hay, se imponen de forma exacta. El residuo de una ecuación de segundo orden requiere segundas derivadas de la salida, por lo que las activaciones suaves como tanh son una elección habitual.</li>
+  <li>Muestrear puntos interiores, iniciales, de contorno y de observación. Reservar un conjunto de puntos aparte para la validación.</li>
+  <li>Evaluar la red y sus derivadas respecto de las coordenadas, y calcular cada residuo y cada desajuste.</li>
+  <li>Derivar la pérdida ponderada respecto de θ y dar un paso del optimizador. Repetir hasta que los términos individuales de la pérdida dejen de disminuir.</li>
+  <li>Validar con datos que la red nunca ha visto, como una solución analítica o un solver numérico de confianza.</li>
+</ol>
+
+<p>En la barra, la validación puede usar el error L2 discreto relativo sobre una malla espacio-temporal independiente:</p>
+
+<div class="equation" role="region" aria-label="Relative discrete L2 error: the square root of the sum of squared prediction errors divided by the sum of squared reference values." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>E</mi><mtext>rel</mtext></msub><mo>=</mo><msqrt><mfrac><mrow><mo>∑</mo><msup><mrow><mo stretchy="false">(</mo><msub><mi>u</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><msub><mi>z</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mo>−</mo><mi>u</mi><mo stretchy="false">(</mo><msub><mi>z</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><mn>2</mn></msup></mrow><mrow><mo>∑</mo><msup><mrow><mi>u</mi><mo stretchy="false">(</mo><msub><mi>z</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow><mn>2</mn></msup></mrow></mfrac></msqrt></mrow></math></div>
+
+<p>Este número resume el error solo en la malla elegida. Conviene informar también del error máximo y del desajuste en el contorno, porque una media pequeña puede ocultar un error local grande. Repetir el entrenamiento con distintas semillas aleatorias y muestras de puntos indica hasta qué punto el resultado es reproducible.</p>
+
+<h2 id="donde-ayuda-el-aprendizaje-informado-por-la-fisica">Dónde ayuda el aprendizaje informado por la física</h2>
+
+<p>Una PINN entrenada es una función diferenciable que puede evaluarse en cualquier punto del dominio. Esto la hace práctica en problemas que combinan ecuaciones con datos incompletos: problemas inversos, asimilación de datos y diseño sujeto a restricciones físicas. La misma pérdida puede incluir un objetivo de control, y así se usan las PINN en control óptimo.</p>
+
+<p>Entre las aplicaciones figuran flujos reconstruidos a partir de mediciones dispersas de velocidad, coeficientes de transporte estimados a partir de datos de temperatura, dinámica cuántica controlada, y ecuaciones de campo acopladas y problemas de autovalores en física relativista. Cada una necesita su propia elección de representación, de muestreo y de comprobaciones de referencia.</p>
+
+<p>En los problemas directos bien planteados, los solvers clásicos de diferencias finitas, volúmenes finitos, elementos finitos y métodos espectrales son la referencia que hay que superar, y a menudo ganan en precisión y en coste. Una comparación justa tiene en cuenta el tiempo de entrenamiento además del de evaluación, e indica el hardware y la precisión alcanzada.</p>
+
+<h2 id="limitaciones-que-importan-en-la-practica">Limitaciones que importan en la práctica</h2>
+
+<p>El entrenamiento puede fallar incluso cuando la red es lo bastante expresiva para representar la solución. Los términos de la pérdida pueden competir entre sí, y el operador diferencial puede dejar la optimización mal condicionada. <a href="https://arxiv.org/abs/2109.01050" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">Krishnapriyan y sus colaboradores</a> documentaron fallos de este tipo en problemas de convección, reacción y reacción-difusión, y mostraron que la regularización por currículo y el entrenamiento secuencia a secuencia pueden recuperar soluciones precisas.</p>
+
+<p>Los frentes abruptos, los choques, el comportamiento multiescala y los horizontes temporales largos son difíciles para la formulación estándar. En una discontinuidad la derivada clásica no existe, así que un residuo puntual pierde su sentido. Las formulaciones débiles, la descomposición de dominios y los esquemas conservativos tratan mejor estos casos.</p>
+
+<p>También hay costes y puntos ciegos. Las derivadas de orden superior mediante diferenciación automática son caras para lotes grandes de puntos de colocación. Una muestra dispersa puede pasar por alto una región estrecha donde el error es grande. Si la ecuación que rige el sistema es incorrecta, el término físico sesga la predicción en lugar de corregirla, y una única red entrenada no proporciona ninguna estimación de la incertidumbre.</p>
+
+<h2 id="relacion-con-mi-investigacion">Relación con mi investigación</h2>
+
+<p>Los trabajos siguientes aplican estas ideas a problemas más difíciles que una barra en difusión. Resuelven ecuaciones de evolución, aprenden protocolos de control y calculan autovalores, y cada uno requirió una formulación adaptada a su física.</p>
+
+<section class="research-reading"><h3><a href="/es/publicaciones/#ga-pinns">Gradient-annihilated PINNs for solving Riemann problems: Application to relativistic hydrodynamics</a></h3><p class="reading-status">2024 · Artículo de revista · Computer Methods in Applied Mechanics and Engineering</p><p>Introduce una pérdida física ponderada que reduce la influencia de los gradientes abruptos al aprender soluciones discontinuas. Las pruebas con problemas de Riemann relativistas evalúan cómo captura el método los choques y otras discontinuidades del fluido.</p><p><a href="https://doi.org/10.1016/j.cma.2024.116906" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">Artículo de revista ↗</a></p></section>
+
+<section class="research-reading"><h3><a href="/es/publicaciones/#collapse">Addressing the gravitational collapse of a massless scalar field with physics-informed neural networks</a></h3><p class="reading-status">2026 · Artículo de revista · Machine Learning: Science and Technology</p><p>Compara arquitecturas neuronales para la dispersión y el colapso gravitatorio de un campo escalar, incluido el umbral de formación de agujeros negros. El estudio analiza cómo influyen el diseño de la red y el muestreo adaptativo en la precisión y la estabilidad.</p><p><a href="https://doi.org/10.1088/2632-2153/ae5459" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">Artículo de revista ↗</a> · <a href="https://github.com/Netzuel/modpinn-gravitational-collapse" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">Código ↗</a></p></section>
+
+<section class="research-reading"><h3><a href="/es/publicaciones/#counterdiabatic">Physics-informed neural networks for an optimal counterdiabatic quantum computation</a></h3><p class="reading-status">2024 · Artículo de revista · Machine Learning: Science and Technology</p><p>Aprende controles contradiabáticos a partir de restricciones físicas para suprimir transiciones no deseadas durante la computación cuántica. Un ejemplo molecular de dos cúbits muestra el diseño conjunto de los protocolos de control y de los potenciales de gauge adiabáticos.</p><p><a href="https://doi.org/10.1088/2632-2153/ad450f" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">Artículo de revista ↗</a></p></section>
+
+<section class="research-reading"><h3><a href="/es/publicaciones/#qfi">Physics-Informed Neural Networks for Maximizing Quantum Fisher Information in Time-Dependent Many-Body Systems</a></h3><p class="reading-status">2026 · Preprint · arXiv:2604.18506</p><p>Emplea redes neuronales informadas por la física para diseñar protocolos de control que aumentan la información de Fisher cuántica en sistemas de espines forzados. El trabajo relaciona la dinámica y el control cuánticos con una mayor sensibilidad en la estimación de parámetros.</p><p><a href="https://arxiv.org/abs/2604.18506" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">Leer el preprint ↗</a></p></section>
+
+<section class="research-reading"><h3><a href="/es/publicaciones/#kerr">Kerr Quasinormal Modes without Variable Separation: A Two-Dimensional Hyperboloidal Teukolsky Solver with Physics-Informed Neural Networks</a></h3><p class="reading-status">2026 · Preprint · arXiv:2608.19774</p><p>Calcula las frecuencias de oscilación de agujeros negros en rotación con redes neuronales informadas por la física. Un solver bidimensional mantiene acopladas las ecuaciones radial y angular, sin separación de variables.</p><p><a href="https://arxiv.org/abs/2608.19774" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">Leer el preprint ↗</a></p></section>
+
+<h2 id="un-punto-de-partida-practico">Un punto de partida práctico</h2>
+
+<p>Empiece por un problema cuya solución pueda comprobar de forma independiente, como la barra anterior. Anote las unidades, el dominio y todas las condiciones antes de elegir una red. Siga cada término de la pérdida por separado y mida el error en puntos que no se hayan usado en el entrenamiento. Los datos dispersos, los coeficientes desconocidos y las ecuaciones más difíciles pueden venir después, cuando esta base funcione.</p>
+<footer class="article-end"><a href="/es/blog/">← Todas las entradas</a><a href="/es/investigacion/">Ver la investigación →</a></footer></div>
+</article>
+<script src="/assets/js/article-contents.js?v=1790504617" defer></script>
+<script src="/assets/js/article-plots.js?v=1790504617" defer></script>
+</main>
+<footer class="site-footer wrap">
+<span id="external-link-note" class="sr-only">Se abre en una pestaña nueva.</span>
+<div><a class="footer-name" href="/es/">Antonio Ferrer-Sánchez</a><p>Algoritmos cuánticos · Aprendizaje automático científico</p></div>
+<div class="social-links"><a href="https://scholar.google.com/citations?user=Ajj7DC4AAAAJ" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">Google Scholar <span aria-hidden="true">↗</span></a><a href="https://orcid.org/0000-0002-2305-5261" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">ORCID <span aria-hidden="true">↗</span></a><a href="https://github.com/Netzuel" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">GitHub <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/antonio-ferrer-s%C3%A1nchez-67a50b197/" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">LinkedIn <span aria-hidden="true">↗</span></a></div>
+<p class="footer-note">© 2026 Antonio Ferrer-Sánchez. Hecho con Jekyll.</p>
+</footer>
+</body>
+</html>
