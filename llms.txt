@@ -1,0 +1,38 @@
+# Antonio Ferrer-Sánchez
+
+> Antonio Ferrer-Sánchez develops machine learning methods for problems in physics, especially physics-informed neural networks and quantum dynamics. Current roles: Quantum Algorithm Engineer at Kipu Quantum and PhD student at Universitat de València (Intelligent Data Analysis Laboratory). The site is in English, with a Spanish version under /es/.
+
+## Pages
+
+- [Research](https://antonio-ferrer-sanchez.github.io/research/): scientific machine learning, quantum dynamics and control, and relativistic physics.
+- [Publications](https://antonio-ferrer-sanchez.github.io/publications/): journal papers and preprints, with links to the published versions.
+- [Software](https://antonio-ferrer-sanchez.github.io/software/): public research code.
+- [Activity](https://antonio-ferrer-sanchez.github.io/activity/): talks, conference contributions and university teaching.
+- [CV](https://antonio-ferrer-sanchez.github.io/cv/): professional curriculum vitae.
+- [Blog](https://antonio-ferrer-sanchez.github.io/blog/): tutorials and research explanations.
+
+## Blog posts
+
+- [Physics-informed machine learning: from physical laws to neural solvers](https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/): How physical knowledge shapes learning, how PINNs solve differential equations, and how to check whether a learned solution is reliable.
+
+## Publications
+
+- [Kerr Quasinormal Modes without Variable Separation: A Two-Dimensional Hyperboloidal Teukolsky Solver with Physics-Informed Neural Networks](https://arxiv.org/abs/2608.19774): arXiv:2608.19774, 2026 (preprint).
+- [Physics-Informed Neural Networks for Maximizing Quantum Fisher Information in Time-Dependent Many-Body Systems](https://arxiv.org/abs/2604.18506): arXiv:2604.18506, 2026 (preprint).
+- [Addressing the gravitational collapse of a massless scalar field with physics-informed neural networks](https://doi.org/10.1088/2632-2153/ae5459): Machine Learning: Science and Technology, 2026.
+- [Trackformers: in search of transformer-based particle tracking for the high-luminosity LHC era](https://doi.org/10.1140/epjc/s10052-025-14156-3): The European Physical Journal C, 2025.
+- [Gradient-annihilated PINNs for solving Riemann problems: Application to relativistic hydrodynamics](https://doi.org/10.1016/j.cma.2024.116906): Computer Methods in Applied Mechanics and Engineering, 2024.
+- [Physics-informed neural networks for an optimal counterdiabatic quantum computation](https://doi.org/10.1088/2632-2153/ad450f): Machine Learning: Science and Technology, 2024.
+- [Prediction of the risk of cancer and the grade of dysplasia in leukoplakia lesions using deep learning](https://doi.org/10.1016/j.oraloncology.2022.105967): Oral Oncology, 2022.
+
+## Profiles
+
+- [Google Scholar](https://scholar.google.com/citations?user=Ajj7DC4AAAAJ)
+- [ORCID](https://orcid.org/0000-0002-2305-5261)
+- [GitHub](https://github.com/Netzuel)
+- [LinkedIn](https://www.linkedin.com/in/antonio-ferrer-s%C3%A1nchez-67a50b197/)
+
+## Optional
+
+- [Versión en español](https://antonio-ferrer-sanchez.github.io/es/)
+- [Blog feed](https://antonio-ferrer-sanchez.github.io/feed.xml)

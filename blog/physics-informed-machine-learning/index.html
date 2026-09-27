@@ -4,15 +4,94 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Physics-informed machine learning: from physical laws to neural solvers · Antonio Ferrer-Sánchez</title>
 <meta name="description" content="How physical knowledge shapes learning, how PINNs solve differential equations, and how to check whether a learned solution is reliable.">
+<meta name="author" content="Antonio Ferrer-Sánchez">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:site_name" content="Antonio Ferrer-Sánchez">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Physics-informed machine learning: from physical laws to neural solvers">
+<meta property="og:description" content="How physical knowledge shapes learning, how PINNs solve differential equations, and how to check whether a learned solution is reliable.">
+<meta property="og:url" content="https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:image" content="https://antonio-ferrer-sanchez.github.io/assets/images/share-piml-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Post title beside the network diagram used in the post: inputs x and t pass through two hidden layers to the output u theta.">
+<meta property="article:published_time" content="2026-09-26">
+<meta property="article:modified_time" content="2026-09-26">
+<meta property="article:author" content="https://antonio-ferrer-sanchez.github.io/">
+<meta property="article:section" content="Scientific machine learning">
+<meta property="article:tag" content="physics-informed neural networks">
+<meta property="article:tag" content="PINNs">
+<meta property="article:tag" content="physics-informed machine learning">
+<meta property="article:tag" content="scientific machine learning">
+<meta property="article:tag" content="differential equations">
+<meta property="article:tag" content="heat equation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Physics-informed machine learning: from physical laws to neural solvers">
+<meta name="twitter:description" content="How physical knowledge shapes learning, how PINNs solve differential equations, and how to check whether a learned solution is reliable.">
+<meta name="twitter:image" content="https://antonio-ferrer-sanchez.github.io/assets/images/share-piml-en.png">
+<link rel="me" href="https://scholar.google.com/citations?user=Ajj7DC4AAAAJ">
+<link rel="me" href="https://orcid.org/0000-0002-2305-5261">
+<link rel="me" href="https://github.com/Netzuel">
+<link rel="me" href="https://www.linkedin.com/in/antonio-ferrer-s%C3%A1nchez-67a50b197/">
+<link rel="alternate" type="application/atom+xml" title="Antonio Ferrer-Sánchez · Blog" href="https://antonio-ferrer-sanchez.github.io/feed.xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/images/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [
+{
+"@type": "Person",
+"@id": "https://antonio-ferrer-sanchez.github.io/#person",
+"name": "Antonio Ferrer-Sánchez",
+"alternateName": ["Antonio Ferrer Sánchez", "Antonio Ferrer Sanchez"],
+"givenName": "Antonio",
+"familyName": "Ferrer-Sánchez",
+"url": "https://antonio-ferrer-sanchez.github.io/",
+"image": "https://antonio-ferrer-sanchez.github.io/assets/images/antonio-ferrer-sanchez.png",
+"description": "Develops machine learning methods for problems in physics, especially physics-informed neural networks and quantum dynamics.",
+"jobTitle": "Quantum Algorithm Engineer",
+"worksFor": {"@type": "Organization", "name": "Kipu Quantum", "url": "https://kipu-quantum.com/"},
+"affiliation": [{"@type": "CollegeOrUniversity", "name": "Universitat de València", "url": "https://www.uv.es/"}, {"@type": "ResearchOrganization", "name": "Intelligent Data Analysis Laboratory (IDAL)", "parentOrganization": {"@type": "CollegeOrUniversity", "name": "Universitat de València"}}],
+"alumniOf": {"@type": "CollegeOrUniversity", "name": "Universitat de València", "url": "https://www.uv.es/"},
+"knowsAbout": ["Physics-informed neural networks","Scientific machine learning","Quantum algorithms","Counterdiabatic quantum computation","Quantum metrology","Relativistic hydrodynamics","Gravitational collapse","Black-hole quasinormal modes"],
+"sameAs": ["https://scholar.google.com/citations?user=Ajj7DC4AAAAJ", "https://orcid.org/0000-0002-2305-5261", "https://github.com/Netzuel", "https://www.linkedin.com/in/antonio-ferrer-s%C3%A1nchez-67a50b197/"]
+},
+{"@type": "WebSite", "@id": "https://antonio-ferrer-sanchez.github.io/#website", "url": "https://antonio-ferrer-sanchez.github.io/", "name": "Antonio Ferrer-Sánchez", "description": "Quantum algorithms and scientific machine learning. Research, publications and software by Antonio Ferrer-Sánchez.", "inLanguage": ["en", "es"], "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}},
+{
+"@type": "WebPage",
+"@id": "https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/#webpage",
+"url": "https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/",
+"name": "Physics-informed machine learning: from physical laws to neural solvers · Antonio Ferrer-Sánchez",
+"description": "How physical knowledge shapes learning, how PINNs solve differential equations, and how to check whether a learned solution is reliable.",
+"inLanguage": "en",
+"isPartOf": {"@id": "https://antonio-ferrer-sanchez.github.io/#website"},
+"about": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"},
+"primaryImageOfPage": {"@type": "ImageObject", "url": "https://antonio-ferrer-sanchez.github.io/assets/images/share-piml-en.png", "width": 1200, "height": 630},
+"breadcrumb": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/#breadcrumb"}
+},
+{"@type": "BreadcrumbList", "@id": "https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/#breadcrumb", "itemListElement": [
+{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://antonio-ferrer-sanchez.github.io/"},
+{"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://antonio-ferrer-sanchez.github.io/blog/"},
+{"@type": "ListItem", "position": 3, "name": "Physics-informed machine learning: from physical laws to neural solvers", "item": "https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/"}
+]},
+{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/#webpage"}, "headline": "Physics-informed machine learning: from physical laws to neural solvers", "description": "How physical knowledge shapes learning, how PINNs solve differential equations, and how to check whether a learned solution is reliable.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-piml-en.png", "datePublished": "2026-09-26", "dateModified": "2026-09-26", "inLanguage": "en", "articleSection": "Scientific machine learning", "keywords": ["physics-informed neural networks","PINNs","physics-informed machine learning","scientific machine learning","differential equations","heat equation"], "wordCount": 1895, "timeRequired": "PT12M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog", "url": "https://antonio-ferrer-sanchez.github.io/blog/"}, "workTranslation": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/aprendizaje-automatico-informado-por-la-fisica/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Gradient-annihilated PINNs for solving Riemann problems: Application to relativistic hydrodynamics", "url": "https://doi.org/10.1016/j.cma.2024.116906"}, {"@type": "ScholarlyArticle", "name": "Addressing the gravitational collapse of a massless scalar field with physics-informed neural networks", "url": "https://doi.org/10.1088/2632-2153/ae5459"}, {"@type": "ScholarlyArticle", "name": "Physics-informed neural networks for an optimal counterdiabatic quantum computation", "url": "https://doi.org/10.1088/2632-2153/ad450f"}, {"@type": "ScholarlyArticle", "name": "Physics-Informed Neural Networks for Maximizing Quantum Fisher Information in Time-Dependent Many-Body Systems", "url": "https://arxiv.org/abs/2604.18506"}, {"@type": "ScholarlyArticle", "name": "Kerr Quasinormal Modes without Variable Separation: A Two-Dimensional Hyperboloidal Teukolsky Solver with Physics-Informed Neural Networks", "url": "https://arxiv.org/abs/2608.19774"}]}
+]}
+</script>
+
 <meta name="theme-color" content="#153f36">
 <link rel="canonical" href="https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/">
 <link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/">
 <link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/aprendizaje-automatico-informado-por-la-fisica/">
 <link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/">
-<link rel="stylesheet" href="/assets/css/site.css?v=1790504987">
-<link rel="stylesheet" href="/assets/css/print.css?v=1790504987" media="print">
+<link rel="stylesheet" href="/assets/css/site.css?v=1790505923">
+<link rel="stylesheet" href="/assets/css/print.css?v=1790505923" media="print">
 </head>
 <body class="article-page">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -28,7 +107,7 @@
 <a class="text-link article-back" href="/blog/">← All posts</a>
 <p class="article-meta"><span>Scientific machine learning</span><time datetime="2026-09-26">26 September 2026</time><span>12 min read</span></p>
 <h1>Physics-informed machine learning: from physical laws to neural solvers</h1><p class="page-lede">How physical knowledge shapes learning, how PINNs solve differential equations, and how to check whether a learned solution is reliable.</p>
-<p class="article-byline">By Antonio Ferrer-Sánchez</p>
+<p class="article-byline"><a rel="author" href="/">By Antonio Ferrer-Sánchez</a></p>
 </header>
 <aside class="article-contents" aria-labelledby="contents-heading"><h2 id="contents-heading">In this post</h2><nav aria-label="Post contents"><a href="#learning-from-measurements-and-physical-laws">Learning from measurements and physical laws</a><a href="#from-a-neural-network-to-a-differential-equation-solver">From a neural network to a differential-equation solver</a><a href="#a-concrete-example-diffusion-along-a-rod">A concrete example: diffusion along a rod</a><a href="#building-the-loss-function">Building the loss function</a><a href="#what-happens-during-training">What happens during training?</a><a href="#where-physics-informed-learning-helps">Where physics-informed learning helps</a><a href="#limitations-that-matter-in-practice">Limitations that matter in practice</a><a href="#connections-to-my-research">Connections to my research</a><a href="#a-practical-starting-point">A practical starting point</a></nav></aside>
 <div class="article-body"><h2 id="learning-from-measurements-and-physical-laws">Learning from measurements and physical laws</h2>
@@ -159,8 +238,8 @@
 <p>Start with a problem whose solution you can check independently, such as the rod above. Write down the units, the domain and every condition before choosing a network. Track each loss term on its own, and measure the error on points that were not used for training. Sparse data, unknown coefficients and harder equations can follow once this baseline works.</p>
 <footer class="article-end"><a href="/blog/">← All posts</a><a href="/research/">Explore the research →</a></footer></div>
 </article>
-<script src="/assets/js/article-contents.js?v=1790504987" defer></script>
-<script src="/assets/js/article-plots.js?v=1790504987" defer></script>
+<script src="/assets/js/article-contents.js?v=1790505923" defer></script>
+<script src="/assets/js/article-plots.js?v=1790505923" defer></script>
 </main>
 <footer class="site-footer wrap">
 <span id="external-link-note" class="sr-only">Opens in a new tab.</span>

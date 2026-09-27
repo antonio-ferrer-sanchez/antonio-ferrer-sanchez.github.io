@@ -1,0 +1,5 @@
+# Search engines and AI search or assistant crawlers may read the whole site.
+User-agent: *
+Allow: /
+
+Sitemap: https://antonio-ferrer-sanchez.github.io/sitemap.xml

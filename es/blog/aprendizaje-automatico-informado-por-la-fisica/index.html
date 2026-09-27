@@ -4,15 +4,94 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Aprendizaje automático informado por la física: de las leyes físicas a los solvers neuronales · Antonio Ferrer-Sánchez</title>
 <meta name="description" content="Cómo el conocimiento físico orienta el aprendizaje, cómo resuelven las PINN ecuaciones diferenciales y cómo comprobar si una solución aprendida es fiable.">
+<meta name="author" content="Antonio Ferrer-Sánchez">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:site_name" content="Antonio Ferrer-Sánchez">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Aprendizaje automático informado por la física: de las leyes físicas a los solvers neuronales">
+<meta property="og:description" content="Cómo el conocimiento físico orienta el aprendizaje, cómo resuelven las PINN ecuaciones diferenciales y cómo comprobar si una solución aprendida es fiable.">
+<meta property="og:url" content="https://antonio-ferrer-sanchez.github.io/es/blog/aprendizaje-automatico-informado-por-la-fisica/">
+<meta property="og:locale" content="es_ES">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image" content="https://antonio-ferrer-sanchez.github.io/assets/images/share-piml-es.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Título de la entrada junto al diagrama de red de la entrada: las entradas x y t atraviesan dos capas ocultas hasta la salida u theta.">
+<meta property="article:published_time" content="2026-09-26">
+<meta property="article:modified_time" content="2026-09-26">
+<meta property="article:author" content="https://antonio-ferrer-sanchez.github.io/es/">
+<meta property="article:section" content="Aprendizaje automático científico">
+<meta property="article:tag" content="redes neuronales informadas por la física">
+<meta property="article:tag" content="PINN">
+<meta property="article:tag" content="aprendizaje automático informado por la física">
+<meta property="article:tag" content="aprendizaje automático científico">
+<meta property="article:tag" content="ecuaciones diferenciales">
+<meta property="article:tag" content="ecuación del calor">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Aprendizaje automático informado por la física: de las leyes físicas a los solvers neuronales">
+<meta name="twitter:description" content="Cómo el conocimiento físico orienta el aprendizaje, cómo resuelven las PINN ecuaciones diferenciales y cómo comprobar si una solución aprendida es fiable.">
+<meta name="twitter:image" content="https://antonio-ferrer-sanchez.github.io/assets/images/share-piml-es.png">
+<link rel="me" href="https://scholar.google.com/citations?user=Ajj7DC4AAAAJ">
+<link rel="me" href="https://orcid.org/0000-0002-2305-5261">
+<link rel="me" href="https://github.com/Netzuel">
+<link rel="me" href="https://www.linkedin.com/in/antonio-ferrer-s%C3%A1nchez-67a50b197/">
+<link rel="alternate" type="application/atom+xml" title="Antonio Ferrer-Sánchez · Blog (español)" href="https://antonio-ferrer-sanchez.github.io/es/feed.xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/images/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [
+{
+"@type": "Person",
+"@id": "https://antonio-ferrer-sanchez.github.io/#person",
+"name": "Antonio Ferrer-Sánchez",
+"alternateName": ["Antonio Ferrer Sánchez", "Antonio Ferrer Sanchez"],
+"givenName": "Antonio",
+"familyName": "Ferrer-Sánchez",
+"url": "https://antonio-ferrer-sanchez.github.io/es/",
+"image": "https://antonio-ferrer-sanchez.github.io/assets/images/antonio-ferrer-sanchez.png",
+"description": "Desarrolla métodos de aprendizaje automático para problemas de física, sobre todo redes neuronales informadas por la física y dinámica cuántica.",
+"jobTitle": "Quantum Algorithm Engineer",
+"worksFor": {"@type": "Organization", "name": "Kipu Quantum", "url": "https://kipu-quantum.com/"},
+"affiliation": [{"@type": "CollegeOrUniversity", "name": "Universitat de València", "url": "https://www.uv.es/"}, {"@type": "ResearchOrganization", "name": "Intelligent Data Analysis Laboratory (IDAL)", "parentOrganization": {"@type": "CollegeOrUniversity", "name": "Universitat de València"}}],
+"alumniOf": {"@type": "CollegeOrUniversity", "name": "Universitat de València", "url": "https://www.uv.es/"},
+"knowsAbout": ["Redes neuronales informadas por la física","Aprendizaje automático científico","Algoritmos cuánticos","Computación cuántica contradiabática","Metrología cuántica","Hidrodinámica relativista","Colapso gravitatorio","Modos cuasinormales de agujeros negros"],
+"sameAs": ["https://scholar.google.com/citations?user=Ajj7DC4AAAAJ", "https://orcid.org/0000-0002-2305-5261", "https://github.com/Netzuel", "https://www.linkedin.com/in/antonio-ferrer-s%C3%A1nchez-67a50b197/"]
+},
+{"@type": "WebSite", "@id": "https://antonio-ferrer-sanchez.github.io/#website", "url": "https://antonio-ferrer-sanchez.github.io/", "name": "Antonio Ferrer-Sánchez", "description": "Algoritmos cuánticos y aprendizaje automático científico. Investigación, publicaciones y software de Antonio Ferrer-Sánchez.", "inLanguage": ["en", "es"], "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}},
+{
+"@type": "WebPage",
+"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/aprendizaje-automatico-informado-por-la-fisica/#webpage",
+"url": "https://antonio-ferrer-sanchez.github.io/es/blog/aprendizaje-automatico-informado-por-la-fisica/",
+"name": "Aprendizaje automático informado por la física: de las leyes físicas a los solvers neuronales · Antonio Ferrer-Sánchez",
+"description": "Cómo el conocimiento físico orienta el aprendizaje, cómo resuelven las PINN ecuaciones diferenciales y cómo comprobar si una solución aprendida es fiable.",
+"inLanguage": "es",
+"isPartOf": {"@id": "https://antonio-ferrer-sanchez.github.io/#website"},
+"about": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"},
+"primaryImageOfPage": {"@type": "ImageObject", "url": "https://antonio-ferrer-sanchez.github.io/assets/images/share-piml-es.png", "width": 1200, "height": 630},
+"breadcrumb": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/aprendizaje-automatico-informado-por-la-fisica/#breadcrumb"}
+},
+{"@type": "BreadcrumbList", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/aprendizaje-automatico-informado-por-la-fisica/#breadcrumb", "itemListElement": [
+{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://antonio-ferrer-sanchez.github.io/es/"},
+{"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://antonio-ferrer-sanchez.github.io/es/blog/"},
+{"@type": "ListItem", "position": 3, "name": "Aprendizaje automático informado por la física: de las leyes físicas a los solvers neuronales", "item": "https://antonio-ferrer-sanchez.github.io/es/blog/aprendizaje-automatico-informado-por-la-fisica/"}
+]},
+{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/aprendizaje-automatico-informado-por-la-fisica/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/aprendizaje-automatico-informado-por-la-fisica/#webpage"}, "headline": "Aprendizaje automático informado por la física: de las leyes físicas a los solvers neuronales", "description": "Cómo el conocimiento físico orienta el aprendizaje, cómo resuelven las PINN ecuaciones diferenciales y cómo comprobar si una solución aprendida es fiable.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-piml-es.png", "datePublished": "2026-09-26", "dateModified": "2026-09-26", "inLanguage": "es", "articleSection": "Aprendizaje automático científico", "keywords": ["redes neuronales informadas por la física","PINN","aprendizaje automático informado por la física","aprendizaje automático científico","ecuaciones diferenciales","ecuación del calor"], "wordCount": 2253, "timeRequired": "PT13M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog (español)", "url": "https://antonio-ferrer-sanchez.github.io/es/blog/"}, "translationOfWork": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Gradient-annihilated PINNs for solving Riemann problems: Application to relativistic hydrodynamics", "url": "https://doi.org/10.1016/j.cma.2024.116906"}, {"@type": "ScholarlyArticle", "name": "Addressing the gravitational collapse of a massless scalar field with physics-informed neural networks", "url": "https://doi.org/10.1088/2632-2153/ae5459"}, {"@type": "ScholarlyArticle", "name": "Physics-informed neural networks for an optimal counterdiabatic quantum computation", "url": "https://doi.org/10.1088/2632-2153/ad450f"}, {"@type": "ScholarlyArticle", "name": "Physics-Informed Neural Networks for Maximizing Quantum Fisher Information in Time-Dependent Many-Body Systems", "url": "https://arxiv.org/abs/2604.18506"}, {"@type": "ScholarlyArticle", "name": "Kerr Quasinormal Modes without Variable Separation: A Two-Dimensional Hyperboloidal Teukolsky Solver with Physics-Informed Neural Networks", "url": "https://arxiv.org/abs/2608.19774"}]}
+]}
+</script>
+
 <meta name="theme-color" content="#153f36">
 <link rel="canonical" href="https://antonio-ferrer-sanchez.github.io/es/blog/aprendizaje-automatico-informado-por-la-fisica/">
 <link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/">
 <link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/aprendizaje-automatico-informado-por-la-fisica/">
 <link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/">
-<link rel="stylesheet" href="/assets/css/site.css?v=1790504987">
-<link rel="stylesheet" href="/assets/css/print.css?v=1790504987" media="print">
+<link rel="stylesheet" href="/assets/css/site.css?v=1790505923">
+<link rel="stylesheet" href="/assets/css/print.css?v=1790505923" media="print">
 </head>
 <body class="article-page">
 <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -28,7 +107,7 @@
 <a class="text-link article-back" href="/es/blog/">← Todas las entradas</a>
 <p class="article-meta"><span>Aprendizaje automático científico</span><time datetime="2026-09-26">26 de septiembre de 2026</time><span>13 min de lectura</span></p>
 <h1>Aprendizaje automático informado por la física: de las leyes físicas a los solvers neuronales</h1><p class="page-lede">Cómo el conocimiento físico orienta el aprendizaje, cómo resuelven las PINN ecuaciones diferenciales y cómo comprobar si una solución aprendida es fiable.</p>
-<p class="article-byline">Por Antonio Ferrer-Sánchez</p>
+<p class="article-byline"><a rel="author" href="/es/">Por Antonio Ferrer-Sánchez</a></p>
 </header>
 <aside class="article-contents" aria-labelledby="contents-heading"><h2 id="contents-heading">En esta entrada</h2><nav aria-label="Contenido de la entrada"><a href="#aprender-de-las-mediciones-y-de-las-leyes-fisicas">Aprender de las mediciones y de las leyes físicas</a><a href="#de-una-red-neuronal-a-un-solver-de-ecuaciones-diferenciales">De una red neuronal a un solver de ecuaciones diferenciales</a><a href="#un-ejemplo-concreto-difusion-en-una-barra">Un ejemplo concreto: difusión en una barra</a><a href="#construccion-de-la-funcion-de-perdida">Construcción de la función de pérdida</a><a href="#que-ocurre-durante-el-entrenamiento">¿Qué ocurre durante el entrenamiento?</a><a href="#donde-ayuda-el-aprendizaje-informado-por-la-fisica">Dónde ayuda el aprendizaje informado por la física</a><a href="#limitaciones-que-importan-en-la-practica">Limitaciones que importan en la práctica</a><a href="#relacion-con-mi-investigacion">Relación con mi investigación</a><a href="#un-punto-de-partida-practico">Un punto de partida práctico</a></nav></aside>
 <div class="article-body"><h2 id="aprender-de-las-mediciones-y-de-las-leyes-fisicas">Aprender de las mediciones y de las leyes físicas</h2>
@@ -159,8 +238,8 @@
 <p>Empiece por un problema cuya solución pueda comprobar de forma independiente, como la barra anterior. Anote las unidades, el dominio y todas las condiciones antes de elegir una red. Siga cada término de la pérdida por separado y mida el error en puntos que no se hayan usado en el entrenamiento. Los datos dispersos, los coeficientes desconocidos y las ecuaciones más difíciles pueden venir después, cuando esta base funcione.</p>
 <footer class="article-end"><a href="/es/blog/">← Todas las entradas</a><a href="/es/investigacion/">Ver la investigación →</a></footer></div>
 </article>
-<script src="/assets/js/article-contents.js?v=1790504987" defer></script>
-<script src="/assets/js/article-plots.js?v=1790504987" defer></script>
+<script src="/assets/js/article-contents.js?v=1790505923" defer></script>
+<script src="/assets/js/article-plots.js?v=1790505923" defer></script>
 </main>
 <footer class="site-footer wrap">
 <span id="external-link-note" class="sr-only">Se abre en una pestaña nueva.</span>
