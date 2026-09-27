@@ -25,16 +25,16 @@
 <xhtml:link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/"/>
 </url>
 <url>
-<loc>https://antonio-ferrer-sanchez.github.io/cv/</loc>
+<loc>https://antonio-ferrer-sanchez.github.io/es/cv/</loc>
+<xhtml:link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/cv/"/>
 <xhtml:link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/cv/"/>
 <xhtml:link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/cv/"/>
-<xhtml:link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/cv/"/>
 </url>
 <url>
-<loc>https://antonio-ferrer-sanchez.github.io/es/cv/</loc>
+<loc>https://antonio-ferrer-sanchez.github.io/cv/</loc>
+<xhtml:link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/cv/"/>
 <xhtml:link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/cv/"/>
 <xhtml:link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/cv/"/>
-<xhtml:link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/cv/"/>
 </url>
 <url>
 <loc>https://antonio-ferrer-sanchez.github.io/</loc>
@@ -53,6 +53,18 @@
 <xhtml:link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/investigacion/"/>
 <xhtml:link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/research/"/>
 <xhtml:link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/research/"/>
+</url>
+<url>
+<loc>https://antonio-ferrer-sanchez.github.io/es/privacidad/</loc>
+<xhtml:link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/privacidad/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/privacy/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/privacy/"/>
+</url>
+<url>
+<loc>https://antonio-ferrer-sanchez.github.io/privacy/</loc>
+<xhtml:link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/privacidad/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/privacy/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/privacy/"/>
 </url>
 <url>
 <loc>https://antonio-ferrer-sanchez.github.io/es/publicaciones/</loc>

@@ -411,6 +411,9 @@ main:focus {
   font-style: italic;
 }
 .paper-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
   margin-top: 15px;
   font-size: 15px;
   font-weight: 600;
@@ -1281,4 +1284,25 @@ main:focus {
   .site-header nav {
     justify-content: flex-start;
   }
+}
+.policy {
+  padding-bottom: 80px;
+}
+.policy > * {
+  max-width: 72ch;
+}
+.policy h2 {
+  font-size: 26px;
+  margin: 44px 0 12px;
+}
+.policy p + p {
+  margin-top: 14px;
+}
+.policy-updated {
+  font-size: 15px;
+  color: var(--muted);
+}
+.footer-note a {
+  color: inherit;
+  margin-left: 6px;
 }

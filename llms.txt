@@ -10,6 +10,7 @@
 - [Activity](https://antonio-ferrer-sanchez.github.io/activity/): talks, conference contributions and university teaching.
 - [CV](https://antonio-ferrer-sanchez.github.io/cv/): professional curriculum vitae.
 - [Blog](https://antonio-ferrer-sanchez.github.io/blog/): tutorials and research explanations.
+- [Privacy and cookies](https://antonio-ferrer-sanchez.github.io/privacy/): no cookies or tracking; hosting logs and email handling.
 
 ## Blog posts
 
