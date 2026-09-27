@@ -145,6 +145,48 @@ nav a {
   border-bottom: 2px solid var(--primary);
   font-weight: 600;
 }
+.site-header nav {
+  margin-left: auto;
+}
+.lang-switch {
+  display: flex;
+  flex-shrink: 0;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.lang-switch a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 34px;
+  padding: 0 12px 0 9px;
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+}
+.lang-switch a:hover {
+  background: var(--surface);
+  color: var(--ink);
+}
+.lang-switch a[aria-current] {
+  background: var(--primary);
+  color: var(--white);
+}
+.lang-switch a:focus-visible {
+  outline-offset: 1px;
+}
+.flag {
+  display: block;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px oklch(0.24 0.03 170 / 0.12);
+}
 .skip-link {
   position: absolute;
   top: 8px;
@@ -625,19 +667,31 @@ main:focus {
     padding-bottom: 85px;
   }
 }
+@media (max-width: 1180px) {
+  .site-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "identity lang" "nav nav";
+    align-items: center;
+    gap: 20px 16px;
+  }
+  .identity {
+    grid-area: identity;
+  }
+  .lang-switch {
+    grid-area: lang;
+  }
+  .site-header nav {
+    grid-area: nav;
+    width: 100%;
+    margin-left: 0;
+    justify-content: space-between;
+    gap: 18px;
+  }
+}
 @media (max-width: 1000px) {
   .wrap {
     padding-inline: 32px;
-  }
-  .site-header {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 20px;
-  }
-  .site-header nav {
-    width: 100%;
-    justify-content: space-between;
-    gap: 18px;
   }
   .hero {
     gap: 32px;
@@ -667,6 +721,17 @@ main:focus {
   .wrap {
     padding-inline: 24px;
   }
+  .lang-switch a {
+    min-height: 40px;
+    padding-inline: 9px;
+  }
+}
+@media (max-width: 480px) {
+  .lang-code {
+    display: none;
+  }
+}
+@media (max-width: 650px) {
   body {
     font-size: 17px;
   }

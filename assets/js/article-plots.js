@@ -10,6 +10,41 @@
     script.src,
   ).href;
 
+  const TEXT = {
+    en: {
+      time: "Time <i>t</i>",
+      alpha: "Diffusivity <i>α</i>",
+      initial: "Initial profile, t = 0",
+      exact: "Exact solution u(x, t)",
+      position: "Position x",
+      temperature: "Temperature u(x, t)",
+      peak: (v) =>
+        `Peak temperature at x = 0.5: ${v} (decay factor exp(−απ²t)).`,
+      shaded:
+        "Shaded area: initial-condition error. For the zero field, the mean squared mismatch is 0.5, while its equation residual is exactly zero.",
+      zero: "Zero-field candidate",
+      zeroHover: "zero field",
+      required: "Required initial profile",
+      temperature0: "Temperature at t = 0",
+    },
+    es: {
+      time: "Tiempo <i>t</i>",
+      alpha: "Difusividad <i>α</i>",
+      initial: "Perfil inicial, t = 0",
+      exact: "Solución exacta u(x, t)",
+      position: "Posición x",
+      temperature: "Temperatura u(x, t)",
+      peak: (v) =>
+        `Temperatura máxima en x = 0.5: ${v} (factor de decaimiento exp(−απ²t)).`,
+      shaded:
+        "Área sombreada: error en la condición inicial. Para el campo nulo, el desajuste cuadrático medio es 0.5, mientras que su residuo de la ecuación es exactamente cero.",
+      zero: "Candidato de campo nulo",
+      zeroHover: "campo nulo",
+      required: "Perfil inicial requerido",
+      temperature0: "Temperatura en t = 0",
+    },
+  };
+  const L = TEXT[document.documentElement.lang] || TEXT.en;
   const INK = "#203c33";
   const MUTED = "#415950";
   const BLUE = "#0072B2";
@@ -79,16 +114,8 @@
 
   const charts = {
     diffusion(holder, controls, readout) {
-      const time = slider(controls, "t", "Time <i>t</i>", 0, 1, 0.01, 0.5);
-      const alpha = slider(
-        controls,
-        "alpha",
-        "Diffusivity <i>α</i>",
-        0.02,
-        0.3,
-        0.01,
-        0.1,
-      );
+      const time = slider(controls, "t", L.time, 0, 1, 0.01, 0.5);
+      const alpha = slider(controls, "alpha", L.alpha, 0.02, 0.3, 0.01, 0.1);
       const traces = () => {
         const t = Number(time.value);
         const a = Number(alpha.value);
@@ -96,25 +123,25 @@
           {
             x: xs,
             y: exact(0, a),
-            name: "Initial profile, t = 0",
+            name: L.initial,
             line: { color: MUTED, width: 2, dash: "dot" },
             hovertemplate: "%{y:.3f}<extra>t = 0</extra>",
           },
           {
             x: xs,
             y: exact(t, a),
-            name: "Exact solution u(x, t)",
+            name: L.exact,
             line: { color: BLUE, width: 3 },
             hovertemplate: `%{y:.3f}<extra>t = ${t.toFixed(2)}</extra>`,
           },
         ];
       };
-      const base = layout("Position x", "Temperature u(x, t)", [0, 1.05]);
+      const base = layout(L.position, L.temperature, [0, 1.05]);
       const update = () => {
         const peak = Math.exp(
           -Number(alpha.value) * Math.PI ** 2 * Number(time.value),
         );
-        readout.textContent = `Peak temperature at x = 0.5: ${peak.toFixed(3)} (decay factor exp(−απ²t)).`;
+        readout.textContent = L.peak(peak.toFixed(3));
         return Plotly.react(holder, traces(), base, CONFIG);
       };
       time.addEventListener("input", update);
@@ -124,8 +151,7 @@
     counterexample(holder, controls, readout) {
       const zero = xs.map(() => 0);
       const initial = exact(0, 0.1);
-      readout.textContent =
-        "Shaded area: initial-condition error. For the zero field, the mean squared mismatch is 0.5, while its equation residual is exactly zero.";
+      readout.textContent = L.shaded;
       controls.remove();
       return Plotly.newPlot(
         holder,
@@ -133,21 +159,21 @@
           {
             x: xs,
             y: zero,
-            name: "Zero-field candidate",
+            name: L.zero,
             line: { color: ORANGE, width: 3, dash: "dash" },
-            hovertemplate: "%{y:.3f}<extra>zero field</extra>",
+            hovertemplate: `%{y:.3f}<extra>${L.zeroHover}</extra>`,
           },
           {
             x: xs,
             y: initial,
-            name: "Required initial profile",
+            name: L.required,
             line: { color: INK, width: 3 },
             fill: "tonexty",
             fillcolor: "rgba(166, 83, 19, 0.14)",
             hovertemplate: "%{y:.3f}<extra>sin(πx)</extra>",
           },
         ],
-        layout("Position x", "Temperature at t = 0", [-0.08, 1.05]),
+        layout(L.position, L.temperature0, [-0.08, 1.05]),
         CONFIG,
       );
     },
