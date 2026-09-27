@@ -25,6 +25,10 @@
 - [Physics-informed neural networks for an optimal counterdiabatic quantum computation](https://doi.org/10.1088/2632-2153/ad450f): Machine Learning: Science and Technology, 2024.
 - [Prediction of the risk of cancer and the grade of dysplasia in leukoplakia lesions using deep learning](https://doi.org/10.1016/j.oraloncology.2022.105967): Oral Oncology, 2022.
 
+## Contact
+
+- Email: antonio.ferrer.contact@gmail.com
+
 ## Profiles
 
 - [Google Scholar](https://scholar.google.com/citations?user=Ajj7DC4AAAAJ)
