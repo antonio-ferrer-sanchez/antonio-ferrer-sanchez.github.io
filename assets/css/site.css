@@ -1256,6 +1256,7 @@ main:focus {
   min-width: 0;
   font-size: 20px;
   line-height: 1.7;
+  overflow-wrap: break-word;
 }
 .article-body > * {
   max-width: var(--measure);
@@ -1265,6 +1266,38 @@ main:focus {
 }
 .article-body .figure-wide figcaption {
   max-width: var(--measure);
+}
+.article-animation video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
+.article-animation .animation-print {
+  display: none;
+}
+.animation-transcript {
+  margin-top: 16px;
+  font-size: 0.9em;
+}
+.animation-transcript summary {
+  color: var(--primary);
+  cursor: pointer;
+  width: fit-content;
+}
+.animation-transcript summary:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 5px;
+}
+@media print {
+  .article-animation video {
+    display: none;
+  }
+  .article-animation .animation-print {
+    display: block;
+  }
 }
 .article-body h2 {
   font-size: clamp(1.7rem, 3vw, 2.25rem);
