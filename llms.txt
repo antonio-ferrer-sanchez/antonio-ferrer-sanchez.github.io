@@ -14,7 +14,7 @@
 
 ## Blog posts
 
-- [From solving equations to controlling quantum systems](https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/): Counterdiabatic driving in a two-level system: fidelity, control costs and how physics-informed neural networks can learn control protocols.
+- [From solving equations to controlling quantum systems](https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/): How PINNs learn counterdiabatic quantum controls: network outputs, physics-based losses, training and independent validation.
 - [Physics-informed machine learning: from physical laws to neural solvers](https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/): How physical knowledge shapes learning, how PINNs solve differential equations, and how to check whether a learned solution is reliable.
 
 ## Publications

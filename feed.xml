@@ -14,7 +14,7 @@
 <link rel="alternate" type="text/html" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/"/>
 <published>2026-10-02T00:00:00+03:00</published>
 <updated>2026-10-02T00:00:00+03:00</updated>
-<summary>Counterdiabatic driving in a two-level system: fidelity, control costs and how physics-informed neural networks can learn control protocols.</summary>
+<summary>How PINNs learn counterdiabatic quantum controls: network outputs, physics-based losses, training and independent validation.</summary>
 <category term="Quantum dynamics and control"/>
 </entry>
 <entry>
