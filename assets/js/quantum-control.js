@@ -19,7 +19,7 @@ const labels = {
     time: "Fraction elapsed, s = t / T",
     fidelity: "Ground-state fidelity",
     summary: (bare, selected, c) =>
-      `Final fidelity: ${bare} without control; ${selected} with the selected control; 1.000 with exact CD. Selected control coefficient: ${c} ℏΩ. Analytic curves, not trained PINN results.`,
+      `Final fidelity: ${bare} without control; ${selected} with the selected control; 1.000 with exact CD. Selected control coefficient: ${c} ℏΩ.`,
   },
   es: {
     duration: "Duración T (en unidades de Ω⁻¹)",
@@ -30,7 +30,7 @@ const labels = {
     time: "Fracción transcurrida, s = t / T",
     fidelity: "Fidelidad al estado fundamental",
     summary: (bare, selected, c) =>
-      `Fidelidad final: ${bare} sin control; ${selected} con el control seleccionado; 1.000 con CD exacto. Coeficiente del control seleccionado: ${c} ℏΩ. Curvas analíticas, no resultados de una PINN entrenada.`,
+      `Fidelidad final: ${bare} sin control; ${selected} con el control seleccionado; 1.000 con CD exacto. Coeficiente del control seleccionado: ${c} ℏΩ.`,
   },
 };
 

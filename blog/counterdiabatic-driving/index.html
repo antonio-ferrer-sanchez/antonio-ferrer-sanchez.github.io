@@ -81,7 +81,7 @@
 {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://antonio-ferrer-sanchez.github.io/blog/"},
 {"@type": "ListItem", "position": 3, "name": "From solving equations to controlling quantum systems", "item": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/"}
 ]},
-{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#webpage"}, "headline": "From solving equations to controlling quantum systems", "description": "How PINNs learn counterdiabatic quantum controls: network outputs, physics-based losses, training and independent validation.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-en.png", "datePublished": "2026-10-02", "dateModified": "2026-10-02", "inLanguage": "en", "articleSection": "Quantum dynamics and control", "keywords": ["counterdiabatic driving","physics-informed neural networks","quantum control","adiabatic gauge potential","shortcuts to adiabaticity"], "wordCount": 1856, "timeRequired": "PT12M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog", "url": "https://antonio-ferrer-sanchez.github.io/blog/"}, "workTranslation": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Physics-informed neural networks for an optimal counterdiabatic quantum computation", "url": "https://doi.org/10.1088/2632-2153/ad450f"}]}
+{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#webpage"}, "headline": "From solving equations to controlling quantum systems", "description": "How PINNs learn counterdiabatic quantum controls: network outputs, physics-based losses, training and independent validation.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-en.png", "datePublished": "2026-10-02", "dateModified": "2026-10-02", "inLanguage": "en", "articleSection": "Quantum dynamics and control", "keywords": ["counterdiabatic driving","physics-informed neural networks","quantum control","adiabatic gauge potential","shortcuts to adiabaticity"], "wordCount": 1773, "timeRequired": "PT12M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog", "url": "https://antonio-ferrer-sanchez.github.io/blog/"}, "workTranslation": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Physics-informed neural networks for an optimal counterdiabatic quantum computation", "url": "https://doi.org/10.1088/2632-2153/ad450f"}]}
 ]}
 </script>
 
@@ -90,9 +90,9 @@
 <link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/">
 <link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/">
 <link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/">
-<link rel="stylesheet" href="/assets/css/site.css?v=1790954451">
-<link rel="stylesheet" href="/assets/css/print.css?v=1790954451" media="print">
-<script src="/assets/js/header.js?v=1790954451"></script>
+<link rel="stylesheet" href="/assets/css/site.css?v=1790959997">
+<link rel="stylesheet" href="/assets/css/print.css?v=1790959997" media="print">
+<script src="/assets/js/header.js?v=1790959997"></script>
 </head>
 <body class="article-page">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -122,7 +122,7 @@
 
 <p>Counterdiabatic driving gives those outputs a physical target. It adds a term that cancels transitions between the instantaneous eigenstates of a reference Hamiltonian, preserving adiabatic state following during faster evolution. <a href="https://doi.org/10.1088/1751-8113/42/36/365303" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">Berry’s transitionless-driving work</a> makes this construction precise.</p>
 
-<p>A solvable spin model will establish what a good control must achieve. We will then turn that requirement into network outputs, a physics-based loss and a training procedure. The figures below are analytic calculations checked against numerical evolution, not trained PINN results or hardware measurements.</p>
+<p>A solvable spin model will establish what a good control must achieve. We will then turn that requirement into network outputs, a physics-based loss and a training procedure. The figures below show analytic calculations checked against numerical evolution.</p>
 
 <h2 id="a-spin-in-a-rotating-field">A spin in a rotating field</h2>
 
@@ -153,21 +153,21 @@
 <p>The animation makes this rotation visible. The hollow marker is the moving ground-state target; the colored arrow is the evolving quantum state. The added perpendicular field supplies the rotation needed to keep them together. The side-by-side comparison uses the exact dynamics of the model above.</p>
 
 <figure class="article-animation" id="cd-animation">
-  <video controls="" playsinline="" preload="metadata" width="1920" height="1080" poster="/assets/video/cd-driving-en.webp" aria-labelledby="cd-animation-caption" aria-describedby="cd-animation-transcript">
-    <source src="/assets/video/cd-driving-en.mp4" type="video/mp4" />
+  <video controls="" playsinline="" preload="metadata" width="1920" height="1080" poster="/assets/video/cd-driving-en.webp?v=1790959997" aria-labelledby="cd-animation-caption" aria-describedby="cd-animation-transcript">
+    <source src="/assets/video/cd-driving-en.mp4?v=1790959997" type="video/mp4" />
     Your browser does not support this video. You can download it with the link below.
   </video>
-  <img class="animation-print" src="/assets/video/cd-driving-en.webp" width="1920" height="1080" alt="Two Bloch spheres compare the uncontrolled state, away from its target, with the counterdiabatically controlled state, which follows the target." loading="lazy" />
-  <figcaption id="cd-animation-caption">How counterdiabatic driving works, in 72 seconds. Exact trajectories of the isolated-spin model, slowed for viewing; no training or hardware results. Silent video. <a href="/assets/video/cd-driving-en.mp4" download="">Download video (MP4)</a>.</figcaption>
+  <img class="animation-print" src="/assets/video/cd-driving-en.webp?v=1790959997" width="1920" height="1080" alt="Two Bloch spheres compare the uncontrolled state, away from its target, with the counterdiabatically controlled state, which follows the target." loading="lazy" />
+  <figcaption id="cd-animation-caption">Spin dynamics with and without counterdiabatic control. <a href="/assets/video/cd-driving-en.mp4?v=1790959997" download="">Download video (MP4)</a>.</figcaption>
   <details class="animation-transcript" id="cd-animation-transcript">
     <summary>Video description</summary>
 
     <ol>
-      <li>The reference field makes a half-turn in the vertical plane. A hollow circle marks the ground-state target, which points opposite the field. The Bloch sphere represents quantum states, not a particle's spatial orbit. The dashed line marks the target path.</li>
+      <li>The reference field makes a half-turn in the vertical plane. A hollow circle marks the ground-state target, which points opposite the field. The Bloch sphere represents quantum states. The dashed line marks the target path.</li>
       <li>With no added control, the orange state vector evolves from the initial ground state and departs from the target. For a duration of two time units, its final fidelity to the reference ground state is approximately 0.347.</li>
-      <li>The gold control field is perpendicular to the reference field's plane. It supplies the rotation that lets the teal state follow the target throughout. The gold arrow indicates direction, not an amplitude scale. This is coherent evolution, with no damping or attraction toward the target.</li>
+      <li>The gold control field is perpendicular to the reference field's plane. It supplies the rotation that lets the teal state follow the target throughout. The gold arrow shows the control direction.</li>
       <li>Two spheres show both evolutions with the same initial state, reference path and duration. Fidelity measures overlap with the reference ground state. Under exact control it stays at one throughout the protocol. The target remains an eigenstate of the reference Hamiltonian, not necessarily of the total Hamiltonian.</li>
-      <li>Halving the duration doubles the exact control amplitude. The bars show the coefficient of the added Hamiltonian, not electrical power. Real controls face amplitude, bandwidth and switching limits.</li>
+      <li>Halving the duration doubles the exact control amplitude. The bars show the coefficient of the added Hamiltonian. Real controls face amplitude, bandwidth and switching limits.</li>
     </ol>
 
   </details>
@@ -195,7 +195,7 @@
 
 <p>At <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>T</mi><mo>=</mo><mn>2</mn></mrow></math>, the final fidelities are approximately 0.347, 0.652 and 1, respectively. Coherent evolution can bring an imperfect protocol back towards the target: high final fidelity alone does not establish transitionless evolution, and the uncontrolled final fidelity need not improve monotonically with duration.</p>
 
-<p>Direct DOP853 integration of the Schrödinger equation used relative tolerance <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msup><mn>10</mn><mrow><mo>−</mo><mn>11</mn></mrow></msup></mrow></math> and absolute tolerance <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msup><mn>10</mn><mrow><mo>−</mo><mn>13</mn></mrow></msup></mrow></math>. At durations 0.5, 2 and 10 and control fractions 0, 0.5 and 1, fidelity agreed with the formula to within <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mn>2</mn><mo>×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>10</mn></mrow></msup></mrow></math> on 201 equally spaced times; normalization met the same bound. These checks validate the example, not a learned controller.</p>
+<p>Direct DOP853 integration of the Schrödinger equation used relative tolerance <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msup><mn>10</mn><mrow><mo>−</mo><mn>11</mn></mrow></msup></mrow></math> and absolute tolerance <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msup><mn>10</mn><mrow><mo>−</mo><mn>13</mn></mrow></msup></mrow></math>. At durations 0.5, 2 and 10 and control fractions 0, 0.5 and 1, fidelity agreed with the formula to within <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mn>2</mn><mo>×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>10</mn></mrow></msup></mrow></math> on 201 equally spaced times; normalization met the same bound.</p>
 
 <h2 id="faster-evolution-has-a-control-cost">Faster evolution has a control cost</h2>
 
@@ -209,9 +209,9 @@
 
 <figure><picture><source media="(max-width: 650px)" srcset="/assets/figures/cd-cost-mobile.svg" width="480" height="480" /><img src="/assets/figures/cd-cost.svg" width="760" height="460" alt="Control coefficient decreases as the inverse duration. The exact counterdiabatic coefficient is twice the half-strength coefficient at every duration." loading="lazy" decoding="async" /></picture><figcaption>Peak added-control coefficient for the same half-turn of the reference field. Units are ℏΩ for the coefficient and Ω⁻¹ for time. The amplitude grows as the duration decreases; the half-strength protocol uses less control but does not cancel transitions exactly.</figcaption></figure>
 
-<p>Halving the duration doubles the required strength at fixed control fraction. This is a Hamiltonian amplitude, not electrical power. The linear sweep also switches a nonzero control on and off abruptly. A laboratory pulse must respect amplitude and bandwidth limits and may need smooth endpoints.</p>
+<p>Halving the duration doubles the required strength at fixed control fraction. The linear sweep also switches a nonzero control on and off abruptly. A laboratory pulse must respect amplitude and bandwidth limits and may need smooth endpoints.</p>
 
-<p>For a PINN, these become constraints on the admissible outputs. A larger network cannot make an unavailable interaction implementable, and a low physics loss alone does not establish quantum computational advantage.</p>
+<p>For a PINN, these become constraints on the admissible outputs.</p>
 
 <h2 id="where-a-neural-network-helps">What the PINN learns</h2>
 
@@ -287,9 +287,9 @@
 <p>Compare with direct variational coefficient optimization or a simple schedule parameterization, as well as uncontrolled evolution. Keep the physical task and allowed controls fixed, and count training and validation costs. This establishes what the neural representation contributes beyond a good control ansatz. Hardware claims additionally require the device’s control restrictions and noise model.</p>
 <footer class="article-end"><a href="/blog/">← All posts</a><a href="/research/">Explore the research →</a></footer></div>
 </article>
-<script src="/assets/js/article-contents.js?v=1790954451" defer></script>
+<script src="/assets/js/article-contents.js?v=1790959997" defer></script>
 
-<script type="module" src="/assets/js/quantum-control.js?v=1790954451"></script>
+<script type="module" src="/assets/js/quantum-control.js?v=1790959997"></script>
 </main>
 <footer class="site-footer wrap">
 <span id="external-link-note" class="sr-only">Opens in a new tab.</span>
