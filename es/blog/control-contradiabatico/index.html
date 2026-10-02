@@ -81,7 +81,7 @@
 {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://antonio-ferrer-sanchez.github.io/es/blog/"},
 {"@type": "ListItem", "position": 3, "name": "De resolver ecuaciones a controlar sistemas cuánticos", "item": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/"}
 ]},
-{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#webpage"}, "headline": "De resolver ecuaciones a controlar sistemas cuánticos", "description": "Cómo aprende una PINN el control cuántico contradiabático: salidas de la red, pérdidas físicas, entrenamiento y validación.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-es.png", "datePublished": "2026-10-02", "dateModified": "2026-10-02", "inLanguage": "es", "articleSection": "Dinámica y control cuánticos", "keywords": ["control contradiabático","redes neuronales informadas por la física","control cuántico","potencial de gauge adiabático","atajos a la adiabaticidad"], "wordCount": 1795, "timeRequired": "PT12M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog (español)", "url": "https://antonio-ferrer-sanchez.github.io/es/blog/"}, "translationOfWork": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Physics-informed neural networks for an optimal counterdiabatic quantum computation", "url": "https://doi.org/10.1088/2632-2153/ad450f"}]}
+{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#webpage"}, "headline": "De resolver ecuaciones a controlar sistemas cuánticos", "description": "Cómo aprende una PINN el control cuántico contradiabático: salidas de la red, pérdidas físicas, entrenamiento y validación.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-es.png", "datePublished": "2026-10-02", "dateModified": "2026-10-02", "inLanguage": "es", "articleSection": "Dinámica y control cuánticos", "keywords": ["control contradiabático","redes neuronales informadas por la física","control cuántico","potencial de gauge adiabático","atajos a la adiabaticidad"], "wordCount": 1853, "timeRequired": "PT12M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog (español)", "url": "https://antonio-ferrer-sanchez.github.io/es/blog/"}, "translationOfWork": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Physics-informed neural networks for an optimal counterdiabatic quantum computation", "url": "https://doi.org/10.1088/2632-2153/ad450f"}]}
 ]}
 </script>
 
@@ -90,9 +90,9 @@
 <link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/">
 <link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/">
 <link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/">
-<link rel="stylesheet" href="/assets/css/site.css?v=1790935043">
-<link rel="stylesheet" href="/assets/css/print.css?v=1790935043" media="print">
-<script src="/assets/js/header.js?v=1790935043"></script>
+<link rel="stylesheet" href="/assets/css/site.css?v=1790944025">
+<link rel="stylesheet" href="/assets/css/print.css?v=1790944025" media="print">
+<script src="/assets/js/header.js?v=1790944025"></script>
 </head>
 <body class="article-page">
 <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -251,6 +251,8 @@
 
 <p>La pérdida combina condiciones en los extremos, la condición de conmutación asociada a la acción variacional, una penalización de la velocidad de programación y el acuerdo entre las representaciones matricial y de Pauli. Ajustarse a una expansión de Pauli con coeficientes reales favorece la hermiticidad. Esto difiere de minimizar directamente la acción sobre los coeficientes, como en el ejemplo didáctico anterior. La <a href="https://github.com/Netzuel/pinns-for-counterdiabatic-driving/blob/main/docs/method.md" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">guía de implementación</a> documenta los términos y sus pesos.</p>
 
+<figure id="joint-pinn-pipeline"><picture><source media="(max-width: 650px)" srcset="/assets/figures/cd-pipeline-mobile-es.svg" width="320" height="956" /><img src="/assets/figures/cd-pipeline-es.svg" width="633" height="449" alt="Diagrama de flujo de la PINN conjunta. Los instantes de muestreo entran en una red que predice la programación, la matriz compleja del potencial de gauge y los coeficientes reales de Pauli. La diferenciación automática obtiene la velocidad de programación. Las restricciones físicas definen una pérdida; la retropropagación y Adam actualizan los pesos compartidos. Tras entrenar, una propagación independiente comprueba el hamiltoniano aprendido." loading="lazy" decoding="async" /></picture><figcaption>Flujo de la PINN conjunta. La flecha discontinua devuelve las actualizaciones de los pesos a la red; la rama azul evalúa el hamiltoniano aprendido tras entrenar. Las condiciones en los extremos, el conmutador, la velocidad de programación y la consistencia matriz–Pauli aportan la señal de entrenamiento. Esta formulación conjunta difiere del ejemplo didáctico anterior, que solo aprende coeficientes.</figcaption></figure>
+
 <p>El <a href="https://github.com/Netzuel/pinns-for-counterdiabatic-driving" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">repositorio público de código</a> proporciona código, modelos entrenados y tutoriales Jupyter. Permite conectar el método con cálculos reproducibles; las gráficas del espín en un campo que gira siguen siendo un ejemplo analítico independiente.</p>
 
 <p>Referencia: A. Ferrer-Sánchez et al., <a href="https://doi.org/10.1088/2632-2153/ad450f" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">Physics-informed neural networks for an optimal counterdiabatic quantum computation</a>, <em>Machine Learning: Science and Technology</em> <strong>5</strong>, 025035 (2024).</p>
@@ -262,9 +264,9 @@
 <p>Compara con una optimización variacional directa de los coeficientes o una parametrización temporal sencilla, además de la evolución sin control. Mantén la misma tarea física y los mismos controles permitidos, y contabiliza el entrenamiento y la validación. Así se establece qué aporta la representación neuronal respecto de una buena representación del control. Las afirmaciones sobre hardware requieren además las restricciones de control y el modelo de ruido del dispositivo.</p>
 <footer class="article-end"><a href="/es/blog/">← Todas las entradas</a><a href="/es/investigacion/">Ver la investigación →</a></footer></div>
 </article>
-<script src="/assets/js/article-contents.js?v=1790935043" defer></script>
+<script src="/assets/js/article-contents.js?v=1790944025" defer></script>
 
-<script type="module" src="/assets/js/quantum-control.js?v=1790935043"></script>
+<script type="module" src="/assets/js/quantum-control.js?v=1790944025"></script>
 </main>
 <footer class="site-footer wrap">
 <span id="external-link-note" class="sr-only">Se abre en una pestaña nueva.</span>

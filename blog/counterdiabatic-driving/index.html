@@ -81,7 +81,7 @@
 {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://antonio-ferrer-sanchez.github.io/blog/"},
 {"@type": "ListItem", "position": 3, "name": "From solving equations to controlling quantum systems", "item": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/"}
 ]},
-{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#webpage"}, "headline": "From solving equations to controlling quantum systems", "description": "How PINNs learn counterdiabatic quantum controls: network outputs, physics-based losses, training and independent validation.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-en.png", "datePublished": "2026-10-02", "dateModified": "2026-10-02", "inLanguage": "en", "articleSection": "Quantum dynamics and control", "keywords": ["counterdiabatic driving","physics-informed neural networks","quantum control","adiabatic gauge potential","shortcuts to adiabaticity"], "wordCount": 1530, "timeRequired": "PT12M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog", "url": "https://antonio-ferrer-sanchez.github.io/blog/"}, "workTranslation": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Physics-informed neural networks for an optimal counterdiabatic quantum computation", "url": "https://doi.org/10.1088/2632-2153/ad450f"}]}
+{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#webpage"}, "headline": "From solving equations to controlling quantum systems", "description": "How PINNs learn counterdiabatic quantum controls: network outputs, physics-based losses, training and independent validation.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-en.png", "datePublished": "2026-10-02", "dateModified": "2026-10-02", "inLanguage": "en", "articleSection": "Quantum dynamics and control", "keywords": ["counterdiabatic driving","physics-informed neural networks","quantum control","adiabatic gauge potential","shortcuts to adiabaticity"], "wordCount": 1571, "timeRequired": "PT12M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog", "url": "https://antonio-ferrer-sanchez.github.io/blog/"}, "workTranslation": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Physics-informed neural networks for an optimal counterdiabatic quantum computation", "url": "https://doi.org/10.1088/2632-2153/ad450f"}]}
 ]}
 </script>
 
@@ -90,9 +90,9 @@
 <link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/">
 <link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/">
 <link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/">
-<link rel="stylesheet" href="/assets/css/site.css?v=1790935043">
-<link rel="stylesheet" href="/assets/css/print.css?v=1790935043" media="print">
-<script src="/assets/js/header.js?v=1790935043"></script>
+<link rel="stylesheet" href="/assets/css/site.css?v=1790944025">
+<link rel="stylesheet" href="/assets/css/print.css?v=1790944025" media="print">
+<script src="/assets/js/header.js?v=1790944025"></script>
 </head>
 <body class="article-page">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -251,6 +251,8 @@
 
 <p>The loss combines endpoint conditions, the commutator condition associated with the variational action, a schedule-rate penalty, and agreement between the matrix and Pauli representations. Matching a real-coefficient Pauli expansion encourages Hermiticity. This differs from directly minimizing the action over coefficients in the teaching recipe above. The <a href="https://github.com/Netzuel/pinns-for-counterdiabatic-driving/blob/main/docs/method.md" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">implementation guide</a> documents the terms and their weights.</p>
 
+<figure id="joint-pinn-pipeline"><picture><source media="(max-width: 650px)" srcset="/assets/figures/cd-pipeline-mobile.svg" width="320" height="937" /><img src="/assets/figures/cd-pipeline.svg" width="633" height="439" alt="Flow chart of the joint PINN. Time samples enter one network, which predicts the schedule, complex gauge-potential matrix and real Pauli coefficients. Automatic differentiation supplies the schedule rate. Physical constraints define a loss; backpropagation and Adam update the shared weights. After training, an independent propagation checks the learned Hamiltonian." loading="lazy" decoding="async" /></picture><figcaption>Joint PINN workflow. The dashed arrow returns weight updates to the network; the blue branch evaluates the learned Hamiltonian after training. Endpoint, commutator, schedule-rate and matrix–Pauli terms supply the training signal. This joint formulation differs from the coefficient-only teaching example above.</figcaption></figure>
+
 <p>The <a href="https://github.com/Netzuel/pinns-for-counterdiabatic-driving" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">public code repository</a> supplies code, trained models and Jupyter tutorials. It connects the method to reproducible calculations; the rotating-spin plots in this post remain a separate analytic example.</p>
 
 <p>Reference: A. Ferrer-Sánchez et al., <a href="https://doi.org/10.1088/2632-2153/ad450f" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">Physics-informed neural networks for an optimal counterdiabatic quantum computation</a>, <em>Machine Learning: Science and Technology</em> <strong>5</strong>, 025035 (2024).</p>
@@ -262,9 +264,9 @@
 <p>Compare with direct variational coefficient optimization or a simple schedule parameterization, as well as uncontrolled evolution. Keep the physical task and allowed controls fixed, and count training and validation costs. This establishes what the neural representation contributes beyond a good control ansatz. Hardware claims additionally require the device’s control restrictions and noise model.</p>
 <footer class="article-end"><a href="/blog/">← All posts</a><a href="/research/">Explore the research →</a></footer></div>
 </article>
-<script src="/assets/js/article-contents.js?v=1790935043" defer></script>
+<script src="/assets/js/article-contents.js?v=1790944025" defer></script>
 
-<script type="module" src="/assets/js/quantum-control.js?v=1790935043"></script>
+<script type="module" src="/assets/js/quantum-control.js?v=1790944025"></script>
 </main>
 <footer class="site-footer wrap">
 <span id="external-link-note" class="sr-only">Opens in a new tab.</span>
