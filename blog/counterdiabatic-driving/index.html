@@ -81,7 +81,7 @@
 {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://antonio-ferrer-sanchez.github.io/blog/"},
 {"@type": "ListItem", "position": 3, "name": "From solving equations to controlling quantum systems", "item": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/"}
 ]},
-{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#webpage"}, "headline": "From solving equations to controlling quantum systems", "description": "Counterdiabatic driving in a two-level system: fidelity, control costs and how physics-informed neural networks can learn control protocols.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-en.png", "datePublished": "2026-10-02", "dateModified": "2026-10-02", "inLanguage": "en", "articleSection": "Quantum dynamics and control", "keywords": ["counterdiabatic driving","physics-informed neural networks","quantum control","adiabatic gauge potential","shortcuts to adiabaticity"], "wordCount": 1730, "timeRequired": "PT12M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog", "url": "https://antonio-ferrer-sanchez.github.io/blog/"}, "workTranslation": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Physics-informed neural networks for an optimal counterdiabatic quantum computation", "url": "https://doi.org/10.1088/2632-2153/ad450f"}]}
+{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#webpage"}, "headline": "From solving equations to controlling quantum systems", "description": "Counterdiabatic driving in a two-level system: fidelity, control costs and how physics-informed neural networks can learn control protocols.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-en.png", "datePublished": "2026-10-02", "dateModified": "2026-10-02", "inLanguage": "en", "articleSection": "Quantum dynamics and control", "keywords": ["counterdiabatic driving","physics-informed neural networks","quantum control","adiabatic gauge potential","shortcuts to adiabaticity"], "wordCount": 1714, "timeRequired": "PT12M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog", "url": "https://antonio-ferrer-sanchez.github.io/blog/"}, "workTranslation": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Physics-informed neural networks for an optimal counterdiabatic quantum computation", "url": "https://doi.org/10.1088/2632-2153/ad450f"}]}
 ]}
 </script>
 
@@ -90,9 +90,9 @@
 <link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/">
 <link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/">
 <link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/">
-<link rel="stylesheet" href="/assets/css/site.css?v=1790926314">
-<link rel="stylesheet" href="/assets/css/print.css?v=1790926314" media="print">
-<script src="/assets/js/header.js?v=1790926314"></script>
+<link rel="stylesheet" href="/assets/css/site.css?v=1790928429">
+<link rel="stylesheet" href="/assets/css/print.css?v=1790928429" media="print">
+<script src="/assets/js/header.js?v=1790928429"></script>
 </head>
 <body class="article-page">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -128,7 +128,7 @@
 
 <h2 id="a-spin-in-a-rotating-field">A spin in a rotating field</h2>
 
-<p>Consider an isolated two-level system, such as an ideal spin one-half. The Pauli operators σx, σy and σz describe its three control directions. Take a field of fixed magnitude whose direction rotates in the x–z plane. Use units with ℏ = 1 and gap frequency Ω = 1: time is measured in Ω⁻¹ and energy in ℏΩ. The reference Hamiltonian is</p>
+<p>Consider an isolated two-level system, such as an ideal spin one-half. The Pauli operators <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>σ</mi><mi>x</mi></msub></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>σ</mi><mi>y</mi></msub></mrow></math> and <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>σ</mi><mi>z</mi></msub></mrow></math> describe its three control directions. Take a field of fixed magnitude whose direction rotates in the <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>x</mi></math>–<math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>z</mi></math> plane. Use units with <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>ℏ</mi><mo>=</mo><mn>1</mn></mrow></math> and gap frequency <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>Ω</mi><mo>=</mo><mn>1</mn></mrow></math>: time is measured in <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msup><mi>Ω</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow></math> and energy in <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>ℏ</mi><mi>Ω</mi></mrow></math>. The reference Hamiltonian is</p>
 
 <div class="equation" role="region" aria-label="The reference Hamiltonian is one half of cosine theta times Pauli z plus sine theta times Pauli x; theta equals pi times t divided by T." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
 
@@ -136,7 +136,7 @@
 
 </math></div>
 
-<p>Here T is the total duration, and t runs from zero to T. The angle θ increases from zero to π. The two energy levels remain −1/2 and +1/2, so the gap never closes. Their eigenvectors rotate with the field.</p>
+<p>Here <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>T</mi></mrow></math> is the total duration, and <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>t</mi></mrow></math> runs from zero to <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>T</mi></mrow></math>. The angle <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>θ</mi></mrow></math> increases from zero to <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>π</mi></mrow></math>. The two energy levels remain <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mo>−</mo><mn>1</mn><mo>/</mo><mn>2</mn></mrow></math> and <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mo>+</mo><mn>1</mn><mo>/</mo><mn>2</mn></mrow></math>, so the gap never closes. Their eigenvectors rotate with the field.</p>
 
 <p>Prepare the ground state of the initial Hamiltonian. If the field turns sufficiently slowly compared with the inverse gap, the state stays close to the moving ground state. A faster turn can produce a superposition of the instantaneous ground and excited states. The problem is the changing eigenvectors, even though the energy gap is constant.</p>
 
@@ -152,15 +152,15 @@
 
 </math></div>
 
-<p>The dot denotes a time derivative. We evolve with the sum of the reference and counterdiabatic Hamiltonians. The additional y-directed control compensates for the rotation of the reference eigenvectors. Starting in one of those eigenstates, ideal evolution follows that eigenstate up to a phase.</p>
+<p>The dot denotes a time derivative. We evolve with the sum of the reference and counterdiabatic Hamiltonians. The additional <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>y</mi></math>-directed control compensates for the rotation of the reference eigenvectors. Starting in one of those eigenstates, ideal evolution follows that eigenstate up to a phase.</p>
 
-<p>One way to check the sign and the factor of one half is to move into a frame that rotates with the field. In that frame, the bare dynamics acquires a y term with coefficient −θ̇/2. The counterdiabatic term cancels it, leaving the fixed z Hamiltonian. The state then cannot leave its initial z eigenstate.</p>
+<p>One way to check the sign and the factor of one half is to move into a frame that rotates with the field. In that frame, the bare dynamics acquires a <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>y</mi></math> term with coefficient <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mo>−</mo><mover accent="true"><mi>θ</mi><mo>˙</mo></mover><mo>/</mo><mn>2</mn></mrow></math>. The counterdiabatic term cancels it, leaving the fixed <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>z</mi></math> Hamiltonian. The state then cannot leave its initial <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>z</mi></math> eigenstate.</p>
 
 <p>The state follows an eigenstate of the <em>reference</em> Hamiltonian. It need not be an instantaneous eigenstate of the total Hamiltonian after the extra control has been added. Keeping these two operators separate avoids a common ambiguity in the phrase “staying in the ground state.”</p>
 
 <h2 id="compare-the-same-physical-task">Compare the same physical task</h2>
 
-<p>Let g(t) be the instantaneous reference ground state and ψ(t) the actual evolving state. Their fidelity is</p>
+<p>Let <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>g</mi><mo>(</mo><mi>t</mi><mo>)</mo></mrow></math> be the instantaneous reference ground state and <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>ψ</mi><mo>(</mo><mi>t</mi><mo>)</mo></mrow></math> the actual evolving state. Their fidelity is</p>
 
 <div class="equation" role="region" aria-label="Fidelity is the squared absolute overlap of the instantaneous reference ground state and the evolving state." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
 
@@ -168,7 +168,7 @@
 
 </math></div>
 
-<p>A fidelity of one means that the states agree up to a global phase. Compare three protocols with the same reference path, initial state and duration: no added control, half the exact control, and the full exact control. Write η for the fraction of the counterdiabatic term that is applied, between zero and one, and s = t/T for normalized time. The rotating-frame solution gives</p>
+<p>A fidelity of one means that the states agree up to a global phase. Compare three protocols with the same reference path, initial state and duration: no added control, half the exact control, and the full exact control. Write <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>η</mi></mrow></math> for the fraction of the counterdiabatic term that is applied, between zero and one, and <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>s</mi><mo>=</mo><mi>t</mi><mo>/</mo><mi>T</mi></mrow></math> for normalized time. The rotating-frame solution gives</p>
 
 <div class="equation" role="region" aria-label="Q equals T squared plus the square of one minus eta times pi squared. Fidelity equals one minus that latter term divided by Q, times sine squared of s times square root Q divided by two." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
 
@@ -178,9 +178,9 @@
 
 <figure data-plot="quantum-control" data-interactive-caption="Analytic rotating-field model. Change the duration and the control fraction to compare the selected protocol with no control and exact counterdiabatic driving. Every curve starts in the same reference ground state."><picture><source media="(max-width: 650px)" srcset="/assets/figures/cd-fidelity-mobile.svg" width="480" height="480" /><img src="/assets/figures/cd-fidelity.svg" width="760" height="460" alt="Ground-state fidelity versus the fraction of the protocol elapsed. At duration T equals two, exact counterdiabatic control stays at one; half-strength control ends near 0.652 and no control near 0.347." loading="lazy" decoding="async" /></picture><figcaption>Analytic evolution at T = 2. The full counterdiabatic term preserves fidelity throughout the protocol; half-strength control leaves transitions. All three curves start in the same reference ground state.</figcaption></figure>
 
-<p>At T = 2, the final fidelities are approximately 0.347 without the added term, 0.652 at half strength, and 1 with exact counterdiabatic control. The full curves matter: coherent evolution can bring an imperfect protocol back towards the target. A high final fidelity alone does not establish transitionless evolution, and the uncontrolled final fidelity need not increase monotonically with duration.</p>
+<p>At <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>T</mi><mo>=</mo><mn>2</mn></mrow></math>, the final fidelities are approximately 0.347 without the added term, 0.652 at half strength, and 1 with exact counterdiabatic control. The full curves matter: coherent evolution can bring an imperfect protocol back towards the target. A high final fidelity alone does not establish transitionless evolution, and the uncontrolled final fidelity need not increase monotonically with duration.</p>
 
-<p>An independent check integrated the time-dependent Schrödinger equation directly in the fixed Pauli basis with SciPy’s DOP853 solver, using relative tolerance 10⁻¹¹ and absolute tolerance 10⁻¹³. At durations 0.5, 2 and 10 and control fractions 0, 0.5 and 1, the fidelities agreed with the formula to within 2 × 10⁻¹⁰ on 201 equally spaced times; the state norm passed the same tolerance. These checks validate this example, not the performance of a learned controller.</p>
+<p>An independent check integrated the time-dependent Schrödinger equation directly in the fixed Pauli basis with SciPy’s DOP853 solver, using relative tolerance <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msup><mn>10</mn><mrow><mo>−</mo><mn>11</mn></mrow></msup></mrow></math> and absolute tolerance <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msup><mn>10</mn><mrow><mo>−</mo><mn>13</mn></mrow></msup></mrow></math>. At durations 0.5, 2 and 10 and control fractions 0, 0.5 and 1, the fidelities agreed with the formula to within <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mn>2</mn><mo>×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>10</mn></mrow></msup></mrow></math> on 201 equally spaced times; the state norm passed the same tolerance. These checks validate this example, not the performance of a learned controller.</p>
 
 <h2 id="faster-evolution-has-a-control-cost">Faster evolution has a control cost</h2>
 
@@ -204,7 +204,7 @@
 
 <p>The two-level calculation supplies a reference that is easy to test. Harder systems motivate learning: the required operator may be costly to compute, and only a restricted set of controls may be available.</p>
 
-<p>For a general reference Hamiltonian parameterized by λ, introduce the adiabatic gauge potential Aλ. It generates the change of eigenvectors as λ changes. In the same ℏ = 1 convention, the control and a useful trial representation are</p>
+<p>For a general reference Hamiltonian parameterized by <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi></mrow></math>, introduce the adiabatic gauge potential <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>A</mi><mi>λ</mi></msub></mrow></math>. It generates the change of eigenvectors as <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi></mrow></math> changes. In the same <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>ℏ</mi><mo>=</mo><mn>1</mn></mrow></math> convention, the control and a useful trial representation are</p>
 
 <div class="equation" role="region" aria-label="The counterdiabatic Hamiltonian is the time derivative of lambda times its adiabatic gauge potential. The trial gauge potential is a sum of real coefficients times Hermitian Pauli operators." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
 
@@ -212,7 +212,7 @@
 
 </math></div>
 
-<p>The operators Pj can be chosen from the implementable Pauli strings. Real coefficients aj keep the trial operator Hermitian. A neural network can output those coefficients as functions of λ. The choice of operator basis sets what the network can represent; a larger network cannot supply an interaction excluded from that basis.</p>
+<p>The operators <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>P</mi><mi>j</mi></msub></mrow></math> can be chosen from the implementable Pauli strings. Real coefficients <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>a</mi><mi>j</mi></msub></mrow></math> keep the trial operator Hermitian. A neural network can output those coefficients as functions of <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi></mrow></math>. The choice of operator basis sets what the network can represent; a larger network cannot supply an interaction excluded from that basis.</p>
 
 <p><a href="https://doi.org/10.1073/pnas.1619826114" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">Sels and Polkovnikov</a> developed a variational route to approximate gauge potentials. Define</p>
 
@@ -222,11 +222,11 @@
 
 </math></div>
 
-<p>The brackets denote a commutator, and the trace is over the system’s Hilbert space. Minimizing this action within the chosen operator family reduces the uncancelled off-diagonal part of Gλ in the energy basis. For an exact gauge potential, Gλ commutes with the reference Hamiltonian; it generally does not vanish, because energy levels can change with λ. A nonzero minimum of the action therefore need not indicate failed training. Components of Aλ that commute with the reference Hamiltonian also require a gauge convention if a unique representation is wanted.</p>
+<p>The brackets denote a commutator, and the trace is over the system’s Hilbert space. Minimizing this action within the chosen operator family reduces the uncancelled off-diagonal part of <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>G</mi><mi>λ</mi></msub></mrow></math> in the energy basis. For an exact gauge potential, <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>G</mi><mi>λ</mi></msub></mrow></math> commutes with the reference Hamiltonian; it generally does not vanish, because energy levels can change with <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi></mrow></math>. A nonzero minimum of the action therefore need not indicate failed training. Components of <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>A</mi><mi>λ</mi></msub></mrow></math> that commute with the reference Hamiltonian also require a gauge convention if a unique representation is wanted.</p>
 
-<p>A physics-informed training objective can sample that action at fixed values of λ and optimize the network coefficients without target labels for the exact gauge potential. Trace evaluation itself can become expensive as the Hilbert space grows. The computational cost still needs to be measured.</p>
+<p>A physics-informed training objective can sample that action at fixed values of <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi></mrow></math> and optimize the network coefficients without target labels for the exact gauge potential. Trace evaluation itself can become expensive as the Hilbert space grows. The computational cost still needs to be measured.</p>
 
-<p>The schedule λ(t) is another design variable. For instance, a network with parameters w can satisfy the two endpoint values by construction:</p>
+<p>The schedule <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi><mo>(</mo><mi>t</mi><mo>)</mo></mrow></math> is another design variable. For instance, a network with parameters <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>w</mi></mrow></math> can satisfy the two endpoint values by construction:</p>
 
 <div class="equation" role="region" aria-label="A neural schedule lambda w of s equals s plus s times one minus s times a neural network N w of s." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
 
@@ -234,7 +234,7 @@
 
 </math></div>
 
-<p>For finite network output, this gives λ(0) = 0 and λ(1) = 1. It does not enforce monotonicity, keep λ between those endpoints, or make the endpoint derivatives vanish. Such requirements need additional structure or explicit constraints. Automatic differentiation supplies the schedule derivative that multiplies the gauge potential.</p>
+<p>For finite network output, this gives <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi><mo>(</mo><mn>0</mn><mo>)</mo><mo>=</mo><mn>0</mn></mrow></math> and <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi><mo>(</mo><mn>1</mn><mo>)</mo><mo>=</mo><mn>1</mn></mrow></math>. It does not enforce monotonicity, keep <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi></mrow></math> between those endpoints, or make the endpoint derivatives vanish. Such requirements need additional structure or explicit constraints. Automatic differentiation supplies the schedule derivative that multiplies the gauge potential.</p>
 
 <p>Learning a gauge potential and choosing a schedule are related but distinct optimization tasks. A schedule objective can include independently evaluated state-transfer error and control costs. The action alone does not determine the best time schedule or certify a final fidelity. If a network also represents the quantum state, its Schrödinger residual, initial condition and normalization must be checked separately.</p>
 
@@ -253,9 +253,9 @@
 <p>The useful extension of the first post is the role of the unknown function. A network can represent a solution, a control protocol, or an operator that guides the dynamics. Physical constraints make each representation testable; independent evolution establishes what the resulting control actually does.</p>
 <footer class="article-end"><a href="/blog/">← All posts</a><a href="/research/">Explore the research →</a></footer></div>
 </article>
-<script src="/assets/js/article-contents.js?v=1790926314" defer></script>
+<script src="/assets/js/article-contents.js?v=1790928429" defer></script>
 
-<script type="module" src="/assets/js/quantum-control.js?v=1790926314"></script>
+<script type="module" src="/assets/js/quantum-control.js?v=1790928429"></script>
 </main>
 <footer class="site-footer wrap">
 <span id="external-link-note" class="sr-only">Opens in a new tab.</span>

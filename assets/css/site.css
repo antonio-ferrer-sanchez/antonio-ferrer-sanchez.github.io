@@ -1452,6 +1452,12 @@ main:focus {
 .equation math {
   font-family: "STIX Two Math", math;
 }
+.article-body .inline-math {
+  font-family: "STIX Two Math", math;
+  font-size: 1.04em;
+  math-style: compact;
+  white-space: nowrap;
+}
 .policy {
   padding-bottom: 80px;
 }

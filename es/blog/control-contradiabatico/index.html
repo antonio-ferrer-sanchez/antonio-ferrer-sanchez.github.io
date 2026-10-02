@@ -81,7 +81,7 @@
 {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://antonio-ferrer-sanchez.github.io/es/blog/"},
 {"@type": "ListItem", "position": 3, "name": "De resolver ecuaciones a controlar sistemas cuánticos", "item": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/"}
 ]},
-{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#webpage"}, "headline": "De resolver ecuaciones a controlar sistemas cuánticos", "description": "Control contradiabático con un ejemplo de dos niveles: fidelidad, coste del control y protocolos aprendidos con redes informadas por la física.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-es.png", "datePublished": "2026-10-02", "dateModified": "2026-10-02", "inLanguage": "es", "articleSection": "Dinámica y control cuánticos", "keywords": ["control contradiabático","redes neuronales informadas por la física","control cuántico","potencial de gauge adiabático","atajos a la adiabaticidad"], "wordCount": 1962, "timeRequired": "PT12M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog (español)", "url": "https://antonio-ferrer-sanchez.github.io/es/blog/"}, "translationOfWork": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Physics-informed neural networks for an optimal counterdiabatic quantum computation", "url": "https://doi.org/10.1088/2632-2153/ad450f"}]}
+{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#webpage"}, "headline": "De resolver ecuaciones a controlar sistemas cuánticos", "description": "Control contradiabático con un ejemplo de dos niveles: fidelidad, coste del control y protocolos aprendidos con redes informadas por la física.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-es.png", "datePublished": "2026-10-02", "dateModified": "2026-10-02", "inLanguage": "es", "articleSection": "Dinámica y control cuánticos", "keywords": ["control contradiabático","redes neuronales informadas por la física","control cuántico","potencial de gauge adiabático","atajos a la adiabaticidad"], "wordCount": 1946, "timeRequired": "PT12M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog (español)", "url": "https://antonio-ferrer-sanchez.github.io/es/blog/"}, "translationOfWork": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Physics-informed neural networks for an optimal counterdiabatic quantum computation", "url": "https://doi.org/10.1088/2632-2153/ad450f"}]}
 ]}
 </script>
 
@@ -90,9 +90,9 @@
 <link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/">
 <link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/">
 <link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/">
-<link rel="stylesheet" href="/assets/css/site.css?v=1790926314">
-<link rel="stylesheet" href="/assets/css/print.css?v=1790926314" media="print">
-<script src="/assets/js/header.js?v=1790926314"></script>
+<link rel="stylesheet" href="/assets/css/site.css?v=1790928429">
+<link rel="stylesheet" href="/assets/css/print.css?v=1790928429" media="print">
+<script src="/assets/js/header.js?v=1790928429"></script>
 </head>
 <body class="article-page">
 <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -128,7 +128,7 @@
 
 <h2 id="un-espin-en-un-campo-que-gira">Un espín en un campo que gira</h2>
 
-<p>Consideremos un sistema aislado de dos niveles, como un espín ideal de un medio. Los operadores de Pauli σx, σy y σz describen sus tres direcciones de control. Tomamos un campo de módulo constante cuya dirección gira en el plano x–z. Usamos unidades con ℏ = 1 y frecuencia de la brecha Ω = 1: el tiempo se mide en Ω⁻¹ y la energía en ℏΩ. El hamiltoniano de referencia es</p>
+<p>Consideremos un sistema aislado de dos niveles, como un espín ideal de un medio. Los operadores de Pauli <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>σ</mi><mi>x</mi></msub></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>σ</mi><mi>y</mi></msub></mrow></math> y <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>σ</mi><mi>z</mi></msub></mrow></math> describen sus tres direcciones de control. Tomamos un campo de módulo constante cuya dirección gira en el plano <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>x</mi></math>–<math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>z</mi></math>. Usamos unidades con <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>ℏ</mi><mo>=</mo><mn>1</mn></mrow></math> y frecuencia de la brecha <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>Ω</mi><mo>=</mo><mn>1</mn></mrow></math>: el tiempo se mide en <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msup><mi>Ω</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow></math> y la energía en <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>ℏ</mi><mi>Ω</mi></mrow></math>. El hamiltoniano de referencia es</p>
 
 <div class="equation" role="region" aria-label="El hamiltoniano de referencia es un medio de coseno de theta por Pauli z más seno de theta por Pauli x; theta es pi por t dividido por T." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
 
@@ -136,7 +136,7 @@
 
 </math></div>
 
-<p>Aquí T es la duración total y t va de cero a T. El ángulo θ aumenta de cero a π. Los dos niveles de energía permanecen en −1/2 y +1/2, de modo que la brecha nunca se cierra. Sus autovectores giran con el campo.</p>
+<p>Aquí <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>T</mi></mrow></math> es la duración total y <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>t</mi></mrow></math> va de cero a <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>T</mi></mrow></math>. El ángulo <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>θ</mi></mrow></math> aumenta de cero a <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>π</mi></mrow></math>. Los dos niveles de energía permanecen en <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mo>−</mo><mn>1</mn><mo>/</mo><mn>2</mn></mrow></math> y <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mo>+</mo><mn>1</mn><mo>/</mo><mn>2</mn></mrow></math>, de modo que la brecha nunca se cierra. Sus autovectores giran con el campo.</p>
 
 <p>Preparamos el estado fundamental del hamiltoniano inicial. Si el campo gira suficientemente despacio en comparación con la inversa de la brecha, el estado permanece cerca del estado fundamental que se desplaza. Un giro más rápido puede producir una superposición de los estados fundamental y excitado instantáneos. La dificultad está en el cambio de los autovectores, aunque la brecha energética sea constante.</p>
 
@@ -152,15 +152,15 @@
 
 </math></div>
 
-<p>El punto indica una derivada temporal. La evolución se realiza con la suma de los hamiltonianos de referencia y contradiabático. El control adicional en la dirección y compensa la rotación de los autovectores de referencia. Si partimos de uno de esos autoestados, la evolución ideal lo sigue salvo por una fase.</p>
+<p>El punto indica una derivada temporal. La evolución se realiza con la suma de los hamiltonianos de referencia y contradiabático. El control adicional en la dirección <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>y</mi></math> compensa la rotación de los autovectores de referencia. Si partimos de uno de esos autoestados, la evolución ideal lo sigue salvo por una fase.</p>
 
-<p>Podemos comprobar el signo y el factor de un medio al pasar a un sistema de referencia que gira con el campo. En él, la dinámica sin control adicional adquiere un término en y con coeficiente −θ̇/2. El término contradiabático lo cancela y deja el hamiltoniano fijo en z. El estado ya no puede abandonar su autoestado inicial de z.</p>
+<p>Podemos comprobar el signo y el factor de un medio al pasar a un sistema de referencia que gira con el campo. En él, la dinámica sin control adicional adquiere un término en <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>y</mi></math> con coeficiente <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mo>−</mo><mover accent="true"><mi>θ</mi><mo>˙</mo></mover><mo>/</mo><mn>2</mn></mrow></math>. El término contradiabático lo cancela y deja el hamiltoniano fijo en <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>z</mi></math>. El estado ya no puede abandonar su autoestado inicial de <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>z</mi></math>.</p>
 
 <p>El estado sigue un autoestado del hamiltoniano de <em>referencia</em>. No tiene por qué ser un autoestado instantáneo del hamiltoniano total tras añadir el control. Distinguir ambos operadores evita una ambigüedad habitual al hablar de «permanecer en el estado fundamental».</p>
 
 <h2 id="comparar-la-misma-tarea-fisica">Comparar la misma tarea física</h2>
 
-<p>Sean g(t) el estado fundamental instantáneo de referencia y ψ(t) el estado que evoluciona. Su fidelidad es</p>
+<p>Sean <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>g</mi><mo>(</mo><mi>t</mi><mo>)</mo></mrow></math> el estado fundamental instantáneo de referencia y <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>ψ</mi><mo>(</mo><mi>t</mi><mo>)</mo></mrow></math> el estado que evoluciona. Su fidelidad es</p>
 
 <div class="equation" role="region" aria-label="La fidelidad es el módulo al cuadrado del solapamiento entre el estado fundamental instantáneo de referencia y el estado que evoluciona." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
 
@@ -168,7 +168,7 @@
 
 </math></div>
 
-<p>Una fidelidad de uno significa que los estados coinciden salvo por una fase global. Comparamos tres protocolos con la misma trayectoria de referencia, el mismo estado inicial y la misma duración: sin control adicional, con la mitad del control exacto y con el control exacto completo. Denotamos por η la fracción del término contradiabático aplicada, entre cero y uno, y por s = t/T el tiempo normalizado. La solución en el sistema que gira da</p>
+<p>Una fidelidad de uno significa que los estados coinciden salvo por una fase global. Comparamos tres protocolos con la misma trayectoria de referencia, el mismo estado inicial y la misma duración: sin control adicional, con la mitad del control exacto y con el control exacto completo. Denotamos por <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>η</mi></mrow></math> la fracción del término contradiabático aplicada, entre cero y uno, y por <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>s</mi><mo>=</mo><mi>t</mi><mo>/</mo><mi>T</mi></mrow></math> el tiempo normalizado. La solución en el sistema que gira da</p>
 
 <div class="equation" role="region" aria-label="Q es T al cuadrado más el cuadrado de uno menos eta por pi al cuadrado. La fidelidad es uno menos este último término dividido por Q, por seno al cuadrado de s por raíz de Q dividido por dos." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
 
@@ -178,9 +178,9 @@
 
 <figure data-plot="quantum-control" data-interactive-caption="Modelo analítico de un campo que gira. Cambia la duración y la fracción de control para comparar el protocolo seleccionado con la evolución sin control y el control contradiabático exacto. Todas las curvas parten del mismo estado fundamental de referencia."><picture><source media="(max-width: 650px)" srcset="/assets/figures/cd-fidelity-mobile-es.svg" width="480" height="480" /><img src="/assets/figures/cd-fidelity-es.svg" width="760" height="460" alt="Fidelidad al estado fundamental frente a la fracción del protocolo transcurrida. Para T igual a dos, el control contradiabático exacto mantiene la fidelidad en uno; el control a media intensidad termina cerca de 0.652 y la evolución sin control cerca de 0.347." loading="lazy" decoding="async" /></picture><figcaption>Evolución analítica para T = 2. El término contradiabático completo conserva la fidelidad durante todo el protocolo; a media intensidad quedan transiciones. Las tres curvas parten del mismo estado fundamental de referencia.</figcaption></figure>
 
-<p>Para T = 2, las fidelidades finales son aproximadamente 0.347 sin el término adicional, 0.652 a media intensidad y 1 con el control contradiabático exacto. Las curvas completas importan: la evolución coherente puede volver a acercar un protocolo imperfecto al objetivo. Una fidelidad final alta no demuestra por sí sola una evolución sin transiciones, y la fidelidad final sin control no tiene por qué crecer de forma monótona con la duración.</p>
+<p>Para <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>T</mi><mo>=</mo><mn>2</mn></mrow></math>, las fidelidades finales son aproximadamente 0.347 sin el término adicional, 0.652 a media intensidad y 1 con el control contradiabático exacto. Las curvas completas importan: la evolución coherente puede volver a acercar un protocolo imperfecto al objetivo. Una fidelidad final alta no demuestra por sí sola una evolución sin transiciones, y la fidelidad final sin control no tiene por qué crecer de forma monótona con la duración.</p>
 
-<p>Como comprobación independiente, se integró directamente la ecuación de Schrödinger dependiente del tiempo en la base fija de Pauli con el método DOP853 de SciPy, usando una tolerancia relativa de 10⁻¹¹ y absoluta de 10⁻¹³. Para las duraciones 0.5, 2 y 10 y las fracciones de control 0, 0.5 y 1, las fidelidades coincidieron con la fórmula dentro de 2 × 10⁻¹⁰ en 201 instantes equiespaciados; la norma del estado cumplió la misma tolerancia. Estas comprobaciones validan el ejemplo, no el rendimiento de un controlador aprendido.</p>
+<p>Como comprobación independiente, se integró directamente la ecuación de Schrödinger dependiente del tiempo en la base fija de Pauli con el método DOP853 de SciPy, usando una tolerancia relativa de <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msup><mn>10</mn><mrow><mo>−</mo><mn>11</mn></mrow></msup></mrow></math> y absoluta de <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msup><mn>10</mn><mrow><mo>−</mo><mn>13</mn></mrow></msup></mrow></math>. Para las duraciones 0.5, 2 y 10 y las fracciones de control 0, 0.5 y 1, las fidelidades coincidieron con la fórmula dentro de <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mn>2</mn><mo>×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>10</mn></mrow></msup></mrow></math> en 201 instantes equiespaciados; la norma del estado cumplió la misma tolerancia. Estas comprobaciones validan el ejemplo, no el rendimiento de un controlador aprendido.</p>
 
 <h2 id="acelerar-la-evolucion-tiene-un-coste">Acelerar la evolución tiene un coste</h2>
 
@@ -204,7 +204,7 @@
 
 <p>El cálculo de dos niveles proporciona una referencia fácil de comprobar. Los sistemas más difíciles motivan el aprendizaje: calcular el operador necesario puede ser costoso y quizá solo se disponga de un conjunto restringido de controles.</p>
 
-<p>Para un hamiltoniano de referencia general parametrizado por λ, introducimos el potencial de gauge adiabático Aλ. Este genera el cambio de los autovectores al variar λ. Con la misma convención ℏ = 1, el control y una representación de prueba útil son</p>
+<p>Para un hamiltoniano de referencia general parametrizado por <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi></mrow></math>, introducimos el potencial de gauge adiabático <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>A</mi><mi>λ</mi></msub></mrow></math>. Este genera el cambio de los autovectores al variar <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi></mrow></math>. Con la misma convención <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>ℏ</mi><mo>=</mo><mn>1</mn></mrow></math>, el control y una representación de prueba útil son</p>
 
 <div class="equation" role="region" aria-label="El hamiltoniano contradiabático es la derivada temporal de lambda por su potencial de gauge adiabático. El potencial de prueba es una suma de coeficientes reales por operadores de Pauli hermíticos." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
 
@@ -212,7 +212,7 @@
 
 </math></div>
 
-<p>Los operadores Pj pueden elegirse entre los productos de operadores de Pauli que se puedan implementar. Los coeficientes reales aj mantienen hermítico el operador de prueba. Una red neuronal puede dar esos coeficientes en función de λ. La base de operadores determina lo que la red puede representar; aumentar el tamaño de la red no incorpora una interacción excluida de esa base.</p>
+<p>Los operadores <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>P</mi><mi>j</mi></msub></mrow></math> pueden elegirse entre los productos de operadores de Pauli que se puedan implementar. Los coeficientes reales <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>a</mi><mi>j</mi></msub></mrow></math> mantienen hermítico el operador de prueba. Una red neuronal puede dar esos coeficientes en función de <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi></mrow></math>. La base de operadores determina lo que la red puede representar; aumentar el tamaño de la red no incorpora una interacción excluida de esa base.</p>
 
 <p><a href="https://doi.org/10.1073/pnas.1619826114" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">Sels y Polkovnikov</a> desarrollaron un método variacional para aproximar los potenciales de gauge. Se define</p>
 
@@ -222,11 +222,11 @@
 
 </math></div>
 
-<p>Los corchetes indican un conmutador y la traza se toma sobre el espacio de Hilbert del sistema. Minimizar esta acción dentro de la familia de operadores elegida reduce la parte no diagonal de Gλ que queda sin cancelar en la base de energía. Para un potencial de gauge exacto, Gλ conmuta con el hamiltoniano de referencia; en general no se anula, porque los niveles de energía pueden cambiar con λ. Por tanto, un mínimo no nulo de la acción no implica necesariamente que el entrenamiento haya fallado. Las componentes de Aλ que conmutan con el hamiltoniano de referencia también requieren una convención de gauge si se busca una representación única.</p>
+<p>Los corchetes indican un conmutador y la traza se toma sobre el espacio de Hilbert del sistema. Minimizar esta acción dentro de la familia de operadores elegida reduce la parte no diagonal de <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>G</mi><mi>λ</mi></msub></mrow></math> que queda sin cancelar en la base de energía. Para un potencial de gauge exacto, <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>G</mi><mi>λ</mi></msub></mrow></math> conmuta con el hamiltoniano de referencia; en general no se anula, porque los niveles de energía pueden cambiar con <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi></mrow></math>. Por tanto, un mínimo no nulo de la acción no implica necesariamente que el entrenamiento haya fallado. Las componentes de <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>A</mi><mi>λ</mi></msub></mrow></math> que conmutan con el hamiltoniano de referencia también requieren una convención de gauge si se busca una representación única.</p>
 
-<p>Un objetivo de entrenamiento informado por la física puede muestrear esa acción en valores fijos de λ y optimizar los coeficientes de la red sin etiquetas del potencial de gauge exacto. Evaluar la traza puede resultar costoso al crecer el espacio de Hilbert. Sigue siendo necesario medir el coste computacional.</p>
+<p>Un objetivo de entrenamiento informado por la física puede muestrear esa acción en valores fijos de <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi></mrow></math> y optimizar los coeficientes de la red sin etiquetas del potencial de gauge exacto. Evaluar la traza puede resultar costoso al crecer el espacio de Hilbert. Sigue siendo necesario medir el coste computacional.</p>
 
-<p>El protocolo λ(t) es otra variable de diseño. Por ejemplo, una red con parámetros w puede satisfacer los valores de los extremos por construcción:</p>
+<p>El protocolo <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi><mo>(</mo><mi>t</mi><mo>)</mo></mrow></math> es otra variable de diseño. Por ejemplo, una red con parámetros <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>w</mi></mrow></math> puede satisfacer los valores de los extremos por construcción:</p>
 
 <div class="equation" role="region" aria-label="El protocolo neuronal lambda w de s es s más s por uno menos s por una red neuronal N w de s." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
 
@@ -234,7 +234,7 @@
 
 </math></div>
 
-<p>Si la salida de la red es finita, esta expresión da λ(0) = 0 y λ(1) = 1. No impone monotonía, no mantiene λ entre esos extremos ni anula las derivadas en ellos. Esos requisitos necesitan una estructura adicional o restricciones explícitas. La diferenciación automática proporciona la derivada del protocolo que multiplica al potencial de gauge.</p>
+<p>Si la salida de la red es finita, esta expresión da <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi><mo>(</mo><mn>0</mn><mo>)</mo><mo>=</mo><mn>0</mn></mrow></math> y <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi><mo>(</mo><mn>1</mn><mo>)</mo><mo>=</mo><mn>1</mn></mrow></math>. No impone monotonía, no mantiene <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi></mrow></math> entre esos extremos ni anula las derivadas en ellos. Esos requisitos necesitan una estructura adicional o restricciones explícitas. La diferenciación automática proporciona la derivada del protocolo que multiplica al potencial de gauge.</p>
 
 <p>Aprender un potencial de gauge y elegir un protocolo temporal son tareas de optimización relacionadas, pero distintas. El objetivo del protocolo puede incluir el error de transferencia de estado evaluado de forma independiente y los costes del control. La acción por sí sola no determina el mejor protocolo temporal ni certifica una fidelidad final. Si una red también representa el estado cuántico, su residuo de Schrödinger, su condición inicial y su normalización deben comprobarse por separado.</p>
 
@@ -253,9 +253,9 @@
 <p>La extensión útil de la primera entrada es el papel de la función desconocida. Una red puede representar una solución, un protocolo de control o un operador que guía la dinámica. Las restricciones físicas permiten comprobar cada representación; una evolución independiente establece qué hace realmente el control obtenido.</p>
 <footer class="article-end"><a href="/es/blog/">← Todas las entradas</a><a href="/es/investigacion/">Ver la investigación →</a></footer></div>
 </article>
-<script src="/assets/js/article-contents.js?v=1790926314" defer></script>
+<script src="/assets/js/article-contents.js?v=1790928429" defer></script>
 
-<script type="module" src="/assets/js/quantum-control.js?v=1790926314"></script>
+<script type="module" src="/assets/js/quantum-control.js?v=1790928429"></script>
 </main>
 <footer class="site-footer wrap">
 <span id="external-link-note" class="sr-only">Se abre en una pestaña nueva.</span>
