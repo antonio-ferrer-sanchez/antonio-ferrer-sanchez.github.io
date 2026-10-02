@@ -1,0 +1,267 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>PINNs and counterdiabatic driving · Antonio Ferrer-Sánchez</title>
+<meta name="description" content="Counterdiabatic driving in a two-level system: fidelity, control costs and how physics-informed neural networks can learn control protocols.">
+<meta name="author" content="Antonio Ferrer-Sánchez">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:site_name" content="Antonio Ferrer-Sánchez">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PINNs and counterdiabatic driving">
+<meta property="og:description" content="Counterdiabatic driving in a two-level system: fidelity, control costs and how physics-informed neural networks can learn control protocols.">
+<meta property="og:url" content="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:image" content="https://antonio-ferrer-sanchez.github.io/assets/images/share-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Antonio Ferrer-Sánchez: machine learning, grounded in physics. Portrait and site address.">
+<meta property="article:published_time" content="2026-10-02">
+<meta property="article:modified_time" content="2026-10-02">
+<meta property="article:author" content="https://antonio-ferrer-sanchez.github.io/">
+<meta property="article:section" content="Quantum dynamics and control">
+<meta property="article:tag" content="counterdiabatic driving">
+<meta property="article:tag" content="physics-informed neural networks">
+<meta property="article:tag" content="quantum control">
+<meta property="article:tag" content="adiabatic gauge potential">
+<meta property="article:tag" content="shortcuts to adiabaticity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PINNs and counterdiabatic driving">
+<meta name="twitter:description" content="Counterdiabatic driving in a two-level system: fidelity, control costs and how physics-informed neural networks can learn control protocols.">
+<meta name="twitter:image" content="https://antonio-ferrer-sanchez.github.io/assets/images/share-en.png">
+<link rel="me" href="https://scholar.google.com/citations?user=Ajj7DC4AAAAJ">
+<link rel="me" href="https://orcid.org/0000-0002-2305-5261">
+<link rel="me" href="https://github.com/Netzuel">
+<link rel="me" href="https://www.linkedin.com/in/antonio-ferrer-s%C3%A1nchez-67a50b197/">
+<link rel="alternate" type="application/atom+xml" title="Antonio Ferrer-Sánchez · Blog" href="https://antonio-ferrer-sanchez.github.io/feed.xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/images/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [
+{
+"@type": "Person",
+"@id": "https://antonio-ferrer-sanchez.github.io/#person",
+"name": "Antonio Ferrer-Sánchez",
+"alternateName": ["Antonio Ferrer Sánchez", "Antonio Ferrer Sanchez"],
+"givenName": "Antonio",
+"familyName": "Ferrer-Sánchez",
+"url": "https://antonio-ferrer-sanchez.github.io/",
+"email": "antonio.ferrer.contact@gmail.com",
+"image": "https://antonio-ferrer-sanchez.github.io/assets/images/antonio-ferrer-sanchez.png",
+"description": "Develops machine learning methods for problems in physics, especially physics-informed neural networks and quantum dynamics.",
+"jobTitle": "Quantum Algorithm Engineer",
+"worksFor": {"@type": "Organization", "name": "Kipu Quantum", "url": "https://kipu-quantum.com/"},
+"affiliation": [{"@type": "CollegeOrUniversity", "name": "Universitat de València", "url": "https://www.uv.es/"}, {"@type": "ResearchOrganization", "name": "Intelligent Data Analysis Laboratory (IDAL)", "parentOrganization": {"@type": "CollegeOrUniversity", "name": "Universitat de València"}}],
+"alumniOf": {"@type": "CollegeOrUniversity", "name": "Universitat de València", "url": "https://www.uv.es/"},
+"knowsAbout": ["Physics-informed neural networks","Scientific machine learning","Quantum algorithms","Counterdiabatic quantum computation","Quantum metrology","Relativistic hydrodynamics","Gravitational collapse","Black-hole quasinormal modes"],
+"sameAs": ["https://scholar.google.com/citations?user=Ajj7DC4AAAAJ", "https://orcid.org/0000-0002-2305-5261", "https://github.com/Netzuel", "https://www.linkedin.com/in/antonio-ferrer-s%C3%A1nchez-67a50b197/"]
+},
+{"@type": "WebSite", "@id": "https://antonio-ferrer-sanchez.github.io/#website", "url": "https://antonio-ferrer-sanchez.github.io/", "name": "Antonio Ferrer-Sánchez", "description": "Quantum algorithms and scientific machine learning. Research, publications and software by Antonio Ferrer-Sánchez.", "inLanguage": ["en", "es"], "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}},
+{
+"@type": "WebPage",
+"@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#webpage",
+"url": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/",
+"name": "PINNs and counterdiabatic driving · Antonio Ferrer-Sánchez",
+"description": "Counterdiabatic driving in a two-level system: fidelity, control costs and how physics-informed neural networks can learn control protocols.",
+"inLanguage": "en",
+"isPartOf": {"@id": "https://antonio-ferrer-sanchez.github.io/#website"},
+"about": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"},
+"primaryImageOfPage": {"@type": "ImageObject", "url": "https://antonio-ferrer-sanchez.github.io/assets/images/share-en.png", "width": 1200, "height": 630},
+"breadcrumb": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#breadcrumb"}
+},
+{"@type": "BreadcrumbList", "@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#breadcrumb", "itemListElement": [
+{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://antonio-ferrer-sanchez.github.io/"},
+{"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://antonio-ferrer-sanchez.github.io/blog/"},
+{"@type": "ListItem", "position": 3, "name": "From solving equations to controlling quantum systems", "item": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/"}
+]},
+{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#webpage"}, "headline": "From solving equations to controlling quantum systems", "description": "Counterdiabatic driving in a two-level system: fidelity, control costs and how physics-informed neural networks can learn control protocols.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-en.png", "datePublished": "2026-10-02", "dateModified": "2026-10-02", "inLanguage": "en", "articleSection": "Quantum dynamics and control", "keywords": ["counterdiabatic driving","physics-informed neural networks","quantum control","adiabatic gauge potential","shortcuts to adiabaticity"], "wordCount": 1730, "timeRequired": "PT12M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog", "url": "https://antonio-ferrer-sanchez.github.io/blog/"}, "workTranslation": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Physics-informed neural networks for an optimal counterdiabatic quantum computation", "url": "https://doi.org/10.1088/2632-2153/ad450f"}]}
+]}
+</script>
+
+<meta name="theme-color" content="#153f36">
+<link rel="canonical" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/">
+<link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/">
+<link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/">
+<link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/">
+<link rel="stylesheet" href="/assets/css/site.css?v=1790926314">
+<link rel="stylesheet" href="/assets/css/print.css?v=1790926314" media="print">
+<script src="/assets/js/header.js?v=1790926314"></script>
+</head>
+<body class="article-page">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="header-bar wrap">
+<a class="identity" href="/"><span class="identity-mark" aria-hidden="true">afs.</span><span>Antonio Ferrer-Sánchez<span class="identity-sub">Physics & scientific machine learning</span></span></a>
+<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu"><span class="menu-icon" aria-hidden="true"></span><span class="menu-label">Menu</span></button>
+<div class="site-menu" id="site-menu">
+<nav aria-label="Main navigation">
+<a href="/research/">Research</a><a href="/publications/">Publications</a><a href="/blog/" aria-current="location">Blog</a><a href="/software/">Software</a><a href="/activity/">Activity</a><a href="/cv/">CV</a>
+</nav>
+<div class="lang-switch" role="group" aria-label="Language"><span class="lang-label" aria-hidden="true">Language</span><a href="/blog/counterdiabatic-driving/" lang="en" hreflang="en" aria-current="true"><svg class="flag" viewBox="0 0 30 20" width="21" height="14" aria-hidden="true" focusable="false"><defs><clipPath id="flag-us-half"><path d="M0 0h30L0 20z"/></clipPath><clipPath id="flag-uk-half"><path d="M30 0v20H0z"/></clipPath><clipPath id="flag-uk-saltire"><path d="M30 15h30v15zv15H0zH0V0zV0h30z"/></clipPath></defs><g clip-path="url(#flag-uk-half)"><g transform="translate(-5 0) scale(.6667)"><path fill="#012169" d="M0 0h60v30H0z"/><path stroke="#FFF" stroke-width="6" d="m0 0 60 30m0-30L0 30"/><path stroke="#C8102E" stroke-width="4" d="m0 0 60 30m0-30L0 30" clip-path="url(#flag-uk-saltire)"/><path stroke="#FFF" stroke-width="10" d="M30 0v30M0 15h60"/><path stroke="#C8102E" stroke-width="6" d="M30 0v30M0 15h60"/></g></g><g clip-path="url(#flag-us-half)"><path fill="#FFF" d="M0 0h30v20H0z"/><path stroke="#B31942" stroke-width="1.54" d="M0 .77h30m-30 3.08h30m-30 3.08h30M0 10h30M0 13.08h30M0 16.15h30M0 19.23h30"/><path fill="#0A3161" d="M0 0h12v10.77H0z"/><g fill="#FFF"><circle cx="2" cy="1.8" r=".55"/><circle cx="6" cy="1.8" r=".55"/><circle cx="10" cy="1.8" r=".55"/><circle cx="4" cy="4" r=".55"/><circle cx="8" cy="4" r=".55"/><circle cx="2" cy="6.2" r=".55"/><circle cx="6" cy="6.2" r=".55"/><circle cx="10" cy="6.2" r=".55"/><circle cx="4" cy="8.4" r=".55"/><circle cx="8" cy="8.4" r=".55"/></g></g><path stroke="#FFF" stroke-width=".9" d="M0 20 30 0"/></svg><span class="lang-code" aria-hidden="true">EN</span><span class="lang-name">English</span></a><span class="lang-sep" aria-hidden="true"></span><a href="/es/blog/control-contradiabatico/" lang="es" hreflang="es" title="Leer esta página en español"><svg class="flag" viewBox="0 0 30 20" width="21" height="14" aria-hidden="true" focusable="false"><path fill="#AA151B" d="M0 0h30v20H0z"/><path fill="#F1BF00" d="M0 5h30v10H0z"/></svg><span class="lang-code" aria-hidden="true">ES</span><span class="lang-name">Español</span></a></div>
+</div>
+</div>
+</header>
+<main id="main" tabindex="-1"><article class="wrap article-shell">
+<header class="page-heading article-heading">
+<a class="text-link article-back" href="/blog/">← All posts</a>
+<p class="article-meta"><span>Quantum dynamics and control</span><time datetime="2026-10-02">2 October 2026</time><span>12 min read</span></p>
+<h1>From solving equations to controlling quantum systems</h1><p class="page-lede">Counterdiabatic driving in a two-level system: fidelity, control costs and how physics-informed neural networks can learn control protocols.</p>
+<p class="article-byline"><a rel="author" href="/">By Antonio Ferrer-Sánchez</a></p>
+</header>
+<aside class="article-contents" aria-labelledby="contents-heading"><h2 id="contents-heading">In this post</h2><nav aria-label="Post contents"><a href="#from-prediction-to-control">From prediction to control</a><a href="#a-spin-in-a-rotating-field">A spin in a rotating field</a><a href="#adding-the-counterdiabatic-term">Adding the counterdiabatic term</a><a href="#compare-the-same-physical-task">Compare the same physical task</a><a href="#faster-evolution-has-a-control-cost">Faster evolution has a control cost</a><a href="#where-a-neural-network-helps">Where a neural network helps</a><a href="#the-connection-to-our-research">The connection to our research</a><a href="#checks-before-trusting-a-learned-control">Checks before trusting a learned control</a></nav></aside>
+<div class="article-body"><h2 id="from-prediction-to-control">From prediction to control</h2>
+
+<p>In the <a href="/blog/physics-informed-machine-learning/">first post</a>, a neural network represented the temperature along a rod. The equation and the initial and boundary conditions specified the problem. Training tried to recover its solution.</p>
+
+<p>Quantum control adds a choice. We can vary an external field, a coupling or another parameter of the Hamiltonian, the operator that governs the system’s evolution. The task is to choose that variation so that the system reaches a desired state. A physics-informed neural network can represent the controls as well as the quantities they affect.</p>
+
+<p>Counterdiabatic driving gives this problem a useful structure. It adds a term to the Hamiltonian that cancels transitions between the instantaneous eigenstates of a reference Hamiltonian. The idea is often described as a shortcut to adiabaticity: preserve the state-following behaviour associated with slow evolution while completing the protocol in a finite, shorter time. <a href="https://doi.org/10.1088/1751-8113/42/36/365303" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">Berry’s transitionless-driving construction</a> makes that statement precise.</p>
+
+<p>We will first examine a case that can be solved exactly. Its figures are analytic calculations, checked against direct numerical evolution. They contain no trained PINN results and no quantum-hardware measurements.</p>
+
+<h2 id="a-spin-in-a-rotating-field">A spin in a rotating field</h2>
+
+<p>Consider an isolated two-level system, such as an ideal spin one-half. The Pauli operators σx, σy and σz describe its three control directions. Take a field of fixed magnitude whose direction rotates in the x–z plane. Use units with ℏ = 1 and gap frequency Ω = 1: time is measured in Ω⁻¹ and energy in ℏΩ. The reference Hamiltonian is</p>
+
+<div class="equation" role="region" aria-label="The reference Hamiltonian is one half of cosine theta times Pauli z plus sine theta times Pauli x; theta equals pi times t divided by T." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mtable><mtr><mtd><msub><mi>H</mi><mn>0</mn></msub><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>[</mo><mi>cos</mi><mi>θ</mi><mo>(</mo><mi>t</mi><mo>)</mo><msub><mi>σ</mi><mi>z</mi></msub><mo>+</mo><mi>sin</mi><mi>θ</mi><mo>(</mo><mi>t</mi><mo>)</mo><msub><mi>σ</mi><mi>x</mi></msub><mo>]</mo><mo>,</mo></mtd></mtr><mtr><mtd><mi>θ</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi>π</mi><mi>t</mi></mrow><mi>T</mi></mfrac><mo>.</mo></mtd></mtr></mtable>
+
+</math></div>
+
+<p>Here T is the total duration, and t runs from zero to T. The angle θ increases from zero to π. The two energy levels remain −1/2 and +1/2, so the gap never closes. Their eigenvectors rotate with the field.</p>
+
+<p>Prepare the ground state of the initial Hamiltonian. If the field turns sufficiently slowly compared with the inverse gap, the state stays close to the moving ground state. A faster turn can produce a superposition of the instantaneous ground and excited states. The problem is the changing eigenvectors, even though the energy gap is constant.</p>
+
+<p>The target at the end is the ground state of the final reference Hamiltonian. We also care about the route: a protocol that returns to the target only at the end can have substantial transitions along the way.</p>
+
+<h2 id="adding-the-counterdiabatic-term">Adding the counterdiabatic term</h2>
+
+<p>For this rotating field, the exact additional Hamiltonian is particularly simple:</p>
+
+<div class="equation" role="region" aria-label="The counterdiabatic Hamiltonian is one half of the time derivative of theta times Pauli y, equal to pi divided by twice T times Pauli y." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mrow><msub><mi>H</mi><mtext>CD</mtext></msub><mo>=</mo><mfrac><mover><mi>θ</mi><mo>˙</mo></mover><mn>2</mn></mfrac><msub><mi>σ</mi><mi>y</mi></msub><mo>=</mo><mfrac><mi>π</mi><mrow><mn>2</mn><mi>T</mi></mrow></mfrac><msub><mi>σ</mi><mi>y</mi></msub><mo>.</mo></mrow>
+
+</math></div>
+
+<p>The dot denotes a time derivative. We evolve with the sum of the reference and counterdiabatic Hamiltonians. The additional y-directed control compensates for the rotation of the reference eigenvectors. Starting in one of those eigenstates, ideal evolution follows that eigenstate up to a phase.</p>
+
+<p>One way to check the sign and the factor of one half is to move into a frame that rotates with the field. In that frame, the bare dynamics acquires a y term with coefficient −θ̇/2. The counterdiabatic term cancels it, leaving the fixed z Hamiltonian. The state then cannot leave its initial z eigenstate.</p>
+
+<p>The state follows an eigenstate of the <em>reference</em> Hamiltonian. It need not be an instantaneous eigenstate of the total Hamiltonian after the extra control has been added. Keeping these two operators separate avoids a common ambiguity in the phrase “staying in the ground state.”</p>
+
+<h2 id="compare-the-same-physical-task">Compare the same physical task</h2>
+
+<p>Let g(t) be the instantaneous reference ground state and ψ(t) the actual evolving state. Their fidelity is</p>
+
+<div class="equation" role="region" aria-label="Fidelity is the squared absolute overlap of the instantaneous reference ground state and the evolving state." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mrow><mi>F</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><msup><mrow><mo>|</mo><mo>⟨</mo><mi>g</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>|</mo><mi>ψ</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>⟩</mo><mo>|</mo></mrow><mn>2</mn></msup><mo>.</mo></mrow>
+
+</math></div>
+
+<p>A fidelity of one means that the states agree up to a global phase. Compare three protocols with the same reference path, initial state and duration: no added control, half the exact control, and the full exact control. Write η for the fraction of the counterdiabatic term that is applied, between zero and one, and s = t/T for normalized time. The rotating-frame solution gives</p>
+
+<div class="equation" role="region" aria-label="Q equals T squared plus the square of one minus eta times pi squared. Fidelity equals one minus that latter term divided by Q, times sine squared of s times square root Q divided by two." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mtable><mtr><mtd><mi>Q</mi><mo>=</mo><msup><mi>T</mi><mn>2</mn></msup><mo>+</mo><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>η</mi><mo>)</mo></mrow><mn>2</mn></msup><msup><mi>π</mi><mn>2</mn></msup><mo>,</mo></mtd></mtr><mtr><mtd><msub><mi>F</mi><mi>η</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo><mo>=</mo><mn>1</mn><mo>−</mo><mfrac><mrow><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>η</mi><mo>)</mo></mrow><mn>2</mn></msup><msup><mi>π</mi><mn>2</mn></msup></mrow><mi>Q</mi></mfrac><msup><mi>sin</mi><mn>2</mn></msup><mo>(</mo><mfrac><mrow><mi>s</mi><msqrt><mi>Q</mi></msqrt></mrow><mn>2</mn></mfrac><mo>)</mo><mo>.</mo></mtd></mtr></mtable>
+
+</math></div>
+
+<figure data-plot="quantum-control" data-interactive-caption="Analytic rotating-field model. Change the duration and the control fraction to compare the selected protocol with no control and exact counterdiabatic driving. Every curve starts in the same reference ground state."><picture><source media="(max-width: 650px)" srcset="/assets/figures/cd-fidelity-mobile.svg" width="480" height="480" /><img src="/assets/figures/cd-fidelity.svg" width="760" height="460" alt="Ground-state fidelity versus the fraction of the protocol elapsed. At duration T equals two, exact counterdiabatic control stays at one; half-strength control ends near 0.652 and no control near 0.347." loading="lazy" decoding="async" /></picture><figcaption>Analytic evolution at T = 2. The full counterdiabatic term preserves fidelity throughout the protocol; half-strength control leaves transitions. All three curves start in the same reference ground state.</figcaption></figure>
+
+<p>At T = 2, the final fidelities are approximately 0.347 without the added term, 0.652 at half strength, and 1 with exact counterdiabatic control. The full curves matter: coherent evolution can bring an imperfect protocol back towards the target. A high final fidelity alone does not establish transitionless evolution, and the uncontrolled final fidelity need not increase monotonically with duration.</p>
+
+<p>An independent check integrated the time-dependent Schrödinger equation directly in the fixed Pauli basis with SciPy’s DOP853 solver, using relative tolerance 10⁻¹¹ and absolute tolerance 10⁻¹³. At durations 0.5, 2 and 10 and control fractions 0, 0.5 and 1, the fidelities agreed with the formula to within 2 × 10⁻¹⁰ on 201 equally spaced times; the state norm passed the same tolerance. These checks validate this example, not the performance of a learned controller.</p>
+
+<h2 id="faster-evolution-has-a-control-cost">Faster evolution has a control cost</h2>
+
+<p>Exact cancellation does not make a short protocol free. In this example, the operator norm of the extra Hamiltonian equals the magnitude of its Pauli coefficient:</p>
+
+<div class="equation" role="region" aria-label="The operator norm of eta times the counterdiabatic Hamiltonian is c eta, equal to eta times pi divided by twice T." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mrow><mo>‖</mo><mi>η</mi><msub><mi>H</mi><mtext>CD</mtext></msub><mo>‖</mo><mo>=</mo><msub><mi>c</mi><mi>η</mi></msub><mo>=</mo><mfrac><mrow><mi>η</mi><mi>π</mi></mrow><mrow><mn>2</mn><mi>T</mi></mrow></mfrac><mo>.</mo></mrow>
+
+</math></div>
+
+<p>Halving the duration doubles the required strength at a fixed control fraction. The plot shows this dependence directly. It measures a Hamiltonian amplitude, not electrical power or the full experimental cost.</p>
+
+<figure><picture><source media="(max-width: 650px)" srcset="/assets/figures/cd-cost-mobile.svg" width="480" height="480" /><img src="/assets/figures/cd-cost.svg" width="760" height="460" alt="Control coefficient decreases as the inverse duration. The exact counterdiabatic coefficient is twice the half-strength coefficient at every duration." loading="lazy" decoding="async" /></picture><figcaption>Peak added-control coefficient for the same half-turn of the reference field. Units are ℏΩ for the coefficient and Ω⁻¹ for time. The amplitude grows as the duration decreases; the half-strength protocol uses less control but does not cancel transitions exactly.</figcaption></figure>
+
+<p>The linear angle sweep also switches a nonzero counterdiabatic control on at the beginning and off at the end. Ideal switching is part of the model. A laboratory pulse must respect finite amplitude and bandwidth, and may require smooth endpoints. Changing the schedule changes the required control waveform and the fidelity curves.</p>
+
+<p>In a many-body system, an exact counterdiabatic operator may require interactions that the device cannot implement. Approximate controls must be assessed under those restrictions. Neither this example nor a low training loss establishes a quantum computational advantage.</p>
+
+<h2 id="where-a-neural-network-helps">Where a neural network helps</h2>
+
+<p>The two-level calculation supplies a reference that is easy to test. Harder systems motivate learning: the required operator may be costly to compute, and only a restricted set of controls may be available.</p>
+
+<p>For a general reference Hamiltonian parameterized by λ, introduce the adiabatic gauge potential Aλ. It generates the change of eigenvectors as λ changes. In the same ℏ = 1 convention, the control and a useful trial representation are</p>
+
+<div class="equation" role="region" aria-label="The counterdiabatic Hamiltonian is the time derivative of lambda times its adiabatic gauge potential. The trial gauge potential is a sum of real coefficients times Hermitian Pauli operators." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mtable><mtr><mtd><msub><mi>H</mi><mtext>CD</mtext></msub><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><mover><mi>λ</mi><mo>˙</mo></mover><mo>(</mo><mi>t</mi><mo>)</mo><msub><mi>A</mi><mi>λ</mi></msub><mo>,</mo></mtd></mtr><mtr><mtd><msub><mi>A</mi><mi>λ</mi></msub><mo>≈</mo><munder><mo>∑</mo><mi>j</mi></munder><msub><mi>a</mi><mi>j</mi></msub><mo>(</mo><mi>λ</mi><mo>)</mo><msub><mi>P</mi><mi>j</mi></msub><mo>.</mo></mtd></mtr></mtable>
+
+</math></div>
+
+<p>The operators Pj can be chosen from the implementable Pauli strings. Real coefficients aj keep the trial operator Hermitian. A neural network can output those coefficients as functions of λ. The choice of operator basis sets what the network can represent; a larger network cannot supply an interaction excluded from that basis.</p>
+
+<p><a href="https://doi.org/10.1073/pnas.1619826114" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">Sels and Polkovnikov</a> developed a variational route to approximate gauge potentials. Define</p>
+
+<div class="equation" role="region" aria-label="G lambda equals the lambda derivative of H zero plus i times the commutator of A lambda with H zero. The action is the trace of G lambda squared." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mtable><mtr><mtd><msub><mi>G</mi><mi>λ</mi></msub><mo>=</mo><msub><mo>∂</mo><mi>λ</mi></msub><msub><mi>H</mi><mn>0</mn></msub><mo>+</mo><mi>i</mi><mo>[</mo><msub><mi>A</mi><mi>λ</mi></msub><mo>,</mo><msub><mi>H</mi><mn>0</mn></msub><mo>]</mo><mo>,</mo></mtd></mtr><mtr><mtd><mi>S</mi><mo>(</mo><msub><mi>A</mi><mi>λ</mi></msub><mo>)</mo><mo>=</mo><mi mathvariant="normal">Tr</mi><mo>(</mo><msubsup><mi>G</mi><mi>λ</mi><mn>2</mn></msubsup><mo>)</mo><mo>.</mo></mtd></mtr></mtable>
+
+</math></div>
+
+<p>The brackets denote a commutator, and the trace is over the system’s Hilbert space. Minimizing this action within the chosen operator family reduces the uncancelled off-diagonal part of Gλ in the energy basis. For an exact gauge potential, Gλ commutes with the reference Hamiltonian; it generally does not vanish, because energy levels can change with λ. A nonzero minimum of the action therefore need not indicate failed training. Components of Aλ that commute with the reference Hamiltonian also require a gauge convention if a unique representation is wanted.</p>
+
+<p>A physics-informed training objective can sample that action at fixed values of λ and optimize the network coefficients without target labels for the exact gauge potential. Trace evaluation itself can become expensive as the Hilbert space grows. The computational cost still needs to be measured.</p>
+
+<p>The schedule λ(t) is another design variable. For instance, a network with parameters w can satisfy the two endpoint values by construction:</p>
+
+<div class="equation" role="region" aria-label="A neural schedule lambda w of s equals s plus s times one minus s times a neural network N w of s." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mrow><msub><mi>λ</mi><mi>w</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo><mo>=</mo><mi>s</mi><mo>+</mo><mi>s</mi><mo>(</mo><mn>1</mn><mo>−</mo><mi>s</mi><mo>)</mo><msub><mi>N</mi><mi>w</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo><mo>.</mo></mrow>
+
+</math></div>
+
+<p>For finite network output, this gives λ(0) = 0 and λ(1) = 1. It does not enforce monotonicity, keep λ between those endpoints, or make the endpoint derivatives vanish. Such requirements need additional structure or explicit constraints. Automatic differentiation supplies the schedule derivative that multiplies the gauge potential.</p>
+
+<p>Learning a gauge potential and choosing a schedule are related but distinct optimization tasks. A schedule objective can include independently evaluated state-transfer error and control costs. The action alone does not determine the best time schedule or certify a final fidelity. If a network also represents the quantum state, its Schrödinger residual, initial condition and normalization must be checked separately.</p>
+
+<h2 id="the-connection-to-our-research">The connection to our research</h2>
+
+<p>Our <a href="https://doi.org/10.1088/2632-2153/ad450f" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">2024 paper on PINNs for counterdiabatic quantum computation</a> studies neural representations of the schedule and counterdiabatic operator, using physical constraints that include Hermiticity and a variational action. The journal article demonstrates the method on a two-qubit representation of molecular hydrogen and examines a Pauli-operator decomposition. The accompanying <a href="https://github.com/Netzuel/pinns-for-counterdiabatic-driving" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">public repository</a> provides code, data, trained models and Jupyter tutorials.</p>
+
+<p>The rotating-field example here is a separate teaching problem. It explains what counterdiabatic control is intended to achieve and provides a reference for checking an implementation. Its exact cancellation should not be read as a result for a trained network, a larger molecular system or a noisy device.</p>
+
+<h2 id="checks-before-trusting-a-learned-control">Checks before trusting a learned control</h2>
+
+<p>Start with a model whose dynamics you can verify. Fix the initial state, target, duration and allowed control operators before comparing methods. Then inspect both the fidelity over the full trajectory and the final state, together with the amplitude and smoothness of the controls.</p>
+
+<p>Evaluate the learned controls with an independent dynamical solver at times absent from training. Tighten its numerical tolerances, check normalization, and repeat training with different initializations. For a hardware claim, include the device’s actual control restrictions and noise model. For an efficiency claim, count training and validation costs alongside the baseline calculation.</p>
+
+<p>The useful extension of the first post is the role of the unknown function. A network can represent a solution, a control protocol, or an operator that guides the dynamics. Physical constraints make each representation testable; independent evolution establishes what the resulting control actually does.</p>
+<footer class="article-end"><a href="/blog/">← All posts</a><a href="/research/">Explore the research →</a></footer></div>
+</article>
+<script src="/assets/js/article-contents.js?v=1790926314" defer></script>
+
+<script type="module" src="/assets/js/quantum-control.js?v=1790926314"></script>
+</main>
+<footer class="site-footer wrap">
+<span id="external-link-note" class="sr-only">Opens in a new tab.</span>
+<div><a class="footer-name" href="/">Antonio Ferrer-Sánchez</a><p>Quantum algorithms · Scientific machine learning</p></div>
+<div class="social-links"><a href="mailto:antonio.ferrer.contact@gmail.com">Email</a><a href="https://scholar.google.com/citations?user=Ajj7DC4AAAAJ" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">Google Scholar <span aria-hidden="true">↗</span></a><a href="https://orcid.org/0000-0002-2305-5261" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">ORCID <span aria-hidden="true">↗</span></a><a href="https://github.com/Netzuel" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">GitHub <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/antonio-ferrer-s%C3%A1nchez-67a50b197/" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">LinkedIn <span aria-hidden="true">↗</span></a></div>
+<p class="footer-note">© 2026 Antonio Ferrer-Sánchez. <a href="/privacy/">Privacy and cookies</a></p>
+</footer>
+</body>
+</html>

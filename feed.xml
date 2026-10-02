@@ -5,9 +5,18 @@
 <id>https://antonio-ferrer-sanchez.github.io/feed.xml</id>
 <link rel="self" type="application/atom+xml" href="https://antonio-ferrer-sanchez.github.io/feed.xml"/>
 <link rel="alternate" type="text/html" href="https://antonio-ferrer-sanchez.github.io/blog/"/>
-<updated>2026-10-01T00:00:00+03:00</updated>
+<updated>2026-10-02T00:00:00+03:00</updated>
 <author><name>Antonio Ferrer-Sánchez</name><uri>https://antonio-ferrer-sanchez.github.io/</uri></author>
 <icon>https://antonio-ferrer-sanchez.github.io/assets/images/icon-192.png</icon>
+<entry>
+<title>From solving equations to controlling quantum systems</title>
+<id>https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/</id>
+<link rel="alternate" type="text/html" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/"/>
+<published>2026-10-02T00:00:00+03:00</published>
+<updated>2026-10-02T00:00:00+03:00</updated>
+<summary>Counterdiabatic driving in a two-level system: fidelity, control costs and how physics-informed neural networks can learn control protocols.</summary>
+<category term="Quantum dynamics and control"/>
+</entry>
 <entry>
 <title>Physics-informed machine learning: from physical laws to neural solvers</title>
 <id>https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/</id>

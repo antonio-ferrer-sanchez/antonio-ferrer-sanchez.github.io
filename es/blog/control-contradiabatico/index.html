@@ -1,0 +1,267 @@
+<!doctype html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>PINNs y control contradiabático · Antonio Ferrer-Sánchez</title>
+<meta name="description" content="Control contradiabático con un ejemplo de dos niveles: fidelidad, coste del control y protocolos aprendidos con redes informadas por la física.">
+<meta name="author" content="Antonio Ferrer-Sánchez">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:site_name" content="Antonio Ferrer-Sánchez">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PINNs y control contradiabático">
+<meta property="og:description" content="Control contradiabático con un ejemplo de dos niveles: fidelidad, coste del control y protocolos aprendidos con redes informadas por la física.">
+<meta property="og:url" content="https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/">
+<meta property="og:locale" content="es_ES">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image" content="https://antonio-ferrer-sanchez.github.io/assets/images/share-es.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Antonio Ferrer-Sánchez: aprendizaje automático anclado en la física. Retrato y dirección del sitio.">
+<meta property="article:published_time" content="2026-10-02">
+<meta property="article:modified_time" content="2026-10-02">
+<meta property="article:author" content="https://antonio-ferrer-sanchez.github.io/es/">
+<meta property="article:section" content="Dinámica y control cuánticos">
+<meta property="article:tag" content="control contradiabático">
+<meta property="article:tag" content="redes neuronales informadas por la física">
+<meta property="article:tag" content="control cuántico">
+<meta property="article:tag" content="potencial de gauge adiabático">
+<meta property="article:tag" content="atajos a la adiabaticidad">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PINNs y control contradiabático">
+<meta name="twitter:description" content="Control contradiabático con un ejemplo de dos niveles: fidelidad, coste del control y protocolos aprendidos con redes informadas por la física.">
+<meta name="twitter:image" content="https://antonio-ferrer-sanchez.github.io/assets/images/share-es.png">
+<link rel="me" href="https://scholar.google.com/citations?user=Ajj7DC4AAAAJ">
+<link rel="me" href="https://orcid.org/0000-0002-2305-5261">
+<link rel="me" href="https://github.com/Netzuel">
+<link rel="me" href="https://www.linkedin.com/in/antonio-ferrer-s%C3%A1nchez-67a50b197/">
+<link rel="alternate" type="application/atom+xml" title="Antonio Ferrer-Sánchez · Blog (español)" href="https://antonio-ferrer-sanchez.github.io/es/feed.xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/images/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [
+{
+"@type": "Person",
+"@id": "https://antonio-ferrer-sanchez.github.io/#person",
+"name": "Antonio Ferrer-Sánchez",
+"alternateName": ["Antonio Ferrer Sánchez", "Antonio Ferrer Sanchez"],
+"givenName": "Antonio",
+"familyName": "Ferrer-Sánchez",
+"url": "https://antonio-ferrer-sanchez.github.io/es/",
+"email": "antonio.ferrer.contact@gmail.com",
+"image": "https://antonio-ferrer-sanchez.github.io/assets/images/antonio-ferrer-sanchez.png",
+"description": "Desarrolla métodos de aprendizaje automático para problemas de física, sobre todo redes neuronales informadas por la física y dinámica cuántica.",
+"jobTitle": "Quantum Algorithm Engineer",
+"worksFor": {"@type": "Organization", "name": "Kipu Quantum", "url": "https://kipu-quantum.com/"},
+"affiliation": [{"@type": "CollegeOrUniversity", "name": "Universitat de València", "url": "https://www.uv.es/"}, {"@type": "ResearchOrganization", "name": "Intelligent Data Analysis Laboratory (IDAL)", "parentOrganization": {"@type": "CollegeOrUniversity", "name": "Universitat de València"}}],
+"alumniOf": {"@type": "CollegeOrUniversity", "name": "Universitat de València", "url": "https://www.uv.es/"},
+"knowsAbout": ["Redes neuronales informadas por la física","Aprendizaje automático científico","Algoritmos cuánticos","Computación cuántica contradiabática","Metrología cuántica","Hidrodinámica relativista","Colapso gravitatorio","Modos cuasinormales de agujeros negros"],
+"sameAs": ["https://scholar.google.com/citations?user=Ajj7DC4AAAAJ", "https://orcid.org/0000-0002-2305-5261", "https://github.com/Netzuel", "https://www.linkedin.com/in/antonio-ferrer-s%C3%A1nchez-67a50b197/"]
+},
+{"@type": "WebSite", "@id": "https://antonio-ferrer-sanchez.github.io/#website", "url": "https://antonio-ferrer-sanchez.github.io/", "name": "Antonio Ferrer-Sánchez", "description": "Algoritmos cuánticos y aprendizaje automático científico. Investigación, publicaciones y software de Antonio Ferrer-Sánchez.", "inLanguage": ["en", "es"], "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}},
+{
+"@type": "WebPage",
+"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#webpage",
+"url": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/",
+"name": "PINNs y control contradiabático · Antonio Ferrer-Sánchez",
+"description": "Control contradiabático con un ejemplo de dos niveles: fidelidad, coste del control y protocolos aprendidos con redes informadas por la física.",
+"inLanguage": "es",
+"isPartOf": {"@id": "https://antonio-ferrer-sanchez.github.io/#website"},
+"about": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"},
+"primaryImageOfPage": {"@type": "ImageObject", "url": "https://antonio-ferrer-sanchez.github.io/assets/images/share-es.png", "width": 1200, "height": 630},
+"breadcrumb": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#breadcrumb"}
+},
+{"@type": "BreadcrumbList", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#breadcrumb", "itemListElement": [
+{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://antonio-ferrer-sanchez.github.io/es/"},
+{"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://antonio-ferrer-sanchez.github.io/es/blog/"},
+{"@type": "ListItem", "position": 3, "name": "De resolver ecuaciones a controlar sistemas cuánticos", "item": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/"}
+]},
+{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#webpage"}, "headline": "De resolver ecuaciones a controlar sistemas cuánticos", "description": "Control contradiabático con un ejemplo de dos niveles: fidelidad, coste del control y protocolos aprendidos con redes informadas por la física.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-es.png", "datePublished": "2026-10-02", "dateModified": "2026-10-02", "inLanguage": "es", "articleSection": "Dinámica y control cuánticos", "keywords": ["control contradiabático","redes neuronales informadas por la física","control cuántico","potencial de gauge adiabático","atajos a la adiabaticidad"], "wordCount": 1962, "timeRequired": "PT12M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog (español)", "url": "https://antonio-ferrer-sanchez.github.io/es/blog/"}, "translationOfWork": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Physics-informed neural networks for an optimal counterdiabatic quantum computation", "url": "https://doi.org/10.1088/2632-2153/ad450f"}]}
+]}
+</script>
+
+<meta name="theme-color" content="#153f36">
+<link rel="canonical" href="https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/">
+<link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/">
+<link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/">
+<link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/">
+<link rel="stylesheet" href="/assets/css/site.css?v=1790926314">
+<link rel="stylesheet" href="/assets/css/print.css?v=1790926314" media="print">
+<script src="/assets/js/header.js?v=1790926314"></script>
+</head>
+<body class="article-page">
+<a class="skip-link" href="#main">Saltar al contenido</a>
+<header class="site-header">
+<div class="header-bar wrap">
+<a class="identity" href="/es/"><span class="identity-mark" aria-hidden="true">afs.</span><span>Antonio Ferrer-Sánchez<span class="identity-sub">Física y aprendizaje automático científico</span></span></a>
+<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu"><span class="menu-icon" aria-hidden="true"></span><span class="menu-label">Menú</span></button>
+<div class="site-menu" id="site-menu">
+<nav aria-label="Navegación principal">
+<a href="/es/investigacion/">Investigación</a><a href="/es/publicaciones/">Publicaciones</a><a href="/es/blog/" aria-current="location">Blog</a><a href="/es/software/">Software</a><a href="/es/actividad/">Actividad</a><a href="/es/cv/">CV</a>
+</nav>
+<div class="lang-switch" role="group" aria-label="Idioma"><span class="lang-label" aria-hidden="true">Idioma</span><a href="/blog/counterdiabatic-driving/" lang="en" hreflang="en" title="Read this page in English"><svg class="flag" viewBox="0 0 30 20" width="21" height="14" aria-hidden="true" focusable="false"><defs><clipPath id="flag-us-half"><path d="M0 0h30L0 20z"/></clipPath><clipPath id="flag-uk-half"><path d="M30 0v20H0z"/></clipPath><clipPath id="flag-uk-saltire"><path d="M30 15h30v15zv15H0zH0V0zV0h30z"/></clipPath></defs><g clip-path="url(#flag-uk-half)"><g transform="translate(-5 0) scale(.6667)"><path fill="#012169" d="M0 0h60v30H0z"/><path stroke="#FFF" stroke-width="6" d="m0 0 60 30m0-30L0 30"/><path stroke="#C8102E" stroke-width="4" d="m0 0 60 30m0-30L0 30" clip-path="url(#flag-uk-saltire)"/><path stroke="#FFF" stroke-width="10" d="M30 0v30M0 15h60"/><path stroke="#C8102E" stroke-width="6" d="M30 0v30M0 15h60"/></g></g><g clip-path="url(#flag-us-half)"><path fill="#FFF" d="M0 0h30v20H0z"/><path stroke="#B31942" stroke-width="1.54" d="M0 .77h30m-30 3.08h30m-30 3.08h30M0 10h30M0 13.08h30M0 16.15h30M0 19.23h30"/><path fill="#0A3161" d="M0 0h12v10.77H0z"/><g fill="#FFF"><circle cx="2" cy="1.8" r=".55"/><circle cx="6" cy="1.8" r=".55"/><circle cx="10" cy="1.8" r=".55"/><circle cx="4" cy="4" r=".55"/><circle cx="8" cy="4" r=".55"/><circle cx="2" cy="6.2" r=".55"/><circle cx="6" cy="6.2" r=".55"/><circle cx="10" cy="6.2" r=".55"/><circle cx="4" cy="8.4" r=".55"/><circle cx="8" cy="8.4" r=".55"/></g></g><path stroke="#FFF" stroke-width=".9" d="M0 20 30 0"/></svg><span class="lang-code" aria-hidden="true">EN</span><span class="lang-name">English</span></a><span class="lang-sep" aria-hidden="true"></span><a href="/es/blog/control-contradiabatico/" lang="es" hreflang="es" aria-current="true"><svg class="flag" viewBox="0 0 30 20" width="21" height="14" aria-hidden="true" focusable="false"><path fill="#AA151B" d="M0 0h30v20H0z"/><path fill="#F1BF00" d="M0 5h30v10H0z"/></svg><span class="lang-code" aria-hidden="true">ES</span><span class="lang-name">Español</span></a></div>
+</div>
+</div>
+</header>
+<main id="main" tabindex="-1"><article class="wrap article-shell">
+<header class="page-heading article-heading">
+<a class="text-link article-back" href="/es/blog/">← Todas las entradas</a>
+<p class="article-meta"><span>Dinámica y control cuánticos</span><time datetime="2026-10-02">2 de octubre de 2026</time><span>12 min de lectura</span></p>
+<h1>De resolver ecuaciones a controlar sistemas cuánticos</h1><p class="page-lede">Control contradiabático con un ejemplo de dos niveles: fidelidad, coste del control y protocolos aprendidos con redes informadas por la física.</p>
+<p class="article-byline"><a rel="author" href="/es/">Por Antonio Ferrer-Sánchez</a></p>
+</header>
+<aside class="article-contents" aria-labelledby="contents-heading"><h2 id="contents-heading">En esta entrada</h2><nav aria-label="Contenido de la entrada"><a href="#de-la-prediccion-al-control">De la predicción al control</a><a href="#un-espin-en-un-campo-que-gira">Un espín en un campo que gira</a><a href="#anadir-el-termino-contradiabatico">Añadir el término contradiabático</a><a href="#comparar-la-misma-tarea-fisica">Comparar la misma tarea física</a><a href="#acelerar-la-evolucion-tiene-un-coste">Acelerar la evolución tiene un coste</a><a href="#donde-ayuda-una-red-neuronal">Dónde ayuda una red neuronal</a><a href="#la-conexion-con-nuestra-investigacion">La conexión con nuestra investigación</a><a href="#comprobaciones-para-un-control-aprendido">Comprobaciones para un control aprendido</a></nav></aside>
+<div class="article-body"><h2 id="de-la-prediccion-al-control">De la predicción al control</h2>
+
+<p>En la <a href="/es/blog/aprendizaje-automatico-informado-por-la-fisica/">primera entrada</a>, una red neuronal representaba la temperatura a lo largo de una barra. La ecuación y las condiciones iniciales y de contorno definían el problema. El entrenamiento buscaba recuperar su solución.</p>
+
+<p>El control cuántico añade una elección. Podemos variar un campo externo, un acoplamiento u otro parámetro del hamiltoniano, el operador que gobierna la evolución del sistema. La tarea consiste en elegir esa variación para alcanzar un estado deseado. Una red neuronal informada por la física puede representar los controles y las magnitudes sobre las que actúan.</p>
+
+<p>El control contradiabático da una estructura útil a este problema. Añade al hamiltoniano un término que cancela las transiciones entre los autoestados instantáneos de un hamiltoniano de referencia. La idea suele describirse como un atajo a la adiabaticidad: conservar el seguimiento de estados asociado a una evolución lenta, pero completar el protocolo en un tiempo finito y más corto. La <a href="https://doi.org/10.1088/1751-8113/42/36/365303" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">construcción de Berry para una evolución sin transiciones</a> precisa esta afirmación.</p>
+
+<p>Primero estudiaremos un caso que se puede resolver exactamente. Sus figuras muestran cálculos analíticos, contrastados con una evolución numérica directa. No contienen resultados de una PINN entrenada ni medidas en un dispositivo cuántico.</p>
+
+<h2 id="un-espin-en-un-campo-que-gira">Un espín en un campo que gira</h2>
+
+<p>Consideremos un sistema aislado de dos niveles, como un espín ideal de un medio. Los operadores de Pauli σx, σy y σz describen sus tres direcciones de control. Tomamos un campo de módulo constante cuya dirección gira en el plano x–z. Usamos unidades con ℏ = 1 y frecuencia de la brecha Ω = 1: el tiempo se mide en Ω⁻¹ y la energía en ℏΩ. El hamiltoniano de referencia es</p>
+
+<div class="equation" role="region" aria-label="El hamiltoniano de referencia es un medio de coseno de theta por Pauli z más seno de theta por Pauli x; theta es pi por t dividido por T." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mtable><mtr><mtd><msub><mi>H</mi><mn>0</mn></msub><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>[</mo><mi>cos</mi><mi>θ</mi><mo>(</mo><mi>t</mi><mo>)</mo><msub><mi>σ</mi><mi>z</mi></msub><mo>+</mo><mi>sin</mi><mi>θ</mi><mo>(</mo><mi>t</mi><mo>)</mo><msub><mi>σ</mi><mi>x</mi></msub><mo>]</mo><mo>,</mo></mtd></mtr><mtr><mtd><mi>θ</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi>π</mi><mi>t</mi></mrow><mi>T</mi></mfrac><mo>.</mo></mtd></mtr></mtable>
+
+</math></div>
+
+<p>Aquí T es la duración total y t va de cero a T. El ángulo θ aumenta de cero a π. Los dos niveles de energía permanecen en −1/2 y +1/2, de modo que la brecha nunca se cierra. Sus autovectores giran con el campo.</p>
+
+<p>Preparamos el estado fundamental del hamiltoniano inicial. Si el campo gira suficientemente despacio en comparación con la inversa de la brecha, el estado permanece cerca del estado fundamental que se desplaza. Un giro más rápido puede producir una superposición de los estados fundamental y excitado instantáneos. La dificultad está en el cambio de los autovectores, aunque la brecha energética sea constante.</p>
+
+<p>El objetivo final es el estado fundamental del hamiltoniano de referencia final. También importa el recorrido: un protocolo que solo regresa al objetivo al terminar puede haber producido transiciones considerables durante la evolución.</p>
+
+<h2 id="anadir-el-termino-contradiabatico">Añadir el término contradiabático</h2>
+
+<p>Para este campo que gira, el hamiltoniano adicional exacto es especialmente sencillo:</p>
+
+<div class="equation" role="region" aria-label="El hamiltoniano contradiabático es un medio de la derivada temporal de theta por Pauli y, igual a pi dividido por dos T por Pauli y." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mrow><msub><mi>H</mi><mtext>CD</mtext></msub><mo>=</mo><mfrac><mover><mi>θ</mi><mo>˙</mo></mover><mn>2</mn></mfrac><msub><mi>σ</mi><mi>y</mi></msub><mo>=</mo><mfrac><mi>π</mi><mrow><mn>2</mn><mi>T</mi></mrow></mfrac><msub><mi>σ</mi><mi>y</mi></msub><mo>.</mo></mrow>
+
+</math></div>
+
+<p>El punto indica una derivada temporal. La evolución se realiza con la suma de los hamiltonianos de referencia y contradiabático. El control adicional en la dirección y compensa la rotación de los autovectores de referencia. Si partimos de uno de esos autoestados, la evolución ideal lo sigue salvo por una fase.</p>
+
+<p>Podemos comprobar el signo y el factor de un medio al pasar a un sistema de referencia que gira con el campo. En él, la dinámica sin control adicional adquiere un término en y con coeficiente −θ̇/2. El término contradiabático lo cancela y deja el hamiltoniano fijo en z. El estado ya no puede abandonar su autoestado inicial de z.</p>
+
+<p>El estado sigue un autoestado del hamiltoniano de <em>referencia</em>. No tiene por qué ser un autoestado instantáneo del hamiltoniano total tras añadir el control. Distinguir ambos operadores evita una ambigüedad habitual al hablar de «permanecer en el estado fundamental».</p>
+
+<h2 id="comparar-la-misma-tarea-fisica">Comparar la misma tarea física</h2>
+
+<p>Sean g(t) el estado fundamental instantáneo de referencia y ψ(t) el estado que evoluciona. Su fidelidad es</p>
+
+<div class="equation" role="region" aria-label="La fidelidad es el módulo al cuadrado del solapamiento entre el estado fundamental instantáneo de referencia y el estado que evoluciona." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mrow><mi>F</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><msup><mrow><mo>|</mo><mo>⟨</mo><mi>g</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>|</mo><mi>ψ</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>⟩</mo><mo>|</mo></mrow><mn>2</mn></msup><mo>.</mo></mrow>
+
+</math></div>
+
+<p>Una fidelidad de uno significa que los estados coinciden salvo por una fase global. Comparamos tres protocolos con la misma trayectoria de referencia, el mismo estado inicial y la misma duración: sin control adicional, con la mitad del control exacto y con el control exacto completo. Denotamos por η la fracción del término contradiabático aplicada, entre cero y uno, y por s = t/T el tiempo normalizado. La solución en el sistema que gira da</p>
+
+<div class="equation" role="region" aria-label="Q es T al cuadrado más el cuadrado de uno menos eta por pi al cuadrado. La fidelidad es uno menos este último término dividido por Q, por seno al cuadrado de s por raíz de Q dividido por dos." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mtable><mtr><mtd><mi>Q</mi><mo>=</mo><msup><mi>T</mi><mn>2</mn></msup><mo>+</mo><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>η</mi><mo>)</mo></mrow><mn>2</mn></msup><msup><mi>π</mi><mn>2</mn></msup><mo>,</mo></mtd></mtr><mtr><mtd><msub><mi>F</mi><mi>η</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo><mo>=</mo><mn>1</mn><mo>−</mo><mfrac><mrow><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>η</mi><mo>)</mo></mrow><mn>2</mn></msup><msup><mi>π</mi><mn>2</mn></msup></mrow><mi>Q</mi></mfrac><msup><mi>sin</mi><mn>2</mn></msup><mo>(</mo><mfrac><mrow><mi>s</mi><msqrt><mi>Q</mi></msqrt></mrow><mn>2</mn></mfrac><mo>)</mo><mo>.</mo></mtd></mtr></mtable>
+
+</math></div>
+
+<figure data-plot="quantum-control" data-interactive-caption="Modelo analítico de un campo que gira. Cambia la duración y la fracción de control para comparar el protocolo seleccionado con la evolución sin control y el control contradiabático exacto. Todas las curvas parten del mismo estado fundamental de referencia."><picture><source media="(max-width: 650px)" srcset="/assets/figures/cd-fidelity-mobile-es.svg" width="480" height="480" /><img src="/assets/figures/cd-fidelity-es.svg" width="760" height="460" alt="Fidelidad al estado fundamental frente a la fracción del protocolo transcurrida. Para T igual a dos, el control contradiabático exacto mantiene la fidelidad en uno; el control a media intensidad termina cerca de 0.652 y la evolución sin control cerca de 0.347." loading="lazy" decoding="async" /></picture><figcaption>Evolución analítica para T = 2. El término contradiabático completo conserva la fidelidad durante todo el protocolo; a media intensidad quedan transiciones. Las tres curvas parten del mismo estado fundamental de referencia.</figcaption></figure>
+
+<p>Para T = 2, las fidelidades finales son aproximadamente 0.347 sin el término adicional, 0.652 a media intensidad y 1 con el control contradiabático exacto. Las curvas completas importan: la evolución coherente puede volver a acercar un protocolo imperfecto al objetivo. Una fidelidad final alta no demuestra por sí sola una evolución sin transiciones, y la fidelidad final sin control no tiene por qué crecer de forma monótona con la duración.</p>
+
+<p>Como comprobación independiente, se integró directamente la ecuación de Schrödinger dependiente del tiempo en la base fija de Pauli con el método DOP853 de SciPy, usando una tolerancia relativa de 10⁻¹¹ y absoluta de 10⁻¹³. Para las duraciones 0.5, 2 y 10 y las fracciones de control 0, 0.5 y 1, las fidelidades coincidieron con la fórmula dentro de 2 × 10⁻¹⁰ en 201 instantes equiespaciados; la norma del estado cumplió la misma tolerancia. Estas comprobaciones validan el ejemplo, no el rendimiento de un controlador aprendido.</p>
+
+<h2 id="acelerar-la-evolucion-tiene-un-coste">Acelerar la evolución tiene un coste</h2>
+
+<p>La cancelación exacta no hace gratuito un protocolo corto. En este ejemplo, la norma de operador del hamiltoniano adicional coincide con el módulo de su coeficiente de Pauli:</p>
+
+<div class="equation" role="region" aria-label="La norma de operador de eta por el hamiltoniano contradiabático es c eta, igual a eta por pi dividido por dos T." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mrow><mo>‖</mo><mi>η</mi><msub><mi>H</mi><mtext>CD</mtext></msub><mo>‖</mo><mo>=</mo><msub><mi>c</mi><mi>η</mi></msub><mo>=</mo><mfrac><mrow><mi>η</mi><mi>π</mi></mrow><mrow><mn>2</mn><mi>T</mi></mrow></mfrac><mo>.</mo></mrow>
+
+</math></div>
+
+<p>Reducir la duración a la mitad duplica la intensidad necesaria si la fracción de control permanece fija. La figura muestra directamente esta dependencia. Mide una amplitud del hamiltoniano, no la potencia eléctrica ni el coste experimental completo.</p>
+
+<figure><picture><source media="(max-width: 650px)" srcset="/assets/figures/cd-cost-mobile-es.svg" width="480" height="480" /><img src="/assets/figures/cd-cost-es.svg" width="760" height="460" alt="El coeficiente de control disminuye con la inversa de la duración. El coeficiente contradiabático exacto duplica al de media intensidad para cualquier duración." loading="lazy" decoding="async" /></picture><figcaption>Coeficiente máximo del control adicional para el mismo giro de media vuelta del campo de referencia. Las unidades son ℏΩ para el coeficiente y Ω⁻¹ para el tiempo. La amplitud crece al reducir la duración; el protocolo a media intensidad usa menos control, pero no cancela exactamente las transiciones.</figcaption></figure>
+
+<p>El barrido lineal del ángulo también enciende un control contradiabático no nulo al principio y lo apaga al final. Esa conmutación ideal forma parte del modelo. Un pulso de laboratorio debe respetar límites de amplitud y ancho de banda, y puede necesitar extremos suaves. Cambiar el protocolo modifica tanto el control requerido como las curvas de fidelidad.</p>
+
+<p>En un sistema de muchos cuerpos, el operador contradiabático exacto puede requerir interacciones que el dispositivo no permite implementar. Los controles aproximados deben evaluarse bajo esas restricciones. Ni este ejemplo ni una pérdida de entrenamiento pequeña demuestran una ventaja computacional cuántica.</p>
+
+<h2 id="donde-ayuda-una-red-neuronal">Dónde ayuda una red neuronal</h2>
+
+<p>El cálculo de dos niveles proporciona una referencia fácil de comprobar. Los sistemas más difíciles motivan el aprendizaje: calcular el operador necesario puede ser costoso y quizá solo se disponga de un conjunto restringido de controles.</p>
+
+<p>Para un hamiltoniano de referencia general parametrizado por λ, introducimos el potencial de gauge adiabático Aλ. Este genera el cambio de los autovectores al variar λ. Con la misma convención ℏ = 1, el control y una representación de prueba útil son</p>
+
+<div class="equation" role="region" aria-label="El hamiltoniano contradiabático es la derivada temporal de lambda por su potencial de gauge adiabático. El potencial de prueba es una suma de coeficientes reales por operadores de Pauli hermíticos." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mtable><mtr><mtd><msub><mi>H</mi><mtext>CD</mtext></msub><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><mover><mi>λ</mi><mo>˙</mo></mover><mo>(</mo><mi>t</mi><mo>)</mo><msub><mi>A</mi><mi>λ</mi></msub><mo>,</mo></mtd></mtr><mtr><mtd><msub><mi>A</mi><mi>λ</mi></msub><mo>≈</mo><munder><mo>∑</mo><mi>j</mi></munder><msub><mi>a</mi><mi>j</mi></msub><mo>(</mo><mi>λ</mi><mo>)</mo><msub><mi>P</mi><mi>j</mi></msub><mo>.</mo></mtd></mtr></mtable>
+
+</math></div>
+
+<p>Los operadores Pj pueden elegirse entre los productos de operadores de Pauli que se puedan implementar. Los coeficientes reales aj mantienen hermítico el operador de prueba. Una red neuronal puede dar esos coeficientes en función de λ. La base de operadores determina lo que la red puede representar; aumentar el tamaño de la red no incorpora una interacción excluida de esa base.</p>
+
+<p><a href="https://doi.org/10.1073/pnas.1619826114" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">Sels y Polkovnikov</a> desarrollaron un método variacional para aproximar los potenciales de gauge. Se define</p>
+
+<div class="equation" role="region" aria-label="G lambda es la derivada respecto de lambda de H cero más i por el conmutador de A lambda con H cero. La acción es la traza de G lambda al cuadrado." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mtable><mtr><mtd><msub><mi>G</mi><mi>λ</mi></msub><mo>=</mo><msub><mo>∂</mo><mi>λ</mi></msub><msub><mi>H</mi><mn>0</mn></msub><mo>+</mo><mi>i</mi><mo>[</mo><msub><mi>A</mi><mi>λ</mi></msub><mo>,</mo><msub><mi>H</mi><mn>0</mn></msub><mo>]</mo><mo>,</mo></mtd></mtr><mtr><mtd><mi>S</mi><mo>(</mo><msub><mi>A</mi><mi>λ</mi></msub><mo>)</mo><mo>=</mo><mi mathvariant="normal">Tr</mi><mo>(</mo><msubsup><mi>G</mi><mi>λ</mi><mn>2</mn></msubsup><mo>)</mo><mo>.</mo></mtd></mtr></mtable>
+
+</math></div>
+
+<p>Los corchetes indican un conmutador y la traza se toma sobre el espacio de Hilbert del sistema. Minimizar esta acción dentro de la familia de operadores elegida reduce la parte no diagonal de Gλ que queda sin cancelar en la base de energía. Para un potencial de gauge exacto, Gλ conmuta con el hamiltoniano de referencia; en general no se anula, porque los niveles de energía pueden cambiar con λ. Por tanto, un mínimo no nulo de la acción no implica necesariamente que el entrenamiento haya fallado. Las componentes de Aλ que conmutan con el hamiltoniano de referencia también requieren una convención de gauge si se busca una representación única.</p>
+
+<p>Un objetivo de entrenamiento informado por la física puede muestrear esa acción en valores fijos de λ y optimizar los coeficientes de la red sin etiquetas del potencial de gauge exacto. Evaluar la traza puede resultar costoso al crecer el espacio de Hilbert. Sigue siendo necesario medir el coste computacional.</p>
+
+<p>El protocolo λ(t) es otra variable de diseño. Por ejemplo, una red con parámetros w puede satisfacer los valores de los extremos por construcción:</p>
+
+<div class="equation" role="region" aria-label="El protocolo neuronal lambda w de s es s más s por uno menos s por una red neuronal N w de s." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mrow><msub><mi>λ</mi><mi>w</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo><mo>=</mo><mi>s</mi><mo>+</mo><mi>s</mi><mo>(</mo><mn>1</mn><mo>−</mo><mi>s</mi><mo>)</mo><msub><mi>N</mi><mi>w</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo><mo>.</mo></mrow>
+
+</math></div>
+
+<p>Si la salida de la red es finita, esta expresión da λ(0) = 0 y λ(1) = 1. No impone monotonía, no mantiene λ entre esos extremos ni anula las derivadas en ellos. Esos requisitos necesitan una estructura adicional o restricciones explícitas. La diferenciación automática proporciona la derivada del protocolo que multiplica al potencial de gauge.</p>
+
+<p>Aprender un potencial de gauge y elegir un protocolo temporal son tareas de optimización relacionadas, pero distintas. El objetivo del protocolo puede incluir el error de transferencia de estado evaluado de forma independiente y los costes del control. La acción por sí sola no determina el mejor protocolo temporal ni certifica una fidelidad final. Si una red también representa el estado cuántico, su residuo de Schrödinger, su condición inicial y su normalización deben comprobarse por separado.</p>
+
+<h2 id="la-conexion-con-nuestra-investigacion">La conexión con nuestra investigación</h2>
+
+<p>Nuestro <a href="https://doi.org/10.1088/2632-2153/ad450f" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">artículo de 2024 sobre PINNs para computación cuántica contradiabática</a> estudia representaciones neuronales del protocolo y del operador contradiabático, con restricciones físicas que incluyen la hermiticidad y una acción variacional. El artículo de revista demuestra el método en una representación de dos cúbits de la molécula de hidrógeno y examina una descomposición en operadores de Pauli. El <a href="https://github.com/Netzuel/pinns-for-counterdiabatic-driving" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">repositorio público asociado</a> contiene código, datos, modelos entrenados y tutoriales en Jupyter.</p>
+
+<p>El campo que gira de esta entrada es un problema didáctico diferente. Explica qué se pretende conseguir con el control contradiabático y ofrece una referencia para comprobar una implementación. Su cancelación exacta no debe interpretarse como un resultado de una red entrenada, de un sistema molecular mayor o de un dispositivo con ruido.</p>
+
+<h2 id="comprobaciones-para-un-control-aprendido">Comprobaciones para un control aprendido</h2>
+
+<p>Empieza con un modelo cuya dinámica puedas verificar. Fija el estado inicial, el objetivo, la duración y los operadores de control permitidos antes de comparar métodos. Examina después la fidelidad a lo largo de toda la trayectoria y en el estado final, junto con la amplitud y la suavidad de los controles.</p>
+
+<p>Evalúa los controles aprendidos con un integrador dinámico independiente en instantes que no se hayan usado durante el entrenamiento. Reduce sus tolerancias numéricas, comprueba la normalización y repite el entrenamiento con distintas inicializaciones. Para una afirmación sobre un dispositivo, incluye sus restricciones reales de control y su modelo de ruido. Para una afirmación de eficiencia, cuenta el coste del entrenamiento y de la validación junto con el del cálculo de referencia.</p>
+
+<p>La extensión útil de la primera entrada es el papel de la función desconocida. Una red puede representar una solución, un protocolo de control o un operador que guía la dinámica. Las restricciones físicas permiten comprobar cada representación; una evolución independiente establece qué hace realmente el control obtenido.</p>
+<footer class="article-end"><a href="/es/blog/">← Todas las entradas</a><a href="/es/investigacion/">Ver la investigación →</a></footer></div>
+</article>
+<script src="/assets/js/article-contents.js?v=1790926314" defer></script>
+
+<script type="module" src="/assets/js/quantum-control.js?v=1790926314"></script>
+</main>
+<footer class="site-footer wrap">
+<span id="external-link-note" class="sr-only">Se abre en una pestaña nueva.</span>
+<div><a class="footer-name" href="/es/">Antonio Ferrer-Sánchez</a><p>Algoritmos cuánticos · Aprendizaje automático científico</p></div>
+<div class="social-links"><a href="mailto:antonio.ferrer.contact@gmail.com">Correo</a><a href="https://scholar.google.com/citations?user=Ajj7DC4AAAAJ" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">Google Scholar <span aria-hidden="true">↗</span></a><a href="https://orcid.org/0000-0002-2305-5261" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">ORCID <span aria-hidden="true">↗</span></a><a href="https://github.com/Netzuel" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">GitHub <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/antonio-ferrer-s%C3%A1nchez-67a50b197/" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">LinkedIn <span aria-hidden="true">↗</span></a></div>
+<p class="footer-note">© 2026 Antonio Ferrer-Sánchez. <a href="/es/privacidad/">Privacidad y cookies</a></p>
+</footer>
+</body>
+</html>
