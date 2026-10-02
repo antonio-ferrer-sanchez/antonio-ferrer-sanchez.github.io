@@ -81,7 +81,7 @@
 {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://antonio-ferrer-sanchez.github.io/blog/"},
 {"@type": "ListItem", "position": 3, "name": "From solving equations to controlling quantum systems", "item": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/"}
 ]},
-{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#webpage"}, "headline": "From solving equations to controlling quantum systems", "description": "How PINNs learn counterdiabatic quantum controls: network outputs, physics-based losses, training and independent validation.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-en.png", "datePublished": "2026-10-02", "dateModified": "2026-10-02", "inLanguage": "en", "articleSection": "Quantum dynamics and control", "keywords": ["counterdiabatic driving","physics-informed neural networks","quantum control","adiabatic gauge potential","shortcuts to adiabaticity"], "wordCount": 1792, "timeRequired": "PT12M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog", "url": "https://antonio-ferrer-sanchez.github.io/blog/"}, "workTranslation": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Physics-informed neural networks for an optimal counterdiabatic quantum computation", "url": "https://doi.org/10.1088/2632-2153/ad450f"}]}
+{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#webpage"}, "headline": "From solving equations to controlling quantum systems", "description": "How PINNs learn counterdiabatic quantum controls: network outputs, physics-based losses, training and independent validation.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-en.png", "datePublished": "2026-10-02", "dateModified": "2026-10-02", "inLanguage": "en", "articleSection": "Quantum dynamics and control", "keywords": ["counterdiabatic driving","physics-informed neural networks","quantum control","adiabatic gauge potential","shortcuts to adiabaticity"], "wordCount": 1805, "timeRequired": "PT12M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog", "url": "https://antonio-ferrer-sanchez.github.io/blog/"}, "workTranslation": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Physics-informed neural networks for an optimal counterdiabatic quantum computation", "url": "https://doi.org/10.1088/2632-2153/ad450f"}]}
 ]}
 </script>
 
@@ -90,9 +90,9 @@
 <link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/">
 <link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/">
 <link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/">
-<link rel="stylesheet" href="/assets/css/site.css?v=1790962981">
-<link rel="stylesheet" href="/assets/css/print.css?v=1790962981" media="print">
-<script src="/assets/js/header.js?v=1790962981"></script>
+<link rel="stylesheet" href="/assets/css/site.css?v=1790964365">
+<link rel="stylesheet" href="/assets/css/print.css?v=1790964365" media="print">
+<script src="/assets/js/header.js?v=1790964365"></script>
 </head>
 <body class="article-page">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -150,22 +150,22 @@
 
 <p>It follows an eigenstate of the <em>reference</em> Hamiltonian; it need not be an instantaneous eigenstate of the total Hamiltonian. This distinction matters when defining the target for a learned controller.</p>
 
-<p>The blue arrow represents the spin state; the hollow circle marks the moving ground-state target. Grey shows the reference field. The added orange field rotates the state so it stays on the target. Both spheres use these same colors and the exact dynamics of the model above.</p>
+<p>The blue arrow represents the spin state; the hollow circle marks the moving ground-state target. Grey shows the reference field corresponding to <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msub><mi>H</mi><mn>0</mn></msub></math>. The added orange field, corresponding to <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msub><mi>H</mi><mi mathvariant="normal">CD</mi></msub></math>, rotates the state so it stays on the target. Both spheres use these same colors and the exact dynamics of the model above.</p>
 
 <figure class="article-animation" id="cd-animation">
-  <video controls="" playsinline="" preload="metadata" width="1920" height="1080" poster="/assets/video/cd-driving-en.webp?v=1790962981" aria-labelledby="cd-animation-caption" aria-describedby="cd-animation-transcript">
-    <source src="/assets/video/cd-driving-en.mp4?v=1790962981" type="video/mp4" />
+  <video controls="" playsinline="" preload="metadata" width="1920" height="1080" poster="/assets/video/cd-driving-en.webp?v=1790964365" aria-labelledby="cd-animation-caption" aria-describedby="cd-animation-transcript">
+    <source src="/assets/video/cd-driving-en.mp4?v=1790964365" type="video/mp4" />
     Your browser does not support this video. You can download it with the link below.
   </video>
-  <img class="animation-print" src="/assets/video/cd-driving-en.webp?v=1790962981" width="1920" height="1080" alt="Two Bloch spheres compare the uncontrolled state, away from its target, with the counterdiabatically controlled state, which follows the target." loading="lazy" />
-  <figcaption id="cd-animation-caption">Spin dynamics with and without counterdiabatic control. <a href="/assets/video/cd-driving-en.mp4?v=1790962981" download="">Download video (MP4)</a>.</figcaption>
+  <img class="animation-print" src="/assets/video/cd-driving-en.webp?v=1790964365" width="1920" height="1080" alt="Two Bloch spheres compare the uncontrolled state, away from its target, with the counterdiabatically controlled state, which follows the target." loading="lazy" />
+  <figcaption id="cd-animation-caption">Spin dynamics with and without counterdiabatic control. <a href="/assets/video/cd-driving-en.mp4?v=1790964365" download="">Download video (MP4)</a>.</figcaption>
   <details class="animation-transcript" id="cd-animation-transcript">
     <summary>Video description</summary>
 
     <ol>
-      <li>The grey arrow shows the reference field, which makes a half-turn in the vertical plane. A hollow circle marks the ground-state target, opposite the field. The dashed line marks this target's path.</li>
+      <li>The grey arrow shows the field of the reference Hamiltonian <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msub><mi>H</mi><mn>0</mn></msub></math>, which makes a half-turn in the vertical plane. A hollow circle marks the ground-state target, opposite the field. The dashed line marks this target's path.</li>
       <li>The blue arrow represents the spin state. With no added control, it evolves from the initial ground state and departs from the target. For a duration of two time units, its final fidelity to the reference ground state is approximately 0.347.</li>
-      <li>The orange arrow shows the added control field, perpendicular to the reference field's plane. This field rotates the blue state so it follows the target throughout.</li>
+      <li>The orange arrow shows the field of the added Hamiltonian <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msub><mi>H</mi><mi mathvariant="normal">CD</mi></msub></math>, perpendicular to the reference field's plane. This field rotates the blue state so it follows the target throughout.</li>
       <li>Both spheres show the state in blue: without an added field on the left and with counterdiabatic control on the right. They use the same initial state, reference path and duration. Beneath each sphere, its curve shows fidelity to the reference ground state. Under exact control it stays at one throughout the protocol. The target remains an eigenstate of the reference Hamiltonian, not necessarily of the total Hamiltonian.</li>
       <li>Halving the duration doubles the exact control amplitude. The bars show the coefficient of the added Hamiltonian. Real controls face amplitude, bandwidth and switching limits.</li>
     </ol>
@@ -287,9 +287,9 @@
 <p>Compare with direct variational coefficient optimization or a simple schedule parameterization, as well as uncontrolled evolution. Keep the physical task and allowed controls fixed, and count training and validation costs. This establishes what the neural representation contributes beyond a good control ansatz. Hardware claims additionally require the device’s control restrictions and noise model.</p>
 <footer class="article-end"><a href="/blog/">← All posts</a><a href="/research/">Explore the research →</a></footer></div>
 </article>
-<script src="/assets/js/article-contents.js?v=1790962981" defer></script>
+<script src="/assets/js/article-contents.js?v=1790964365" defer></script>
 
-<script type="module" src="/assets/js/quantum-control.js?v=1790962981"></script>
+<script type="module" src="/assets/js/quantum-control.js?v=1790964365"></script>
 </main>
 <footer class="site-footer wrap">
 <span id="external-link-note" class="sr-only">Opens in a new tab.</span>

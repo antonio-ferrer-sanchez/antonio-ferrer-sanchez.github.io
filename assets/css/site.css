@@ -1359,6 +1359,17 @@ main:focus {
   font-variant-numeric: tabular-nums;
   text-align: right;
 }
+@media (max-width: 640px) {
+  .plot-control {
+    grid-template-columns: minmax(0, 1fr) 3rem;
+  }
+  .plot-control label {
+    grid-column: 1 / -1;
+  }
+  .plot-control input {
+    min-width: 0;
+  }
+}
 .plot-readout {
   margin: 10px 0 0;
   color: var(--muted);
