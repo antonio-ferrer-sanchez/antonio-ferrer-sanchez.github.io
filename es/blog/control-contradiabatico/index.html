@@ -81,7 +81,7 @@
 {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://antonio-ferrer-sanchez.github.io/es/blog/"},
 {"@type": "ListItem", "position": 3, "name": "De resolver ecuaciones a controlar sistemas cuánticos", "item": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/"}
 ]},
-{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#webpage"}, "headline": "De resolver ecuaciones a controlar sistemas cuánticos", "description": "Cómo aprende una PINN el control cuántico contradiabático: salidas de la red, pérdidas físicas, entrenamiento y validación.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-es.png", "datePublished": "2026-10-02", "dateModified": "2026-10-02", "inLanguage": "es", "articleSection": "Dinámica y control cuánticos", "keywords": ["control contradiabático","redes neuronales informadas por la física","control cuántico","potencial de gauge adiabático","atajos a la adiabaticidad"], "wordCount": 1853, "timeRequired": "PT12M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog (español)", "url": "https://antonio-ferrer-sanchez.github.io/es/blog/"}, "translationOfWork": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Physics-informed neural networks for an optimal counterdiabatic quantum computation", "url": "https://doi.org/10.1088/2632-2153/ad450f"}]}
+{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#webpage"}, "headline": "De resolver ecuaciones a controlar sistemas cuánticos", "description": "Cómo aprende una PINN el control cuántico contradiabático: salidas de la red, pérdidas físicas, entrenamiento y validación.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-es.png", "datePublished": "2026-10-02", "dateModified": "2026-10-02", "inLanguage": "es", "articleSection": "Dinámica y control cuánticos", "keywords": ["control contradiabático","redes neuronales informadas por la física","control cuántico","potencial de gauge adiabático","atajos a la adiabaticidad"], "wordCount": 2167, "timeRequired": "PT12M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog (español)", "url": "https://antonio-ferrer-sanchez.github.io/es/blog/"}, "translationOfWork": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Physics-informed neural networks for an optimal counterdiabatic quantum computation", "url": "https://doi.org/10.1088/2632-2153/ad450f"}]}
 ]}
 </script>
 
@@ -90,9 +90,9 @@
 <link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/">
 <link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/">
 <link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/">
-<link rel="stylesheet" href="/assets/css/site.css?v=1790952367">
-<link rel="stylesheet" href="/assets/css/print.css?v=1790952367" media="print">
-<script src="/assets/js/header.js?v=1790952367"></script>
+<link rel="stylesheet" href="/assets/css/site.css?v=1790954451">
+<link rel="stylesheet" href="/assets/css/print.css?v=1790954451" media="print">
+<script src="/assets/js/header.js?v=1790954451"></script>
 </head>
 <body class="article-page">
 <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -149,6 +149,29 @@
 <p>El punto indica una derivada temporal. Este control en la dirección <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>y</mi></math> cancela el acoplamiento debido al giro en el sistema de referencia que acompaña al campo. Bajo la suma de ambos hamiltonianos, un autoestado inicial de referencia sigue a su correspondiente autoestado móvil salvo una fase.</p>
 
 <p>Sigue un autoestado del hamiltoniano de <em>referencia</em>; no tiene por qué ser un autoestado instantáneo del hamiltoniano total. Esta distinción importa al definir el objetivo de un controlador aprendido.</p>
+
+<p>La animación permite ver esta rotación. El círculo vacío marca el estado fundamental móvil; la flecha de color representa el estado cuántico que evoluciona. El campo perpendicular añadido produce la rotación necesaria para mantenerlos juntos. La comparación muestra la dinámica exacta del modelo anterior.</p>
+
+<figure class="article-animation" id="cd-animation">
+  <video controls="" playsinline="" preload="metadata" width="1920" height="1080" poster="/assets/video/cd-driving-es.webp" aria-labelledby="cd-animation-caption" aria-describedby="cd-animation-transcript">
+    <source src="/assets/video/cd-driving-es.mp4" type="video/mp4" />
+    Tu navegador no admite este vídeo. Puedes descargarlo con el enlace siguiente.
+  </video>
+  <img class="animation-print" src="/assets/video/cd-driving-es.webp" width="1920" height="1080" alt="Dos esferas de Bloch comparan el estado sin control, separado del objetivo, con el estado bajo control contradiabático, que sigue al objetivo." loading="lazy" />
+  <figcaption id="cd-animation-caption">Cómo funciona el control contradiabático, en 72 segundos. Trayectorias exactas del modelo de espín aislado, a cámara lenta; sin resultados de entrenamiento ni de hardware. Vídeo sin audio. <a href="/assets/video/cd-driving-es.mp4" download="">Descargar vídeo (MP4)</a>.</figcaption>
+  <details class="animation-transcript" id="cd-animation-transcript">
+    <summary>Descripción del vídeo</summary>
+
+    <ol>
+      <li>El campo de referencia gira media vuelta en el plano vertical. Un círculo vacío marca el estado fundamental, que apunta en dirección opuesta al campo. La esfera de Bloch representa estados cuánticos, no la órbita espacial de una partícula. La línea discontinua marca la trayectoria del objetivo.</li>
+      <li>Sin control adicional, el vector naranja del estado evoluciona desde el estado fundamental inicial y se aparta del objetivo. Para una duración de dos unidades de tiempo, la fidelidad final al estado fundamental de referencia es aproximadamente 0,347.</li>
+      <li>El campo de control dorado es perpendicular al plano del campo de referencia. Produce la rotación que permite al estado verde seguir al objetivo en todo momento. La flecha dorada indica la dirección, no una escala de amplitud. Es una evolución coherente, sin amortiguamiento ni atracción hacia el objetivo.</li>
+      <li>Dos esferas muestran ambas evoluciones con el mismo estado inicial, trayectoria de referencia y duración. La fidelidad mide el solapamiento con el estado fundamental de referencia. Con el control exacto permanece en uno durante todo el protocolo. El objetivo sigue siendo un autoestado del hamiltoniano de referencia, no necesariamente del hamiltoniano total.</li>
+      <li>Al reducir la duración a la mitad, se duplica la amplitud del control exacto. Las barras representan el coeficiente del hamiltoniano adicional, no la potencia eléctrica. El control real tiene límites de amplitud, ancho de banda y conmutación.</li>
+    </ol>
+
+  </details>
+</figure>
 
 <h2 id="comparar-la-misma-tarea-fisica">Comparar la misma tarea física</h2>
 
@@ -264,9 +287,9 @@
 <p>Compara con una optimización variacional directa de los coeficientes o una parametrización temporal sencilla, además de la evolución sin control. Mantén la misma tarea física y los mismos controles permitidos, y contabiliza el entrenamiento y la validación. Así se establece qué aporta la representación neuronal respecto de una buena representación del control. Las afirmaciones sobre hardware requieren además las restricciones de control y el modelo de ruido del dispositivo.</p>
 <footer class="article-end"><a href="/es/blog/">← Todas las entradas</a><a href="/es/investigacion/">Ver la investigación →</a></footer></div>
 </article>
-<script src="/assets/js/article-contents.js?v=1790952367" defer></script>
+<script src="/assets/js/article-contents.js?v=1790954451" defer></script>
 
-<script type="module" src="/assets/js/quantum-control.js?v=1790952367"></script>
+<script type="module" src="/assets/js/quantum-control.js?v=1790954451"></script>
 </main>
 <footer class="site-footer wrap">
 <span id="external-link-note" class="sr-only">Se abre en una pestaña nueva.</span>

@@ -81,7 +81,7 @@
 {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://antonio-ferrer-sanchez.github.io/blog/"},
 {"@type": "ListItem", "position": 3, "name": "From solving equations to controlling quantum systems", "item": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/"}
 ]},
-{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#webpage"}, "headline": "From solving equations to controlling quantum systems", "description": "How PINNs learn counterdiabatic quantum controls: network outputs, physics-based losses, training and independent validation.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-en.png", "datePublished": "2026-10-02", "dateModified": "2026-10-02", "inLanguage": "en", "articleSection": "Quantum dynamics and control", "keywords": ["counterdiabatic driving","physics-informed neural networks","quantum control","adiabatic gauge potential","shortcuts to adiabaticity"], "wordCount": 1571, "timeRequired": "PT12M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog", "url": "https://antonio-ferrer-sanchez.github.io/blog/"}, "workTranslation": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Physics-informed neural networks for an optimal counterdiabatic quantum computation", "url": "https://doi.org/10.1088/2632-2153/ad450f"}]}
+{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#webpage"}, "headline": "From solving equations to controlling quantum systems", "description": "How PINNs learn counterdiabatic quantum controls: network outputs, physics-based losses, training and independent validation.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-en.png", "datePublished": "2026-10-02", "dateModified": "2026-10-02", "inLanguage": "en", "articleSection": "Quantum dynamics and control", "keywords": ["counterdiabatic driving","physics-informed neural networks","quantum control","adiabatic gauge potential","shortcuts to adiabaticity"], "wordCount": 1856, "timeRequired": "PT12M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog", "url": "https://antonio-ferrer-sanchez.github.io/blog/"}, "workTranslation": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Physics-informed neural networks for an optimal counterdiabatic quantum computation", "url": "https://doi.org/10.1088/2632-2153/ad450f"}]}
 ]}
 </script>
 
@@ -90,9 +90,9 @@
 <link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/">
 <link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/">
 <link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/">
-<link rel="stylesheet" href="/assets/css/site.css?v=1790952367">
-<link rel="stylesheet" href="/assets/css/print.css?v=1790952367" media="print">
-<script src="/assets/js/header.js?v=1790952367"></script>
+<link rel="stylesheet" href="/assets/css/site.css?v=1790954451">
+<link rel="stylesheet" href="/assets/css/print.css?v=1790954451" media="print">
+<script src="/assets/js/header.js?v=1790954451"></script>
 </head>
 <body class="article-page">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -149,6 +149,29 @@
 <p>The dot denotes a time derivative. This <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>y</mi></math>-directed control cancels the rotation-induced coupling in the frame that moves with the field. Under the sum of the two Hamiltonians, an initial reference eigenstate follows its moving counterpart up to a phase.</p>
 
 <p>It follows an eigenstate of the <em>reference</em> Hamiltonian; it need not be an instantaneous eigenstate of the total Hamiltonian. This distinction matters when defining the target for a learned controller.</p>
+
+<p>The animation makes this rotation visible. The hollow marker is the moving ground-state target; the colored arrow is the evolving quantum state. The added perpendicular field supplies the rotation needed to keep them together. The side-by-side comparison uses the exact dynamics of the model above.</p>
+
+<figure class="article-animation" id="cd-animation">
+  <video controls="" playsinline="" preload="metadata" width="1920" height="1080" poster="/assets/video/cd-driving-en.webp" aria-labelledby="cd-animation-caption" aria-describedby="cd-animation-transcript">
+    <source src="/assets/video/cd-driving-en.mp4" type="video/mp4" />
+    Your browser does not support this video. You can download it with the link below.
+  </video>
+  <img class="animation-print" src="/assets/video/cd-driving-en.webp" width="1920" height="1080" alt="Two Bloch spheres compare the uncontrolled state, away from its target, with the counterdiabatically controlled state, which follows the target." loading="lazy" />
+  <figcaption id="cd-animation-caption">How counterdiabatic driving works, in 72 seconds. Exact trajectories of the isolated-spin model, slowed for viewing; no training or hardware results. Silent video. <a href="/assets/video/cd-driving-en.mp4" download="">Download video (MP4)</a>.</figcaption>
+  <details class="animation-transcript" id="cd-animation-transcript">
+    <summary>Video description</summary>
+
+    <ol>
+      <li>The reference field makes a half-turn in the vertical plane. A hollow circle marks the ground-state target, which points opposite the field. The Bloch sphere represents quantum states, not a particle's spatial orbit. The dashed line marks the target path.</li>
+      <li>With no added control, the orange state vector evolves from the initial ground state and departs from the target. For a duration of two time units, its final fidelity to the reference ground state is approximately 0.347.</li>
+      <li>The gold control field is perpendicular to the reference field's plane. It supplies the rotation that lets the teal state follow the target throughout. The gold arrow indicates direction, not an amplitude scale. This is coherent evolution, with no damping or attraction toward the target.</li>
+      <li>Two spheres show both evolutions with the same initial state, reference path and duration. Fidelity measures overlap with the reference ground state. Under exact control it stays at one throughout the protocol. The target remains an eigenstate of the reference Hamiltonian, not necessarily of the total Hamiltonian.</li>
+      <li>Halving the duration doubles the exact control amplitude. The bars show the coefficient of the added Hamiltonian, not electrical power. Real controls face amplitude, bandwidth and switching limits.</li>
+    </ol>
+
+  </details>
+</figure>
 
 <h2 id="compare-the-same-physical-task">Compare the same physical task</h2>
 
@@ -264,9 +287,9 @@
 <p>Compare with direct variational coefficient optimization or a simple schedule parameterization, as well as uncontrolled evolution. Keep the physical task and allowed controls fixed, and count training and validation costs. This establishes what the neural representation contributes beyond a good control ansatz. Hardware claims additionally require the device’s control restrictions and noise model.</p>
 <footer class="article-end"><a href="/blog/">← All posts</a><a href="/research/">Explore the research →</a></footer></div>
 </article>
-<script src="/assets/js/article-contents.js?v=1790952367" defer></script>
+<script src="/assets/js/article-contents.js?v=1790954451" defer></script>
 
-<script type="module" src="/assets/js/quantum-control.js?v=1790952367"></script>
+<script type="module" src="/assets/js/quantum-control.js?v=1790954451"></script>
 </main>
 <footer class="site-footer wrap">
 <span id="external-link-note" class="sr-only">Opens in a new tab.</span>
