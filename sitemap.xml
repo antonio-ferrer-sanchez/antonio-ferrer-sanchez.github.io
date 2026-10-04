@@ -110,18 +110,4 @@
 <xhtml:link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/"/>
 <xhtml:link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/"/>
 </url>
-<url>
-<loc>https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/</loc>
-<lastmod>2026-10-02</lastmod>
-<xhtml:link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/"/>
-<xhtml:link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/"/>
-<xhtml:link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/"/>
-</url>
-<url>
-<loc>https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/</loc>
-<lastmod>2026-10-02</lastmod>
-<xhtml:link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/"/>
-<xhtml:link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/"/>
-<xhtml:link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/"/>
-</url>
 </urlset>
