@@ -9,15 +9,6 @@
 <author><name>Antonio Ferrer-Sánchez</name><uri>https://antonio-ferrer-sanchez.github.io/</uri></author>
 <icon>https://antonio-ferrer-sanchez.github.io/assets/images/icon-192.png</icon>
 <entry>
-<title>From solving equations to controlling quantum systems</title>
-<id>https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/</id>
-<link rel="alternate" type="text/html" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/"/>
-<published>2026-10-02T00:00:00+00:00</published>
-<updated>2026-10-02T00:00:00+00:00</updated>
-<summary>How PINNs learn counterdiabatic quantum controls: network outputs, physics-based losses, training and independent validation.</summary>
-<category term="Quantum dynamics and control"/>
-</entry>
-<entry>
 <title>Physics-informed machine learning: from physical laws to neural solvers</title>
 <id>https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/</id>
 <link rel="alternate" type="text/html" href="https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/"/>
