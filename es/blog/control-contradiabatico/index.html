@@ -1,0 +1,303 @@
+<!doctype html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>PINNs y control contradiabático · Antonio Ferrer-Sánchez</title>
+<meta name="description" content="Cómo aprende una PINN el control cuántico contradiabático: salidas de la red, pérdidas físicas, entrenamiento y validación.">
+<meta name="author" content="Antonio Ferrer-Sánchez">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:site_name" content="Antonio Ferrer-Sánchez">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PINNs y control contradiabático">
+<meta property="og:description" content="Cómo aprende una PINN el control cuántico contradiabático: salidas de la red, pérdidas físicas, entrenamiento y validación.">
+<meta property="og:url" content="https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/">
+<meta property="og:locale" content="es_ES">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image" content="https://antonio-ferrer-sanchez.github.io/assets/images/share-es.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Antonio Ferrer-Sánchez: aprendizaje automático anclado en la física. Retrato y dirección del sitio.">
+<meta property="article:published_time" content="2026-10-02">
+<meta property="article:modified_time" content="2026-10-02">
+<meta property="article:author" content="https://antonio-ferrer-sanchez.github.io/es/">
+<meta property="article:section" content="Dinámica y control cuánticos">
+<meta property="article:tag" content="control contradiabático">
+<meta property="article:tag" content="redes neuronales informadas por la física">
+<meta property="article:tag" content="control cuántico">
+<meta property="article:tag" content="potencial de gauge adiabático">
+<meta property="article:tag" content="atajos a la adiabaticidad">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PINNs y control contradiabático">
+<meta name="twitter:description" content="Cómo aprende una PINN el control cuántico contradiabático: salidas de la red, pérdidas físicas, entrenamiento y validación.">
+<meta name="twitter:image" content="https://antonio-ferrer-sanchez.github.io/assets/images/share-es.png">
+<link rel="me" href="https://scholar.google.com/citations?user=Ajj7DC4AAAAJ">
+<link rel="me" href="https://orcid.org/0000-0002-2305-5261">
+<link rel="me" href="https://github.com/Netzuel">
+<link rel="me" href="https://www.linkedin.com/in/antonio-ferrer-s%C3%A1nchez-67a50b197/">
+<link rel="alternate" type="application/atom+xml" title="Antonio Ferrer-Sánchez · Blog (español)" href="https://antonio-ferrer-sanchez.github.io/es/feed.xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/images/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [
+{
+"@type": "Person",
+"@id": "https://antonio-ferrer-sanchez.github.io/#person",
+"name": "Antonio Ferrer-Sánchez",
+"alternateName": ["Antonio Ferrer Sánchez", "Antonio Ferrer Sanchez"],
+"givenName": "Antonio",
+"familyName": "Ferrer-Sánchez",
+"url": "https://antonio-ferrer-sanchez.github.io/es/",
+"email": "antonio.ferrer.contact@gmail.com",
+"image": "https://antonio-ferrer-sanchez.github.io/assets/images/antonio-ferrer-sanchez.png",
+"description": "Desarrolla métodos de aprendizaje automático para problemas de física, sobre todo redes neuronales informadas por la física y dinámica cuántica.",
+"jobTitle": "Quantum Algorithm Engineer",
+"worksFor": {"@type": "Organization", "name": "Kipu Quantum", "url": "https://kipu-quantum.com/"},
+"affiliation": [{"@type": "CollegeOrUniversity", "name": "Universitat de València", "url": "https://www.uv.es/"}, {"@type": "ResearchOrganization", "name": "Intelligent Data Analysis Laboratory (IDAL)", "parentOrganization": {"@type": "CollegeOrUniversity", "name": "Universitat de València"}}],
+"alumniOf": {"@type": "CollegeOrUniversity", "name": "Universitat de València", "url": "https://www.uv.es/"},
+"knowsAbout": ["Redes neuronales informadas por la física","Aprendizaje automático científico","Algoritmos cuánticos","Computación cuántica contradiabática","Metrología cuántica","Hidrodinámica relativista","Colapso gravitatorio","Modos cuasinormales de agujeros negros"],
+"sameAs": ["https://scholar.google.com/citations?user=Ajj7DC4AAAAJ", "https://orcid.org/0000-0002-2305-5261", "https://github.com/Netzuel", "https://www.linkedin.com/in/antonio-ferrer-s%C3%A1nchez-67a50b197/"]
+},
+{"@type": "WebSite", "@id": "https://antonio-ferrer-sanchez.github.io/#website", "url": "https://antonio-ferrer-sanchez.github.io/", "name": "Antonio Ferrer-Sánchez", "description": "Algoritmos cuánticos y aprendizaje automático científico. Investigación, publicaciones y software de Antonio Ferrer-Sánchez.", "inLanguage": ["en", "es"], "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}},
+{
+"@type": "WebPage",
+"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#webpage",
+"url": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/",
+"name": "PINNs y control contradiabático · Antonio Ferrer-Sánchez",
+"description": "Cómo aprende una PINN el control cuántico contradiabático: salidas de la red, pérdidas físicas, entrenamiento y validación.",
+"inLanguage": "es",
+"isPartOf": {"@id": "https://antonio-ferrer-sanchez.github.io/#website"},
+"about": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"},
+"primaryImageOfPage": {"@type": "ImageObject", "url": "https://antonio-ferrer-sanchez.github.io/assets/images/share-es.png", "width": 1200, "height": 630},
+"breadcrumb": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#breadcrumb"}
+},
+{"@type": "BreadcrumbList", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#breadcrumb", "itemListElement": [
+{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://antonio-ferrer-sanchez.github.io/es/"},
+{"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://antonio-ferrer-sanchez.github.io/es/blog/"},
+{"@type": "ListItem", "position": 3, "name": "De resolver ecuaciones a controlar sistemas cuánticos", "item": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/"}
+]},
+{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/#webpage"}, "headline": "De resolver ecuaciones a controlar sistemas cuánticos", "description": "Cómo aprende una PINN el control cuántico contradiabático: salidas de la red, pérdidas físicas, entrenamiento y validación.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-es.png", "datePublished": "2026-10-02", "dateModified": "2026-10-02", "inLanguage": "es", "articleSection": "Dinámica y control cuánticos", "keywords": ["control contradiabático","redes neuronales informadas por la física","control cuántico","potencial de gauge adiabático","atajos a la adiabaticidad"], "wordCount": 2109, "timeRequired": "PT12M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog (español)", "url": "https://antonio-ferrer-sanchez.github.io/es/blog/"}, "translationOfWork": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Physics-informed neural networks for an optimal counterdiabatic quantum computation", "url": "https://doi.org/10.1088/2632-2153/ad450f"}]}
+]}
+</script>
+
+<meta name="theme-color" content="#153f36">
+<link rel="canonical" href="https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/">
+<link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/">
+<link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/">
+<link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/">
+<link rel="stylesheet" href="/assets/css/site.css?v=1791130331">
+<link rel="stylesheet" href="/assets/css/print.css?v=1791130331" media="print">
+<script src="/assets/js/header.js?v=1791130331"></script>
+<meta name="publication-revision" content="24c7e98473a991212d3be5ff26468aea1faa5213e5b68cda1952cc13afcf3454">
+<script defer src="/assets/js/publication.js?v=1791130331"></script>
+</head>
+<body class="article-page">
+<a class="skip-link" href="#main">Saltar al contenido</a>
+<header class="site-header">
+<div class="header-bar wrap">
+<a class="identity" href="/es/"><span class="identity-mark" aria-hidden="true">afs.</span><span>Antonio Ferrer-Sánchez<span class="identity-sub">Física y aprendizaje automático científico</span></span></a>
+<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu"><span class="menu-icon" aria-hidden="true"></span><span class="menu-label">Menú</span></button>
+<div class="site-menu" id="site-menu">
+<nav aria-label="Navegación principal">
+<a href="/es/investigacion/">Investigación</a><a href="/es/publicaciones/">Publicaciones</a><a href="/es/blog/" aria-current="location">Blog</a><a href="/es/software/">Software</a><a href="/es/actividad/">Actividad</a><a href="/es/cv/">CV</a>
+</nav>
+<div class="lang-switch" role="group" aria-label="Idioma"><span class="lang-label" aria-hidden="true">Idioma</span><a href="/blog/counterdiabatic-driving/" lang="en" hreflang="en" title="Read this page in English"><svg class="flag" viewBox="0 0 30 20" width="21" height="14" aria-hidden="true" focusable="false"><defs><clipPath id="flag-us-half"><path d="M0 0h30L0 20z"/></clipPath><clipPath id="flag-uk-half"><path d="M30 0v20H0z"/></clipPath><clipPath id="flag-uk-saltire"><path d="M30 15h30v15zv15H0zH0V0zV0h30z"/></clipPath></defs><g clip-path="url(#flag-uk-half)"><g transform="translate(-5 0) scale(.6667)"><path fill="#012169" d="M0 0h60v30H0z"/><path stroke="#FFF" stroke-width="6" d="m0 0 60 30m0-30L0 30"/><path stroke="#C8102E" stroke-width="4" d="m0 0 60 30m0-30L0 30" clip-path="url(#flag-uk-saltire)"/><path stroke="#FFF" stroke-width="10" d="M30 0v30M0 15h60"/><path stroke="#C8102E" stroke-width="6" d="M30 0v30M0 15h60"/></g></g><g clip-path="url(#flag-us-half)"><path fill="#FFF" d="M0 0h30v20H0z"/><path stroke="#B31942" stroke-width="1.54" d="M0 .77h30m-30 3.08h30m-30 3.08h30M0 10h30M0 13.08h30M0 16.15h30M0 19.23h30"/><path fill="#0A3161" d="M0 0h12v10.77H0z"/><g fill="#FFF"><circle cx="2" cy="1.8" r=".55"/><circle cx="6" cy="1.8" r=".55"/><circle cx="10" cy="1.8" r=".55"/><circle cx="4" cy="4" r=".55"/><circle cx="8" cy="4" r=".55"/><circle cx="2" cy="6.2" r=".55"/><circle cx="6" cy="6.2" r=".55"/><circle cx="10" cy="6.2" r=".55"/><circle cx="4" cy="8.4" r=".55"/><circle cx="8" cy="8.4" r=".55"/></g></g><path stroke="#FFF" stroke-width=".9" d="M0 20 30 0"/></svg><span class="lang-code" aria-hidden="true">EN</span><span class="lang-name">English</span></a><span class="lang-sep" aria-hidden="true"></span><a href="/es/blog/control-contradiabatico/" lang="es" hreflang="es" aria-current="true"><svg class="flag" viewBox="0 0 30 20" width="21" height="14" aria-hidden="true" focusable="false"><path fill="#AA151B" d="M0 0h30v20H0z"/><path fill="#F1BF00" d="M0 5h30v10H0z"/></svg><span class="lang-code" aria-hidden="true">ES</span><span class="lang-name">Español</span></a></div>
+</div>
+</div>
+</header>
+<main id="main" tabindex="-1"><article class="wrap article-shell">
+<header class="page-heading article-heading">
+<a class="text-link article-back" href="/es/blog/">← Todas las entradas</a>
+<p class="article-meta"><span>Dinámica y control cuánticos</span><time datetime="2026-10-02">2 de octubre de 2026</time><span>12 min de lectura</span></p>
+<h1>De resolver ecuaciones a controlar sistemas cuánticos</h1><p class="page-lede">Cómo aprende una PINN el control cuántico contradiabático: salidas de la red, pérdidas físicas, entrenamiento y validación.</p>
+<p class="article-byline"><a rel="author" href="/es/">Por Antonio Ferrer-Sánchez</a></p>
+</header>
+<aside class="article-contents" aria-labelledby="contents-heading"><h2 id="contents-heading">En esta entrada</h2><nav aria-label="Contenido de la entrada"><a href="#de-la-prediccion-al-control">De la predicción al control</a><a href="#un-espin-en-un-campo-que-gira">Un espín en un campo que gira</a><a href="#anadir-el-termino-contradiabatico">Añadir el término contradiabático</a><a href="#comparar-la-misma-tarea-fisica">Comparar la misma tarea física</a><a href="#acelerar-la-evolucion-tiene-un-coste">Acelerar la evolución tiene un coste</a><a href="#donde-ayuda-una-red-neuronal">Qué aprende la PINN</a><a href="#la-conexion-con-nuestra-investigacion">La PINN de nuestra investigación</a><a href="#comprobaciones-para-un-control-aprendido">Comprobaciones para un control aprendido</a></nav></aside>
+<div class="article-body"><h2 id="de-la-prediccion-al-control">De la predicción al control</h2>
+
+<p>En la <a href="/es/blog/aprendizaje-automatico-informado-por-la-fisica/">primera entrada</a>, una red neuronal representaba un campo de temperatura. Aquí representa las funciones que controlan un sistema cuántico: a qué velocidad cambia un parámetro y qué interacciones adicionales acompañan ese cambio. La red es clásica; sus salidas parametrizan un hamiltoniano cuántico.</p>
+
+<p>El control contradiabático da un objetivo físico a esas salidas. Añade un término que cancela las transiciones entre los autoestados instantáneos de un hamiltoniano de referencia, manteniendo el seguimiento adiabático durante una evolución más rápida. <a href="https://doi.org/10.1088/1751-8113/42/36/365303" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">El trabajo de Berry sobre evolución sin transiciones</a> precisa esta construcción.</p>
+
+<p>Un modelo de espín soluble establecerá qué debe lograr un buen control. Después convertiremos ese requisito en salidas de una red, una pérdida basada en la física y un procedimiento de entrenamiento. Las figuras muestran cálculos analíticos contrastados con evolución numérica.</p>
+
+<h2 id="un-espin-en-un-campo-que-gira">Un espín en un campo que gira</h2>
+
+<p>Consideremos un espín un medio aislado en un campo cuya dirección gira en el plano <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>x</mi></math>–<math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>z</mi></math>. Los operadores de Pauli describen sus direcciones de control. Usamos <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>ℏ</mi><mo>=</mo><mn>1</mn></mrow></math> y una frecuencia de separación <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>Ω</mi><mo>=</mo><mn>1</mn></mrow></math>: el tiempo se mide en <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msup><mi>Ω</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow></math> y la energía en <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>ℏ</mi><mi>Ω</mi></mrow></math>. El hamiltoniano de referencia es</p>
+
+<div class="equation" role="region" aria-label="El hamiltoniano de referencia es un medio de coseno de theta por Pauli z más seno de theta por Pauli x; theta es pi por t dividido por T." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mtable><mtr><mtd><msub><mi>H</mi><mn>0</mn></msub><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>[</mo><mi>cos</mi><mi>θ</mi><mo>(</mo><mi>t</mi><mo>)</mo><msub><mi>σ</mi><mi>z</mi></msub><mo>+</mo><mi>sin</mi><mi>θ</mi><mo>(</mo><mi>t</mi><mo>)</mo><msub><mi>σ</mi><mi>x</mi></msub><mo>]</mo><mo>,</mo></mtd></mtr><mtr><mtd><mi>θ</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi>π</mi><mi>t</mi></mrow><mi>T</mi></mfrac><mo>.</mo></mtd></mtr></mtable>
+
+</math></div>
+
+<p>Durante el tiempo total <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>T</mi></mrow></math>, el ángulo <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>θ</mi></mrow></math> aumenta de cero a <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>π</mi></mrow></math>. Los niveles de energía permanecen en <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mo>−</mo><mn>1</mn><mo>/</mo><mn>2</mn></mrow></math> y <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mo>+</mo><mn>1</mn><mo>/</mo><mn>2</mn></mrow></math>, mientras sus autovectores giran. Partiendo del estado fundamental inicial, una evolución lenta sigue al estado fundamental móvil; un giro más rápido puede provocar transiciones. El objetivo es seguir ese estado durante todo el protocolo, no solo recuperarlo al final.</p>
+
+<h2 id="anadir-el-termino-contradiabatico">Añadir el término contradiabático</h2>
+
+<p>El hamiltoniano adicional exacto es</p>
+
+<div class="equation" role="region" aria-label="El hamiltoniano contradiabático es un medio de la derivada temporal de theta por Pauli y, igual a pi dividido por dos T por Pauli y." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mrow><msub><mi>H</mi><mtext>CD</mtext></msub><mo>=</mo><mfrac><mover><mi>θ</mi><mo>˙</mo></mover><mn>2</mn></mfrac><msub><mi>σ</mi><mi>y</mi></msub><mo>=</mo><mfrac><mi>π</mi><mrow><mn>2</mn><mi>T</mi></mrow></mfrac><msub><mi>σ</mi><mi>y</mi></msub><mo>.</mo></mrow>
+
+</math></div>
+
+<p>El punto indica una derivada temporal. Este control en la dirección <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>y</mi></math> cancela el acoplamiento debido al giro en el sistema de referencia que acompaña al campo. Bajo la suma de ambos hamiltonianos, un autoestado inicial de referencia sigue a su correspondiente autoestado móvil salvo una fase.</p>
+
+<p>Sigue un autoestado del hamiltoniano de <em>referencia</em>; no tiene por qué ser un autoestado instantáneo del hamiltoniano total. Esta distinción importa al definir el objetivo de un controlador aprendido.</p>
+
+<p>La flecha azul representa el estado del espín; el círculo vacío marca el estado fundamental móvil que queremos seguir. El gris indica el campo de referencia correspondiente a <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msub><mi>H</mi><mn>0</mn></msub></math>. El campo naranja añadido, correspondiente a <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msub><mi>H</mi><mi mathvariant="normal">CD</mi></msub></math>, hace girar el estado para que siga al objetivo. Ambas esferas usan estos mismos colores y la dinámica exacta del modelo anterior.</p>
+
+<figure class="article-animation" id="cd-animation">
+  <video controls="" playsinline="" preload="metadata" width="1920" height="1080" poster="/assets/video/cd-driving-es.webp?v=1791130331" aria-labelledby="cd-animation-caption" aria-describedby="cd-animation-transcript">
+    <source src="/assets/video/cd-driving-es.mp4?v=1791130331" type="video/mp4" />
+    Tu navegador no admite este vídeo. Puedes descargarlo con el enlace siguiente.
+  </video>
+  <img class="animation-print" src="/assets/video/cd-driving-es.webp?v=1791130331" width="1920" height="1080" alt="Dos esferas de Bloch comparan el estado sin control, separado del objetivo, con el estado bajo control contradiabático, que sigue al objetivo." loading="lazy" />
+  <figcaption id="cd-animation-caption">Dinámica de un espín con y sin control contradiabático. <a href="/assets/video/cd-driving-es.mp4?v=1791130331" download="">Descargar vídeo (MP4)</a>.</figcaption>
+  <details class="animation-transcript" id="cd-animation-transcript">
+    <summary>Descripción del vídeo</summary>
+
+    <ol>
+      <li>La flecha gris indica el campo del hamiltoniano de referencia <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msub><mi>H</mi><mn>0</mn></msub></math>, que gira media vuelta en el plano vertical. Un círculo vacío marca el estado fundamental, que apunta en dirección opuesta al campo. La línea discontinua marca la trayectoria de este objetivo.</li>
+      <li>La flecha azul representa el estado del espín. Sin control adicional, evoluciona desde el estado fundamental inicial y se aparta del objetivo. Para una duración de dos unidades de tiempo, la fidelidad final al estado fundamental de referencia es aproximadamente 0,347.</li>
+      <li>La flecha naranja indica el campo del hamiltoniano añadido <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msub><mi>H</mi><mi mathvariant="normal">CD</mi></msub></math>, perpendicular al plano del campo de referencia. Este campo hace girar el estado azul para que siga al objetivo durante todo el recorrido.</li>
+      <li>Las dos esferas muestran el estado en azul: sin campo añadido a la izquierda y con control contradiabático a la derecha. Ambas parten del mismo estado inicial, con la misma trayectoria de referencia y duración. Debajo de cada esfera, su curva muestra la fidelidad al estado fundamental de referencia. Con el control exacto permanece en uno durante todo el protocolo. El objetivo sigue siendo un autoestado del hamiltoniano de referencia, no necesariamente del hamiltoniano total.</li>
+      <li>Al reducir la duración a la mitad, se duplica la amplitud del control exacto. Las barras representan el coeficiente del hamiltoniano adicional. El control real tiene límites de amplitud, ancho de banda y conmutación.</li>
+    </ol>
+
+  </details>
+</figure>
+
+<h2 id="comparar-la-misma-tarea-fisica">Comparar la misma tarea física</h2>
+
+<p>Sean <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>g</mi><mo>(</mo><mi>t</mi><mo>)</mo></mrow></math> el estado fundamental instantáneo de referencia y <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>ψ</mi><mo>(</mo><mi>t</mi><mo>)</mo></mrow></math> el estado que evoluciona. Su fidelidad es</p>
+
+<div class="equation" role="region" aria-label="La fidelidad es el módulo al cuadrado del solapamiento entre el estado fundamental instantáneo de referencia y el estado que evoluciona." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mrow><mi>F</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><msup><mrow><mo>|</mo><mo>⟨</mo><mi>g</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>|</mo><mi>ψ</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>⟩</mo><mo>|</mo></mrow><mn>2</mn></msup><mo>.</mo></mrow>
+
+</math></div>
+
+<p>Comparamos la ausencia de control adicional, la mitad del control exacto y el término completo, manteniendo la misma trayectoria de referencia, estado inicial y duración. Con una fracción de control <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>η</mi></mrow></math> entre cero y uno y el tiempo normalizado <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>s</mi><mo>=</mo><mi>t</mi><mo>/</mo><mi>T</mi></mrow></math>, la solución es</p>
+
+<div class="equation" role="region" aria-label="Q es T al cuadrado más el cuadrado de uno menos eta por pi al cuadrado. La fidelidad es uno menos este último término dividido por Q, por seno al cuadrado de s por raíz de Q dividido por dos." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mtable><mtr><mtd><mi>Q</mi><mo>=</mo><msup><mi>T</mi><mn>2</mn></msup><mo>+</mo><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>η</mi><mo>)</mo></mrow><mn>2</mn></msup><msup><mi>π</mi><mn>2</mn></msup><mo>,</mo></mtd></mtr><mtr><mtd><msub><mi>F</mi><mi>η</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo><mo>=</mo><mn>1</mn><mo>−</mo><mfrac><mrow><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>η</mi><mo>)</mo></mrow><mn>2</mn></msup><msup><mi>π</mi><mn>2</mn></msup></mrow><mi>Q</mi></mfrac><msup><mi>sin</mi><mn>2</mn></msup><mo>(</mo><mfrac><mrow><mi>s</mi><msqrt><mi>Q</mi></msqrt></mrow><mn>2</mn></mfrac><mo>)</mo><mo>.</mo></mtd></mtr></mtable>
+
+</math></div>
+
+<figure data-plot="quantum-control" data-interactive-caption="Modelo analítico de un campo que gira. Cambia la duración y la fracción de control para comparar el protocolo seleccionado con la evolución sin control y el control contradiabático exacto. Todas las curvas parten del mismo estado fundamental de referencia."><picture><source media="(max-width: 650px)" srcset="/assets/figures/cd-fidelity-mobile-es.svg" width="480" height="480" /><img src="/assets/figures/cd-fidelity-es.svg" width="760" height="460" alt="Fidelidad al estado fundamental frente a la fracción del protocolo transcurrida. Para T igual a dos, el control contradiabático exacto mantiene la fidelidad en uno; el control a media intensidad termina cerca de 0.652 y la evolución sin control cerca de 0.347." loading="lazy" decoding="async" /></picture><figcaption>Evolución analítica para T = 2. El término contradiabático completo conserva la fidelidad durante todo el protocolo; a media intensidad quedan transiciones. Las tres curvas parten del mismo estado fundamental de referencia.</figcaption></figure>
+
+<p>Para <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>T</mi><mo>=</mo><mn>2</mn></mrow></math>, las fidelidades finales son aproximadamente 0.347, 0.652 y 1, respectivamente. La evolución coherente puede devolver un protocolo imperfecto hacia el objetivo: una fidelidad final alta no demuestra por sí sola una evolución sin transiciones, y la fidelidad final sin control no tiene por qué mejorar de forma monótona con la duración.</p>
+
+<p>La integración directa de la ecuación de Schrödinger con DOP853 usó tolerancia relativa <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msup><mn>10</mn><mrow><mo>−</mo><mn>11</mn></mrow></msup></mrow></math> y absoluta <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msup><mn>10</mn><mrow><mo>−</mo><mn>13</mn></mrow></msup></mrow></math>. Para duraciones 0.5, 2 y 10 y fracciones de control 0, 0.5 y 1, la fidelidad coincidió con la fórmula con un error inferior a <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mn>2</mn><mo>×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>10</mn></mrow></msup></mrow></math> en 201 instantes equiespaciados; la normalización cumplió la misma cota.</p>
+
+<h2 id="acelerar-la-evolucion-tiene-un-coste">Acelerar la evolución tiene un coste</h2>
+
+<p>La cancelación exacta requiere control adicional. Aquí su norma de operador coincide con el módulo del coeficiente de Pauli:</p>
+
+<div class="equation" role="region" aria-label="La norma de operador de eta por el hamiltoniano contradiabático es c eta, igual a eta por pi dividido por dos T." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mrow><mo>‖</mo><mi>η</mi><msub><mi>H</mi><mtext>CD</mtext></msub><mo>‖</mo><mo>=</mo><msub><mi>c</mi><mi>η</mi></msub><mo>=</mo><mfrac><mrow><mi>η</mi><mi>π</mi></mrow><mrow><mn>2</mn><mi>T</mi></mrow></mfrac><mo>.</mo></mrow>
+
+</math></div>
+
+<figure><picture><source media="(max-width: 650px)" srcset="/assets/figures/cd-cost-mobile-es.svg" width="480" height="480" /><img src="/assets/figures/cd-cost-es.svg" width="760" height="460" alt="El coeficiente de control disminuye con la inversa de la duración. El coeficiente contradiabático exacto duplica al de media intensidad para cualquier duración." loading="lazy" decoding="async" /></picture><figcaption>Coeficiente máximo del control adicional para el mismo giro de media vuelta del campo de referencia. Las unidades son ℏΩ para el coeficiente y Ω⁻¹ para el tiempo. La amplitud crece al reducir la duración; el protocolo a media intensidad usa menos control, pero no cancela exactamente las transiciones.</figcaption></figure>
+
+<p>Reducir la duración a la mitad duplica la intensidad necesaria para una fracción de control fija. El barrido lineal también enciende y apaga bruscamente un control no nulo. Un pulso de laboratorio debe respetar límites de amplitud y ancho de banda y puede necesitar extremos suaves.</p>
+
+<p>Para una PINN, estos límites se convierten en restricciones sobre las salidas admisibles.</p>
+
+<h2 id="donde-ayuda-una-red-neuronal">Qué aprende la PINN</h2>
+
+<p>El modelo de espín no necesita aprendizaje: su control es conocido. Los hamiltonianos más difíciles motivan una representación entrenable del operador y de la función de programación temporal. Son funciones distintas, con restricciones físicas diferentes.</p>
+
+<h3 id="entradas-salidas-y-pesos-compartidos">Entradas, salidas y pesos compartidos</h3>
+
+<p>Para un hamiltoniano de referencia parametrizado por <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi></mrow></math>, el potencial de gauge adiabático <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>A</mi><mi>λ</mi></msub></mrow></math> genera el cambio de los autovectores. En la misma convención <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>ℏ</mi><mo>=</mo><mn>1</mn></mrow></math>, una representación útil es</p>
+
+<div class="equation" role="region" aria-label="El hamiltoniano contradiabático es la derivada temporal de lambda por su potencial de gauge adiabático. El potencial de prueba es una suma de coeficientes reales por operadores de Pauli hermíticos." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mtable><mtr><mtd><msub><mi>H</mi><mtext>CD</mtext></msub><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><mover><mi>λ</mi><mo>˙</mo></mover><mo>(</mo><mi>t</mi><mo>)</mo><msub><mi>A</mi><mi>λ</mi></msub><mo>,</mo></mtd></mtr><mtr><mtd><msub><mi>A</mi><mi>λ</mi></msub><mo>≈</mo><munder><mo>∑</mo><mi>j</mi></munder><msub><mi>a</mi><mi>j</mi></msub><mo>(</mo><mi>λ</mi><mo>)</mo><msub><mi>P</mi><mi>j</mi></msub><mo>.</mo></mtd></mtr></mtable>
+
+</math></div>
+
+<p>Una red totalmente conectada puede recibir <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi></mrow></math> y devolver los coeficientes <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>a</mi><mi>j</mi></msub></mrow></math>. Las capas ocultas, con activaciones suaves como <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi mathvariant="normal">tanh</mi></math>, componen una función continua; los mismos pesos entrenables determinan sus valores a lo largo de toda la trayectoria. Esto relaciona las predicciones para entradas distintas, en lugar de ajustar un vector de coeficientes independiente en cada punto.</p>
+
+<p>Elegimos los productos de Pauli hermíticos <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>P</mi><mi>j</mi></msub></mrow></math> entre los controles permitidos. Los coeficientes reales de salida hacen entonces que el operador de prueba sea hermítico por construcción. La base de operadores determina qué puede representarse; la profundidad y la anchura de la red determinan con qué flexibilidad pueden variar sus coeficientes. Ninguna elección garantiza que la optimización tenga éxito.</p>
+
+<h3 id="la-física-proporciona-la-señal-de-entrenamiento">La física proporciona la señal de entrenamiento</h3>
+
+<p><a href="https://doi.org/10.1073/pnas.1619826114" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">El enfoque de Sels y Polkovnikov</a> proporciona el principio variacional. Definimos</p>
+
+<div class="equation" role="region" aria-label="G lambda es la derivada respecto de lambda de H cero más i por el conmutador de A lambda con H cero. La acción es la traza de G lambda al cuadrado." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mtable><mtr><mtd><msub><mi>G</mi><mi>λ</mi></msub><mo>=</mo><msub><mo>∂</mo><mi>λ</mi></msub><msub><mi>H</mi><mn>0</mn></msub><mo>+</mo><mi>i</mi><mo>[</mo><msub><mi>A</mi><mi>λ</mi></msub><mo>,</mo><msub><mi>H</mi><mn>0</mn></msub><mo>]</mo><mo>,</mo></mtd></mtr><mtr><mtd><mi>S</mi><mo>(</mo><msub><mi>A</mi><mi>λ</mi></msub><mo>)</mo><mo>=</mo><mi mathvariant="normal">Tr</mi><mo>(</mo><msubsup><mi>G</mi><mi>λ</mi><mn>2</mn></msubsup><mo>)</mo><mo>.</mo></mtd></mtr></mtable>
+
+</math></div>
+
+<p>Los corchetes indican un conmutador; la traza recorre el espacio de Hilbert. Para esta formulación de aprendizaje del operador, el ciclo de entrenamiento es:</p>
+
+<ol>
+  <li>Muestrear valores fijos de <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi></mrow></math> a lo largo de la trayectoria de referencia. Reservar puntos distintos para validación; no se proporcionan potenciales de gauge objetivo.</li>
+  <li>Evaluar la red, construir el operador de prueba y calcular la acción en cada punto usando el hamiltoniano conocido y su derivada respecto del parámetro. Promediar esos valores para obtener la pérdida.</li>
+  <li>Retropropagar a través de la red y de las operaciones matriciales para derivar la pérdida respecto de los pesos de la red. Un optimizador como Adam actualiza esos pesos; los operadores de Pauli permanecen fijos.</li>
+  <li>Comprobar la acción y las restricciones adicionales en los puntos de validación. Repetir con distintas inicializaciones para evaluar la reproducibilidad.</li>
+</ol>
+
+<p>La física proporciona así la señal de entrenamiento sin una base de datos de controles óptimos. Minimizar la acción reduce la parte no diagonal de <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>G</mi><mi>λ</mi></msub></mrow></math> que queda sin cancelar. Incluso para un potencial exacto, <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>G</mi><mi>λ</mi></msub></mrow></math> no suele anularse: los niveles de energía pueden cambiar a lo largo de la trayectoria. Las componentes de <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>A</mi><mi>λ</mi></msub></mrow></math> que conmutan con el hamiltoniano de referencia requieren además una convención de gauge si se quiere una representación única.</p>
+
+<p>Prescindir de etiquetas de autoestados no elimina el coste del álgebra de operadores. Las matrices densas y una base completa de Pauli crecen exponencialmente con el número de cúbits. Restringir la base reduce las salidas de la red, pero no elimina por sí solo el coste de las matrices densas y puede dejar un error de aproximación. Entrenar para una familia de hamiltonianos tampoco demuestra transferencia a otro problema.</p>
+
+<h3 id="aprender-la-programación-temporal">Aprender la programación temporal</h3>
+
+<p>Una segunda red puede determinar cuándo se recorre cada parte de la trayectoria. Con el tiempo normalizado <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>s</mi></math> como entrada y parámetros entrenables <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>w</mi></mrow></math>, una posible transformación de la salida es</p>
+
+<div class="equation" role="region" aria-label="El protocolo neuronal lambda w de s es s más s por uno menos s por una red neuronal N w de s." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mrow><msub><mi>λ</mi><mi>w</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo><mo>=</mo><mi>s</mi><mo>+</mo><mi>s</mi><mo>(</mo><mn>1</mn><mo>−</mo><mi>s</mi><mo>)</mo><msub><mi>N</mi><mi>w</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo><mo>.</mo></mrow>
+
+</math></div>
+
+<p>Si la salida de la red es finita, <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi><mo>(</mo><mn>0</mn><mo>)</mo><mo>=</mo><mn>0</mn></mrow></math> y <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi><mo>(</mo><mn>1</mn><mo>)</mo><mo>=</mo><mn>1</mn></mrow></math> se cumplen exactamente. La monotonía, las cotas intermedias y las derivadas nulas en los extremos aún necesitan restricciones adicionales. La diferenciación automática da la derivada respecto de <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>s</mi></math>; hay que dividirla por <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>T</mi></mrow></math> para obtener la derivada temporal física que multiplica al potencial de gauge.</p>
+
+<p>La acción por sí sola no selecciona la mejor programación temporal. Su objetivo de entrenamiento puede combinar el error de transferencia de estado con costes de amplitud o suavidad. Equilibrar estos términos importa: reducir una pérdida puede empeorar otra. La salida restringida anterior ilustra una elección de diseño, no la arquitectura concreta de nuestro artículo.</p>
+
+<h2 id="la-conexion-con-nuestra-investigacion">La PINN de nuestra investigación</h2>
+
+<p>Nuestro <a href="https://doi.org/10.1088/2632-2153/ad450f" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">artículo de 2024 sobre PINN para computación cuántica contradiabática</a> usa una formulación acoplada: el tiempo entra en una única PINN totalmente conectada, que devuelve la programación temporal, las partes real e imaginaria del potencial de gauge y sus coeficientes de Pauli. Estas cantidades se aprenden conjuntamente a partir de restricciones físicas, sin etiquetas de controles de referencia. El ejemplo principal es una representación de dos cúbits del hidrógeno molecular.</p>
+
+<p>La pérdida combina condiciones en los extremos, la condición de conmutación asociada a la acción variacional, una penalización de la velocidad de programación y el acuerdo entre las representaciones matricial y de Pauli. Ajustarse a una expansión de Pauli con coeficientes reales favorece la hermiticidad. Esto difiere de minimizar directamente la acción sobre los coeficientes, como en el ejemplo didáctico anterior. La <a href="https://github.com/Netzuel/pinns-for-counterdiabatic-driving/blob/main/docs/method.md" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">guía de implementación</a> documenta los términos y sus pesos.</p>
+
+<figure id="joint-pinn-pipeline"><picture><source media="(max-width: 650px)" srcset="/assets/figures/cd-pipeline-mobile-es.svg" width="320" height="956" /><img src="/assets/figures/cd-pipeline-es.svg" width="633" height="449" alt="Diagrama de flujo de la PINN conjunta. Los instantes de muestreo entran en una red que predice la programación, la matriz compleja del potencial de gauge y los coeficientes reales de Pauli. La diferenciación automática obtiene la velocidad de programación. Las restricciones físicas definen una pérdida; la retropropagación y Adam actualizan los pesos compartidos. Tras entrenar, una propagación independiente comprueba el hamiltoniano aprendido." loading="lazy" decoding="async" /></picture><figcaption>Flujo de la PINN conjunta. La flecha discontinua devuelve las actualizaciones de los pesos a la red; la rama azul evalúa el hamiltoniano aprendido tras entrenar. Las condiciones en los extremos, el conmutador, la velocidad de programación y la consistencia matriz–Pauli aportan la señal de entrenamiento. Esta formulación conjunta difiere del ejemplo didáctico anterior, que solo aprende coeficientes.</figcaption></figure>
+
+<p>El <a href="https://github.com/Netzuel/pinns-for-counterdiabatic-driving" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">repositorio público de código</a> proporciona código, modelos entrenados y tutoriales Jupyter. Permite conectar el método con cálculos reproducibles; las gráficas del espín en un campo que gira siguen siendo un ejemplo analítico independiente.</p>
+
+<p>Referencia: A. Ferrer-Sánchez et al., <a href="https://doi.org/10.1088/2632-2153/ad450f" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">Physics-informed neural networks for an optimal counterdiabatic quantum computation</a>, <em>Machine Learning: Science and Technology</em> <strong>5</strong>, 025035 (2024).</p>
+
+<h2 id="comprobaciones-para-un-control-aprendido">Comprobaciones para un control aprendido</h2>
+
+<p>Que la pérdida de entrenamiento disminuya es solo la primera comprobación. Propaga el hamiltoniano aprendido con un solver dinámico independiente en instantes ausentes del entrenamiento. Reduce sus tolerancias; comprueba la normalización, la fidelidad a lo largo de la trayectoria, la intensidad del control y el comportamiento en los extremos. Si una red representa también el estado, comprueba por separado su residuo de Schrödinger y su condición inicial.</p>
+
+<p>Compara con una optimización variacional directa de los coeficientes o una parametrización temporal sencilla, además de la evolución sin control. Mantén la misma tarea física y los mismos controles permitidos, y contabiliza el entrenamiento y la validación. Así se establece qué aporta la representación neuronal respecto de una buena representación del control. Las afirmaciones sobre hardware requieren además las restricciones de control y el modelo de ruido del dispositivo.</p>
+<footer class="article-end"><a href="/es/blog/">← Todas las entradas</a><a href="/es/investigacion/">Ver la investigación →</a></footer></div>
+</article>
+<script src="/assets/js/article-contents.js?v=1791130331" defer></script>
+
+<script type="module" src="/assets/js/quantum-control.js?v=1791130331"></script>
+</main>
+<footer class="site-footer wrap">
+<span id="external-link-note" class="sr-only">Se abre en una pestaña nueva.</span>
+<div><a class="footer-name" href="/es/">Antonio Ferrer-Sánchez</a><p>Algoritmos cuánticos · Aprendizaje automático científico</p></div>
+<div class="social-links"><a href="mailto:antonio.ferrer.contact@gmail.com">Correo</a><a href="https://scholar.google.com/citations?user=Ajj7DC4AAAAJ" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">Google Scholar <span aria-hidden="true">↗</span></a><a href="https://orcid.org/0000-0002-2305-5261" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">ORCID <span aria-hidden="true">↗</span></a><a href="https://github.com/Netzuel" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">GitHub <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/antonio-ferrer-s%C3%A1nchez-67a50b197/" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">LinkedIn <span aria-hidden="true">↗</span></a></div>
+<p class="footer-note">© 2026 Antonio Ferrer-Sánchez. <a href="/es/privacidad/">Privacidad y cookies</a></p>
+</footer>
+</body>
+</html>
