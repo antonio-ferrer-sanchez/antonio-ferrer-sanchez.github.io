@@ -9,6 +9,15 @@
 <author><name>Antonio Ferrer-Sánchez</name><uri>https://antonio-ferrer-sanchez.github.io/es/</uri></author>
 <icon>https://antonio-ferrer-sanchez.github.io/assets/images/icon-192.png</icon>
 <entry>
+<title>De resolver ecuaciones a controlar sistemas cuánticos</title>
+<id>https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/</id>
+<link rel="alternate" type="text/html" href="https://antonio-ferrer-sanchez.github.io/es/blog/control-contradiabatico/"/>
+<published>2026-10-02T00:00:00+00:00</published>
+<updated>2026-10-02T00:00:00+00:00</updated>
+<summary>Cómo aprende una PINN el control cuántico contradiabático: salidas de la red, pérdidas físicas, entrenamiento y validación.</summary>
+<category term="Dinámica y control cuánticos"/>
+</entry>
+<entry>
 <title>Aprendizaje automático informado por la física: de las leyes físicas a los solvers neuronales</title>
 <id>https://antonio-ferrer-sanchez.github.io/es/blog/aprendizaje-automatico-informado-por-la-fisica/</id>
 <link rel="alternate" type="text/html" href="https://antonio-ferrer-sanchez.github.io/es/blog/aprendizaje-automatico-informado-por-la-fisica/"/>
