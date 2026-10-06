@@ -82,7 +82,7 @@
 {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://antonio-ferrer-sanchez.github.io/blog/"},
 {"@type": "ListItem", "position": 3, "name": "When smooth neural networks meet shock waves", "item": "https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/"}
 ]},
-{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/#webpage"}, "headline": "When smooth neural networks meet shock waves", "description": "Why shocks challenge PINNs, how gradient weighting changes the loss, and how conservation checks expose an incorrect wave speed.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-shocks-en.png", "datePublished": "2026-10-06", "dateModified": "2026-10-06", "inLanguage": "en", "articleSection": "Scientific machine learning", "keywords": ["physics-informed neural networks","shock waves","GA-PINNs","Riemann problems","relativistic hydrodynamics","conservation laws"], "wordCount": 1481, "timeRequired": "PT10M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog", "url": "https://antonio-ferrer-sanchez.github.io/blog/"}, "workTranslation": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Gradient-annihilated PINNs for solving Riemann problems: Application to relativistic hydrodynamics", "url": "https://doi.org/10.1016/j.cma.2024.116906"}]}
+{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/#webpage"}, "headline": "When smooth neural networks meet shock waves", "description": "Why shocks challenge PINNs, how gradient weighting changes the loss, and how conservation checks expose an incorrect wave speed.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-shocks-en.png", "datePublished": "2026-10-06", "dateModified": "2026-10-06", "inLanguage": "en", "articleSection": "Scientific machine learning", "keywords": ["physics-informed neural networks","shock waves","GA-PINNs","Riemann problems","relativistic hydrodynamics","conservation laws"], "wordCount": 1101, "timeRequired": "PT10M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog", "url": "https://antonio-ferrer-sanchez.github.io/blog/"}, "workTranslation": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Gradient-annihilated PINNs for solving Riemann problems: Application to relativistic hydrodynamics", "url": "https://doi.org/10.1016/j.cma.2024.116906"}]}
 ]}
 </script>
 
@@ -91,11 +91,11 @@
 <link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/">
 <link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/">
 <link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/">
-<link rel="stylesheet" href="/assets/css/site.css?v=1791309247">
-<link rel="stylesheet" href="/assets/css/print.css?v=1791309247" media="print">
-<script src="/assets/js/header.js?v=1791309247"></script>
+<link rel="stylesheet" href="/assets/css/site.css?v=1791310853">
+<link rel="stylesheet" href="/assets/css/print.css?v=1791310853" media="print">
+<script src="/assets/js/header.js?v=1791310853"></script>
 <meta name="publication-revision" content="e2c7122547283c386c1f5abe51bbc5e0286b1b514a4037da5b4a672208cad8ae">
-<script defer src="/assets/js/publication.js?v=1791309247"></script>
+<script defer src="/assets/js/publication.js?v=1791310853"></script>
 </head>
 <body class="article-page">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -125,7 +125,7 @@
 
 <p>In the <a href="/blog/physics-informed-machine-learning/">introductory post</a>, a physics-informed neural network represented a smoothly diffusing temperature. Automatic differentiation supplied the derivatives in the heat equation. With a shock, the exact field has no ordinary derivative at the jump. The physical law still applies, but we need a formulation that makes sense across the discontinuity.</p>
 
-<p>This distinction affects both training and validation. A network may draw a sharp front in the wrong place. It may also receive a large pointwise residual while approximating the correct jump more closely. A simple conservation law lets us examine these possibilities without running a training experiment.</p>
+<p>A network may draw a sharp front in the wrong place. It may also receive a larger pointwise residual while approximating the correct jump more closely. The Burgers equation shows why.</p>
 
 <h2 id="shock-speed">Conservation sets the shock speed</h2>
 
@@ -139,7 +139,7 @@
 
 <div class="equation" role="region" aria-label="Rankine–Hugoniot shock speed" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>s</mi><mo>=</mo><mfrac><mrow><mi>f</mi><mo stretchy="false">(</mo><msub><mi>u</mi><mi mathvariant="normal">L</mi></msub><mo stretchy="false">)</mo><mo>−</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>u</mi><mi mathvariant="normal">R</mi></msub><mo stretchy="false">)</mo></mrow><mrow><msub><mi>u</mi><mi mathvariant="normal">L</mi></msub><mo>−</mo><msub><mi>u</mi><mi mathvariant="normal">R</mi></msub></mrow></mfrac><mo>=</mo><mfrac><mrow><msub><mi>u</mi><mi mathvariant="normal">L</mi></msub><mo>+</mo><msub><mi>u</mi><mi mathvariant="normal">R</mi></msub></mrow><mrow><mn>2</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>.</mo></mrow></math></div>
 
-<p>At time 0.6, the shock is at position 0.3. On each side, the solution remains constant. These statements follow directly from the conservation law; they provide an independent reference for any learned solution. The <a href="https://www.clawpack.org/riemann_book/html/Burgers.html" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">Burgers chapter of the Clawpack Riemann book</a> develops this construction and its characteristic picture.</p>
+<p>At time 0.6, the shock is at position 0.3, with constant states on either side. The <a href="https://www.clawpack.org/riemann_book/html/Burgers.html" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">Burgers chapter of the Clawpack Riemann book</a> develops this construction and its characteristic picture.</p>
 
 <p>Conservation also needs an admissibility condition. Reversing the initial states produces an expanding rarefaction, not a compressive shock. A jump can satisfy the Rankine–Hugoniot relation and still select the wrong physical solution. For this convex scalar flux, the entropy condition distinguishes the two cases.</p>
 
@@ -149,11 +149,11 @@
 
 <div class="equation" role="region" aria-label="Prescribed smooth travelling front" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>u</mi><mi>δ</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>[</mo><mn>1</mn><mo>−</mo><mi mathvariant="normal">tanh</mi><mo stretchy="false">(</mo><mfrac><mrow><mi>x</mi><mo>−</mo><mi>v</mi><mi>t</mi></mrow><mrow><mi>δ</mi></mrow></mfrac><mo stretchy="false">)</mo><mo>]</mo><mo>.</mo></mrow></math></div>
 
-<p>This function can be represented by one tanh unit followed by an affine output. Its midpoint travels at the chosen speed, and reducing the width makes the transition steeper. The formula illustrates the network’s representational capacity. No parameters were fitted for the figures in this post.</p>
+<p>One tanh unit followed by an affine output represents this function. Its midpoint travels at the chosen speed, and reducing the width makes the transition steeper.</p>
 
-<figure><picture><source media="(max-width: 650px)" srcset="/assets/figures/shocks-profiles-mobile.svg" width="450" height="450" /><img src="/assets/figures/shocks-profiles.svg" width="760" height="440" alt="At time 0.6, the exact Burgers shock jumps from one to zero at position 0.3. Two prescribed smooth profiles have the same midpoint; the profile with width 0.03 is sharper than the one with width 0.12." loading="lazy" decoding="async" /></picture><figcaption>Exact shock and prescribed tanh profiles at dimensionless time 0.6, all travelling at speed 0.5. Reducing the width improves the profile away from the jump. These are analytic curves, not trained PINN predictions.</figcaption></figure>
+<figure><picture><source media="(max-width: 650px)" srcset="/assets/figures/shocks-profiles-mobile.svg" width="450" height="450" /><img src="/assets/figures/shocks-profiles.svg" width="760" height="440" alt="At time 0.6, the exact Burgers shock jumps from one to zero at position 0.3. Two prescribed smooth profiles have the same midpoint; the profile with width 0.03 is sharper than the one with width 0.12." loading="lazy" decoding="async" /></picture><figcaption>Exact shock and tanh profiles at dimensionless time 0.6, all travelling at speed 0.5.</figcaption></figure>
 
-<p>The narrower curve approaches the step at every point away from the front. It also reduces the integrated absolute error. It does not converge uniformly to a discontinuous function: arbitrarily close to the jump, a smooth transition still contains intermediate values. This is why the norm used to report accuracy matters.</p>
+<p>The narrower curve approaches the step at every point away from the front and reduces the integrated absolute error. Convergence is not uniform: arbitrarily close to the jump, the smooth transition still contains intermediate values.</p>
 
 <p>Now substitute the smooth profile into the equation. Because the profile is a travelling wave, its time derivative is minus its speed times its spatial derivative. The residual becomes</p>
 
@@ -161,40 +161,34 @@
 
 <p>The spatial derivative grows as the width decreases. Even at the correct speed, the residual is nonzero inside the smooth layer. Its positive and negative contributions cancel when integrated across the whole front, but their squares do not cancel. A squared pointwise residual can therefore grow as the profile becomes sharper.</p>
 
-<p>Automatic differentiation is computing the derivatives of the chosen smooth function correctly. The difficulty is the relation between that function, a discontinuous target and the objective used to train it.</p>
-
 <h2 id="gradient-weighting">What gradient weighting changes</h2>
 
 <p>One way to reduce the influence of the transition layer is to weight the squared residual by a function that decreases where the spatial gradient is large. For this dimensionless scalar example, use</p>
 
 <div class="equation" role="region" aria-label="Illustrative gradient weight and weighted squared residual" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>w</mi><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>+</mo><msup><mrow><mo>|</mo><mfrac><mrow><mo>∂</mo><msub><mi>u</mi><mi>δ</mi></msub></mrow><mrow><mo>∂</mo><mi>x</mi></mrow></mfrac><mo>|</mo></mrow><mn>2</mn></msup></mrow></mfrac><mo>,</mo><mspace width="1em" /><msub><mi>J</mi><mi>w</mi></msub><mo>=</mo><msubsup><mo>∫</mo><mrow><mo>−</mo><mi>∞</mi></mrow><mi>∞</mi></msubsup><mi>w</mi><msup><mi>r</mi><mn>2</mn></msup><mspace width="0.2em" /><mi mathvariant="normal">d</mi><mi>x</mi><mo>.</mo></mrow></math></div>
 
-<p>The weight multiplies the squared residual once. It is close to one in nearly constant regions and small near a steep front. The coefficient and exponent are fixed teaching choices here. Changing units or applying this idea to several physical fields requires a corresponding choice of scales and weights.</p>
+<p>The weight is close to one in nearly constant regions and small near a steep front. For dimensional variables or several physical fields, the gradients need corresponding scales.</p>
 
-<p>The next figure evaluates two prescribed speeds across a range of widths. The first speed, 0.5, satisfies the jump condition. The second, 0.7, does not. Each panel shows a spatial integral across the whole smooth front, rather than a training history or an average over sampled collocation points.</p>
+<p>The next figure compares the spatial integrals of the squared residual at the correct speed, 0.5, and an incorrect speed, 0.7, as the transition narrows.</p>
 
-<figure><picture><source media="(max-width: 650px)" srcset="/assets/figures/shocks-residuals-mobile.svg" width="450" height="760" /><img src="/assets/figures/shocks-residuals.svg" width="760" height="720" alt="Two panels compare spatially integrated residuals for prescribed front speeds 0.5 and 0.7. Moving left towards smaller widths increases the unweighted squared residual but decreases the gradient-weighted squared residual for both speeds." loading="lazy" decoding="async" /></picture><figcaption>Residual integrals for the prescribed profiles. Width decreases towards the left; both axes use logarithmic scales. Weighting reduces the penalty on narrow fronts at both the correct speed 0.5 and the incorrect speed 0.7. The lower panel alone cannot certify correct motion.</figcaption></figure>
+<figure><picture><source media="(max-width: 650px)" srcset="/assets/figures/shocks-residuals-mobile.svg" width="450" height="760" /><img src="/assets/figures/shocks-residuals.svg" width="760" height="720" alt="Two panels compare spatially integrated residuals for prescribed front speeds 0.5 and 0.7. Moving left towards smaller widths increases the unweighted squared residual but decreases the gradient-weighted squared residual for both speeds." loading="lazy" decoding="async" /></picture><figcaption>As width decreases towards the left, the integral of the squared residual grows without weighting and falls with gradient weighting. Both axes use logarithmic scales.</figcaption></figure>
 
-<p>This example explains both the motivation and the limit of the weighting. It reduces a penalty that can oppose a sharp representation, but the resulting metric does not by itself enforce the jump speed. Initial conditions, boundary conditions and other parts of a complete training objective also matter.</p>
+<p>Weighting reduces the penalty on sharp fronts, but a small weighted residual does not guarantee the correct propagation speed. Initial and boundary conditions remain part of the training objective.</p>
 
-<p>For the incorrect speed, the midpoint reaches 0.42 at time 0.6, giving a position error of 0.12 regardless of how thin the layer becomes. Integrating the unweighted residual gives 0.2, the same defect obtained by comparing the transported jump with its required flux balance. Those checks expose information that the weighted residual can suppress.</p>
+<p>For the incorrect speed, the midpoint reaches 0.42 at time 0.6, giving a position error of 0.12 regardless of how thin the layer becomes. Integrating the unweighted residual gives 0.2, the same defect obtained from the jump’s flux balance.</p>
 
 <h2 id="ga-pinns">The connection to GA-PINNs</h2>
 
 <p>Our <a href="https://doi.org/10.1016/j.cma.2024.116906" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">2024 GA-PINNs paper</a> uses gradient-dependent weighting and adaptive activation slopes for relativistic Riemann problems. The network predicts density, velocity and pressure. The study compares its solutions with exact references, a baseline PINN and a shock-capturing scheme. The <a href="https://github.com/Netzuel/GA_PINNs_Repository" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">public repository</a> provides the research implementation.</p>
 
-<p>The scalar calculation above isolates one mechanism. It is not a reproduction of the paper’s coupled equations, training runs or measured errors. In particular, suppressing a residual near a jump supplies neither a conservation guarantee nor an entropy condition.</p>
-
 <h2 id="validation">Checks that a loss curve cannot replace</h2>
 
-<p>For a shock problem, validation should connect the neural prediction to the quantities the physical solution must preserve.</p>
-
 <ol>
-  <li><strong>Locate the waves.</strong> Compare shock positions at several times and estimate their propagation speeds. For this monotone scalar example, the half-height crossing provides a reproducible front location. A profile at one final time cannot show how the front travelled there.</li>
+  <li><strong>Locate the waves.</strong> Compare shock positions at several times and estimate their propagation speeds. For this monotone scalar example, use the half-height crossing to locate the front.</li>
   <li><strong>Check the jump balance.</strong> Evaluate the flux and state on both sides. The Rankine–Hugoniot defect should decrease with a better solution. For a system, check every conserved component.</li>
-  <li><strong>Measure the conservation budget.</strong> On a fixed interval, the change in the integrated field must equal the net flux through the boundaries. Mass need not remain constant when the boundaries carry a net flux.</li>
-  <li><strong>Resolve the transition in the evaluation grid.</strong> Report a field error on points separate from training, together with front position and overshoot. Refine that grid until the diagnostics are stable. An average can hide a narrow region with a large error.</li>
-  <li><strong>Check physical admissibility.</strong> Distinguish shocks from rarefactions. In hydrodynamics, also check density, pressure and any applicable velocity bounds. A smooth-looking curve is not evidence that these conditions hold.</li>
+  <li><strong>Measure the conservation budget.</strong> On a fixed interval, the change in the integrated field must equal the net flux through the boundaries.</li>
+  <li><strong>Resolve the transition in the evaluation grid.</strong> Report a field error on points separate from training, together with front position and overshoot. Refine that grid until the diagnostics are stable.</li>
+  <li><strong>Check physical admissibility.</strong> Distinguish shocks from rarefactions. In hydrodynamics, also check density, pressure and any applicable velocity bounds.</li>
 </ol>
 
 <p>For the Burgers example, the conservation budget on a fixed interval is</p>
@@ -207,12 +201,10 @@
 
 <h2 id="first-experiment">A useful first experiment</h2>
 
-<p>Begin with a Riemann problem whose solution is known. Keep the network, initial data and computational budget fixed while changing the residual weighting. Plot the predicted profiles and wave trajectories, then evaluate the conservation budget independently. Only call a change an improvement when the solution diagnostics support it.</p>
-
-<p>A smooth network can represent a steep front. The harder task is to make that front move and transport the conserved quantities correctly. Gradient weighting changes how training treats the transition layer; the jump conditions and independent physical checks tell us whether the resulting solution is useful.</p>
+<p>Begin with a Riemann problem whose solution is known. Keep the network, initial data and computational budget fixed while changing the residual weighting. Compare the predicted profiles, wave trajectories and conservation budgets.</p>
 <footer class="article-end"><a href="/blog/">← All posts</a><a href="/research/">Explore the research →</a></footer></div>
 </article>
-<script src="/assets/js/article-contents.js?v=1791309247" defer></script>
+<script src="/assets/js/article-contents.js?v=1791310853" defer></script>
 
 
 </main>
