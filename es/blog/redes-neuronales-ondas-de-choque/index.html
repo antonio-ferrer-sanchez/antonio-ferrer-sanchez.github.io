@@ -82,7 +82,7 @@
 {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://antonio-ferrer-sanchez.github.io/es/blog/"},
 {"@type": "ListItem", "position": 3, "name": "Fluidos relativistas: enseñar a una red neuronal a seguir los choques", "item": "https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/"}
 ]},
-{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/#webpage"}, "headline": "Fluidos relativistas: enseñar a una red neuronal a seguir los choques", "description": "Densidad, presión y velocidad en un tubo de choque relativista. Explora las ecuaciones de Euler en Minkowski y el aprendizaje con PINNs.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-shocks-es.png", "datePublished": "2026-10-06", "dateModified": "2026-10-07", "inLanguage": "es", "articleSection": "Hidrodinámica relativista", "keywords": ["ecuaciones de Euler relativistas","espaciotiempo de Minkowski","hidrodinámica relativista","redes neuronales informadas por la física","problema de Riemann","ondas de choque"], "wordCount": 1350, "timeRequired": "PT9M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog (español)", "url": "https://antonio-ferrer-sanchez.github.io/es/blog/"}, "translationOfWork": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Gradient-annihilated PINNs for solving Riemann problems: Application to relativistic hydrodynamics", "url": "https://doi.org/10.1016/j.cma.2024.116906"}]}
+{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/#webpage"}, "headline": "Fluidos relativistas: enseñar a una red neuronal a seguir los choques", "description": "Densidad, presión y velocidad en un tubo de choque relativista. Explora las ecuaciones de Euler en Minkowski y el aprendizaje con PINNs.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-shocks-es.png", "datePublished": "2026-10-06", "dateModified": "2026-10-07", "inLanguage": "es", "articleSection": "Hidrodinámica relativista", "keywords": ["ecuaciones de Euler relativistas","espaciotiempo de Minkowski","hidrodinámica relativista","redes neuronales informadas por la física","problema de Riemann","ondas de choque"], "wordCount": 1442, "timeRequired": "PT9M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog (español)", "url": "https://antonio-ferrer-sanchez.github.io/es/blog/"}, "translationOfWork": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Gradient-annihilated PINNs for solving Riemann problems: Application to relativistic hydrodynamics", "url": "https://doi.org/10.1016/j.cma.2024.116906"}]}
 ]}
 </script>
 
@@ -91,12 +91,12 @@
 <link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/">
 <link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/">
 <link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/">
-<link rel="stylesheet" href="/assets/css/site.css?v=1791364632">
-<link rel="stylesheet" href="/assets/css/print.css?v=1791364632" media="print">
-<link rel="stylesheet" href="/assets/css/relativistic-fluid.css?v=1791364632">
-<script src="/assets/js/header.js?v=1791364632"></script>
+<link rel="stylesheet" href="/assets/css/site.css?v=1791370654">
+<link rel="stylesheet" href="/assets/css/print.css?v=1791370654" media="print">
+<link rel="stylesheet" href="/assets/css/relativistic-fluid.css?v=1791370654">
+<script src="/assets/js/header.js?v=1791370654"></script>
 <meta name="publication-revision" content="e2c7122547283c386c1f5abe51bbc5e0286b1b514a4037da5b4a672208cad8ae">
-<script defer src="/assets/js/publication.js?v=1791364632"></script>
+<script defer src="/assets/js/publication.js?v=1791370654"></script>
 </head>
 <body class="article-page">
 <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -148,7 +148,7 @@
 
 <h2 id="shock-tube">Abrir un tubo de choque relativista</h2>
 
-<p>Al principio, dos fluidos uniformes están en reposo, separados en <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow></math>. El lado izquierdo es más denso y tiene mayor presión. Elegimos <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>Γ</mi><mo>=</mo><mfrac><mn>5</mn><mn>3</mn></mfrac></mrow></math> y los siguientes estados:</p>
+<p>Al principio, dos fluidos uniformes se mueven a la derecha a la mitad de la velocidad de la luz, separados en <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow></math>. El lado izquierdo es más denso y tiene mayor presión. Elegimos <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>Γ</mi><mo>=</mo><mfrac><mn>5</mn><mn>3</mn></mfrac></mrow></math> y los siguientes estados:</p>
 
 <div class="fluid-table" role="region" aria-label="Estados iniciales del fluido" tabindex="0">
 
@@ -166,13 +166,13 @@
         <td>Izquierdo</td>
         <td style="text-align: right">1</td>
         <td style="text-align: right">1</td>
-        <td style="text-align: right">0</td>
+        <td style="text-align: right">0.5</td>
       </tr>
       <tr>
         <td>Derecho</td>
         <td style="text-align: right">0.125</td>
         <td style="text-align: right">0.1</td>
-        <td style="text-align: right">0</td>
+        <td style="text-align: right">0.5</td>
       </tr>
     </tbody>
   </table>
@@ -181,9 +181,9 @@
 
 <p>La densidad se mide en unidades de la densidad inicial izquierda; la presión, en esa densidad multiplicada por <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msup><mi>c</mi><mn>2</mn></msup></math>; y la velocidad, en unidades de <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>c</mi></math>. La posición usa una escala de longitud arbitraria. La unidad de tiempo es el tiempo que tarda la luz en recorrer esa longitud.</p>
 
-<p>Al retirar la separación, la diferencia de presión impulsa el flujo. Las superficies representan muestras de la solución exacta de Riemann en posición y tiempo. Selecciona una variable, gira la vista y mueve el control de tiempo para examinar su perfil.</p>
+<p>La diferencia de presión modifica el flujo. Las superficies representan muestras de la solución exacta de Riemann en posición y tiempo. Selecciona una variable, gira la vista y mueve el control de tiempo para examinar su perfil.</p>
 
-<figure id="fluid-explorer" class="figure-wide"><picture><source media="(max-width: 650px)" srcset="/assets/figures/relativistic-surfaces-mobile-es.svg?v=1791364632" width="450" height="1260" /><img src="/assets/figures/relativistic-surfaces-es.svg?v=1791364632" width="1200" height="480" alt="Superficies de densidad, presión y velocidad en posición y tiempo. Una rarefacción se expande a la izquierda, un contacto separa dos densidades y un choque avanza a la derecha." loading="lazy" decoding="async" /></picture><figcaption>Evolución del tubo de choque relativista. Las coordenadas horizontales son posición y tiempo; la altura representa la variable del fluido seleccionada.</figcaption></figure>
+<figure id="fluid-explorer" class="figure-wide"><picture><source media="(max-width: 650px)" srcset="/assets/figures/relativistic-surfaces-mobile-es.svg?v=1791370654" width="450" height="1260" /><img src="/assets/figures/relativistic-surfaces-es.svg?v=1791370654" width="1200" height="480" alt="Superficies de densidad, presión y velocidad en posición y tiempo. Un abanico de rarefacción se expande, un contacto separa dos densidades y un choque avanza a la derecha." loading="lazy" decoding="async" /></picture><figcaption>Evolución del tubo de choque relativista. Las coordenadas horizontales son posición y tiempo; la altura representa la variable del fluido seleccionada.</figcaption></figure>
 
 <h2 id="three-waves">Interpretar las tres ondas</h2>
 
@@ -195,9 +195,9 @@
   <li><strong>Choque.</strong> Una compresión abrupta se propaga hacia el estado derecho. La densidad, la presión y la velocidad cambian al atravesarla.</li>
 </ul>
 
-<p>El contacto avanza aproximadamente a 0,437 veces la velocidad de la luz; el choque, a 0,819. Por tanto, la onda puede avanzar más deprisa que el material que deja detrás. El panel de velocidad muestra esta diferencia: la velocidad del fluido entre la rarefacción y el choque es aproximadamente 0,437, distinta de la velocidad del choque.</p>
+<p>El contacto avanza aproximadamente a 0,769 veces la velocidad de la luz; el choque, a 0,936. Por tanto, la onda puede avanzar más deprisa que el material que deja detrás. El panel de velocidad muestra esta diferencia: la velocidad del fluido entre la rarefacción y el choque es aproximadamente 0,769, distinta de la velocidad del choque.</p>
 
-<figure id="fluid-profiles-fallback" class="figure-wide"><picture><source media="(max-width: 650px)" srcset="/assets/figures/relativistic-profiles-mobile-es.svg?v=1791364632" width="450" height="960" /><img src="/assets/figures/relativistic-profiles-es.svg?v=1791364632" width="900" height="720" alt="Densidad, presión y velocidad en el instante 0.4. La densidad salta en el contacto, donde presión y velocidad son continuas. Las tres cambian en el choque." loading="lazy" decoding="async" /></picture><figcaption>Perfiles en el instante 0,4. La zona sombreada marca la rarefacción; las líneas discontinuas y punteadas indican el contacto y el choque.</figcaption></figure>
+<figure id="fluid-profiles-fallback" class="figure-wide"><picture><source media="(max-width: 650px)" srcset="/assets/figures/relativistic-profiles-mobile-es.svg?v=1791370654" width="450" height="960" /><img src="/assets/figures/relativistic-profiles-es.svg?v=1791370654" width="900" height="720" alt="Densidad, presión y velocidad en el instante 0.4. La densidad salta en el contacto, donde presión y velocidad son continuas. Las tres cambian en el choque." loading="lazy" decoding="async" /></picture><figcaption>Perfiles en el instante 0,4. La zona sombreada marca la rarefacción; las líneas discontinuas y punteadas indican el contacto y el choque.</figcaption></figure>
 
 <p>En un choque, las derivadas ordinarias no bastan. Integrar las leyes de conservación a través del frente móvil da</p>
 
@@ -227,19 +227,19 @@
 
 <p>Los parámetros positivos <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msub><mi>α</mi><mi>k</mi></msub></math> y <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msub><mi>β</mi><mi>k</mi></msub></math> regulan la influencia de cada gradiente. Con gradientes pequeños, el peso es cercano a uno. En un frente abrupto, <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>Λ</mi></math> disminuye y reduce la contribución de ese punto al residuo cuadrático. Esto puede reducir la tendencia a suavizar el salto, manteniendo las restricciones de las ecuaciones donde los gradientes son pequeños.</p>
 
-<p>La animación muestra este mecanismo sobre un perfil de choque suavizado. El artículo presenta el algoritmo completo, las pendientes de activación adaptativas y los resultados numéricos; el <a href="https://github.com/Netzuel/GA_PINNs_Repository" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">repositorio público</a> contiene la implementación.</p>
+<p>Tras el ejemplo de ponderación, la animación compara una predicción GA-PINN con la solución analítica exacta en <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>t</mi><mo>=</mo><mn>0.5</mn></math>. Las curvas negras muestran la referencia; las curvas de color y los círculos abiertos, la predicción. Una vista ampliada permite examinar cómo la red resuelve el contacto y el choque. La predicción procede del <a href="https://github.com/Netzuel/GA_PINNs_Repository/tree/434e059b28b8df89dc84443ce122d8ea5404512f/Sod_Shock_tube" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">modelo guardado en el repositorio público</a>, que añade ponderación causal al método del artículo.</p>
 
 <figure class="article-animation" id="relativistic-animation">
-  <video controls="" playsinline="" preload="metadata" width="1920" height="1080" poster="/assets/video/relativistic-pinn-es.webp?v=1791364632" aria-labelledby="relativistic-animation-caption" aria-describedby="relativistic-animation-transcript">
-    <source src="/assets/video/relativistic-pinn-es.mp4?v=1791364632" type="video/mp4" />
+  <video controls="" playsinline="" preload="metadata" width="1920" height="1080" poster="/assets/video/relativistic-pinn-es.webp?v=1791370654" aria-labelledby="relativistic-animation-caption" aria-describedby="relativistic-animation-transcript">
+    <source src="/assets/video/relativistic-pinn-es.mp4?v=1791370654" type="video/mp4" />
     Puedes descargar el vídeo con el enlace siguiente.
   </video>
-  <img class="animation-print" src="/assets/video/relativistic-pinn-es.webp?v=1791364632" width="1920" height="1080" alt="El peso disminuye donde el perfil del choque tiene gradientes fuertes y reduce su contribución a la pérdida." loading="lazy" />
-  <figcaption id="relativistic-animation-caption">Ondas relativistas, residuos de una PINN y ponderación según los gradientes. <a href="/assets/video/relativistic-pinn-es.mp4?v=1791364632" download="">Descargar vídeo (MP4)</a>.</figcaption>
+  <img class="animation-print" src="/assets/video/relativistic-pinn-es.webp?v=1791370654" width="1920" height="1080" alt="Solución analítica exacta en negro y predicción GA-PINN en color para densidad, presión y velocidad." loading="lazy" />
+  <figcaption id="relativistic-animation-caption">Ondas relativistas, ponderación por gradientes y predicción GA-PINN frente a la referencia analítica. <a href="/assets/video/relativistic-pinn-es.mp4?v=1791370654" download="">Descargar vídeo (MP4)</a>.</figcaption>
   <details class="animation-transcript" id="relativistic-animation-transcript">
     <summary>Descripción del vídeo</summary>
     
-    <p>La densidad aparece en verde, la presión en naranja y la velocidad en azul. Una banda verde clara marca la rarefacción; líneas moradas de trazos y grises de puntos marcan el contacto y el choque en las tres variables. En el contacto solo salta la densidad; en el choque saltan las tres. Después, una red predice estas variables a partir de posición y tiempo, y la diferenciación automática calcula los residuos de Euler. Al estrechar un perfil suave de choque, aumentan sus gradientes. El peso propuesto en el artículo GA-PINNs disminuye cuando aumentan esos gradientes: las curvas muestran su dependencia inversa, su mínimo en el frente y la reducción de la contribución del residuo a la pérdida. El entrenamiento combina el residuo ponderado con las condiciones iniciales y de contorno. Tras entrenar, se comprueban las velocidades de onda, los balances de salto y las cotas físicas.</p>
+    <p>La densidad aparece en verde, la presión en naranja y la velocidad en azul. Una banda verde clara marca la rarefacción; líneas moradas de trazos y grises de puntos marcan el contacto y el choque en las tres variables. En el contacto solo salta la densidad; en el choque saltan las tres. Después, una red predice estas variables a partir de posición y tiempo, y la diferenciación automática calcula los residuos de Euler. Al estrechar un perfil suave de choque, aumentan sus gradientes. El peso propuesto en el artículo GA-PINNs disminuye cuando aumentan esos gradientes: las curvas muestran su dependencia inversa, su mínimo en el frente y la reducción de la contribución del residuo a la pérdida. A continuación, las curvas negras muestran la solución analítica exacta; las curvas de color con círculos abiertos muestran la predicción GA-PINN guardada, en el instante 0,5. Tras los perfiles completos se amplían el contacto y el choque. Este modelo del repositorio incluye ponderación causal. Después, un esquema general de entrenamiento PINN combina el residuo ponderado con las condiciones iniciales y de contorno. Tras entrenar, se comprueban las velocidades de onda, los balances de salto y las cotas físicas.</p>
     
   </details>
 </figure>
@@ -247,10 +247,10 @@
 <p>Tras el entrenamiento, comprueba las posiciones de las ondas y los tres balances de conservación en puntos separados de los usados para entrenar. Comprueba también la positividad de densidad y presión, la cota de velocidad y el balance a través del choque. La solución exacta del tubo ofrece una referencia para cada prueba, incluido el contacto que aparece en la densidad, pero no en la presión ni en la velocidad.</p>
 <footer class="article-end"><a href="/es/blog/">← Todas las entradas</a><a href="/es/investigacion/">Ver la investigación →</a></footer></div>
 </article>
-<script src="/assets/js/article-contents.js?v=1791364632" defer></script>
+<script src="/assets/js/article-contents.js?v=1791370654" defer></script>
 
 
-<script type="module" src="/assets/js/relativistic-fluid.js?v=1791364632"></script>
+<script type="module" src="/assets/js/relativistic-fluid.js?v=1791370654"></script>
 </main>
 <footer class="site-footer wrap">
 <span id="external-link-note" class="sr-only">Se abre en una pestaña nueva.</span>

@@ -103,7 +103,7 @@ function axis(title, range) {
   };
 }
 function surfaceData(data, field, time) {
-  const maximum = field === 2 ? 0.6 : 1;
+  const maximum = field === 2 ? 0.85 : 1;
   const traces = surfacePatches(data, field).map((patch) => ({
     ...patch,
     type: "surface",
@@ -143,15 +143,15 @@ function surfaceLayout(field, width) {
       aspectmode: "manual",
       aspectratio: { x: 1.4, y: 1, z: 0.85 },
       xaxis: axis(`${L.position} x`, [-0.5, 0.5]),
-      yaxis: axis(`${L.time} t`, [0, 0.45]),
+      yaxis: axis(`${L.time} t`, [0, 0.5]),
       zaxis: {
-        ...axis(SYMBOLS[field], [0, field === 2 ? 0.65 : 1.05]),
+        ...axis(SYMBOLS[field], [0, field === 2 ? 0.85 : 1.05]),
         tickvals:
           field === 0
             ? [0.125, 0.5, 1]
             : field === 1
               ? [0.1, 0.5, 1]
-              : [0, 0.3, 0.6],
+              : [0, 0.4, 0.8],
       },
     },
   };
@@ -181,7 +181,7 @@ function sliceLayout(data, field, time) {
       fixedrange: true,
     },
     yaxis: {
-      ...axis(SYMBOLS[field], [-0.03, field === 2 ? 0.6 : 1.05]),
+      ...axis(SYMBOLS[field], [-0.03, field === 2 ? 0.85 : 1.05]),
       fixedrange: true,
     },
     shapes: [
@@ -294,7 +294,7 @@ async function enhance(figure) {
       id: "fluid-time",
       type: "range",
       min: "0",
-      max: "0.45",
+      max: "0.5",
       step: "0.005",
       value: "0.4",
     });

@@ -82,7 +82,7 @@
 {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://antonio-ferrer-sanchez.github.io/blog/"},
 {"@type": "ListItem", "position": 3, "name": "Relativistic fluids: teaching neural networks to follow shocks", "item": "https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/"}
 ]},
-{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/#webpage"}, "headline": "Relativistic fluids: teaching neural networks to follow shocks", "description": "Density, pressure and velocity in a relativistic shock tube: explore the Euler equations in Minkowski space and how PINNs learn fluid evolution.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-shocks-en.png", "datePublished": "2026-10-06", "dateModified": "2026-10-07", "inLanguage": "en", "articleSection": "Relativistic hydrodynamics", "keywords": ["relativistic Euler equations","Minkowski spacetime","relativistic hydrodynamics","physics-informed neural networks","Riemann problem","shock waves"], "wordCount": 1145, "timeRequired": "PT9M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog", "url": "https://antonio-ferrer-sanchez.github.io/blog/"}, "workTranslation": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Gradient-annihilated PINNs for solving Riemann problems: Application to relativistic hydrodynamics", "url": "https://doi.org/10.1016/j.cma.2024.116906"}]}
+{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/#webpage"}, "headline": "Relativistic fluids: teaching neural networks to follow shocks", "description": "Density, pressure and velocity in a relativistic shock tube: explore the Euler equations in Minkowski space and how PINNs learn fluid evolution.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-shocks-en.png", "datePublished": "2026-10-06", "dateModified": "2026-10-07", "inLanguage": "en", "articleSection": "Relativistic hydrodynamics", "keywords": ["relativistic Euler equations","Minkowski spacetime","relativistic hydrodynamics","physics-informed neural networks","Riemann problem","shock waves"], "wordCount": 1232, "timeRequired": "PT9M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog", "url": "https://antonio-ferrer-sanchez.github.io/blog/"}, "workTranslation": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Gradient-annihilated PINNs for solving Riemann problems: Application to relativistic hydrodynamics", "url": "https://doi.org/10.1016/j.cma.2024.116906"}]}
 ]}
 </script>
 
@@ -91,12 +91,12 @@
 <link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/">
 <link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/">
 <link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/">
-<link rel="stylesheet" href="/assets/css/site.css?v=1791364632">
-<link rel="stylesheet" href="/assets/css/print.css?v=1791364632" media="print">
-<link rel="stylesheet" href="/assets/css/relativistic-fluid.css?v=1791364632">
-<script src="/assets/js/header.js?v=1791364632"></script>
+<link rel="stylesheet" href="/assets/css/site.css?v=1791370654">
+<link rel="stylesheet" href="/assets/css/print.css?v=1791370654" media="print">
+<link rel="stylesheet" href="/assets/css/relativistic-fluid.css?v=1791370654">
+<script src="/assets/js/header.js?v=1791370654"></script>
 <meta name="publication-revision" content="e2c7122547283c386c1f5abe51bbc5e0286b1b514a4037da5b4a672208cad8ae">
-<script defer src="/assets/js/publication.js?v=1791364632"></script>
+<script defer src="/assets/js/publication.js?v=1791370654"></script>
 </head>
 <body class="article-page">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -148,7 +148,7 @@
 
 <h2 id="shock-tube">Open a relativistic shock tube</h2>
 
-<p>Initially, two uniform fluids are at rest, separated at <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow></math>. The left side is denser and has higher pressure. Choose <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>Γ</mi><mo>=</mo><mfrac><mn>5</mn><mn>3</mn></mfrac></mrow></math> and the following states:</p>
+<p>Initially, two uniform fluids move to the right at half the speed of light, separated at <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow></math>. The left side is denser and has higher pressure. Choose <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>Γ</mi><mo>=</mo><mfrac><mn>5</mn><mn>3</mn></mfrac></mrow></math> and the following states:</p>
 
 <div class="fluid-table" role="region" aria-label="Initial fluid states" tabindex="0">
 
@@ -166,13 +166,13 @@
         <td>Left</td>
         <td style="text-align: right">1</td>
         <td style="text-align: right">1</td>
-        <td style="text-align: right">0</td>
+        <td style="text-align: right">0.5</td>
       </tr>
       <tr>
         <td>Right</td>
         <td style="text-align: right">0.125</td>
         <td style="text-align: right">0.1</td>
-        <td style="text-align: right">0</td>
+        <td style="text-align: right">0.5</td>
       </tr>
     </tbody>
   </table>
@@ -181,9 +181,9 @@
 
 <p>Density is measured in units of the initial left density, pressure in that density times <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msup><mi>c</mi><mn>2</mn></msup></math>, and velocity in units of <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>c</mi></math>. Position uses an arbitrary length scale; the time unit is the time light takes to cross that length.</p>
 
-<p>Remove the separation and the pressure imbalance drives the flow. The surfaces sample the exact Riemann solution over position and time. Select a fluid variable, rotate the view, and move the time slider to inspect its profile.</p>
+<p>The pressure imbalance changes the flow. The surfaces sample the exact Riemann solution over position and time. Select a fluid variable, rotate the view, and move the time slider to inspect its profile.</p>
 
-<figure id="fluid-explorer" class="figure-wide"><picture><source media="(max-width: 650px)" srcset="/assets/figures/relativistic-surfaces-mobile.svg?v=1791364632" width="450" height="1260" /><img src="/assets/figures/relativistic-surfaces.svg?v=1791364632" width="1200" height="480" alt="Space-time surfaces of density, pressure and velocity. A rarefaction spreads to the left, a contact separates two densities, and a shock moves to the right." loading="lazy" decoding="async" /></picture><figcaption>Relativistic shock-tube evolution. The horizontal coordinates are position and time; height gives the selected fluid variable.</figcaption></figure>
+<figure id="fluid-explorer" class="figure-wide"><picture><source media="(max-width: 650px)" srcset="/assets/figures/relativistic-surfaces-mobile.svg?v=1791370654" width="450" height="1260" /><img src="/assets/figures/relativistic-surfaces.svg?v=1791370654" width="1200" height="480" alt="Space-time surfaces of density, pressure and velocity. A rarefaction fan expands, a contact separates two densities, and a shock moves to the right." loading="lazy" decoding="async" /></picture><figcaption>Relativistic shock-tube evolution. The horizontal coordinates are position and time; height gives the selected fluid variable.</figcaption></figure>
 
 <h2 id="three-waves">Read the three waves</h2>
 
@@ -195,9 +195,9 @@
   <li><strong>Shock.</strong> A sharp compression propagates into the right state. Density, pressure and velocity change across it.</li>
 </ul>
 
-<p>The contact moves at approximately 0.437 times the speed of light; the shock moves at 0.819. The wave pattern can therefore travel faster than the material behind it. This distinction is clear in the velocity panel: the fluid speed between the rarefaction and shock is about 0.437, not the shock speed.</p>
+<p>The contact moves at approximately 0.769 times the speed of light; the shock moves at 0.936. The wave pattern can therefore travel faster than the material behind it. This distinction is clear in the velocity panel: the fluid speed between the rarefaction and shock is about 0.769, not the shock speed.</p>
 
-<figure id="fluid-profiles-fallback" class="figure-wide"><picture><source media="(max-width: 650px)" srcset="/assets/figures/relativistic-profiles-mobile.svg?v=1791364632" width="450" height="960" /><img src="/assets/figures/relativistic-profiles.svg?v=1791364632" width="900" height="720" alt="Density, pressure and velocity at time 0.4. Density jumps at the contact while pressure and velocity remain continuous there. All three change at the shock." loading="lazy" decoding="async" /></picture><figcaption>Profiles at time 0.4. Shading marks the rarefaction; dashed and dotted lines mark the contact and shock.</figcaption></figure>
+<figure id="fluid-profiles-fallback" class="figure-wide"><picture><source media="(max-width: 650px)" srcset="/assets/figures/relativistic-profiles-mobile.svg?v=1791370654" width="450" height="960" /><img src="/assets/figures/relativistic-profiles.svg?v=1791370654" width="900" height="720" alt="Density, pressure and velocity at time 0.4. Density jumps at the contact while pressure and velocity remain continuous there. All three change at the shock." loading="lazy" decoding="async" /></picture><figcaption>Profiles at time 0.4. Shading marks the rarefaction; dashed and dotted lines mark the contact and shock.</figcaption></figure>
 
 <p>Across a shock, ordinary derivatives are insufficient. Integrating the conservation laws through the moving front gives</p>
 
@@ -227,19 +227,19 @@
 
 <p>The positive parameters <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msub><mi>α</mi><mi>k</mi></msub></math> and <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msub><mi>β</mi><mi>k</mi></msub></math> set each gradient’s influence. Small gradients give a weight close to one. At a steep front, <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>Λ</mi></math> decreases and reduces that point’s contribution to the squared residual. This can reduce the pressure to smear the jump while retaining the equation constraints where gradients are small.</p>
 
-<p>The animation shows this mechanism on a smooth shock profile. The paper gives the full algorithm, including adaptive activation slopes and numerical results; the <a href="https://github.com/Netzuel/GA_PINNs_Repository" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">public repository</a> contains the implementation.</p>
+<p>After the weighting example, the animation compares a GA-PINN prediction with the analytical solution (ground truth) at <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>t</mi><mo>=</mo><mn>0.5</mn></math>. Black curves show the reference; coloured curves and open circles show the prediction. A closer view reveals how the network resolves the contact and shock. The prediction comes from the <a href="https://github.com/Netzuel/GA_PINNs_Repository/tree/434e059b28b8df89dc84443ce122d8ea5404512f/Sod_Shock_tube" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">saved public repository model</a>, which adds causal weighting to the method in the paper.</p>
 
 <figure class="article-animation" id="relativistic-animation">
-  <video controls="" playsinline="" preload="metadata" width="1920" height="1080" poster="/assets/video/relativistic-pinn-en.webp?v=1791364632" aria-labelledby="relativistic-animation-caption" aria-describedby="relativistic-animation-transcript">
-    <source src="/assets/video/relativistic-pinn-en.mp4?v=1791364632" type="video/mp4" />
+  <video controls="" playsinline="" preload="metadata" width="1920" height="1080" poster="/assets/video/relativistic-pinn-en.webp?v=1791370654" aria-labelledby="relativistic-animation-caption" aria-describedby="relativistic-animation-transcript">
+    <source src="/assets/video/relativistic-pinn-en.mp4?v=1791370654" type="video/mp4" />
     You can download the video with the link below.
   </video>
-  <img class="animation-print" src="/assets/video/relativistic-pinn-en.webp?v=1791364632" width="1920" height="1080" alt="The weight falls where the shock profile has steep gradients and reduces its contribution to the loss." loading="lazy" />
-  <figcaption id="relativistic-animation-caption">Relativistic waves, PINN residuals and gradient-dependent weighting. <a href="/assets/video/relativistic-pinn-en.mp4?v=1791364632" download="">Download video (MP4)</a>.</figcaption>
+  <img class="animation-print" src="/assets/video/relativistic-pinn-en.webp?v=1791370654" width="1920" height="1080" alt="Analytical ground truth in black and GA-PINN predictions in colour for density, pressure and velocity." loading="lazy" />
+  <figcaption id="relativistic-animation-caption">Relativistic waves, gradient weighting and GA-PINN predictions against the analytical reference. <a href="/assets/video/relativistic-pinn-en.mp4?v=1791370654" download="">Download video (MP4)</a>.</figcaption>
   <details class="animation-transcript" id="relativistic-animation-transcript">
     <summary>Video description</summary>
     
-    <p>Density is green, pressure orange and velocity blue. A pale green band marks the rarefaction; purple dashes and grey dots mark the contact and shock on all three variables. Only density jumps at the contact; all three jump at the shock. A network then predicts these variables from position and time, and automatic differentiation computes the Euler residuals. Narrowing a smooth shock profile increases its gradients. The weight proposed in the GA-PINNs paper falls as those gradients grow: the curves show its inverse dependence, its minimum at the front and the reduction in the residual's contribution to the loss. Training combines the weighted residual with initial and boundary conditions. Wave speeds, jump balances and physical bounds are checked after training.</p>
+    <p>Density is green, pressure orange and velocity blue. A pale green band marks the rarefaction; purple dashes and grey dots mark the contact and shock on all three variables. Only density jumps at the contact; all three jump at the shock. A network then predicts these variables from position and time, and automatic differentiation computes the Euler residuals. Narrowing a smooth shock profile increases its gradients. The weight proposed in the GA-PINNs paper falls as those gradients grow: the curves show its inverse dependence, its minimum at the front and the reduction in the residual's contribution to the loss. Next, black curves show the analytical ground truth and coloured curves with open circles show the saved GA-PINN prediction at time 0.5. The full profiles give way to a close view of the contact and shock. This repository model includes causal weighting. A general PINN training loop then combines the weighted residual with initial and boundary conditions. Wave speeds, jump balances and physical bounds are checked after training.</p>
     
   </details>
 </figure>
@@ -247,10 +247,10 @@
 <p>After training, check the predicted wave positions and all three conservation budgets on points separate from training. Check density and pressure positivity, the velocity bound, and the jump balance across the shock. The exact shock-tube solution provides a reference for each of these tests, including the contact that appears in density but not in pressure or velocity.</p>
 <footer class="article-end"><a href="/blog/">← All posts</a><a href="/research/">Explore the research →</a></footer></div>
 </article>
-<script src="/assets/js/article-contents.js?v=1791364632" defer></script>
+<script src="/assets/js/article-contents.js?v=1791370654" defer></script>
 
 
-<script type="module" src="/assets/js/relativistic-fluid.js?v=1791364632"></script>
+<script type="module" src="/assets/js/relativistic-fluid.js?v=1791370654"></script>
 </main>
 <footer class="site-footer wrap">
 <span id="external-link-note" class="sr-only">Opens in a new tab.</span>
