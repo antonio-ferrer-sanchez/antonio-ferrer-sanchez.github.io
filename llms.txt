@@ -14,7 +14,7 @@
 
 ## Blog posts
 
-- [When smooth neural networks meet shock waves](https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/): Why shocks challenge PINNs, how gradient weighting changes the loss, and how conservation checks expose an incorrect wave speed.
+- [Relativistic fluids: teaching neural networks to follow shocks](https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/): Density, pressure and velocity in a relativistic shock tube: explore the Euler equations in Minkowski space and how PINNs learn fluid evolution.
 - [From solving equations to controlling quantum systems](https://antonio-ferrer-sanchez.github.io/blog/counterdiabatic-driving/): How PINNs learn counterdiabatic quantum controls: network outputs, physics-based losses, training and independent validation.
 - [Physics-informed machine learning: from physical laws to neural solvers](https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/): How physical knowledge shapes learning, how PINNs solve differential equations, and how to check whether a learned solution is reliable.
 

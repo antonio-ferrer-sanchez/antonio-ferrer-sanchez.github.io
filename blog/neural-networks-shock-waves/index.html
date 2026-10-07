@@ -5,34 +5,34 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Neural networks and shock waves · Antonio Ferrer-Sánchez</title>
-<meta name="description" content="Why shocks challenge PINNs, how gradient weighting changes the loss, and how conservation checks expose an incorrect wave speed.">
+<title>Relativistic fluids and PINNs · Antonio Ferrer-Sánchez</title>
+<meta name="description" content="Density, pressure and velocity in a relativistic shock tube: explore the Euler equations in Minkowski space and how PINNs learn fluid evolution.">
 <meta name="author" content="Antonio Ferrer-Sánchez">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta property="og:site_name" content="Antonio Ferrer-Sánchez">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Neural networks and shock waves">
-<meta property="og:description" content="Why shocks challenge PINNs, how gradient weighting changes the loss, and how conservation checks expose an incorrect wave speed.">
+<meta property="og:title" content="Relativistic fluids and PINNs">
+<meta property="og:description" content="Density, pressure and velocity in a relativistic shock tube: explore the Euler equations in Minkowski space and how PINNs learn fluid evolution.">
 <meta property="og:url" content="https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="es_ES">
 <meta property="og:image" content="https://antonio-ferrer-sanchez.github.io/assets/images/share-shocks-en.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="When smooth neural networks meet shock waves, with a plot of an exact shock and two smooth transition profiles.">
+<meta property="og:image:alt" content="Three-dimensional density, pressure and velocity surfaces for a relativistic shock tube.">
 <meta property="article:published_time" content="2026-10-06">
-<meta property="article:modified_time" content="2026-10-06">
+<meta property="article:modified_time" content="2026-10-07">
 <meta property="article:author" content="https://antonio-ferrer-sanchez.github.io/">
-<meta property="article:section" content="Scientific machine learning">
-<meta property="article:tag" content="physics-informed neural networks">
-<meta property="article:tag" content="shock waves">
-<meta property="article:tag" content="GA-PINNs">
-<meta property="article:tag" content="Riemann problems">
+<meta property="article:section" content="Relativistic hydrodynamics">
+<meta property="article:tag" content="relativistic Euler equations">
+<meta property="article:tag" content="Minkowski spacetime">
 <meta property="article:tag" content="relativistic hydrodynamics">
-<meta property="article:tag" content="conservation laws">
+<meta property="article:tag" content="physics-informed neural networks">
+<meta property="article:tag" content="Riemann problem">
+<meta property="article:tag" content="shock waves">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Neural networks and shock waves">
-<meta name="twitter:description" content="Why shocks challenge PINNs, how gradient weighting changes the loss, and how conservation checks expose an incorrect wave speed.">
+<meta name="twitter:title" content="Relativistic fluids and PINNs">
+<meta name="twitter:description" content="Density, pressure and velocity in a relativistic shock tube: explore the Euler equations in Minkowski space and how PINNs learn fluid evolution.">
 <meta name="twitter:image" content="https://antonio-ferrer-sanchez.github.io/assets/images/share-shocks-en.png">
 <link rel="me" href="https://scholar.google.com/citations?user=Ajj7DC4AAAAJ">
 <link rel="me" href="https://orcid.org/0000-0002-2305-5261">
@@ -69,8 +69,8 @@
 "@type": "WebPage",
 "@id": "https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/#webpage",
 "url": "https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/",
-"name": "Neural networks and shock waves · Antonio Ferrer-Sánchez",
-"description": "Why shocks challenge PINNs, how gradient weighting changes the loss, and how conservation checks expose an incorrect wave speed.",
+"name": "Relativistic fluids and PINNs · Antonio Ferrer-Sánchez",
+"description": "Density, pressure and velocity in a relativistic shock tube: explore the Euler equations in Minkowski space and how PINNs learn fluid evolution.",
 "inLanguage": "en",
 "isPartOf": {"@id": "https://antonio-ferrer-sanchez.github.io/#website"},
 "about": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"},
@@ -80,9 +80,9 @@
 {"@type": "BreadcrumbList", "@id": "https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/#breadcrumb", "itemListElement": [
 {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://antonio-ferrer-sanchez.github.io/"},
 {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://antonio-ferrer-sanchez.github.io/blog/"},
-{"@type": "ListItem", "position": 3, "name": "When smooth neural networks meet shock waves", "item": "https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/"}
+{"@type": "ListItem", "position": 3, "name": "Relativistic fluids: teaching neural networks to follow shocks", "item": "https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/"}
 ]},
-{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/#webpage"}, "headline": "When smooth neural networks meet shock waves", "description": "Why shocks challenge PINNs, how gradient weighting changes the loss, and how conservation checks expose an incorrect wave speed.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-shocks-en.png", "datePublished": "2026-10-06", "dateModified": "2026-10-06", "inLanguage": "en", "articleSection": "Scientific machine learning", "keywords": ["physics-informed neural networks","shock waves","GA-PINNs","Riemann problems","relativistic hydrodynamics","conservation laws"], "wordCount": 1127, "timeRequired": "PT10M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog", "url": "https://antonio-ferrer-sanchez.github.io/blog/"}, "workTranslation": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Gradient-annihilated PINNs for solving Riemann problems: Application to relativistic hydrodynamics", "url": "https://doi.org/10.1016/j.cma.2024.116906"}]}
+{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/#webpage"}, "headline": "Relativistic fluids: teaching neural networks to follow shocks", "description": "Density, pressure and velocity in a relativistic shock tube: explore the Euler equations in Minkowski space and how PINNs learn fluid evolution.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-shocks-en.png", "datePublished": "2026-10-06", "dateModified": "2026-10-07", "inLanguage": "en", "articleSection": "Relativistic hydrodynamics", "keywords": ["relativistic Euler equations","Minkowski spacetime","relativistic hydrodynamics","physics-informed neural networks","Riemann problem","shock waves"], "wordCount": 1056, "timeRequired": "PT9M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog", "url": "https://antonio-ferrer-sanchez.github.io/blog/"}, "workTranslation": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Gradient-annihilated PINNs for solving Riemann problems: Application to relativistic hydrodynamics", "url": "https://doi.org/10.1016/j.cma.2024.116906"}]}
 ]}
 </script>
 
@@ -91,12 +91,12 @@
 <link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/">
 <link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/">
 <link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/">
-<link rel="stylesheet" href="/assets/css/site.css?v=1791313756">
-<link rel="stylesheet" href="/assets/css/print.css?v=1791313756" media="print">
-<link rel="stylesheet" href="/assets/css/shocks.css?v=1791313756">
-<script src="/assets/js/header.js?v=1791313756"></script>
+<link rel="stylesheet" href="/assets/css/site.css?v=1791360585">
+<link rel="stylesheet" href="/assets/css/print.css?v=1791360585" media="print">
+<link rel="stylesheet" href="/assets/css/relativistic-fluid.css?v=1791360585">
+<script src="/assets/js/header.js?v=1791360585"></script>
 <meta name="publication-revision" content="e2c7122547283c386c1f5abe51bbc5e0286b1b514a4037da5b4a672208cad8ae">
-<script defer src="/assets/js/publication.js?v=1791313756"></script>
+<script defer src="/assets/js/publication.js?v=1791360585"></script>
 </head>
 <body class="article-page">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -115,100 +115,136 @@
 <main id="main" tabindex="-1"><article class="wrap article-shell">
 <header class="page-heading article-heading">
 <a class="text-link article-back" href="/blog/">← All posts</a>
-<p class="article-meta"><span>Scientific machine learning</span><time datetime="2026-10-06">6 October 2026</time><span>10 min read</span></p>
-<h1>When smooth neural networks meet shock waves</h1><p class="page-lede">Why shocks challenge PINNs, how gradient weighting changes the loss, and how conservation checks expose an incorrect wave speed.</p>
+<p class="article-meta"><span>Relativistic hydrodynamics</span><time datetime="2026-10-06">6 October 2026</time><span>9 min read</span></p>
+<h1>Relativistic fluids: teaching neural networks to follow shocks</h1><p class="page-lede">Density, pressure and velocity in a relativistic shock tube: explore the Euler equations in Minkowski space and how PINNs learn fluid evolution.</p>
 <p class="article-byline"><a rel="author" href="/">By Antonio Ferrer-Sánchez</a></p>
 </header>
-<aside class="article-contents" aria-labelledby="contents-heading"><h2 id="contents-heading">In this post</h2><nav aria-label="Post contents"><a href="#a-sharp-front">A sharp front changes the problem</a><a href="#shock-speed">Conservation sets the shock speed</a><a href="#smooth-front">A smooth network can make a steep front</a><a href="#gradient-weighting">What gradient weighting changes</a><a href="#ga-pinns">The connection to GA-PINNs</a><a href="#validation">Checks that a loss curve cannot replace</a><a href="#first-experiment">A useful first experiment</a></nav></aside>
-<div class="article-body"><h2 id="a-sharp-front">A sharp front changes the problem</h2>
+<aside class="article-contents" aria-labelledby="contents-heading"><h2 id="contents-heading">In this post</h2><nav aria-label="Post contents"><a href="#relativistic-fluid">When the fluid is relativistic</a><a href="#equations">The equations in flat spacetime</a><a href="#shock-tube">Open a relativistic shock tube</a><a href="#three-waves">Read the three waves</a><a href="#pinn">What the neural network learns</a><a href="#learning-shocks">Learning across a shock</a></nav></aside>
+<div class="article-body"><h2 id="relativistic-fluid">When the fluid is relativistic</h2>
 
-<p>A shock wave concentrates a finite change in a fluid’s state into a very thin region. In an inviscid model, that region becomes a jump. Pressure, density or velocity can have different values on its two sides, and the jump moves as the fluid evolves.</p>
+<p>A pressure imbalance sets a fluid in motion. At relativistic speeds, its evolution couples rest mass, momentum and energy through the Lorentz factor. Pressure and internal energy also contribute to the fluid’s inertia. The familiar Euler equations must account for these effects.</p>
 
-<p>In the <a href="/blog/physics-informed-machine-learning/">introductory post</a>, a physics-informed neural network represented a smoothly diffusing temperature. Automatic differentiation supplied the derivatives in the heat equation. With a shock, the exact field has no ordinary derivative at the jump. The physical law still applies, but we need a formulation that makes sense across the discontinuity.</p>
+<p>Here we consider a perfect fluid in <strong>Minkowski spacetime</strong>: flat spacetime, with no gravitational source terms in Cartesian coordinates. A one-dimensional shock tube lets us see the resulting waves in density, pressure and velocity, then ask how a physics-informed neural network can represent their evolution.</p>
 
-<p>A network may draw a sharp front in the wrong place. It may also receive a larger pointwise residual while approximating the correct jump more closely. The Burgers equation shows why.</p>
+<h2 id="equations">The equations in flat spacetime</h2>
 
-<h2 id="shock-speed">Conservation sets the shock speed</h2>
+<p>Let <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>ρ</mi></math> be the rest-mass density measured with the fluid, <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>p</mi></math> its pressure and <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msup><mi>u</mi><mi>μ</mi></msup></math> its four-velocity. We set <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>c</mi><mo>=</mo><mn>1</mn></mrow></math> and use metric signature <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mo>(</mo><mrow><mo>−</mo><mo>,</mo><mo>+</mo><mo>,</mo><mo>+</mo><mo>,</mo><mo>+</mo></mrow><mo>)</mo></mrow></math>. Rest-mass conservation and energy–momentum conservation are</p>
 
-<p>Consider the one-dimensional inviscid Burgers equation. Let <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>u</mi></math> be a dimensionless scalar field, with dimensionless position <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>x</mi></math> and time <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>t</mi></mrow></math>. Its flux is quadratic:</p>
+<div class="equation" role="region" aria-label="Rest-mass and energy–momentum conservation" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mtable columnalign="left"><mtr><mtd><mrow><msub><mo>∂</mo><mi>μ</mi></msub><mrow><mo>(</mo><mrow><mi>ρ</mi><msup><mi>u</mi><mi>μ</mi></msup></mrow><mo>)</mo></mrow><mo>=</mo><mn>0</mn><mo>,</mo><mspace width="1em" /><msub><mo>∂</mo><mi>μ</mi></msub><msup><mi>T</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msup><mo>=</mo><mn>0</mn></mrow></mtd></mtr><mtr><mtd><mrow><msup><mi>T</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msup><mo>=</mo><mi>ρ</mi><mi>h</mi><msup><mi>u</mi><mi>μ</mi></msup><msup><mi>u</mi><mi>ν</mi></msup><mo>+</mo><mi>p</mi><msup><mi>η</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msup></mrow></mtd></mtr></mtable></math></div>
 
-<div class="equation" role="region" aria-label="Burgers conservation law" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mfrac><mrow><mo>∂</mo><mi>u</mi></mrow><mrow><mo>∂</mo><mi>t</mi></mrow></mfrac><mo>+</mo><mfrac><mrow><mo>∂</mo><mi>f</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><mrow><mo>∂</mo><mi>x</mi></mrow></mfrac><mo>=</mo><mn>0</mn><mo>,</mo><mspace width="1em" /><mi>f</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><msup><mi>u</mi><mn>2</mn></msup></mrow><mrow><mn>2</mn></mrow></mfrac><mo>.</mo></mrow></math></div>
+<p>Here <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msup><mi>η</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msup></math> is the Minkowski metric. The perfect-fluid stress-energy tensor contains the specific enthalpy <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>h</mi></math>. For an ideal gas with adiabatic index <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>Γ</mi></math>, the closure is</p>
 
-<p>Choose initial data equal to one to the left of the origin and zero to the right. This is a Riemann problem: two constant states separated by a single jump. In smooth regions, the characteristic speed equals the field value. The left state therefore catches the right state, producing a compressive shock.</p>
+<div class="equation" role="region" aria-label="Fluid variables and equation of state" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mtable columnalign="left"><mtr><mtd><mrow><msup><mi>u</mi><mi>μ</mi></msup><mo>=</mo><mi>W</mi><mrow><mo>(</mo><mrow><mn>1</mn><mo>,</mo><msup><mi>v</mi><mi>x</mi></msup><mo>,</mo><msup><mi>v</mi><mi>y</mi></msup><mo>,</mo><msup><mi>v</mi><mi>z</mi></msup></mrow><mo>)</mo></mrow></mrow></mtd></mtr><mtr><mtd><mrow><mi>W</mi><mo>=</mo><mfrac><mn>1</mn><msqrt><mrow><mn>1</mn><mo>−</mo><msup><mi>v</mi><mn>2</mn></msup></mrow></msqrt></mfrac></mrow></mtd></mtr><mtr><mtd><mrow><mi>h</mi><mo>=</mo><mn>1</mn><mo>+</mo><mi>ε</mi><mo>+</mo><mfrac><mi>p</mi><mi>ρ</mi></mfrac><mo>,</mo><mspace width="1em" /><mi>p</mi><mo>=</mo><mrow><mo>(</mo><mrow><mi>Γ</mi><mo>−</mo><mn>1</mn></mrow><mo>)</mo></mrow><mi>ρ</mi><mi>ε</mi></mrow></mtd></mtr></mtable></math></div>
 
-<p>Integrating the conservation law across a moving jump gives the Rankine–Hugoniot relation. It fixes the speed <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>s</mi></math> from the flux and state on each side:</p>
+<p>Here <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>ε</mi></math> is specific internal energy, and <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msup><mi>v</mi><mn>2</mn></msup></math> is the squared three-speed. The density <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>ρ</mi></math> is a rest-frame quantity; the velocity and the conserved densities below refer to the chosen laboratory frame.</p>
 
-<div class="equation" role="region" aria-label="Rankine–Hugoniot shock speed" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>s</mi><mo>=</mo><mfrac><mrow><mi>f</mi><mo stretchy="false">(</mo><msub><mi>u</mi><mi mathvariant="normal">L</mi></msub><mo stretchy="false">)</mo><mo>−</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>u</mi><mi mathvariant="normal">R</mi></msub><mo stretchy="false">)</mo></mrow><mrow><msub><mi>u</mi><mi mathvariant="normal">L</mi></msub><mo>−</mo><msub><mi>u</mi><mi mathvariant="normal">R</mi></msub></mrow></mfrac><mo>=</mo><mfrac><mrow><msub><mi>u</mi><mi mathvariant="normal">L</mi></msub><mo>+</mo><msub><mi>u</mi><mi mathvariant="normal">R</mi></msub></mrow><mrow><mn>2</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>.</mo></mrow></math></div>
+<p>For motion along one Cartesian direction, with no transverse velocity, the system becomes</p>
 
-<p>At time 0.6, the shock is at position 0.3, with constant states on either side. The <a href="https://www.clawpack.org/riemann_book/html/Burgers.html" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">Burgers chapter of the Clawpack Riemann book</a> develops this construction and its characteristic picture.</p>
+<div class="equation" role="region" aria-label="Relativistic Euler equations" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mtable columnalign="left"><mtr><mtd><mrow><mfrac><mrow><mo>∂</mo><mi mathvariant="bold">U</mi></mrow><mrow><mo>∂</mo><mi>t</mi></mrow></mfrac><mo>+</mo><mfrac><mrow><mo>∂</mo><mi mathvariant="bold">F</mi></mrow><mrow><mo>∂</mo><mi>x</mi></mrow></mfrac><mo>=</mo><mn>0</mn></mrow></mtd></mtr></mtable></math></div>
 
-<p>Conservation also needs an admissibility condition. Reversing the initial states produces an expanding rarefaction, not a compressive shock. A jump can satisfy the Rankine–Hugoniot relation and still select the wrong physical solution. For this convex scalar flux, the entropy condition distinguishes the two cases.</p>
+<div class="equation" role="region" aria-label="Conserved variables and fluxes" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mtable columnalign="left"><mtr><mtd><mrow><mi mathvariant="bold">U</mi><mo>=</mo><mrow><mo>(</mo><mtable><mtr><mtd><mi>D</mi></mtd></mtr><mtr><mtd><mi>S</mi></mtd></mtr><mtr><mtd><mi>τ</mi></mtd></mtr></mtable><mo>)</mo></mrow><mo>,</mo><mspace width="1em" /><mi mathvariant="bold">F</mi><mo>=</mo><mrow><mo>(</mo><mtable><mtr><mtd><mrow><mi>D</mi><mi>v</mi></mrow></mtd></mtr><mtr><mtd><mrow><mi>S</mi><mi>v</mi><mo>+</mo><mi>p</mi></mrow></mtd></mtr><mtr><mtd><mrow><mi>S</mi><mo>−</mo><mi>D</mi><mi>v</mi></mrow></mtd></mtr></mtable><mo>)</mo></mrow></mrow></mtd></mtr><mtr><mtd><mrow><mi>D</mi><mo>=</mo><mi>ρ</mi><mi>W</mi><mo>,</mo><mspace width="1em" /><mi>S</mi><mo>=</mo><mi>ρ</mi><mi>h</mi><msup><mi>W</mi><mn>2</mn></msup><mi>v</mi></mrow></mtd></mtr><mtr><mtd><mrow><mi>τ</mi><mo>=</mo><mi>ρ</mi><mi>h</mi><msup><mi>W</mi><mn>2</mn></msup><mo>−</mo><mi>p</mi><mo>−</mo><mi>D</mi></mrow></mtd></mtr></mtable></math></div>
 
-<h2 id="smooth-front">A smooth network can make a steep front</h2>
+<p>The three components are laboratory-frame rest-mass density <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>D</mi></math>, momentum density <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>S</mi></math> and energy density excluding rest-mass energy <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>τ</mi></math>. Their fluxes describe what crosses a fixed surface. The Lorentz factor couples the primitive variables to all three conserved quantities. <a href="https://link.springer.com/article/10.12942/lrr-2003-7" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">Martí and Müller’s review</a> develops this formulation and its numerical solution.</p>
 
-<p>A finite network with smooth activations has a continuous output. It can nevertheless represent a narrow transition. To see how, take a single hyperbolic tangent with prescribed speed <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>v</mi></math> and positive width <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>δ</mi></math>:</p>
+<h2 id="shock-tube">Open a relativistic shock tube</h2>
 
-<div class="equation" role="region" aria-label="Prescribed smooth travelling front" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>u</mi><mi>δ</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>[</mo><mn>1</mn><mo>−</mo><mi mathvariant="normal">tanh</mi><mo stretchy="false">(</mo><mfrac><mrow><mi>x</mi><mo>−</mo><mi>v</mi><mi>t</mi></mrow><mrow><mi>δ</mi></mrow></mfrac><mo stretchy="false">)</mo><mo>]</mo><mo>.</mo></mrow></math></div>
+<p>Initially, two uniform fluids are at rest, separated at <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow></math>. The left side is denser and has higher pressure. Choose <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>Γ</mi><mo>=</mo><mfrac><mn>5</mn><mn>3</mn></mfrac></mrow></math> and the following states:</p>
 
-<p>One tanh unit followed by an affine output represents this function. Its midpoint travels at the chosen speed, and reducing the width makes the transition steeper.</p>
+<div class="fluid-table" role="region" aria-label="Initial fluid states" tabindex="0">
 
-<figure class="figure-wide" data-plot="shock-profile"><picture><source media="(max-width: 650px)" srcset="/assets/figures/shocks-profiles-mobile.svg?v=1791313756" width="450" height="720" /><img src="/assets/figures/shocks-profiles.svg?v=1791313756" width="900" height="500" alt="Full and close-up views of the Burgers shock at position 0.3, with smooth profiles of widths 0.12 and 0.03." loading="lazy" decoding="async" /></picture><figcaption>Exact shock and tanh profiles at time 0.6 and speed 0.5. The close-up shows how width changes the transition.</figcaption></figure>
+  <table>
+    <thead>
+      <tr>
+        <th>Initial state</th>
+        <th style="text-align: right">Rest-mass density</th>
+        <th style="text-align: right">Pressure</th>
+        <th style="text-align: right">Velocity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Left</td>
+        <td style="text-align: right">1</td>
+        <td style="text-align: right">1</td>
+        <td style="text-align: right">0</td>
+      </tr>
+      <tr>
+        <td>Right</td>
+        <td style="text-align: right">0.125</td>
+        <td style="text-align: right">0.1</td>
+        <td style="text-align: right">0</td>
+      </tr>
+    </tbody>
+  </table>
 
-<p>The narrower curve approaches the step at every point away from the front and reduces the integrated absolute error. Convergence is not uniform: arbitrarily close to the jump, the smooth transition still contains intermediate values.</p>
+</div>
 
-<p>Now substitute the smooth profile into the equation. Because the profile is a travelling wave, its time derivative is minus its speed times its spatial derivative. The residual becomes</p>
+<p>Density is measured in units of the initial left density, pressure in that density times <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msup><mi>c</mi><mn>2</mn></msup></math>, and velocity in units of <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>c</mi></math>. Position uses an arbitrary length scale; the time unit is the time light takes to cross that length.</p>
 
-<div class="equation" role="region" aria-label="Residual of the smooth travelling front" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>r</mi><mo>=</mo><mfrac><mrow><mo>∂</mo><msub><mi>u</mi><mi>δ</mi></msub></mrow><mrow><mo>∂</mo><mi>t</mi></mrow></mfrac><mo>+</mo><msub><mi>u</mi><mi>δ</mi></msub><mfrac><mrow><mo>∂</mo><msub><mi>u</mi><mi>δ</mi></msub></mrow><mrow><mo>∂</mo><mi>x</mi></mrow></mfrac><mo>=</mo><mo stretchy="false">(</mo><msub><mi>u</mi><mi>δ</mi></msub><mo>−</mo><mi>v</mi><mo stretchy="false">)</mo><mfrac><mrow><mo>∂</mo><msub><mi>u</mi><mi>δ</mi></msub></mrow><mrow><mo>∂</mo><mi>x</mi></mrow></mfrac><mo>.</mo></mrow></math></div>
+<p>Remove the separation and the pressure imbalance drives the flow. The surfaces sample the exact Riemann solution over position and time. Select a fluid variable, rotate the view, and move the time slider to inspect its profile.</p>
 
-<p>The spatial derivative grows as the width decreases. Even at the correct speed, the residual is nonzero inside the smooth layer. Its positive and negative contributions cancel when integrated across the whole front, but their squares do not cancel. A squared pointwise residual can therefore grow as the profile becomes sharper.</p>
+<figure id="fluid-explorer" class="figure-wide"><picture><source media="(max-width: 650px)" srcset="/assets/figures/relativistic-surfaces-mobile.svg?v=1791360585" width="450" height="1260" /><img src="/assets/figures/relativistic-surfaces.svg?v=1791360585" width="1200" height="480" alt="Space-time surfaces of density, pressure and velocity. A rarefaction spreads to the left, a contact separates two densities, and a shock moves to the right." loading="lazy" decoding="async" /></picture><figcaption>Relativistic shock-tube evolution. The horizontal coordinates are position and time; height gives the selected fluid variable.</figcaption></figure>
 
-<h2 id="gradient-weighting">What gradient weighting changes</h2>
+<h2 id="three-waves">Read the three waves</h2>
 
-<p>GA-PINNs reduce the influence of steep gradients through a weight <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>λ</mi></math>. For a single dimensionless field, let <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>g</mi><mo>=</mo><mo>|</mo><msub><mo>∂</mo><mi>x</mi></msub><msub><mi>u</mi><mi>δ</mi></msub><mo>|</mo></mrow></math> and use</p>
+<p>The initial jump separates into three features:</p>
 
-<div class="equation" role="region" aria-label="Gradient weight and weighted squared residual" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mtable rowspacing="0.4em"><mtr><mtd><mrow><mi>λ</mi><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>1</mn><mrow><mn>1</mn><mo>+</mo><mi>α</mi><msup><mi>g</mi><mi>β</mi></msup></mrow></mfrac><mo>,</mo></mrow></mtd></mtr><mtr><mtd><mrow><msub><mi>J</mi><mi>λ</mi></msub><mo>=</mo><msubsup><mo>∫</mo><mrow><mo>−</mo><mi>∞</mi></mrow><mi>∞</mi></msubsup><mi>λ</mi><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo><msup><mi>r</mi><mn>2</mn></msup><mspace width="0.2em" /><mi mathvariant="normal">d</mi><mi>x</mi><mo>.</mo></mrow></mtd></mtr></mtable></math></div>
+<ul>
+  <li><strong>Rarefaction.</strong> An expanding fan travels into the high-pressure left state. Density and pressure decrease smoothly through it while the fluid accelerates to the right.</li>
+  <li><strong>Contact discontinuity.</strong> Two fluids meet at the same pressure and velocity but with different densities. The contact moves with the fluid.</li>
+  <li><strong>Shock.</strong> A sharp compression propagates into the right state. Density, pressure and velocity change across it.</li>
+</ul>
 
-<p>The strength <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>α</mi></math> sets how much the gradient affects the weight; the exponent <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>β</mi></math> controls its shape. For positive strength, the weight approaches one in flat regions and zero at large gradients. For dimensional fields, the gradients need corresponding scales. This factor appears in <a href="https://arxiv.org/html/2305.08448v2#S3.SS1" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">the GA-PINN formulation</a>, which combines density, velocity and pressure gradients.</p>
+<p>The contact moves at approximately 0.437 times the speed of light; the shock moves at 0.819. The wave pattern can therefore travel faster than the material behind it. This distinction is clear in the velocity panel: the fluid speed between the rarefaction and shock is about 0.437, not the shock speed.</p>
 
-<p>Adjust the controls to follow the weight from gradient space to the shock front, then compare the weighted residual and its spatial integral. The dotted integral curves use the correct speed, 0.5.</p>
+<figure id="fluid-profiles-fallback" class="figure-wide"><picture><source media="(max-width: 650px)" srcset="/assets/figures/relativistic-profiles-mobile.svg?v=1791360585" width="450" height="960" /><img src="/assets/figures/relativistic-profiles.svg?v=1791360585" width="900" height="720" alt="Density, pressure and velocity at time 0.4. Density jumps at the contact while pressure and velocity remain continuous there. All three change at the shock." loading="lazy" decoding="async" /></picture><figcaption>Profiles at time 0.4. Shading marks the rarefaction; dashed and dotted lines mark the contact and shock.</figcaption></figure>
 
-<figure class="figure-wide" data-plot="shock-lambda"><picture><source media="(max-width: 650px)" srcset="/assets/figures/shocks-residuals-mobile.svg?v=1791313756" width="450" height="1600" /><img src="/assets/figures/shocks-residuals.svg?v=1791313756" width="900" height="1000" alt="Four panels show the lambda function versus gradient, the weight across the front, squared residuals before and after weighting, and their integrals as width changes. Weighting suppresses the residual around the steep front." loading="lazy" decoding="async" /></picture><figcaption>The GA-PINN weight and its effect at α = 1, β = 2, width 0.03 and speed 0.7. Dotted integral curves use the correct speed 0.5.</figcaption></figure>
+<p>Across a shock, ordinary derivatives are insufficient. Integrating the conservation laws through the moving front gives</p>
 
-<p>Weighting reduces the penalty on sharp fronts, but a small weighted residual does not guarantee the correct propagation speed. Initial and boundary conditions remain part of the training objective.</p>
+<div class="equation" role="region" aria-label="Jump condition" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mtable columnalign="left"><mtr><mtd><mrow><mo>[</mo><mi mathvariant="bold">F</mi><mo>]</mo><mo>=</mo><mi>s</mi><mo>[</mo><mi mathvariant="bold">U</mi><mo>]</mo></mrow></mtd></mtr></mtable></math></div>
 
-<p>For the incorrect speed, the midpoint reaches 0.42 at time 0.6, giving a position error of 0.12 regardless of how thin the layer becomes. Integrating the unweighted residual gives 0.2, the same defect obtained from the jump’s flux balance.</p>
+<p>Brackets denote the difference between right and left states, and <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>s</mi></math> is the front speed. All three balances must hold. The physical shock also satisfies the entropy condition. The <a href="https://www.uv.es/astrorela/simulacionnumerica/node38.html" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">relativistic Riemann construction</a> combines these jump conditions with the smooth rarefaction solution.</p>
 
-<h2 id="ga-pinns">The connection to GA-PINNs</h2>
+<h2 id="pinn">What the neural network learns</h2>
 
-<p>Our <a href="https://doi.org/10.1016/j.cma.2024.116906" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">2024 GA-PINNs paper</a> uses gradient-dependent weighting and adaptive activation slopes for relativistic Riemann problems. The network predicts density, velocity and pressure. The study compares its solutions with exact references, a baseline PINN and a shock-capturing scheme. The <a href="https://github.com/Netzuel/GA_PINNs_Repository" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">public repository</a> provides the research implementation.</p>
+<p>A PINN takes position and time as inputs and predicts the primitive variables:</p>
 
-<h2 id="validation">Checks that a loss curve cannot replace</h2>
+<div class="equation" role="region" aria-label="PINN prediction and residual" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mtable columnalign="left"><mtr><mtd><mrow><msub><mi>N</mi><mi>θ</mi></msub><mrow><mo>(</mo><mrow><mi>t</mi><mo>,</mo><mi>x</mi></mrow><mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo><mrow><msub><mi>ρ</mi><mi>θ</mi></msub><mo>,</mo><msub><mi>p</mi><mi>θ</mi></msub><mo>,</mo><msub><mi>v</mi><mi>θ</mi></msub></mrow><mo>)</mo></mrow></mrow></mtd></mtr><mtr><mtd><mrow><msub><mi>R</mi><mi>θ</mi></msub><mo>=</mo><mfrac><mrow><mo>∂</mo><msub><mi mathvariant="bold">U</mi><mi>θ</mi></msub></mrow><mrow><mo>∂</mo><mi>t</mi></mrow></mfrac><mo>+</mo><mfrac><mrow><mo>∂</mo><msub><mi mathvariant="bold">F</mi><mi>θ</mi></msub></mrow><mrow><mo>∂</mo><mi>x</mi></mrow></mfrac></mrow></mtd></mtr></mtable></math></div>
 
-<ol>
-  <li><strong>Locate the waves.</strong> Compare shock positions at several times and estimate their propagation speeds. For this monotone scalar example, use the half-height crossing to locate the front.</li>
-  <li><strong>Check the jump balance.</strong> Evaluate the flux and state on both sides. The Rankine–Hugoniot defect should decrease with a better solution. For a system, check every conserved component.</li>
-  <li><strong>Measure the conservation budget.</strong> On a fixed interval, the change in the integrated field must equal the net flux through the boundaries.</li>
-  <li><strong>Resolve the transition in the evaluation grid.</strong> Report a field error on points separate from training, together with front position and overshoot. Refine that grid until the diagnostics are stable.</li>
-  <li><strong>Check physical admissibility.</strong> Distinguish shocks from rarefactions. In hydrodynamics, also check density, pressure and any applicable velocity bounds.</li>
-</ol>
+<p>These outputs determine the Lorentz factor, enthalpy, conserved state and flux. Automatic differentiation then evaluates the time and space derivatives in the Euler residuals. Training combines those residuals with the known initial states and the boundary conditions, and updates the network parameters through backpropagation.</p>
 
-<p>For the Burgers example, the conservation budget on a fixed interval is</p>
+<p>For this time interval, the waves stay inside the domain, so its ends remain in their initial states. The output parameterization can enforce positive density and pressure and a speed below light speed. Such bounds help keep the prediction physically admissible; the conservation equations still have to be learned.</p>
 
-<div class="equation" role="region" aria-label="Conservation budget on a fixed interval" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mtable rowspacing="0.35em"><mtr><mtd><mrow><mfrac><mrow><mi mathvariant="normal">d</mi></mrow><mrow><mi mathvariant="normal">d</mi><mi>t</mi></mrow></mfrac><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mspace width="0.2em" /><mi mathvariant="normal">d</mi><mi>x</mi></mrow></mtd></mtr><mtr><mtd><mrow><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>−</mo><mi>f</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>.</mo></mrow></mtd></mtr></mtable></math></div>
+<figure class="article-animation" id="relativistic-animation">
+  <video controls="" playsinline="" preload="metadata" width="1920" height="1080" poster="/assets/video/relativistic-pinn-en.webp?v=1791360585" aria-labelledby="relativistic-animation-caption" aria-describedby="relativistic-animation-transcript">
+    <source src="/assets/video/relativistic-pinn-en.mp4?v=1791360585" type="video/mp4" />
+    You can download the video with the link below.
+  </video>
+  <img class="animation-print" src="/assets/video/relativistic-pinn-en.webp?v=1791360585" width="1920" height="1080" alt="A PINN takes position and time and returns density, pressure and velocity." loading="lazy" />
+  <figcaption id="relativistic-animation-caption">From the shock tube to PINN training. Fluid evolution follows the exact solution; the network scenes explain the learning process. <a href="/assets/video/relativistic-pinn-en.mp4?v=1791360585" download="">Download video (MP4)</a>.</figcaption>
+  <details class="animation-transcript" id="relativistic-animation-transcript">
+    <summary>Video description</summary>
+    
+    <p>The initial jump evolves into a rarefaction, a contact and a shock. Density is green, pressure orange and velocity blue. Position and time then enter a neural network that predicts those three variables. Its outputs form the conserved state and fluxes; automatic differentiation computes the Euler residuals. The loss combines those residuals with initial and boundary conditions, and backpropagation updates the parameters. The final scene identifies the wave positions, conservation and physical bounds to check after training.</p>
+    
+  </details>
+</figure>
 
-<p>While the endpoints remain in the constant left and right states, the net incoming flux is 0.5. The amount of field inside the interval should increase at that rate. A sharp jump moving at speed 0.7 instead increases it at rate 0.7. This gives the same 0.2 imbalance without differentiating through the front.</p>
+<p>Predicting primitive variables directly is convenient: a conventional conservative solver must recover them from the evolved conserved state, which requires a nonlinear inversion in relativistic hydrodynamics. A neural representation avoids that inversion at evaluation, but introduces a training problem of its own.</p>
 
-<p>Comparisons with a classical solver should use the same initial and boundary conditions and a reference checked under mesh refinement. Compare errors at matched times and include the cost of training. For neural results, report variation across initializations as well as the best run.</p>
+<h2 id="learning-shocks">Learning across a shock</h2>
 
-<h2 id="first-experiment">A useful first experiment</h2>
+<p>A smooth network can approximate a steep front. Near a discontinuity, however, a pointwise squared residual can penalize the large derivatives even when the front approaches the correct solution. A small training loss alone also does not establish the correct wave speed.</p>
 
-<p>Begin with a Riemann problem whose solution is known. Keep the network, initial data and computational budget fixed while changing the residual weighting. Compare the predicted profiles, wave trajectories and conservation budgets.</p>
+<p>Our <a href="https://doi.org/10.1016/j.cma.2024.116906" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">GA-PINNs paper</a> studies gradient-dependent residual weighting and adaptive activation slopes for relativistic Riemann problems. It gives the algorithm, comparisons and numerical results; the <a href="https://github.com/Netzuel/GA_PINNs_Repository" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">public repository</a> contains the implementation.</p>
+
+<p>After training, check the predicted wave positions and all three conservation budgets on points separate from training. Check density and pressure positivity, the velocity bound, and the jump balance across the shock. The exact shock-tube solution provides a reference for each of these tests, including the contact that appears in density but not in pressure or velocity.</p>
 <footer class="article-end"><a href="/blog/">← All posts</a><a href="/research/">Explore the research →</a></footer></div>
 </article>
-<script src="/assets/js/article-contents.js?v=1791313756" defer></script>
+<script src="/assets/js/article-contents.js?v=1791360585" defer></script>
 
 
-<script type="module" src="/assets/js/shock-explorers.js?v=1791313756"></script>
+<script type="module" src="/assets/js/relativistic-fluid.js?v=1791360585"></script>
 </main>
 <footer class="site-footer wrap">
 <span id="external-link-note" class="sr-only">Opens in a new tab.</span>

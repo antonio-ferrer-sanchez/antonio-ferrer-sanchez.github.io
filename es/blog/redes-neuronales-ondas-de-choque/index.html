@@ -5,34 +5,34 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Redes neuronales y ondas de choque · Antonio Ferrer-Sánchez</title>
-<meta name="description" content="Por qué los choques desafían a las PINNs y cómo la conservación detecta errores de velocidad al ponderar el residuo según el gradiente.">
+<title>Fluidos relativistas y PINNs · Antonio Ferrer-Sánchez</title>
+<meta name="description" content="Densidad, presión y velocidad en un tubo de choque relativista. Explora las ecuaciones de Euler en Minkowski y el aprendizaje con PINNs.">
 <meta name="author" content="Antonio Ferrer-Sánchez">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta property="og:site_name" content="Antonio Ferrer-Sánchez">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redes neuronales y ondas de choque">
-<meta property="og:description" content="Por qué los choques desafían a las PINNs y cómo la conservación detecta errores de velocidad al ponderar el residuo según el gradiente.">
+<meta property="og:title" content="Fluidos relativistas y PINNs">
+<meta property="og:description" content="Densidad, presión y velocidad en un tubo de choque relativista. Explora las ecuaciones de Euler en Minkowski y el aprendizaje con PINNs.">
 <meta property="og:url" content="https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/">
 <meta property="og:locale" content="es_ES">
 <meta property="og:locale:alternate" content="en_US">
 <meta property="og:image" content="https://antonio-ferrer-sanchez.github.io/assets/images/share-shocks-es.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Título de la entrada junto a una gráfica de un choque exacto y dos perfiles de transición suaves.">
+<meta property="og:image:alt" content="Superficies tridimensionales de densidad, presión y velocidad en un tubo de choque relativista.">
 <meta property="article:published_time" content="2026-10-06">
-<meta property="article:modified_time" content="2026-10-06">
+<meta property="article:modified_time" content="2026-10-07">
 <meta property="article:author" content="https://antonio-ferrer-sanchez.github.io/es/">
-<meta property="article:section" content="Aprendizaje automático científico">
-<meta property="article:tag" content="redes neuronales informadas por la física">
-<meta property="article:tag" content="ondas de choque">
-<meta property="article:tag" content="GA-PINNs">
-<meta property="article:tag" content="problemas de Riemann">
+<meta property="article:section" content="Hidrodinámica relativista">
+<meta property="article:tag" content="ecuaciones de Euler relativistas">
+<meta property="article:tag" content="espaciotiempo de Minkowski">
 <meta property="article:tag" content="hidrodinámica relativista">
-<meta property="article:tag" content="leyes de conservación">
+<meta property="article:tag" content="redes neuronales informadas por la física">
+<meta property="article:tag" content="problema de Riemann">
+<meta property="article:tag" content="ondas de choque">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Redes neuronales y ondas de choque">
-<meta name="twitter:description" content="Por qué los choques desafían a las PINNs y cómo la conservación detecta errores de velocidad al ponderar el residuo según el gradiente.">
+<meta name="twitter:title" content="Fluidos relativistas y PINNs">
+<meta name="twitter:description" content="Densidad, presión y velocidad en un tubo de choque relativista. Explora las ecuaciones de Euler en Minkowski y el aprendizaje con PINNs.">
 <meta name="twitter:image" content="https://antonio-ferrer-sanchez.github.io/assets/images/share-shocks-es.png">
 <link rel="me" href="https://scholar.google.com/citations?user=Ajj7DC4AAAAJ">
 <link rel="me" href="https://orcid.org/0000-0002-2305-5261">
@@ -69,8 +69,8 @@
 "@type": "WebPage",
 "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/#webpage",
 "url": "https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/",
-"name": "Redes neuronales y ondas de choque · Antonio Ferrer-Sánchez",
-"description": "Por qué los choques desafían a las PINNs y cómo la conservación detecta errores de velocidad al ponderar el residuo según el gradiente.",
+"name": "Fluidos relativistas y PINNs · Antonio Ferrer-Sánchez",
+"description": "Densidad, presión y velocidad en un tubo de choque relativista. Explora las ecuaciones de Euler en Minkowski y el aprendizaje con PINNs.",
 "inLanguage": "es",
 "isPartOf": {"@id": "https://antonio-ferrer-sanchez.github.io/#website"},
 "about": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"},
@@ -80,9 +80,9 @@
 {"@type": "BreadcrumbList", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/#breadcrumb", "itemListElement": [
 {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://antonio-ferrer-sanchez.github.io/es/"},
 {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://antonio-ferrer-sanchez.github.io/es/blog/"},
-{"@type": "ListItem", "position": 3, "name": "Cuando las redes neuronales suaves se encuentran con ondas de choque", "item": "https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/"}
+{"@type": "ListItem", "position": 3, "name": "Fluidos relativistas: enseñar a una red neuronal a seguir los choques", "item": "https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/"}
 ]},
-{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/#webpage"}, "headline": "Cuando las redes neuronales suaves se encuentran con ondas de choque", "description": "Por qué los choques desafían a las PINNs y cómo la conservación detecta errores de velocidad al ponderar el residuo según el gradiente.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-shocks-es.png", "datePublished": "2026-10-06", "dateModified": "2026-10-06", "inLanguage": "es", "articleSection": "Aprendizaje automático científico", "keywords": ["redes neuronales informadas por la física","ondas de choque","GA-PINNs","problemas de Riemann","hidrodinámica relativista","leyes de conservación"], "wordCount": 1306, "timeRequired": "PT11M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog (español)", "url": "https://antonio-ferrer-sanchez.github.io/es/blog/"}, "translationOfWork": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Gradient-annihilated PINNs for solving Riemann problems: Application to relativistic hydrodynamics", "url": "https://doi.org/10.1016/j.cma.2024.116906"}]}
+{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/#webpage"}, "headline": "Fluidos relativistas: enseñar a una red neuronal a seguir los choques", "description": "Densidad, presión y velocidad en un tubo de choque relativista. Explora las ecuaciones de Euler en Minkowski y el aprendizaje con PINNs.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-shocks-es.png", "datePublished": "2026-10-06", "dateModified": "2026-10-07", "inLanguage": "es", "articleSection": "Hidrodinámica relativista", "keywords": ["ecuaciones de Euler relativistas","espaciotiempo de Minkowski","hidrodinámica relativista","redes neuronales informadas por la física","problema de Riemann","ondas de choque"], "wordCount": 1258, "timeRequired": "PT9M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog (español)", "url": "https://antonio-ferrer-sanchez.github.io/es/blog/"}, "translationOfWork": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Gradient-annihilated PINNs for solving Riemann problems: Application to relativistic hydrodynamics", "url": "https://doi.org/10.1016/j.cma.2024.116906"}]}
 ]}
 </script>
 
@@ -91,12 +91,12 @@
 <link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/">
 <link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/">
 <link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/">
-<link rel="stylesheet" href="/assets/css/site.css?v=1791313756">
-<link rel="stylesheet" href="/assets/css/print.css?v=1791313756" media="print">
-<link rel="stylesheet" href="/assets/css/shocks.css?v=1791313756">
-<script src="/assets/js/header.js?v=1791313756"></script>
+<link rel="stylesheet" href="/assets/css/site.css?v=1791360585">
+<link rel="stylesheet" href="/assets/css/print.css?v=1791360585" media="print">
+<link rel="stylesheet" href="/assets/css/relativistic-fluid.css?v=1791360585">
+<script src="/assets/js/header.js?v=1791360585"></script>
 <meta name="publication-revision" content="e2c7122547283c386c1f5abe51bbc5e0286b1b514a4037da5b4a672208cad8ae">
-<script defer src="/assets/js/publication.js?v=1791313756"></script>
+<script defer src="/assets/js/publication.js?v=1791360585"></script>
 </head>
 <body class="article-page">
 <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -115,100 +115,136 @@
 <main id="main" tabindex="-1"><article class="wrap article-shell">
 <header class="page-heading article-heading">
 <a class="text-link article-back" href="/es/blog/">← Todas las entradas</a>
-<p class="article-meta"><span>Aprendizaje automático científico</span><time datetime="2026-10-06">6 de octubre de 2026</time><span>11 min de lectura</span></p>
-<h1>Cuando las redes neuronales suaves se encuentran con ondas de choque</h1><p class="page-lede">Por qué los choques desafían a las PINNs y cómo la conservación detecta errores de velocidad al ponderar el residuo según el gradiente.</p>
+<p class="article-meta"><span>Hidrodinámica relativista</span><time datetime="2026-10-06">6 de octubre de 2026</time><span>9 min de lectura</span></p>
+<h1>Fluidos relativistas: enseñar a una red neuronal a seguir los choques</h1><p class="page-lede">Densidad, presión y velocidad en un tubo de choque relativista. Explora las ecuaciones de Euler en Minkowski y el aprendizaje con PINNs.</p>
 <p class="article-byline"><a rel="author" href="/es/">Por Antonio Ferrer-Sánchez</a></p>
 </header>
-<aside class="article-contents" aria-labelledby="contents-heading"><h2 id="contents-heading">En esta entrada</h2><nav aria-label="Contenido de la entrada"><a href="#frente-abrupto">Un frente abrupto cambia el problema</a><a href="#velocidad-del-choque">La conservación fija la velocidad del choque</a><a href="#perfil-suave">Una red suave puede representar un frente abrupto</a><a href="#ponderacion">Qué cambia al ponderar el residuo</a><a href="#ga-pinns">La conexión con GA-PINNs</a><a href="#validacion">Comprobaciones que la pérdida no sustituye</a><a href="#primer-experimento">Un primer experimento útil</a></nav></aside>
-<div class="article-body"><h2 id="frente-abrupto">Un frente abrupto cambia el problema</h2>
+<aside class="article-contents" aria-labelledby="contents-heading"><h2 id="contents-heading">En esta entrada</h2><nav aria-label="Contenido de la entrada"><a href="#relativistic-fluid">Cuando el fluido es relativista</a><a href="#equations">Las ecuaciones en un espaciotiempo plano</a><a href="#shock-tube">Abrir un tubo de choque relativista</a><a href="#three-waves">Interpretar las tres ondas</a><a href="#pinn">Qué aprende la red neuronal</a><a href="#learning-shocks">Aprender a través de un choque</a></nav></aside>
+<div class="article-body"><h2 id="relativistic-fluid">Cuando el fluido es relativista</h2>
 
-<p>Una onda de choque concentra un cambio finito en el estado de un fluido en una región muy estrecha. En un modelo sin viscosidad, esa región se convierte en un salto. La presión, la densidad o la velocidad pueden tomar valores distintos a ambos lados, y el salto se desplaza con la evolución del fluido.</p>
+<p>Una diferencia de presión pone un fluido en movimiento. A velocidades relativistas, su evolución acopla la masa en reposo, el momento y la energía mediante el factor de Lorentz. La presión y la energía interna también contribuyen a la inercia del fluido. Las ecuaciones de Euler deben incorporar estos efectos.</p>
 
-<p>En la <a href="/es/blog/aprendizaje-automatico-informado-por-la-fisica/">entrada introductoria</a>, una red neuronal informada por la física representaba una temperatura que se difundía suavemente. La diferenciación automática proporcionaba las derivadas de la ecuación del calor. Ante un choque, el campo exacto no tiene una derivada ordinaria en el salto. La ley física sigue siendo válida, pero necesitamos una formulación que tenga sentido a través de la discontinuidad.</p>
+<p>Aquí consideramos un fluido perfecto en el <strong>espaciotiempo de Minkowski</strong>: un espaciotiempo plano, sin términos fuente gravitatorios en coordenadas cartesianas. Un tubo de choque unidimensional permite observar las ondas de densidad, presión y velocidad, y estudiar cómo una red neuronal informada por la física puede representar su evolución.</p>
 
-<p>Una red puede dibujar un frente abrupto en el lugar equivocado. También puede recibir un residuo puntual mayor mientras aproxima cada vez mejor el salto correcto. La ecuación de Burgers muestra por qué.</p>
+<h2 id="equations">Las ecuaciones en un espaciotiempo plano</h2>
 
-<h2 id="velocidad-del-choque">La conservación fija la velocidad del choque</h2>
+<p>Sean <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>ρ</mi></math> la densidad de masa en reposo medida con el fluido, <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>p</mi></math> su presión y <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msup><mi>u</mi><mi>μ</mi></msup></math> su cuadrivelocidad. Fijamos <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>c</mi><mo>=</mo><mn>1</mn></mrow></math> y usamos la signatura métrica <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mo>(</mo><mrow><mo>−</mo><mo>,</mo><mo>+</mo><mo>,</mo><mo>+</mo><mo>,</mo><mo>+</mo></mrow><mo>)</mo></mrow></math>. La conservación de la masa en reposo y de la energía–momento se escribe como</p>
 
-<p>Consideremos la ecuación de Burgers sin viscosidad en una dimensión. Sea <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>u</mi></math> un campo escalar adimensional, con posición <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>x</mi></math> y tiempo <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>t</mi></mrow></math> también adimensionales. Su flujo es cuadrático:</p>
+<div class="equation" role="region" aria-label="Conservación de masa y energía–momento" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mtable columnalign="left"><mtr><mtd><mrow><msub><mo>∂</mo><mi>μ</mi></msub><mrow><mo>(</mo><mrow><mi>ρ</mi><msup><mi>u</mi><mi>μ</mi></msup></mrow><mo>)</mo></mrow><mo>=</mo><mn>0</mn><mo>,</mo><mspace width="1em" /><msub><mo>∂</mo><mi>μ</mi></msub><msup><mi>T</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msup><mo>=</mo><mn>0</mn></mrow></mtd></mtr><mtr><mtd><mrow><msup><mi>T</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msup><mo>=</mo><mi>ρ</mi><mi>h</mi><msup><mi>u</mi><mi>μ</mi></msup><msup><mi>u</mi><mi>ν</mi></msup><mo>+</mo><mi>p</mi><msup><mi>η</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msup></mrow></mtd></mtr></mtable></math></div>
 
-<div class="equation" role="region" aria-label="Ley de conservación de Burgers" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mfrac><mrow><mo>∂</mo><mi>u</mi></mrow><mrow><mo>∂</mo><mi>t</mi></mrow></mfrac><mo>+</mo><mfrac><mrow><mo>∂</mo><mi>f</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><mrow><mo>∂</mo><mi>x</mi></mrow></mfrac><mo>=</mo><mn>0</mn><mo>,</mo><mspace width="1em" /><mi>f</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><msup><mi>u</mi><mn>2</mn></msup></mrow><mrow><mn>2</mn></mrow></mfrac><mo>.</mo></mrow></math></div>
+<p>Aquí <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msup><mi>η</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msup></math> es la métrica de Minkowski. El tensor de energía–momento de un fluido perfecto contiene la entalpía específica <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>h</mi></math>. Para un gas ideal con índice adiabático <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>Γ</mi></math>, el sistema se cierra mediante</p>
 
-<p>Elegimos un estado inicial igual a uno a la izquierda del origen y cero a la derecha. Es un problema de Riemann: dos estados constantes separados por un único salto. En las regiones suaves, la velocidad característica coincide con el valor del campo. El estado izquierdo alcanza al derecho y forma un choque compresivo.</p>
+<div class="equation" role="region" aria-label="Variables del fluido y ecuación de estado" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mtable columnalign="left"><mtr><mtd><mrow><msup><mi>u</mi><mi>μ</mi></msup><mo>=</mo><mi>W</mi><mrow><mo>(</mo><mrow><mn>1</mn><mo>,</mo><msup><mi>v</mi><mi>x</mi></msup><mo>,</mo><msup><mi>v</mi><mi>y</mi></msup><mo>,</mo><msup><mi>v</mi><mi>z</mi></msup></mrow><mo>)</mo></mrow></mrow></mtd></mtr><mtr><mtd><mrow><mi>W</mi><mo>=</mo><mfrac><mn>1</mn><msqrt><mrow><mn>1</mn><mo>−</mo><msup><mi>v</mi><mn>2</mn></msup></mrow></msqrt></mfrac></mrow></mtd></mtr><mtr><mtd><mrow><mi>h</mi><mo>=</mo><mn>1</mn><mo>+</mo><mi>ε</mi><mo>+</mo><mfrac><mi>p</mi><mi>ρ</mi></mfrac><mo>,</mo><mspace width="1em" /><mi>p</mi><mo>=</mo><mrow><mo>(</mo><mrow><mi>Γ</mi><mo>−</mo><mn>1</mn></mrow><mo>)</mo></mrow><mi>ρ</mi><mi>ε</mi></mrow></mtd></mtr></mtable></math></div>
 
-<p>Al integrar la ley de conservación a través de un salto móvil obtenemos la relación de Rankine–Hugoniot. Esta fija la velocidad <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>s</mi></math> a partir del flujo y del estado a cada lado:</p>
+<p>Aquí <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>ε</mi></math> es la energía interna específica y <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msup><mi>v</mi><mn>2</mn></msup></math> es el cuadrado de la rapidez tridimensional. La densidad <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>ρ</mi></math> se mide en el sistema de reposo del fluido; la velocidad y las densidades conservadas siguientes se refieren al sistema de laboratorio elegido.</p>
 
-<div class="equation" role="region" aria-label="Velocidad de Rankine–Hugoniot" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>s</mi><mo>=</mo><mfrac><mrow><mi>f</mi><mo stretchy="false">(</mo><msub><mi>u</mi><mi mathvariant="normal">L</mi></msub><mo stretchy="false">)</mo><mo>−</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>u</mi><mi mathvariant="normal">R</mi></msub><mo stretchy="false">)</mo></mrow><mrow><msub><mi>u</mi><mi mathvariant="normal">L</mi></msub><mo>−</mo><msub><mi>u</mi><mi mathvariant="normal">R</mi></msub></mrow></mfrac><mo>=</mo><mfrac><mrow><msub><mi>u</mi><mi mathvariant="normal">L</mi></msub><mo>+</mo><msub><mi>u</mi><mi mathvariant="normal">R</mi></msub></mrow><mrow><mn>2</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>.</mo></mrow></math></div>
+<p>Para un movimiento en una dirección cartesiana, sin velocidad transversal, el sistema queda</p>
 
-<p>En el instante 0.6, el choque está en la posición 0.3, con estados constantes a ambos lados. El <a href="https://www.clawpack.org/riemann_book/html/Burgers.html" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">capítulo sobre Burgers del libro de problemas de Riemann de Clawpack</a> desarrolla esta construcción y su interpretación mediante características.</p>
+<div class="equation" role="region" aria-label="Ecuaciones de Euler relativistas" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mtable columnalign="left"><mtr><mtd><mrow><mfrac><mrow><mo>∂</mo><mi mathvariant="bold">U</mi></mrow><mrow><mo>∂</mo><mi>t</mi></mrow></mfrac><mo>+</mo><mfrac><mrow><mo>∂</mo><mi mathvariant="bold">F</mi></mrow><mrow><mo>∂</mo><mi>x</mi></mrow></mfrac><mo>=</mo><mn>0</mn></mrow></mtd></mtr></mtable></math></div>
 
-<p>La conservación también necesita una condición de admisibilidad. Al invertir los estados iniciales aparece una rarefacción expansiva, en lugar de un choque compresivo. Un salto puede satisfacer la relación de Rankine–Hugoniot y aun así corresponder a la solución física incorrecta. Para este flujo escalar convexo, la condición de entropía distingue ambos casos.</p>
+<div class="equation" role="region" aria-label="Variables conservadas y flujos" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mtable columnalign="left"><mtr><mtd><mrow><mi mathvariant="bold">U</mi><mo>=</mo><mrow><mo>(</mo><mtable><mtr><mtd><mi>D</mi></mtd></mtr><mtr><mtd><mi>S</mi></mtd></mtr><mtr><mtd><mi>τ</mi></mtd></mtr></mtable><mo>)</mo></mrow><mo>,</mo><mspace width="1em" /><mi mathvariant="bold">F</mi><mo>=</mo><mrow><mo>(</mo><mtable><mtr><mtd><mrow><mi>D</mi><mi>v</mi></mrow></mtd></mtr><mtr><mtd><mrow><mi>S</mi><mi>v</mi><mo>+</mo><mi>p</mi></mrow></mtd></mtr><mtr><mtd><mrow><mi>S</mi><mo>−</mo><mi>D</mi><mi>v</mi></mrow></mtd></mtr></mtable><mo>)</mo></mrow></mrow></mtd></mtr><mtr><mtd><mrow><mi>D</mi><mo>=</mo><mi>ρ</mi><mi>W</mi><mo>,</mo><mspace width="1em" /><mi>S</mi><mo>=</mo><mi>ρ</mi><mi>h</mi><msup><mi>W</mi><mn>2</mn></msup><mi>v</mi></mrow></mtd></mtr><mtr><mtd><mrow><mi>τ</mi><mo>=</mo><mi>ρ</mi><mi>h</mi><msup><mi>W</mi><mn>2</mn></msup><mo>−</mo><mi>p</mi><mo>−</mo><mi>D</mi></mrow></mtd></mtr></mtable></math></div>
 
-<h2 id="perfil-suave">Una red suave puede representar un frente abrupto</h2>
+<p>Las tres componentes son la densidad de masa en reposo en el laboratorio <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>D</mi></math>, la densidad de momento <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>S</mi></math> y la densidad de energía excluida la energía de masa en reposo <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>τ</mi></math>. Sus flujos describen lo que atraviesa una superficie fija. El factor de Lorentz acopla las variables primitivas con las tres cantidades conservadas. La <a href="https://link.springer.com/article/10.12942/lrr-2003-7" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">revisión de Martí y Müller</a> desarrolla esta formulación y su solución numérica.</p>
 
-<p>Una red finita con activaciones suaves produce una salida continua. Aun así, puede representar una transición estrecha. Para verlo, tomemos una tangente hiperbólica con velocidad prescrita <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>v</mi></math> y anchura positiva <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>δ</mi></math>:</p>
+<h2 id="shock-tube">Abrir un tubo de choque relativista</h2>
 
-<div class="equation" role="region" aria-label="Frente viajero suave prescrito" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>u</mi><mi>δ</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>[</mo><mn>1</mn><mo>−</mo><mi mathvariant="normal">tanh</mi><mo stretchy="false">(</mo><mfrac><mrow><mi>x</mi><mo>−</mo><mi>v</mi><mi>t</mi></mrow><mrow><mi>δ</mi></mrow></mfrac><mo stretchy="false">)</mo><mo>]</mo><mo>.</mo></mrow></math></div>
+<p>Al principio, dos fluidos uniformes están en reposo, separados en <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow></math>. El lado izquierdo es más denso y tiene mayor presión. Elegimos <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>Γ</mi><mo>=</mo><mfrac><mn>5</mn><mn>3</mn></mfrac></mrow></math> y los siguientes estados:</p>
 
-<p>Una unidad tanh seguida de una salida afín representa esta función. Su punto medio avanza a la velocidad elegida, y reducir la anchura hace que la transición sea más abrupta.</p>
+<div class="fluid-table" role="region" aria-label="Estados iniciales del fluido" tabindex="0">
 
-<figure class="figure-wide" data-plot="shock-profile"><picture><source media="(max-width: 650px)" srcset="/assets/figures/shocks-profiles-mobile-es.svg?v=1791313756" width="450" height="720" /><img src="/assets/figures/shocks-profiles-es.svg?v=1791313756" width="900" height="500" alt="Vista completa y ampliación del choque de Burgers en la posición 0.3, con perfiles suaves de anchuras 0.12 y 0.03." loading="lazy" decoding="async" /></picture><figcaption>Choque exacto y perfiles tanh en el instante 0.6 y con velocidad 0.5. La ampliación muestra cómo cambia la transición con la anchura.</figcaption></figure>
+  <table>
+    <thead>
+      <tr>
+        <th>Estado inicial</th>
+        <th style="text-align: right">Densidad de masa en reposo</th>
+        <th style="text-align: right">Presión</th>
+        <th style="text-align: right">Velocidad</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Izquierdo</td>
+        <td style="text-align: right">1</td>
+        <td style="text-align: right">1</td>
+        <td style="text-align: right">0</td>
+      </tr>
+      <tr>
+        <td>Derecho</td>
+        <td style="text-align: right">0.125</td>
+        <td style="text-align: right">0.1</td>
+        <td style="text-align: right">0</td>
+      </tr>
+    </tbody>
+  </table>
 
-<p>La curva más estrecha se aproxima al escalón en cada punto situado fuera del frente y reduce el error absoluto integrado. La convergencia no es uniforme: arbitrariamente cerca del salto, la transición suave sigue tomando valores intermedios.</p>
+</div>
 
-<p>Sustituyamos ahora el perfil suave en la ecuación. Como es una onda viajera, su derivada temporal es el producto de su derivada espacial por el negativo de su velocidad. El residuo queda</p>
+<p>La densidad se mide en unidades de la densidad inicial izquierda; la presión, en esa densidad multiplicada por <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msup><mi>c</mi><mn>2</mn></msup></math>; y la velocidad, en unidades de <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>c</mi></math>. La posición usa una escala de longitud arbitraria. La unidad de tiempo es el tiempo que tarda la luz en recorrer esa longitud.</p>
 
-<div class="equation" role="region" aria-label="Residuo del frente viajero suave" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>r</mi><mo>=</mo><mfrac><mrow><mo>∂</mo><msub><mi>u</mi><mi>δ</mi></msub></mrow><mrow><mo>∂</mo><mi>t</mi></mrow></mfrac><mo>+</mo><msub><mi>u</mi><mi>δ</mi></msub><mfrac><mrow><mo>∂</mo><msub><mi>u</mi><mi>δ</mi></msub></mrow><mrow><mo>∂</mo><mi>x</mi></mrow></mfrac><mo>=</mo><mo stretchy="false">(</mo><msub><mi>u</mi><mi>δ</mi></msub><mo>−</mo><mi>v</mi><mo stretchy="false">)</mo><mfrac><mrow><mo>∂</mo><msub><mi>u</mi><mi>δ</mi></msub></mrow><mrow><mo>∂</mo><mi>x</mi></mrow></mfrac><mo>.</mo></mrow></math></div>
+<p>Al retirar la separación, la diferencia de presión impulsa el flujo. Las superficies representan muestras de la solución exacta de Riemann en posición y tiempo. Selecciona una variable, gira la vista y mueve el control de tiempo para examinar su perfil.</p>
 
-<p>La derivada espacial crece al reducirse la anchura. Incluso con la velocidad correcta, el residuo no se anula dentro de la capa suave. Sus contribuciones positivas y negativas se cancelan al integrar sobre todo el frente, pero sus cuadrados no se cancelan. Por tanto, el residuo puntual al cuadrado puede crecer mientras el perfil se hace más abrupto.</p>
+<figure id="fluid-explorer" class="figure-wide"><picture><source media="(max-width: 650px)" srcset="/assets/figures/relativistic-surfaces-mobile-es.svg?v=1791360585" width="450" height="1260" /><img src="/assets/figures/relativistic-surfaces-es.svg?v=1791360585" width="1200" height="480" alt="Superficies de densidad, presión y velocidad en posición y tiempo. Una rarefacción se expande a la izquierda, un contacto separa dos densidades y un choque avanza a la derecha." loading="lazy" decoding="async" /></picture><figcaption>Evolución del tubo de choque relativista. Las coordenadas horizontales son posición y tiempo; la altura representa la variable del fluido seleccionada.</figcaption></figure>
 
-<h2 id="ponderacion">Qué cambia al ponderar el residuo</h2>
+<h2 id="three-waves">Interpretar las tres ondas</h2>
 
-<p>Las GA-PINNs reducen la influencia de los gradientes elevados mediante un peso <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>λ</mi></math>. Para un único campo adimensional, definimos <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>g</mi><mo>=</mo><mo>|</mo><msub><mo>∂</mo><mi>x</mi></msub><msub><mi>u</mi><mi>δ</mi></msub><mo>|</mo></mrow></math> y usamos</p>
+<p>El salto inicial se separa en tres estructuras:</p>
 
-<div class="equation" role="region" aria-label="Peso del gradiente y residuo cuadrático ponderado" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mtable rowspacing="0.4em"><mtr><mtd><mrow><mi>λ</mi><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>1</mn><mrow><mn>1</mn><mo>+</mo><mi>α</mi><msup><mi>g</mi><mi>β</mi></msup></mrow></mfrac><mo>,</mo></mrow></mtd></mtr><mtr><mtd><mrow><msub><mi>J</mi><mi>λ</mi></msub><mo>=</mo><msubsup><mo>∫</mo><mrow><mo>−</mo><mi>∞</mi></mrow><mi>∞</mi></msubsup><mi>λ</mi><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo><msup><mi>r</mi><mn>2</mn></msup><mspace width="0.2em" /><mi mathvariant="normal">d</mi><mi>x</mi><mo>.</mo></mrow></mtd></mtr></mtable></math></div>
+<ul>
+  <li><strong>Rarefacción.</strong> Un abanico en expansión penetra en el estado izquierdo de mayor presión. La densidad y la presión disminuyen de forma continua, mientras el fluido acelera hacia la derecha.</li>
+  <li><strong>Discontinuidad de contacto.</strong> Dos fluidos se encuentran a la misma presión y velocidad, pero con densidades distintas. El contacto se mueve con el fluido.</li>
+  <li><strong>Choque.</strong> Una compresión abrupta se propaga hacia el estado derecho. La densidad, la presión y la velocidad cambian al atravesarla.</li>
+</ul>
 
-<p>La intensidad <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>α</mi></math> fija cuánto influye el gradiente en el peso; el exponente <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>β</mi></math> controla su forma. Con intensidad positiva, el peso se aproxima a uno en regiones planas y a cero con gradientes elevados. Para campos dimensionales, los gradientes necesitan las escalas correspondientes. Este factor aparece en <a href="https://arxiv.org/html/2305.08448v2#S3.SS1" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">la formulación de las GA-PINNs</a>, que combina los gradientes de densidad, velocidad y presión.</p>
+<p>El contacto avanza aproximadamente a 0,437 veces la velocidad de la luz; el choque, a 0,819. Por tanto, la onda puede avanzar más deprisa que el material que deja detrás. El panel de velocidad muestra esta diferencia: la velocidad del fluido entre la rarefacción y el choque es aproximadamente 0,437, distinta de la velocidad del choque.</p>
 
-<p>Los controles permiten seguir el peso desde el espacio de gradientes hasta el frente, y comparar el residuo ponderado y su integral espacial. Las curvas punteadas de las integrales usan la velocidad correcta, 0.5.</p>
+<figure id="fluid-profiles-fallback" class="figure-wide"><picture><source media="(max-width: 650px)" srcset="/assets/figures/relativistic-profiles-mobile-es.svg?v=1791360585" width="450" height="960" /><img src="/assets/figures/relativistic-profiles-es.svg?v=1791360585" width="900" height="720" alt="Densidad, presión y velocidad en el instante 0.4. La densidad salta en el contacto, donde presión y velocidad son continuas. Las tres cambian en el choque." loading="lazy" decoding="async" /></picture><figcaption>Perfiles en el instante 0,4. La zona sombreada marca la rarefacción; las líneas discontinuas y punteadas indican el contacto y el choque.</figcaption></figure>
 
-<figure class="figure-wide" data-plot="shock-lambda"><picture><source media="(max-width: 650px)" srcset="/assets/figures/shocks-residuals-mobile-es.svg?v=1791313756" width="450" height="1600" /><img src="/assets/figures/shocks-residuals-es.svg?v=1791313756" width="900" height="1000" alt="Cuatro paneles muestran la función lambda frente al gradiente, el peso a través del frente, los residuos al cuadrado antes y después de ponderar y sus integrales al cambiar la anchura. La ponderación atenúa el residuo cerca del frente abrupto." loading="lazy" decoding="async" /></picture><figcaption>El peso de las GA-PINNs y su efecto con α = 1, β = 2, anchura 0.03 y velocidad 0.7. Las curvas punteadas de las integrales usan la velocidad correcta 0.5.</figcaption></figure>
+<p>En un choque, las derivadas ordinarias no bastan. Integrar las leyes de conservación a través del frente móvil da</p>
 
-<p>La ponderación reduce la penalización de los frentes abruptos, pero un residuo ponderado pequeño no garantiza la velocidad de propagación correcta. Las condiciones iniciales y de contorno siguen formando parte de la función de pérdida.</p>
+<div class="equation" role="region" aria-label="Condición de salto" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mtable columnalign="left"><mtr><mtd><mrow><mo>[</mo><mi mathvariant="bold">F</mi><mo>]</mo><mo>=</mo><mi>s</mi><mo>[</mo><mi mathvariant="bold">U</mi><mo>]</mo></mrow></mtd></mtr></mtable></math></div>
 
-<p>Con la velocidad incorrecta, el punto medio alcanza la posición 0.42 en el instante 0.6. El error de posición es 0.12, por muy estrecha que sea la capa. Al integrar el residuo sin ponderar obtenemos 0.2, el mismo defecto que resulta del balance de flujo del salto.</p>
+<p>Los corchetes indican la diferencia entre los estados derecho e izquierdo, y <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>s</mi></math> es la velocidad del frente. Deben cumplirse los tres balances. El choque físico también satisface la condición de entropía. La <a href="https://www.uv.es/astrorela/simulacionnumerica/node38.html" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">construcción de Riemann relativista</a> combina estas condiciones de salto con la solución suave de la rarefacción.</p>
 
-<h2 id="ga-pinns">La conexión con GA-PINNs</h2>
+<h2 id="pinn">Qué aprende la red neuronal</h2>
 
-<p>Nuestro <a href="https://doi.org/10.1016/j.cma.2024.116906" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">artículo de 2024 sobre GA-PINNs</a> combina pesos dependientes del gradiente y pendientes de activación adaptativas para problemas de Riemann relativistas. La red predice densidad, velocidad y presión. El estudio compara sus soluciones con referencias exactas, una PINN de base y un esquema de captura de choques. El <a href="https://github.com/Netzuel/GA_PINNs_Repository" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">repositorio público</a> contiene la implementación.</p>
+<p>Una PINN recibe posición y tiempo y predice las variables primitivas:</p>
 
-<h2 id="validacion">Comprobaciones que la pérdida no sustituye</h2>
+<div class="equation" role="region" aria-label="Predicción y residuo de la PINN" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mtable columnalign="left"><mtr><mtd><mrow><msub><mi>N</mi><mi>θ</mi></msub><mrow><mo>(</mo><mrow><mi>t</mi><mo>,</mo><mi>x</mi></mrow><mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo><mrow><msub><mi>ρ</mi><mi>θ</mi></msub><mo>,</mo><msub><mi>p</mi><mi>θ</mi></msub><mo>,</mo><msub><mi>v</mi><mi>θ</mi></msub></mrow><mo>)</mo></mrow></mrow></mtd></mtr><mtr><mtd><mrow><msub><mi>R</mi><mi>θ</mi></msub><mo>=</mo><mfrac><mrow><mo>∂</mo><msub><mi mathvariant="bold">U</mi><mi>θ</mi></msub></mrow><mrow><mo>∂</mo><mi>t</mi></mrow></mfrac><mo>+</mo><mfrac><mrow><mo>∂</mo><msub><mi mathvariant="bold">F</mi><mi>θ</mi></msub></mrow><mrow><mo>∂</mo><mi>x</mi></mrow></mfrac></mrow></mtd></mtr></mtable></math></div>
 
-<ol>
-  <li><strong>Localizar las ondas.</strong> Comparar las posiciones de los choques en varios instantes y estimar sus velocidades de propagación. Para este ejemplo escalar monótono, utilizar el cruce de la mitad de la altura para localizar el frente.</li>
-  <li><strong>Comprobar el balance del salto.</strong> Evaluar el flujo y el estado a ambos lados. El defecto de Rankine–Hugoniot debe disminuir al mejorar la solución. Para un sistema, comprobar cada componente conservada.</li>
-  <li><strong>Medir el balance de conservación.</strong> En un intervalo fijo, la variación del campo integrado debe igualar el flujo neto a través de sus extremos.</li>
-  <li><strong>Resolver la transición en la malla de evaluación.</strong> Medir el error del campo en puntos distintos de los de entrenamiento, junto con la posición del frente y las sobreoscilaciones. Refinar esa malla hasta que los diagnósticos sean estables.</li>
-  <li><strong>Comprobar la admisibilidad física.</strong> Distinguir choques y rarefacciones. En hidrodinámica, comprobar también la densidad, la presión y los límites de velocidad aplicables.</li>
-</ol>
+<p>Estas salidas determinan el factor de Lorentz, la entalpía, el estado conservado y el flujo. La diferenciación automática evalúa después las derivadas temporales y espaciales de los residuos de Euler. El entrenamiento combina esos residuos con los estados iniciales y las condiciones de contorno, y actualiza los parámetros de la red mediante retropropagación.</p>
 
-<p>Para el ejemplo de Burgers, el balance de conservación en un intervalo fijo es</p>
+<p>Durante este intervalo, las ondas permanecen dentro del dominio y sus extremos conservan los estados iniciales. La parametrización de las salidas puede imponer densidad y presión positivas y una rapidez inferior a la de la luz. Estas cotas ayudan a mantener predicciones físicamente admisibles; la red aún debe aprender las ecuaciones de conservación.</p>
 
-<div class="equation" role="region" aria-label="Balance de conservación en un intervalo fijo" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mtable rowspacing="0.35em"><mtr><mtd><mrow><mfrac><mrow><mi mathvariant="normal">d</mi></mrow><mrow><mi mathvariant="normal">d</mi><mi>t</mi></mrow></mfrac><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mspace width="0.2em" /><mi mathvariant="normal">d</mi><mi>x</mi></mrow></mtd></mtr><mtr><mtd><mrow><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>−</mo><mi>f</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>.</mo></mrow></mtd></mtr></mtable></math></div>
+<figure class="article-animation" id="relativistic-animation">
+  <video controls="" playsinline="" preload="metadata" width="1920" height="1080" poster="/assets/video/relativistic-pinn-es.webp?v=1791360585" aria-labelledby="relativistic-animation-caption" aria-describedby="relativistic-animation-transcript">
+    <source src="/assets/video/relativistic-pinn-es.mp4?v=1791360585" type="video/mp4" />
+    Puedes descargar el vídeo con el enlace siguiente.
+  </video>
+  <img class="animation-print" src="/assets/video/relativistic-pinn-es.webp?v=1791360585" width="1920" height="1080" alt="Una PINN recibe posición y tiempo y devuelve densidad, presión y velocidad." loading="lazy" />
+  <figcaption id="relativistic-animation-caption">Del tubo de choque al entrenamiento de una PINN. La evolución del fluido sigue la solución exacta; las escenas de la red explican el proceso de aprendizaje. <a href="/assets/video/relativistic-pinn-es.mp4?v=1791360585" download="">Descargar vídeo (MP4)</a>.</figcaption>
+  <details class="animation-transcript" id="relativistic-animation-transcript">
+    <summary>Descripción del vídeo</summary>
+    
+    <p>El salto inicial evoluciona en una rarefacción, un contacto y un choque. La densidad se muestra en verde, la presión en naranja y la velocidad en azul. Después, posición y tiempo entran en una red neuronal que predice esas tres variables. Sus salidas forman el estado conservado y los flujos; la diferenciación automática calcula los residuos de las ecuaciones de Euler. La pérdida combina estos residuos con las condiciones iniciales y de contorno, y la retropropagación actualiza los parámetros. La última escena señala las posiciones de las ondas, la conservación y las cotas físicas que deben comprobarse tras entrenar.</p>
+    
+  </details>
+</figure>
 
-<p>Mientras los extremos permanezcan en los estados constantes izquierdo y derecho, el flujo neto entrante es 0.5. La cantidad de campo dentro del intervalo debe aumentar a ese ritmo. Un salto abrupto que avance a velocidad 0.7 la aumenta a un ritmo de 0.7. Así obtenemos el mismo desequilibrio de 0.2 sin derivar a través del frente.</p>
+<p>Predecir directamente las variables primitivas resulta práctico: un método conservativo convencional debe recuperarlas del estado conservado que evoluciona, lo que requiere una inversión no lineal en hidrodinámica relativista. La representación neuronal evita esa inversión durante la evaluación, a cambio de resolver su propio problema de entrenamiento.</p>
 
-<p>Las comparaciones con un método clásico deben utilizar las mismas condiciones iniciales y de contorno, y una referencia comprobada mediante refinamiento de malla. Hay que comparar los errores en los mismos instantes e incluir el coste de entrenamiento. Para los resultados neuronales, conviene mostrar la variación entre inicializaciones además de la mejor ejecución.</p>
+<h2 id="learning-shocks">Aprender a través de un choque</h2>
 
-<h2 id="primer-experimento">Un primer experimento útil</h2>
+<p>Una red suave puede aproximar un frente abrupto. Cerca de una discontinuidad, sin embargo, un residuo puntual al cuadrado puede penalizar las derivadas grandes incluso cuando el frente se aproxima a la solución correcta. Una pérdida de entrenamiento pequeña tampoco garantiza la velocidad de propagación correcta.</p>
 
-<p>Comenzar con un problema de Riemann cuya solución sea conocida. Mantener fijos la red, los datos iniciales y el presupuesto de cálculo mientras se cambia la ponderación del residuo. Comparar los perfiles predichos, las trayectorias de las ondas y los balances de conservación.</p>
+<p>Nuestro <a href="https://doi.org/10.1016/j.cma.2024.116906" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">artículo sobre GA-PINNs</a> estudia la ponderación del residuo dependiente del gradiente y las pendientes adaptativas de las activaciones para problemas de Riemann relativistas. Allí se presentan el algoritmo, las comparaciones y los resultados numéricos; el <a href="https://github.com/Netzuel/GA_PINNs_Repository" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">repositorio público</a> contiene la implementación.</p>
+
+<p>Tras el entrenamiento, comprueba las posiciones de las ondas y los tres balances de conservación en puntos separados de los usados para entrenar. Comprueba también la positividad de densidad y presión, la cota de velocidad y el balance a través del choque. La solución exacta del tubo ofrece una referencia para cada prueba, incluido el contacto que aparece en la densidad, pero no en la presión ni en la velocidad.</p>
 <footer class="article-end"><a href="/es/blog/">← Todas las entradas</a><a href="/es/investigacion/">Ver la investigación →</a></footer></div>
 </article>
-<script src="/assets/js/article-contents.js?v=1791313756" defer></script>
+<script src="/assets/js/article-contents.js?v=1791360585" defer></script>
 
 
-<script type="module" src="/assets/js/shock-explorers.js?v=1791313756"></script>
+<script type="module" src="/assets/js/relativistic-fluid.js?v=1791360585"></script>
 </main>
 <footer class="site-footer wrap">
 <span id="external-link-note" class="sr-only">Se abre en una pestaña nueva.</span>
