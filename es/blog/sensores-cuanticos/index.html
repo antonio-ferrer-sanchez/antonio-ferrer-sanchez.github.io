@@ -1,0 +1,256 @@
+<!doctype html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>PINN para sensores cuánticos · Antonio Ferrer-Sánchez</title>
+<meta name="description" content="Del espín a los controles aprendidos: cómo las PINN usan la física para diseñar sensores cuánticos y evaluar su precisión.">
+<meta name="author" content="Antonio Ferrer-Sánchez">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:site_name" content="Antonio Ferrer-Sánchez">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PINN para sensores cuánticos">
+<meta property="og:description" content="Del espín a los controles aprendidos: cómo las PINN usan la física para diseñar sensores cuánticos y evaluar su precisión.">
+<meta property="og:url" content="https://antonio-ferrer-sanchez.github.io/es/blog/sensores-cuanticos/">
+<meta property="og:locale" content="es_ES">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image" content="https://antonio-ferrer-sanchez.github.io/assets/images/share-sensing-es.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Curvas de medida de Ramsey para un espín ideal y otro afectado por desfasamiento.">
+<meta property="article:published_time" content="2026-10-14">
+<meta property="article:modified_time" content="2026-10-14">
+<meta property="article:author" content="https://antonio-ferrer-sanchez.github.io/es/">
+<meta property="article:section" content="Sensores y control cuánticos">
+<meta property="article:tag" content="sensores cuánticos">
+<meta property="article:tag" content="información de Fisher cuántica">
+<meta property="article:tag" content="aprendizaje automático científico">
+<meta property="article:tag" content="redes neuronales informadas por la física">
+<meta property="article:tag" content="control cuántico">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PINN para sensores cuánticos">
+<meta name="twitter:description" content="Del espín a los controles aprendidos: cómo las PINN usan la física para diseñar sensores cuánticos y evaluar su precisión.">
+<meta name="twitter:image" content="https://antonio-ferrer-sanchez.github.io/assets/images/share-sensing-es.png">
+<link rel="me" href="https://scholar.google.com/citations?user=Ajj7DC4AAAAJ">
+<link rel="me" href="https://orcid.org/0000-0002-2305-5261">
+<link rel="me" href="https://github.com/Netzuel">
+<link rel="me" href="https://www.linkedin.com/in/antonio-ferrer-s%C3%A1nchez-67a50b197/">
+<link rel="alternate" type="application/atom+xml" title="Antonio Ferrer-Sánchez · Blog (español)" href="https://antonio-ferrer-sanchez.github.io/es/feed.xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/images/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [
+{
+"@type": "Person",
+"@id": "https://antonio-ferrer-sanchez.github.io/#person",
+"name": "Antonio Ferrer-Sánchez",
+"alternateName": ["Antonio Ferrer Sánchez", "Antonio Ferrer Sanchez"],
+"givenName": "Antonio",
+"familyName": "Ferrer-Sánchez",
+"url": "https://antonio-ferrer-sanchez.github.io/es/",
+"email": "antonio.ferrer.contact@gmail.com",
+"image": "https://antonio-ferrer-sanchez.github.io/assets/images/antonio-ferrer-sanchez.png",
+"description": "Desarrolla métodos de aprendizaje automático para problemas de física, sobre todo redes neuronales informadas por la física y dinámica cuántica.",
+"jobTitle": "Quantum Algorithm Engineer",
+"worksFor": {"@type": "Organization", "name": "Kipu Quantum", "url": "https://kipu-quantum.com/"},
+"affiliation": [{"@type": "CollegeOrUniversity", "name": "Universitat de València", "url": "https://www.uv.es/"}, {"@type": "ResearchOrganization", "name": "Intelligent Data Analysis Laboratory (IDAL)", "parentOrganization": {"@type": "CollegeOrUniversity", "name": "Universitat de València"}}],
+"alumniOf": {"@type": "CollegeOrUniversity", "name": "Universitat de València", "url": "https://www.uv.es/"},
+"knowsAbout": ["Redes neuronales informadas por la física","Aprendizaje automático científico","Algoritmos cuánticos","Computación cuántica contradiabática","Metrología cuántica","Hidrodinámica relativista","Colapso gravitatorio","Modos cuasinormales de agujeros negros"],
+"sameAs": ["https://scholar.google.com/citations?user=Ajj7DC4AAAAJ", "https://orcid.org/0000-0002-2305-5261", "https://github.com/Netzuel", "https://www.linkedin.com/in/antonio-ferrer-s%C3%A1nchez-67a50b197/"]
+},
+{"@type": "WebSite", "@id": "https://antonio-ferrer-sanchez.github.io/#website", "url": "https://antonio-ferrer-sanchez.github.io/", "name": "Antonio Ferrer-Sánchez", "description": "Algoritmos cuánticos y aprendizaje automático científico. Investigación, publicaciones y software de Antonio Ferrer-Sánchez.", "inLanguage": ["en", "es"], "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}},
+{
+"@type": "WebPage",
+"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/sensores-cuanticos/#webpage",
+"url": "https://antonio-ferrer-sanchez.github.io/es/blog/sensores-cuanticos/",
+"name": "PINN para sensores cuánticos · Antonio Ferrer-Sánchez",
+"description": "Del espín a los controles aprendidos: cómo las PINN usan la física para diseñar sensores cuánticos y evaluar su precisión.",
+"inLanguage": "es",
+"isPartOf": {"@id": "https://antonio-ferrer-sanchez.github.io/#website"},
+"about": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"},
+"primaryImageOfPage": {"@type": "ImageObject", "url": "https://antonio-ferrer-sanchez.github.io/assets/images/share-sensing-es.png", "width": 1200, "height": 630},
+"breadcrumb": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/sensores-cuanticos/#breadcrumb"}
+},
+{"@type": "BreadcrumbList", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/sensores-cuanticos/#breadcrumb", "itemListElement": [
+{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://antonio-ferrer-sanchez.github.io/es/"},
+{"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://antonio-ferrer-sanchez.github.io/es/blog/"},
+{"@type": "ListItem", "position": 3, "name": "Diseñar sensores cuánticos con redes neuronales informadas por la física", "item": "https://antonio-ferrer-sanchez.github.io/es/blog/sensores-cuanticos/"}
+]},
+{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/sensores-cuanticos/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/sensores-cuanticos/#webpage"}, "headline": "Diseñar sensores cuánticos con redes neuronales informadas por la física", "description": "Del espín a los controles aprendidos: cómo las PINN usan la física para diseñar sensores cuánticos y evaluar su precisión.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-sensing-es.png", "datePublished": "2026-10-14", "dateModified": "2026-10-14", "inLanguage": "es", "articleSection": "Sensores y control cuánticos", "keywords": ["sensores cuánticos","información de Fisher cuántica","aprendizaje automático científico","redes neuronales informadas por la física","control cuántico"], "wordCount": 2058, "timeRequired": "PT9M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/es/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog (español)", "url": "https://antonio-ferrer-sanchez.github.io/es/blog/"}, "translationOfWork": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/quantum-sensing/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Physics-Informed Neural Networks for Maximizing Quantum Fisher Information in Time-Dependent Many-Body Systems", "url": "https://arxiv.org/abs/2604.18506"}]}
+]}
+</script>
+
+<meta name="theme-color" content="#153f36">
+<link rel="canonical" href="https://antonio-ferrer-sanchez.github.io/es/blog/sensores-cuanticos/">
+<link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/quantum-sensing/">
+<link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/sensores-cuanticos/">
+<link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/quantum-sensing/">
+<link rel="stylesheet" href="/assets/css/site.css?v=1792011259">
+<link rel="stylesheet" href="/assets/css/print.css?v=1792011259" media="print">
+
+<script src="/assets/js/header.js?v=1792011259"></script>
+<meta name="publication-revision" content="fa22a3bbdc68fe37dee506bc0e0259db9e7c4b5014e5677c74cb57fcbe7e2457">
+<script defer src="/assets/js/publication.js?v=1792011259"></script>
+</head>
+<body class="article-page">
+<a class="skip-link" href="#main">Saltar al contenido</a>
+<header class="site-header">
+<div class="header-bar wrap">
+<a class="identity" href="/es/"><span class="identity-mark" aria-hidden="true">afs.</span><span>Antonio Ferrer-Sánchez<span class="identity-sub">Física y aprendizaje automático científico</span></span></a>
+<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu"><span class="menu-icon" aria-hidden="true"></span><span class="menu-label">Menú</span></button>
+<div class="site-menu" id="site-menu">
+<nav aria-label="Navegación principal">
+<a href="/es/investigacion/">Investigación</a><a href="/es/publicaciones/">Publicaciones</a><a href="/es/blog/" aria-current="location">Blog</a><a href="/es/software/">Software</a><a href="/es/actividad/">Actividad</a><a href="/es/cv/">CV</a>
+</nav>
+<div class="lang-switch" role="group" aria-label="Idioma"><span class="lang-label" aria-hidden="true">Idioma</span><a href="/blog/quantum-sensing/" lang="en" hreflang="en" title="Read this page in English"><svg class="flag" viewBox="0 0 30 20" width="21" height="14" aria-hidden="true" focusable="false"><defs><clipPath id="flag-us-half"><path d="M0 0h30L0 20z"/></clipPath><clipPath id="flag-uk-half"><path d="M30 0v20H0z"/></clipPath><clipPath id="flag-uk-saltire"><path d="M30 15h30v15zv15H0zH0V0zV0h30z"/></clipPath></defs><g clip-path="url(#flag-uk-half)"><g transform="translate(-5 0) scale(.6667)"><path fill="#012169" d="M0 0h60v30H0z"/><path stroke="#FFF" stroke-width="6" d="m0 0 60 30m0-30L0 30"/><path stroke="#C8102E" stroke-width="4" d="m0 0 60 30m0-30L0 30" clip-path="url(#flag-uk-saltire)"/><path stroke="#FFF" stroke-width="10" d="M30 0v30M0 15h60"/><path stroke="#C8102E" stroke-width="6" d="M30 0v30M0 15h60"/></g></g><g clip-path="url(#flag-us-half)"><path fill="#FFF" d="M0 0h30v20H0z"/><path stroke="#B31942" stroke-width="1.54" d="M0 .77h30m-30 3.08h30m-30 3.08h30M0 10h30M0 13.08h30M0 16.15h30M0 19.23h30"/><path fill="#0A3161" d="M0 0h12v10.77H0z"/><g fill="#FFF"><circle cx="2" cy="1.8" r=".55"/><circle cx="6" cy="1.8" r=".55"/><circle cx="10" cy="1.8" r=".55"/><circle cx="4" cy="4" r=".55"/><circle cx="8" cy="4" r=".55"/><circle cx="2" cy="6.2" r=".55"/><circle cx="6" cy="6.2" r=".55"/><circle cx="10" cy="6.2" r=".55"/><circle cx="4" cy="8.4" r=".55"/><circle cx="8" cy="8.4" r=".55"/></g></g><path stroke="#FFF" stroke-width=".9" d="M0 20 30 0"/></svg><span class="lang-code" aria-hidden="true">EN</span><span class="lang-name">English</span></a><span class="lang-sep" aria-hidden="true"></span><a href="/es/blog/sensores-cuanticos/" lang="es" hreflang="es" aria-current="true"><svg class="flag" viewBox="0 0 30 20" width="21" height="14" aria-hidden="true" focusable="false"><path fill="#AA151B" d="M0 0h30v20H0z"/><path fill="#F1BF00" d="M0 5h30v10H0z"/></svg><span class="lang-code" aria-hidden="true">ES</span><span class="lang-name">Español</span></a></div>
+</div>
+</div>
+</header>
+<main id="main" tabindex="-1"><article class="wrap article-shell">
+<header class="page-heading article-heading">
+<a class="text-link article-back" href="/es/blog/">← Todas las entradas</a>
+<p class="article-meta"><span>Sensores y control cuánticos</span><time datetime="2026-10-14">14 de octubre de 2026</time><span>9 min de lectura</span></p>
+<h1>Diseñar sensores cuánticos con redes neuronales informadas por la física</h1><p class="page-lede">Del espín a los controles aprendidos: cómo las PINN usan la física para diseñar sensores cuánticos y evaluar su precisión.</p>
+<p class="article-byline"><a rel="author" href="/es/">Por Antonio Ferrer-Sánchez</a></p>
+</header>
+<aside class="article-contents" aria-labelledby="contents-heading"><h2 id="contents-heading">En esta entrada</h2><nav aria-label="Contenido de la entrada"><a href="#un-espin-como-sensor">Un espín como sensor de campo magnético</a><a href="#informacion-y-precision">¿Cuánta información contiene el estado?</a><a href="#ruido-y-contraste">La información que se pierde con el ruido</a><a href="#del-ejemplo-al-control">Del ejemplo al problema de control</a><a href="#que-aprende-la-pinn">Qué aprende la PINN</a><a href="#fisica-y-entrenamiento">Cómo guía la física el entrenamiento</a><a href="#ciclo-de-entrenamiento">Dentro del ciclo de entrenamiento</a><a href="#experimentos-numericos">Qué muestran los experimentos numéricos</a><a href="#del-entrenamiento-a-la-medida">Usar los controles en un experimento de medida</a></nav></aside>
+<div class="article-body"><p>En la <a href="/es/blog/control-contradiabatico/">entrada sobre control cuántico</a>, estudiamos cómo guiar un sistema cuántico por una trayectoria deseada. En un sensor, el objetivo cambia: conseguir que una pequeña variación de una magnitud desconocida deje una señal medible. Los pulsos de control pasan a formar parte del diseño de la medida.</p>
+
+<p>El aprendizaje automático científico ofrece una forma de buscar esos pulsos. Una red neuronal informada por la física (PINN) representa controles dependientes del tiempo y los ajusta mediante las ecuaciones del sensor y una medida de su sensibilidad. Empezaremos con un solo espín para entender qué hace útil a una señal. Después seguiremos el proceso de la PINN, desde sus entradas y salidas hasta el entrenamiento y la evaluación del protocolo aprendido.</p>
+
+<h2 id="un-espin-como-sensor">Un espín como sensor de campo magnético</h2>
+
+<p>Consideremos un espín un medio en un campo magnético estático <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>B</mi></math>. Preparamos una superposición de igual peso de sus dos estados de energía. Durante un tiempo de interrogación <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>T</mi></mrow></math>, su fase relativa cambia a un ritmo determinado por el campo y la razón giromagnética conocida <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>γ</mi></math>.</p>
+
+<p>Una lectura de Ramsey convierte esa fase en un resultado binario. Elegimos su fase de referencia a partir de una estimación inicial del campo <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msub><mi>B</mi><mn>0</mn></msub></math>. Para un contraste <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>v</mi></math>, la probabilidad del resultado positivo es</p>
+
+<div class="equation" role="region" aria-label="La probabilidad del resultado positivo es un medio por uno más el contraste por el seno del desfase. El desfase es la razón giromagnética por la diferencia entre el campo y su referencia, por el tiempo de interrogación." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mtable><mtr><mtd><msub><mi>p</mi><mo>+</mo></msub><mo>=</mo><mfrac><mrow><mn>1</mn><mo>+</mo><mi>v</mi><mi mathvariant="normal">sin</mi><mo>⁡</mo><mi>δ</mi></mrow><mn>2</mn></mfrac><mo>,</mo></mtd></mtr><mtr><mtd><mi>δ</mi><mo>=</mo><mi>γ</mi><mo>(</mo><mi>B</mi><mo>−</mo><msub><mi>B</mi><mn>0</mn></msub><mo>)</mo><mi>T</mi><mo>.</mo></mtd></mtr></mtable>
+
+</math></div>
+
+<p>Aquí, <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>δ</mi></math> es el desfase respecto a la referencia. Un resultado aislado no determina el campo; repetir la preparación y la medida permite estimar la probabilidad. Cerca del desfase nulo, campos próximos producen probabilidades distintas. La estimación inicial debe localizar la franja relevante, porque la respuesta es periódica.</p>
+
+<h2 id="informacion-y-precision">¿Cuánta información contiene el estado?</h2>
+
+<p>La información de Fisher cuántica (QFI) mide hasta qué punto se pueden distinguir localmente estados con valores próximos del parámetro. Es la máxima información de Fisher clásica que puede obtenerse al elegir la medida. Para <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>ν</mi></math> repeticiones independientes, la cota cuántica de Cramér–Rao establece</p>
+
+<div class="equation" role="region" aria-label="Para un estimador del campo localmente insesgado, la desviación estándar es al menos uno dividido por la raíz cuadrada del número de repeticiones por la información de Fisher cuántica del campo." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mrow><msub><mi>σ</mi><mi>B</mi></msub><mo>≥</mo><mfrac><mn>1</mn><msqrt><mrow><mi>ν</mi><msub><mi>F</mi><mi mathvariant="normal">Q</mi></msub><mo>(</mo><mi>B</mi><mo>)</mo></mrow></msqrt></mfrac><mo>.</mo></mrow>
+
+</math></div>
+
+<p>La incertidumbre <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msub><mi>σ</mi><mi>B</mi></msub></math> es la desviación estándar de un estimador del campo localmente insesgado. Cuadruplicar la QFI reduce esta cota a la mitad con el mismo número de repeticiones. Alcanzarla también requiere una medida y un estimador adecuados; una QFI elevada no demuestra por sí sola una precisión alcanzada. <a href="https://doi.org/10.1038/ncomms14695" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">Pang y Jordan</a> explican esta relación entre información, controles y medida.</p>
+
+<h2 id="ruido-y-contraste">La información que se pierde con el ruido</h2>
+
+<p>En este ejemplo, el desfasamiento reduce la coherencia del espín y, con ella, el contraste. A tiempo de interrogación fijo, suponemos que el contraste no depende del campo. La QFI resultante es</p>
+
+<div class="equation" role="region" aria-label="La información de Fisher cuántica del campo es el contraste al cuadrado por la razón giromagnética al cuadrado por el tiempo de interrogación al cuadrado." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mrow><msub><mi>F</mi><mi mathvariant="normal">Q</mi></msub><mo>(</mo><mi>B</mi><mo>)</mo><mo>=</mo><msup><mi>v</mi><mn>2</mn></msup><msup><mi>γ</mi><mn>2</mn></msup><msup><mi>T</mi><mn>2</mn></msup><mo>.</mo></mrow>
+
+</math></div>
+
+<figure><picture><source media="(max-width: 650px)" srcset="/assets/figures/qs-ramsey-mobile-es.svg" width="480" height="450" /><img src="/assets/figures/qs-ramsey-es.svg" width="760" height="440" alt="Probabilidad del resultado positivo frente al desfase. La curva azul continua ideal tiene mayor pendiente que la naranja discontinua, de contraste 0.6. Ambas pasan por probabilidad un medio con desfase nulo." loading="lazy" decoding="async" /></picture><figcaption>Respuestas analíticas de Ramsey con el mismo tiempo de interrogación. Azul: contraste ideal de 1. Naranja discontinua: contraste de 0.6 tras el desfasamiento. El punto señala el punto de trabajo común, donde ambas tienen la misma varianza del resultado binario. Son curvas de un modelo ilustrativo, no controles aprendidos ni resultados experimentales.</figcaption></figure>
+
+<p>Con desfase nulo, la lectura elegida alcanza localmente la QFI. Reducir el contraste a 0.6 conserva el 36% de la información ideal y aumenta la cota de incertidumbre aproximadamente un 67%. La respuesta más plana contiene menos información, aunque el ruido de los resultados sea el mismo en ese punto. Aumentar el tiempo de interrogación ayuda solo mientras se conserve suficiente coherencia.</p>
+
+<h2 id="del-ejemplo-al-control">Del ejemplo al problema de control</h2>
+
+<p>El ejemplo de Ramsey tiene una solución conocida. Nos proporciona una prueba útil para un método de control: con los mismos recursos, ¿permite el protocolo distinguir mejor campos próximos? Un pulso que conserva un estado deseado resulta útil solo si ese estado también contiene información sobre la magnitud que queremos medir.</p>
+
+<p>Con espines que interactúan y una excitación dependiente del tiempo, elegir el pulso es más difícil. Cambiar una parte de la evolución afecta al estado que entra en las etapas posteriores. Hay que seleccionar los operadores de control disponibles, sus intensidades a lo largo del tiempo y la temporización del protocolo. Una PINN ofrece una representación suave y entrenable de estas funciones. Sus pesos definen un protocolo candidato que puede evaluarse en cualquier instante del intervalo de interrogación.</p>
+
+<p>La red se ejecuta en un ordenador clásico. En la construcción que presentamos, diseña la evolución antes de medir; la estimación del campo se obtiene después, a partir de los resultados de las medidas. Esta distinción define la tarea de aprendizaje: optimizar un experimento físico mediante un modelo de su dinámica.</p>
+
+<h2 id="que-aprende-la-pinn">Qué aprende la PINN</h2>
+
+<p>El potencial gauge adiabático especifica el operador usado para una corrección contradiabática. Podemos desarrollarlo en operadores hermíticos fijos. Para espines, pueden ser productos de matrices de Pauli que actúan sobre determinados espines:</p>
+
+<div class="equation" role="region" aria-label="El potencial gauge dependiente del tiempo es una suma de coeficientes reales a sub j del tiempo por operadores hermíticos fijos P sub j." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mrow><msub><mi>A</mi><mi>λ</mi></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><munder><mo>∑</mo><mi>j</mi></munder><msub><mi>a</mi><mi>j</mi></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><msub><mi>P</mi><mi>j</mi></msub><mo>.</mo></mrow>
+
+</math></div>
+
+<p>Los operadores <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>P</mi><mi>j</mi></msub></mrow></math> definen los términos permitidos, y los coeficientes reales <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>a</mi><mi>j</mi></msub></mrow></math> fijan sus intensidades. Con coeficientes reales, <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>A</mi><mi>λ</mi></msub></mrow></math> es hermítico por construcción. Elegir un conjunto menor de operadores restringe lo que la red puede representar; también permite excluir interacciones que un dispositivo no pueda implementar.</p>
+
+<p>Para el control contradiabático, la red puede aprender estos coeficientes junto con la función de programación <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi><mo>(</mo><mi>t</mi><mo>)</mo></mrow></math>. El hamiltoniano añadido es</p>
+
+<div class="equation" role="region" aria-label="El hamiltoniano contradiabático en el instante t es la derivada temporal de la programación lambda por el potencial gauge en ese instante." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mrow><msub><mi>H</mi><mi mathvariant="normal">CD</mi></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi mathvariant="normal">d</mi><mi>λ</mi></mrow><mrow><mi mathvariant="normal">d</mi><mi>t</mi></mrow></mfrac><msub><mi>A</mi><mi>λ</mi></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>.</mo></mrow>
+
+</math></div>
+
+<p>La programación determina cómo avanza el protocolo, y su derivada temporal escala el control añadido. Aprender ambas partes permite elegir el operador y cuándo aplicarlo con mayor intensidad. El tiempo <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>t</mi></mrow></math>, o su forma normalizada, es la entrada. Las salidas son funciones de control, no etiquetas de resultados individuales de medida.</p>
+
+<p>Las restricciones también pueden introducirse al construir las salidas. Una programación puede comenzar y terminar en valores prescritos, con una corrección que se anula en ambos extremos. Esta construcción satisface esas condiciones de contorno durante todo el entrenamiento. La amplitud de los pulsos, su ancho de banda y las interacciones disponibles necesitan sus propias restricciones al preparar un protocolo para un dispositivo concreto.</p>
+
+<h2 id="fisica-y-entrenamiento">Cómo guía la física el entrenamiento</h2>
+
+<p>En un problema supervisado de diseño de pulsos, podríamos entrenar con una colección de controles de buen rendimiento. El entrenamiento informado por la física evalúa los controles candidatos mediante el modelo físico. El modelo proporciona la ley de evolución; la función de pérdida mide cuánto satisface el candidato las condiciones físicas elegidas y el objetivo de medida. Esta formulación no necesita una colección de pulsos óptimos, aunque sí requiere especificar el hamiltoniano y sus parámetros calibrados.</p>
+
+<p>El objetivo de medida importa. Reducir el residuo de una ecuación y maximizar la información son requisitos distintos. Un control puede satisfacer aproximadamente una ecuación de operadores y llevar la sonda por una trayectoria poco sensible al parámetro. A su vez, una puntuación de información aparentemente alta debe contrastarse con la precisión de la dinámica simulada.</p>
+
+<p>Nuestro <a href="https://arxiv.org/abs/2604.18506" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">preprint sobre QFI</a> combina un residuo de Euler–Lagrange con objetivos finales de QFI, fase relativa y equilibrio de poblaciones, además de un regularizador de no conmutatividad. La red aprende coeficientes del operador y una programación; el estado se propaga numéricamente. El estudio abarca hasta seis cúbits, con una base restringida de operadores para el sistema mayor.</p>
+
+<p>Estos ingredientes responden a preguntas distintas. El residuo del operador mide el incumplimiento de la condición variacional de control. La QFI evalúa la sensibilidad al parámetro desconocido. Los términos de fase y población guían la sonda hacia la superposición coherente prevista. Penalizar la no conmutatividad limita un aspecto de la dinámica que complica la propagación aproximada; no sustituye una prueba de convergencia ni impone todas las restricciones del dispositivo.</p>
+
+<p>Los pesos de una pérdida combinada fijan un compromiso. Conviene evaluarlos mediante las métricas físicas y de medida por separado, porque una misma pérdida total puede ocultar errores distintos. Algunas condiciones, como la hermiticidad de la representación anterior, se satisfacen exactamente por construcción. Las condiciones impuestas mediante penalizaciones finitas siguen siendo aproximadas y deben comprobarse tras el entrenamiento.</p>
+
+<h2 id="ciclo-de-entrenamiento">Dentro del ciclo de entrenamiento</h2>
+
+<p>Podemos seguir el cálculo paso a paso:</p>
+
+<ol>
+  <li>Evaluar la PINN en tiempos de muestreo para obtener los coeficientes del operador y la programación. Construir el hamiltoniano de control a partir de esas salidas.</li>
+  <li>Propagar el estado inicial de la sonda mediante la dinámica controlada. El orden temporal importa cuando los hamiltonianos en instantes distintos no conmutan.</li>
+  <li>Evaluar los residuos físicos y las magnitudes finales de medida. La sensibilidad al parámetro compara valores próximos del campo desconocido con el mismo control aplicado.</li>
+  <li>Derivar la pérdida de entrenamiento respecto a los pesos de la red y actualizarlos. Repetir hasta satisfacer los criterios de convergencia elegidos.</li>
+</ol>
+
+<figure><picture><source media="(max-width: 650px)" srcset="/assets/figures/qs-cycle-mobile-es.svg" width="480" height="408" /><img src="/assets/figures/qs-cycle-es.svg" width="720" height="198" alt="Los tiempos de muestreo entran en una PINN clásica, que proporciona coeficientes del operador y una programación a la dinámica cuántica. La pérdida física y de medida alimenta un optimizador que actualiza los pesos de la red." loading="lazy" decoding="async" /></picture><figcaption>Entrenamiento de un protocolo de control. Las salidas de la PINN alimentan el modelo físico, y la pérdida envía gradientes a través del cálculo para actualizar los pesos. El diagrama muestra las funciones de cada etapa; no representa datos de entrenamiento ni un ciclo de realimentación de un dispositivo.</figcaption></figure>
+
+<p>La derivación tiene aquí dos funciones distintas. La sensibilidad al campo determina la QFI. Los gradientes respecto a los pesos de la red determinan cómo cambia el protocolo durante el entrenamiento. Al estimar la sensibilidad al campo, mantenemos fijo el pulso aprendido: permitir que cambie con el campo verdadero desconocido daría al controlador información que el experimento no tiene.</p>
+
+<p>Esta estructura también explica por qué la simulación sigue siendo central. Una red puede aprovechar errores de un propagador aproximado si esos errores reducen su pérdida. Repetir la propagación con una malla más fina y un integrador independiente permite comprobar si el pulso conserva su rendimiento. El resultado final es una función de control acompañada de esa evaluación, más allá de la curva de pérdida del entrenamiento.</p>
+
+<h2 id="experimentos-numericos">Qué muestran los experimentos numéricos</h2>
+
+<p>El preprint presenta mejoras frente a referencias basadas solo en Euler–Lagrange; aprender la programación ayuda en la mayoría de los casos estudiados. Son simulaciones de sistemas cerrados. El ejemplo anterior de Ramsey con desfasamiento ilustra un mecanismo de ruido distinto y no es un resultado entrenado de ese estudio.</p>
+
+<p>Para interpretar un experimento de aprendizaje, necesitamos saber qué grado de libertad produjo la mejora. Una comparación útil fija el conjunto de operadores y contrasta una programación prescrita con otra aprendida. Una segunda comparación evalúa qué cambia al añadir los términos de medida al residuo físico. Mantener fijos el presupuesto temporal y el procedimiento de evaluación permite interpretar cada comparación. La optimización convencional de pulsos con los mismos controles también es una referencia pertinente para evaluar el valor de la representación neuronal.</p>
+
+<h2 id="del-entrenamiento-a-la-medida">Usar los controles en un experimento de medida</h2>
+
+<p>Después del entrenamiento, fijamos las funciones de control y evaluamos la medida prevista. Para el espín del ejemplo inicial, esto significa calcular las probabilidades de Ramsey y comprobar cómo responden a campos próximos. Para una sonda con interacciones, requiere especificar una lectura realizable y calcular su información de Fisher clásica. Así evaluamos qué parte de la QFI del estado puede aprovechar el aparato elegido.</p>
+
+<p>Después generamos o recogemos resultados de medidas repetidas y estimamos el campo. Comparamos el sesgo y la varianza del estimador con el mismo tiempo de interrogación y número de repeticiones, incluyendo los costes de preparación y lectura. Si el control depende de una estimación preliminar del campo, esa calibración forma parte del protocolo. Hay que evaluar explícitamente la robustez en un intervalo de estimaciones plausibles; una red entrenada en un valor nominal no es automáticamente fiable en otros.</p>
+
+<p>La pérdida de contraste del primer ejemplo sugiere otra pregunta de diseño: ¿puede la red aprender controles útiles cuando el desfasamiento actúa durante la interrogación? Para estudiarlo hacen falta un modelo de evolución de sistema abierto, un cálculo de información para estados mixtos y un objetivo que incluya el ruido. Es un experimento de aprendizaje distinto, con su propia referencia y validación. Las metodologías de aprendizaje profundo ofrecen una representación flexible para estas búsquedas de control. La precisión resultante debe establecerse a partir de las medidas.</p>
+
+<p>La función de la PINN es, por tanto, concreta: representar una familia de controles con restricciones, seleccionar un protocolo mediante la física y los objetivos de medida, y proporcionar funciones que puedan evaluarse de forma independiente. Esa es la conexión entre el aprendizaje automático científico y el diseño de un sensor cuántico.</p>
+<footer class="article-end"><a href="/es/blog/">← Todas las entradas</a><a href="/es/investigacion/">Ver la investigación →</a></footer></div>
+</article>
+<script src="/assets/js/article-contents.js?v=1792011259" defer></script>
+
+
+
+</main>
+<footer class="site-footer wrap">
+<span id="external-link-note" class="sr-only">Se abre en una pestaña nueva.</span>
+<div><a class="footer-name" href="/es/">Antonio Ferrer-Sánchez</a><p>Algoritmos cuánticos · Aprendizaje automático científico</p></div>
+<div class="social-links"><a href="mailto:antonio.ferrer.contact@gmail.com">Correo</a><a href="https://scholar.google.com/citations?user=Ajj7DC4AAAAJ" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">Google Scholar <span aria-hidden="true">↗</span></a><a href="https://orcid.org/0000-0002-2305-5261" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">ORCID <span aria-hidden="true">↗</span></a><a href="https://github.com/Netzuel" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">GitHub <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/antonio-ferrer-s%C3%A1nchez-67a50b197/" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">LinkedIn <span aria-hidden="true">↗</span></a></div>
+<p class="footer-note">© 2026 Antonio Ferrer-Sánchez. <a href="/es/privacidad/">Privacidad y cookies</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>PINNs for quantum sensing · Antonio Ferrer-Sánchez</title>
+<meta name="description" content="From a magnetic-field sensor to learned controls: how PINNs use physics to guide training and improve quantum sensing protocols.">
+<meta name="author" content="Antonio Ferrer-Sánchez">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:site_name" content="Antonio Ferrer-Sánchez">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PINNs for quantum sensing">
+<meta property="og:description" content="From a magnetic-field sensor to learned controls: how PINNs use physics to guide training and improve quantum sensing protocols.">
+<meta property="og:url" content="https://antonio-ferrer-sanchez.github.io/blog/quantum-sensing/">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:image" content="https://antonio-ferrer-sanchez.github.io/assets/images/share-sensing-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ramsey measurement curves compare an ideal spin with one affected by dephasing.">
+<meta property="article:published_time" content="2026-10-14">
+<meta property="article:modified_time" content="2026-10-14">
+<meta property="article:author" content="https://antonio-ferrer-sanchez.github.io/">
+<meta property="article:section" content="Quantum sensing and control">
+<meta property="article:tag" content="quantum sensing">
+<meta property="article:tag" content="quantum Fisher information">
+<meta property="article:tag" content="scientific machine learning">
+<meta property="article:tag" content="physics-informed neural networks">
+<meta property="article:tag" content="quantum control">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PINNs for quantum sensing">
+<meta name="twitter:description" content="From a magnetic-field sensor to learned controls: how PINNs use physics to guide training and improve quantum sensing protocols.">
+<meta name="twitter:image" content="https://antonio-ferrer-sanchez.github.io/assets/images/share-sensing-en.png">
+<link rel="me" href="https://scholar.google.com/citations?user=Ajj7DC4AAAAJ">
+<link rel="me" href="https://orcid.org/0000-0002-2305-5261">
+<link rel="me" href="https://github.com/Netzuel">
+<link rel="me" href="https://www.linkedin.com/in/antonio-ferrer-s%C3%A1nchez-67a50b197/">
+<link rel="alternate" type="application/atom+xml" title="Antonio Ferrer-Sánchez · Blog" href="https://antonio-ferrer-sanchez.github.io/feed.xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/images/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [
+{
+"@type": "Person",
+"@id": "https://antonio-ferrer-sanchez.github.io/#person",
+"name": "Antonio Ferrer-Sánchez",
+"alternateName": ["Antonio Ferrer Sánchez", "Antonio Ferrer Sanchez"],
+"givenName": "Antonio",
+"familyName": "Ferrer-Sánchez",
+"url": "https://antonio-ferrer-sanchez.github.io/",
+"email": "antonio.ferrer.contact@gmail.com",
+"image": "https://antonio-ferrer-sanchez.github.io/assets/images/antonio-ferrer-sanchez.png",
+"description": "Develops machine learning methods for problems in physics, especially physics-informed neural networks and quantum dynamics.",
+"jobTitle": "Quantum Algorithm Engineer",
+"worksFor": {"@type": "Organization", "name": "Kipu Quantum", "url": "https://kipu-quantum.com/"},
+"affiliation": [{"@type": "CollegeOrUniversity", "name": "Universitat de València", "url": "https://www.uv.es/"}, {"@type": "ResearchOrganization", "name": "Intelligent Data Analysis Laboratory (IDAL)", "parentOrganization": {"@type": "CollegeOrUniversity", "name": "Universitat de València"}}],
+"alumniOf": {"@type": "CollegeOrUniversity", "name": "Universitat de València", "url": "https://www.uv.es/"},
+"knowsAbout": ["Physics-informed neural networks","Scientific machine learning","Quantum algorithms","Counterdiabatic quantum computation","Quantum metrology","Relativistic hydrodynamics","Gravitational collapse","Black-hole quasinormal modes"],
+"sameAs": ["https://scholar.google.com/citations?user=Ajj7DC4AAAAJ", "https://orcid.org/0000-0002-2305-5261", "https://github.com/Netzuel", "https://www.linkedin.com/in/antonio-ferrer-s%C3%A1nchez-67a50b197/"]
+},
+{"@type": "WebSite", "@id": "https://antonio-ferrer-sanchez.github.io/#website", "url": "https://antonio-ferrer-sanchez.github.io/", "name": "Antonio Ferrer-Sánchez", "description": "Quantum algorithms and scientific machine learning. Research, publications and software by Antonio Ferrer-Sánchez.", "inLanguage": ["en", "es"], "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}},
+{
+"@type": "WebPage",
+"@id": "https://antonio-ferrer-sanchez.github.io/blog/quantum-sensing/#webpage",
+"url": "https://antonio-ferrer-sanchez.github.io/blog/quantum-sensing/",
+"name": "PINNs for quantum sensing · Antonio Ferrer-Sánchez",
+"description": "From a magnetic-field sensor to learned controls: how PINNs use physics to guide training and improve quantum sensing protocols.",
+"inLanguage": "en",
+"isPartOf": {"@id": "https://antonio-ferrer-sanchez.github.io/#website"},
+"about": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"},
+"primaryImageOfPage": {"@type": "ImageObject", "url": "https://antonio-ferrer-sanchez.github.io/assets/images/share-sensing-en.png", "width": 1200, "height": 630},
+"breadcrumb": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/quantum-sensing/#breadcrumb"}
+},
+{"@type": "BreadcrumbList", "@id": "https://antonio-ferrer-sanchez.github.io/blog/quantum-sensing/#breadcrumb", "itemListElement": [
+{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://antonio-ferrer-sanchez.github.io/"},
+{"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://antonio-ferrer-sanchez.github.io/blog/"},
+{"@type": "ListItem", "position": 3, "name": "Designing quantum sensors with physics-informed neural networks", "item": "https://antonio-ferrer-sanchez.github.io/blog/quantum-sensing/"}
+]},
+{"@type": "BlogPosting", "@id": "https://antonio-ferrer-sanchez.github.io/blog/quantum-sensing/#post", "mainEntityOfPage": {"@id": "https://antonio-ferrer-sanchez.github.io/blog/quantum-sensing/#webpage"}, "headline": "Designing quantum sensors with physics-informed neural networks", "description": "From a magnetic-field sensor to learned controls: how PINNs use physics to guide training and improve quantum sensing protocols.", "image": "https://antonio-ferrer-sanchez.github.io/assets/images/share-sensing-en.png", "datePublished": "2026-10-14", "dateModified": "2026-10-14", "inLanguage": "en", "articleSection": "Quantum sensing and control", "keywords": ["quantum sensing","quantum Fisher information","scientific machine learning","physics-informed neural networks","quantum control"], "wordCount": 1834, "timeRequired": "PT9M", "author": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "publisher": {"@id": "https://antonio-ferrer-sanchez.github.io/#person"}, "isPartOf": {"@type": "Blog", "@id": "https://antonio-ferrer-sanchez.github.io/blog/#blog", "name": "Antonio Ferrer-Sánchez · Blog", "url": "https://antonio-ferrer-sanchez.github.io/blog/"}, "workTranslation": {"@id": "https://antonio-ferrer-sanchez.github.io/es/blog/sensores-cuanticos/#post"}, "citation": [{"@type": "ScholarlyArticle", "name": "Physics-Informed Neural Networks for Maximizing Quantum Fisher Information in Time-Dependent Many-Body Systems", "url": "https://arxiv.org/abs/2604.18506"}]}
+]}
+</script>
+
+<meta name="theme-color" content="#153f36">
+<link rel="canonical" href="https://antonio-ferrer-sanchez.github.io/blog/quantum-sensing/">
+<link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/quantum-sensing/">
+<link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/sensores-cuanticos/">
+<link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/quantum-sensing/">
+<link rel="stylesheet" href="/assets/css/site.css?v=1792011259">
+<link rel="stylesheet" href="/assets/css/print.css?v=1792011259" media="print">
+
+<script src="/assets/js/header.js?v=1792011259"></script>
+<meta name="publication-revision" content="fa22a3bbdc68fe37dee506bc0e0259db9e7c4b5014e5677c74cb57fcbe7e2457">
+<script defer src="/assets/js/publication.js?v=1792011259"></script>
+</head>
+<body class="article-page">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="header-bar wrap">
+<a class="identity" href="/"><span class="identity-mark" aria-hidden="true">afs.</span><span>Antonio Ferrer-Sánchez<span class="identity-sub">Physics & scientific machine learning</span></span></a>
+<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu"><span class="menu-icon" aria-hidden="true"></span><span class="menu-label">Menu</span></button>
+<div class="site-menu" id="site-menu">
+<nav aria-label="Main navigation">
+<a href="/research/">Research</a><a href="/publications/">Publications</a><a href="/blog/" aria-current="location">Blog</a><a href="/software/">Software</a><a href="/activity/">Activity</a><a href="/cv/">CV</a>
+</nav>
+<div class="lang-switch" role="group" aria-label="Language"><span class="lang-label" aria-hidden="true">Language</span><a href="/blog/quantum-sensing/" lang="en" hreflang="en" aria-current="true"><svg class="flag" viewBox="0 0 30 20" width="21" height="14" aria-hidden="true" focusable="false"><defs><clipPath id="flag-us-half"><path d="M0 0h30L0 20z"/></clipPath><clipPath id="flag-uk-half"><path d="M30 0v20H0z"/></clipPath><clipPath id="flag-uk-saltire"><path d="M30 15h30v15zv15H0zH0V0zV0h30z"/></clipPath></defs><g clip-path="url(#flag-uk-half)"><g transform="translate(-5 0) scale(.6667)"><path fill="#012169" d="M0 0h60v30H0z"/><path stroke="#FFF" stroke-width="6" d="m0 0 60 30m0-30L0 30"/><path stroke="#C8102E" stroke-width="4" d="m0 0 60 30m0-30L0 30" clip-path="url(#flag-uk-saltire)"/><path stroke="#FFF" stroke-width="10" d="M30 0v30M0 15h60"/><path stroke="#C8102E" stroke-width="6" d="M30 0v30M0 15h60"/></g></g><g clip-path="url(#flag-us-half)"><path fill="#FFF" d="M0 0h30v20H0z"/><path stroke="#B31942" stroke-width="1.54" d="M0 .77h30m-30 3.08h30m-30 3.08h30M0 10h30M0 13.08h30M0 16.15h30M0 19.23h30"/><path fill="#0A3161" d="M0 0h12v10.77H0z"/><g fill="#FFF"><circle cx="2" cy="1.8" r=".55"/><circle cx="6" cy="1.8" r=".55"/><circle cx="10" cy="1.8" r=".55"/><circle cx="4" cy="4" r=".55"/><circle cx="8" cy="4" r=".55"/><circle cx="2" cy="6.2" r=".55"/><circle cx="6" cy="6.2" r=".55"/><circle cx="10" cy="6.2" r=".55"/><circle cx="4" cy="8.4" r=".55"/><circle cx="8" cy="8.4" r=".55"/></g></g><path stroke="#FFF" stroke-width=".9" d="M0 20 30 0"/></svg><span class="lang-code" aria-hidden="true">EN</span><span class="lang-name">English</span></a><span class="lang-sep" aria-hidden="true"></span><a href="/es/blog/sensores-cuanticos/" lang="es" hreflang="es" title="Leer esta página en español"><svg class="flag" viewBox="0 0 30 20" width="21" height="14" aria-hidden="true" focusable="false"><path fill="#AA151B" d="M0 0h30v20H0z"/><path fill="#F1BF00" d="M0 5h30v10H0z"/></svg><span class="lang-code" aria-hidden="true">ES</span><span class="lang-name">Español</span></a></div>
+</div>
+</div>
+</header>
+<main id="main" tabindex="-1"><article class="wrap article-shell">
+<header class="page-heading article-heading">
+<a class="text-link article-back" href="/blog/">← All posts</a>
+<p class="article-meta"><span>Quantum sensing and control</span><time datetime="2026-10-14">14 October 2026</time><span>9 min read</span></p>
+<h1>Designing quantum sensors with physics-informed neural networks</h1><p class="page-lede">From a magnetic-field sensor to learned controls: how PINNs use physics to guide training and improve quantum sensing protocols.</p>
+<p class="article-byline"><a rel="author" href="/">By Antonio Ferrer-Sánchez</a></p>
+</header>
+<aside class="article-contents" aria-labelledby="contents-heading"><h2 id="contents-heading">In this post</h2><nav aria-label="Post contents"><a href="#a-spin-as-a-sensor">A spin as a magnetic-field sensor</a><a href="#information-and-precision">How much information does the state carry?</a><a href="#what-noise-takes-away">What noise takes away</a><a href="#from-example-to-controls">From the example to a control problem</a><a href="#what-the-pinn-learns">What the PINN learns</a><a href="#how-physics-guides-training">How physics guides training</a><a href="#inside-the-training-loop">Inside the training loop</a><a href="#what-the-experiments-show">What the numerical experiments show</a><a href="#from-training-to-sensing">Using learned controls in a sensing experiment</a></nav></aside>
+<div class="article-body"><p>In the <a href="/blog/counterdiabatic-driving/">quantum-control post</a>, we asked how to steer a quantum system along a desired path. For sensing, the aim changes: make a small change in an unknown quantity leave a measurable trace. The control pulses become part of the measurement design.</p>
+
+<p>Scientific machine learning offers a way to search for those pulses. A physics-informed neural network (PINN) represents time-dependent controls and adjusts them using the equations of the sensor and a measure of its sensitivity. We will start with a single spin to establish what a useful signal looks like, then follow the PINN from its inputs and outputs through training to the evaluation of a learned protocol.</p>
+
+<h2 id="a-spin-as-a-sensor">A spin as a magnetic-field sensor</h2>
+
+<p>Consider a spin one-half in a static magnetic field <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>B</mi></math>. Prepare an equal superposition of its two energy states. During an interrogation time <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>T</mi></mrow></math>, their relative phase changes at a rate set by the field and the known gyromagnetic ratio <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>γ</mi></math>.</p>
+
+<p>A Ramsey readout converts that phase into a binary outcome. Choose its reference phase using an initial field estimate <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msub><mi>B</mi><mn>0</mn></msub></math>. With contrast <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>v</mi></math>, the probability of the positive outcome is</p>
+
+<div class="equation" role="region" aria-label="Positive-outcome probability equals one half times one plus contrast times sine of the phase offset. Phase offset equals gyromagnetic ratio times field minus reference field, times interrogation time." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mtable><mtr><mtd><msub><mi>p</mi><mo>+</mo></msub><mo>=</mo><mfrac><mrow><mn>1</mn><mo>+</mo><mi>v</mi><mi mathvariant="normal">sin</mi><mo>⁡</mo><mi>δ</mi></mrow><mn>2</mn></mfrac><mo>,</mo></mtd></mtr><mtr><mtd><mi>δ</mi><mo>=</mo><mi>γ</mi><mo>(</mo><mi>B</mi><mo>−</mo><msub><mi>B</mi><mn>0</mn></msub><mo>)</mo><mi>T</mi><mo>.</mo></mtd></mtr></mtable>
+
+</math></div>
+
+<p>Here <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>δ</mi></math> is the phase offset from that reference. One outcome cannot determine the field; repeated preparations and measurements estimate the probability. Near zero offset, nearby fields produce different probabilities. The estimate must already locate the relevant fringe, because the response is periodic.</p>
+
+<h2 id="information-and-precision">How much information does the state carry?</h2>
+
+<p>Quantum Fisher information (QFI) measures the local distinguishability of states with nearby parameter values. It equals the largest classical Fisher information available over possible measurements. For <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>ν</mi></math> independent repetitions, the quantum Cramér–Rao bound gives</p>
+
+<div class="equation" role="region" aria-label="For a locally unbiased field estimator, the standard deviation is at least one divided by the square root of the repetition count times quantum Fisher information for the field." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mrow><msub><mi>σ</mi><mi>B</mi></msub><mo>≥</mo><mfrac><mn>1</mn><msqrt><mrow><mi>ν</mi><msub><mi>F</mi><mi mathvariant="normal">Q</mi></msub><mo>(</mo><mi>B</mi><mo>)</mo></mrow></msqrt></mfrac><mo>.</mo></mrow>
+
+</math></div>
+
+<p>The uncertainty <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><msub><mi>σ</mi><mi>B</mi></msub></math> is the standard deviation of a locally unbiased field estimator. Four times the QFI halves this lower bound at the same repetition count. Reaching it also requires a suitable measurement and estimator; a large QFI alone does not establish an achieved precision. <a href="https://doi.org/10.1038/ncomms14695" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">Pang and Jordan</a> explain this connection between information, controls and measurement.</p>
+
+<h2 id="what-noise-takes-away">What noise takes away</h2>
+
+<p>In this example, dephasing reduces the spin’s coherence and hence the contrast. At fixed interrogation time, assume that contrast is independent of the field. The resulting QFI is</p>
+
+<div class="equation" role="region" aria-label="Quantum Fisher information for the field equals contrast squared times gyromagnetic ratio squared times interrogation time squared." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mrow><msub><mi>F</mi><mi mathvariant="normal">Q</mi></msub><mo>(</mo><mi>B</mi><mo>)</mo><mo>=</mo><msup><mi>v</mi><mn>2</mn></msup><msup><mi>γ</mi><mn>2</mn></msup><msup><mi>T</mi><mn>2</mn></msup><mo>.</mo></mrow>
+
+</math></div>
+
+<figure><picture><source media="(max-width: 650px)" srcset="/assets/figures/qs-ramsey-mobile.svg" width="480" height="450" /><img src="/assets/figures/qs-ramsey.svg" width="760" height="440" alt="Positive-outcome probability versus phase offset. The ideal blue solid curve is steeper than the orange dashed curve with contrast 0.6. Both pass through probability one half at zero offset." loading="lazy" decoding="async" /></picture><figcaption>Analytic Ramsey responses at the same interrogation time. Blue: ideal contrast of 1. Orange dashed: dephased contrast of 0.6. The dot marks the common working point, where both have the same binary-outcome variance. These curves are an illustrative model, not learned controls or experimental results.</figcaption></figure>
+
+<p>At zero offset, the chosen readout attains the QFI locally. Reducing the contrast to 0.6 leaves 36% of the ideal information and makes the uncertainty bound about 67% larger. The flatter response carries less information despite having the same outcome noise at that point. Increasing interrogation time helps only while enough coherence survives.</p>
+
+<h2 id="from-example-to-controls">From the example to a control problem</h2>
+
+<p>The Ramsey example has a known solution. It gives us a useful test for a control method: at fixed resources, does the protocol make nearby fields easier to distinguish? A pulse that preserves a desired state is useful only if that state also carries information about the quantity being measured.</p>
+
+<p>With interacting spins and time-dependent driving, choosing a pulse becomes harder. Changing one part of the evolution affects the state that enters every later part. We must select the available control operators, their strengths over time and the timing of the drive. A PINN provides a smooth, trainable representation of these functions. Its weights specify a candidate protocol that can be evaluated at any time within the interrogation interval.</p>
+
+<p>The network runs on a classical computer. In the construction discussed here, it designs the evolution before measurement; the field estimate is obtained later from measurement outcomes. This distinction defines the learning task: optimize a physical experiment using a model of its dynamics.</p>
+
+<h2 id="what-the-pinn-learns">What the PINN learns</h2>
+
+<p>The adiabatic gauge potential specifies the operator used for a counterdiabatic correction. We can expand it in fixed Hermitian operators. For spins, these can be products of Pauli matrices acting on selected spins:</p>
+
+<div class="equation" role="region" aria-label="The time-dependent gauge potential is a sum of real coefficients a sub j of time times fixed Hermitian operators P sub j." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mrow><msub><mi>A</mi><mi>λ</mi></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><munder><mo>∑</mo><mi>j</mi></munder><msub><mi>a</mi><mi>j</mi></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><msub><mi>P</mi><mi>j</mi></msub><mo>.</mo></mrow>
+
+</math></div>
+
+<p>Here the operators <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>P</mi><mi>j</mi></msub></mrow></math> define the allowed terms, and the real coefficients <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>a</mi><mi>j</mi></msub></mrow></math> determine their strengths. Real coefficients make <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><msub><mi>A</mi><mi>λ</mi></msub></mrow></math> Hermitian by construction. Choosing a smaller operator set restricts what the network can express; this is also where one can exclude interactions that a device cannot implement.</p>
+
+<p>For counterdiabatic control, the network can learn these coefficients together with the schedule <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>λ</mi><mo>(</mo><mi>t</mi><mo>)</mo></mrow></math>. The added Hamiltonian is</p>
+
+<div class="equation" role="region" aria-label="The counterdiabatic Hamiltonian at time t equals the time derivative of the schedule lambda times the gauge potential at time t." tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+
+<mrow><msub><mi>H</mi><mi mathvariant="normal">CD</mi></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi mathvariant="normal">d</mi><mi>λ</mi></mrow><mrow><mi mathvariant="normal">d</mi><mi>t</mi></mrow></mfrac><msub><mi>A</mi><mi>λ</mi></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>.</mo></mrow>
+
+</math></div>
+
+<p>The schedule sets how the drive progresses, and its time derivative scales the added control. Learning both parts allows the network to choose the operator and when to apply it strongly. Time <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mrow><mi>t</mi></mrow></math>, or its normalized form, is the input. The outputs are control functions, not labels for individual measurement outcomes.</p>
+
+<p>Constraints can also enter through the output construction. A schedule can start and end at prescribed values, with a correction that vanishes at both endpoints. Such a construction satisfies those boundary conditions throughout training. Pulse amplitude, bandwidth and the available interactions need their own constraints when preparing a protocol for a particular device.</p>
+
+<h2 id="how-physics-guides-training">How physics guides training</h2>
+
+<p>In a supervised pulse-design task, one could train against a library of known good controls. Physics-informed training instead evaluates candidate controls through the physical model. The model supplies the evolution law; the loss measures how well the candidate satisfies the chosen physical conditions and sensing objective. No library of optimal pulses is required for this formulation, although the Hamiltonian and its calibrated parameters must be specified.</p>
+
+<p>The sensing objective matters. Making an equation residual small and maximizing information are different requirements. A control may approximately satisfy an operator equation while sending the probe through a trajectory with poor parameter sensitivity. Conversely, an apparently high information score needs to be checked against the accuracy of the simulated dynamics.</p>
+
+<p>Our <a href="https://arxiv.org/abs/2604.18506" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">QFI preprint</a> combines an Euler–Lagrange residual with terminal QFI, relative-phase and population-balance objectives, plus a non-commutativity regularizer. The network learns operator coefficients and a schedule; the state is propagated numerically. The study covers up to six qubits, with a restricted operator basis for the largest system.</p>
+
+<p>These ingredients answer different questions. The operator residual measures departure from the variational control condition. QFI evaluates sensitivity to the unknown parameter. Phase and population terms guide the probe toward the intended coherent superposition. A penalty on non-commutativity limits an aspect of the dynamics that complicates approximate propagation; it does not replace a convergence check or impose every hardware constraint.</p>
+
+<p>The weights in a combined loss set a trade-off. They should be assessed through the separate physical and sensing metrics, because the same total loss can hide different errors. Some conditions, such as Hermiticity in the representation above, are exact by construction. Conditions imposed through finite penalties remain approximate and must be checked after training.</p>
+
+<h2 id="inside-the-training-loop">Inside the training loop</h2>
+
+<p>The computation can be followed as a sequence:</p>
+
+<ol>
+  <li>Evaluate the PINN at sampled times to obtain the operator coefficients and the schedule. Construct the control Hamiltonian from those outputs.</li>
+  <li>Propagate the specified probe state through the controlled dynamics. Time ordering matters when Hamiltonians at different times do not commute.</li>
+  <li>Evaluate the physical residuals and the final sensing quantities. Parameter sensitivity compares nearby values of the unknown field under the same applied control.</li>
+  <li>Differentiate the training loss with respect to the network weights and update them. Repeat until the selected convergence criteria are met.</li>
+</ol>
+
+<figure><picture><source media="(max-width: 650px)" srcset="/assets/figures/qs-cycle-mobile.svg" width="480" height="408" /><img src="/assets/figures/qs-cycle.svg" width="720" height="198" alt="Time samples enter a classical PINN, which supplies operator coefficients and a schedule to quantum dynamics. The physics and sensing loss feeds an optimizer that updates the network weights." loading="lazy" decoding="async" /></picture><figcaption>Training a control protocol. The PINN outputs feed the physical model, and the loss sends gradients back through the computation to update the weights. The diagram shows the computational roles; it is not a plot of training data or a hardware feedback loop.</figcaption></figure>
+
+<p>Differentiation has two distinct roles here. Sensitivity to the field determines the QFI. Gradients with respect to the network weights determine how training changes the protocol. When estimating field sensitivity, we hold the trained pulse fixed: allowing it to change with the true unknown field would give the controller information that the experiment does not possess.</p>
+
+<p>This structure also explains why simulation remains central. A network can exploit errors in an approximate propagator if those errors improve its loss. Repeating the propagation on a finer grid and with an independent solver tests whether the learned pulse retains its performance. The final deliverable is a control function together with that evaluation, rather than a training-loss curve alone.</p>
+
+<h2 id="what-the-experiments-show">What the numerical experiments show</h2>
+
+<p>The preprint reports gains over Euler–Lagrange-only references; learning the schedule helps in most studied cases. These are closed-system simulations. The dephased Ramsey example above illustrates a separate noise mechanism and is not a trained result from that study.</p>
+
+<p>To interpret a learning experiment, we need to know which freedom produced the gain. A useful comparison fixes the operator set and tests a prescribed schedule against a learned one. A second comparison tests what changes when the sensing terms are added to the physical residual. Keeping the time budget and evaluation procedure fixed makes each comparison informative. Conventional pulse optimization with the same controls is also a relevant reference for assessing the value of the neural representation.</p>
+
+<h2 id="from-training-to-sensing">Using learned controls in a sensing experiment</h2>
+
+<p>After training, freeze the control functions and evaluate the intended measurement. For the introductory spin example, this means calculating the Ramsey probabilities and checking their response to nearby fields. For an interacting probe, it means specifying a feasible readout and computing its classical Fisher information. This tests how much of the state’s QFI the chosen apparatus can access.</p>
+
+<p>Then generate or collect repeated measurement outcomes and estimate the field. Compare estimator bias and variance at the same interrogation time and repetition count, including preparation and readout costs. If the control depends on a preliminary field estimate, that calibration step is part of the protocol. Robustness over a range of plausible estimates must be tested explicitly; a network trained at one nominal setting is not automatically reliable elsewhere.</p>
+
+<p>The contrast loss in our first example suggests a further design question: can the network learn useful controls when dephasing acts during the interrogation? That requires an appropriate open-system evolution model, a mixed-state information calculation and a noise-aware objective. It is a separate learning experiment, with its own baseline and validation. Deep learning methodologies provide a flexible representation for these control searches. The resulting precision must still be established from the measurements.</p>
+
+<p>The PINN’s role is therefore concrete: represent a constrained family of control functions, use physics and sensing objectives to select a protocol, and provide functions that can be tested independently. That is the connection between scientific machine learning and the design of a quantum sensor.</p>
+<footer class="article-end"><a href="/blog/">← All posts</a><a href="/research/">Explore the research →</a></footer></div>
+</article>
+<script src="/assets/js/article-contents.js?v=1792011259" defer></script>
+
+
+
+</main>
+<footer class="site-footer wrap">
+<span id="external-link-note" class="sr-only">Opens in a new tab.</span>
+<div><a class="footer-name" href="/">Antonio Ferrer-Sánchez</a><p>Quantum algorithms · Scientific machine learning</p></div>
+<div class="social-links"><a href="mailto:antonio.ferrer.contact@gmail.com">Email</a><a href="https://scholar.google.com/citations?user=Ajj7DC4AAAAJ" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">Google Scholar <span aria-hidden="true">↗</span></a><a href="https://orcid.org/0000-0002-2305-5261" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">ORCID <span aria-hidden="true">↗</span></a><a href="https://github.com/Netzuel" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">GitHub <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/antonio-ferrer-s%C3%A1nchez-67a50b197/" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Opens in a new tab">LinkedIn <span aria-hidden="true">↗</span></a></div>
+<p class="footer-note">© 2026 Antonio Ferrer-Sánchez. <a href="/privacy/">Privacy and cookies</a></p>
+</footer>
+</body>
+</html>

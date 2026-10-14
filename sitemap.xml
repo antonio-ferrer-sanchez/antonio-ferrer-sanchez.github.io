@@ -138,4 +138,18 @@
 <xhtml:link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/"/>
 <xhtml:link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/"/>
 </url>
+<url>
+<loc>https://antonio-ferrer-sanchez.github.io/es/blog/sensores-cuanticos/</loc>
+<lastmod>2026-10-14</lastmod>
+<xhtml:link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/sensores-cuanticos/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/quantum-sensing/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/quantum-sensing/"/>
+</url>
+<url>
+<loc>https://antonio-ferrer-sanchez.github.io/blog/quantum-sensing/</loc>
+<lastmod>2026-10-14</lastmod>
+<xhtml:link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/sensores-cuanticos/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/quantum-sensing/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/quantum-sensing/"/>
+</url>
 </urlset>
