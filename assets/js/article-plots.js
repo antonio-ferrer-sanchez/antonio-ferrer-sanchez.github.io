@@ -26,6 +26,13 @@
       zeroHover: "zero field",
       required: "Required initial profile",
       temperature0: "Temperature at t = 0",
+      contrast: "Contrast",
+      phase: "Phase offset (rad)",
+      idealSensor: "Ideal (contrast 1)",
+      selectedSensor: "Selected contrast",
+      ramseyLabel: "Interactive Ramsey response: ideal and selected contrast",
+      ramseyValues: (ideal, selected, slope) =>
+        `At the selected phase: ideal probability ${ideal}; selected probability ${selected}; selected slope ${slope} per radian.`,
     },
     es: {
       time: "Tiempo <i>t</i>",
@@ -42,6 +49,13 @@
       zeroHover: "campo nulo",
       required: "Perfil inicial requerido",
       temperature0: "Temperatura en t = 0",
+      contrast: "Contraste",
+      phase: "Desfase (rad)",
+      idealSensor: "Ideal (contraste 1)",
+      selectedSensor: "Contraste elegido",
+      ramseyLabel: "Respuesta de Ramsey interactiva: contraste ideal y elegido",
+      ramseyValues: (ideal, selected, slope) =>
+        `En el desfase elegido: probabilidad ideal ${ideal}; probabilidad elegida ${selected}; pendiente elegida ${slope} por radián.`,
     },
   };
   const L = TEXT[document.documentElement.lang] || TEXT.en;
@@ -113,6 +127,75 @@
   }
 
   const charts = {
+    ramsey(holder, controls, readout) {
+      const contrast = slider(
+        controls,
+        "contrast",
+        L.contrast,
+        0,
+        1,
+        0.01,
+        0.6,
+      );
+      const phase = slider(controls, "phase", L.phase, -1.2, 1.2, 0.01, 0);
+      const phases = Array.from(
+        { length: 601 },
+        (_, i) => -1.2 + (2.4 * i) / 600,
+      );
+      const probability = (offset, visibility) =>
+        (1 + visibility * Math.sin(offset)) / 2;
+      const base = layout("δ (rad)", "p<sub>+</sub>", [-0.03, 1.03]);
+      base.xaxis.range = [-1.2, 1.2];
+      base.xaxis.tickvals = [-1.2, -0.6, 0, 0.6, 1.2];
+      base.yaxis.tickvals = [0, 0.25, 0.5, 0.75, 1];
+      base.margin = { l: 48, r: 16, t: 86, b: 50 };
+      base.legend.orientation = "v";
+      base.legend.itemclick = false;
+      base.legend.itemdoubleclick = false;
+      base.font = { ...FONT, size: 13 };
+      base.dragmode = false;
+      base.xaxis.fixedrange = true;
+      base.yaxis.fixedrange = true;
+      holder.setAttribute("aria-label", L.ramseyLabel);
+      const update = () => {
+        const visibility = Number(contrast.value);
+        const offset = Number(phase.value);
+        readout.textContent = L.ramseyValues(
+          probability(offset, 1).toFixed(3),
+          probability(offset, visibility).toFixed(3),
+          ((visibility * Math.cos(offset)) / 2).toFixed(3),
+        );
+        const traces = [1, visibility].map((v, index) => ({
+          x: phases,
+          y: phases.map((delta) => probability(delta, v)),
+          name: index === 0 ? L.idealSensor : L.selectedSensor,
+          mode: "lines",
+          line: {
+            color: index === 0 ? BLUE : ORANGE,
+            width: 3,
+            dash: index === 0 ? "solid" : "dash",
+          },
+          hovertemplate: "%{y:.3f}<extra>%{fullData.name}</extra>",
+        }));
+        const markers = [1, visibility].map((v, index) => ({
+          x: [offset],
+          y: [probability(offset, v)],
+          mode: "markers",
+          marker: {
+            color: index === 0 ? BLUE : ORANGE,
+            size: index === 0 ? 9 : 14,
+            symbol: index === 0 ? "circle" : "circle-open",
+            line: { width: 2 },
+          },
+          showlegend: false,
+          hoverinfo: "skip",
+        }));
+        return Plotly.react(holder, [...traces, ...markers], base, CONFIG);
+      };
+      contrast.addEventListener("input", update);
+      phase.addEventListener("input", update);
+      return update();
+    },
     diffusion(holder, controls, readout) {
       const time = slider(controls, "t", L.time, 0, 1, 0.01, 0.5);
       const alpha = slider(controls, "alpha", L.alpha, 0.02, 0.3, 0.01, 0.1);
@@ -192,22 +275,44 @@
     controls.id = `plot-${index}`;
     const readout = document.createElement("p");
     readout.className = "plot-readout";
+    readout.id = `${controls.id}-readout`;
     readout.setAttribute("aria-live", "polite");
+    holder.setAttribute("aria-describedby", readout.id);
+    let viewport = holder;
+    if (figure.dataset.plot === "ramsey") {
+      viewport = document.createElement("div");
+      viewport.className = "ramsey-viewport";
+      viewport.tabIndex = 0;
+      viewport.setAttribute("role", "region");
+      viewport.setAttribute("aria-label", L.ramseyLabel);
+      viewport.append(holder);
+    }
     // Hide the static fallback directly so a stale cached stylesheet cannot show both.
     const picture = figure.querySelector("picture");
-    picture.after(holder, controls, readout);
+    picture.after(viewport, controls, readout);
     picture.hidden = true;
     figure.classList.add("is-interactive");
     const caption = figure.querySelector("figcaption");
-    if (caption && figure.dataset.interactiveCaption)
-      caption.textContent = figure.dataset.interactiveCaption;
-    Promise.resolve(make(holder, controls, readout)).catch(() => {
-      figure.classList.remove("is-interactive");
-      picture.hidden = false;
-      holder.remove();
-      controls.remove();
-      readout.remove();
-    });
+    const staticCaption = caption?.textContent;
+    if (caption && figure.dataset.interactiveCaption) {
+      const fallback = document.createElement("span");
+      fallback.className = "plot-static-caption";
+      fallback.textContent = staticCaption;
+      const interactive = document.createElement("span");
+      interactive.className = "plot-interactive-caption";
+      interactive.textContent = figure.dataset.interactiveCaption;
+      caption.replaceChildren(fallback, interactive);
+    }
+    Promise.resolve()
+      .then(() => make(holder, controls, readout))
+      .catch(() => {
+        figure.classList.remove("is-interactive");
+        picture.hidden = false;
+        viewport.remove();
+        controls.remove();
+        readout.remove();
+        if (caption) caption.textContent = staticCaption;
+      });
   }
 
   let loading;

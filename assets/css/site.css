@@ -1375,6 +1375,34 @@ main:focus {
   color: var(--muted);
   font-size: 0.95rem;
 }
+.plot-static-caption {
+  display: none;
+}
+.ramsey-viewport {
+  overflow-x: auto;
+}
+.ramsey-viewport .plot-holder {
+  min-width: 280px;
+}
+.ramsey-viewport:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+@media print {
+  .article-body figure.is-interactive picture {
+    display: block;
+  }
+  .plot-holder,
+  .ramsey-viewport,
+  .plot-controls,
+  .plot-readout,
+  .plot-interactive-caption {
+    display: none;
+  }
+  .plot-static-caption {
+    display: inline;
+  }
+}
 .article-body .figure-narrow img {
   display: block;
   max-width: 520px;
