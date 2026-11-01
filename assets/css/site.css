@@ -49,7 +49,7 @@
   --line: #d9d9d2;
   --white: #ffffff;
   --accent: #1a43b0;
-  --measure: 1120px;
+  --frame: 1120px;
   --serif: "STIX Two Text", "STIX Two Math", Georgia, "Times New Roman", serif;
   --sans: "Source Sans 3", Arial, sans-serif;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -135,7 +135,7 @@ h3 {
   overflow-wrap: break-word;
 }
 .wrap {
-  max-width: calc(var(--measure) + 2 * var(--gutter));
+  max-width: calc(var(--frame) + 2 * var(--gutter));
   margin-inline: auto;
   padding-inline: 48px;
 }
@@ -1253,7 +1253,52 @@ main:focus {
 .article-contents h2 {
   font-size: 19px;
   letter-spacing: 0;
+}
+.article-contents summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
   margin-bottom: 18px;
+  list-style: none;
+}
+.article-contents summary::-webkit-details-marker {
+  display: none;
+}
+/* Wide screens: the list is the open side rail, not a control. */
+@media (min-width: 1000.02px) {
+  .article-contents summary {
+    pointer-events: none;
+  }
+}
+@media (max-width: 1000px) {
+  .article-contents details {
+    background: var(--surface);
+    padding: 0 18px;
+  }
+  .article-contents summary {
+    min-height: 52px;
+    margin-bottom: 0;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .article-contents summary::after {
+    content: "+";
+    font-size: 24px;
+    line-height: 1;
+    transition: transform 200ms var(--ease-out);
+  }
+  .article-contents details[open] summary::after {
+    transform: rotate(45deg);
+  }
+  .article-contents details[open] nav {
+    padding-bottom: 18px;
+  }
+  .article-contents summary:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 3px;
+  }
 }
 .article-contents nav {
   display: flex;
@@ -1950,4 +1995,18 @@ a:active {
   .article-preview-figure:active {
     transform: none;
   }
+}
+
+/* Tracking follows size: display type is tightened above; text at 13–15 px
+   opens up slightly so it stays legible. */
+.identity-sub,
+.site-footer,
+.post-list time,
+.post-figure-caption,
+.activity-type,
+.project-category,
+.status,
+.list-note,
+.updated {
+  letter-spacing: 0.01em;
 }

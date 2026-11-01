@@ -92,12 +92,12 @@
 <link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/">
 <link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/aprendizaje-automatico-informado-por-la-fisica/">
 <link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/">
-<link rel="stylesheet" href="/assets/css/site.css?v=1793566011">
-<link rel="stylesheet" href="/assets/css/print.css?v=1793566011" media="print">
+<link rel="stylesheet" href="/assets/css/site.css?v=1793566437">
+<link rel="stylesheet" href="/assets/css/print.css?v=1793566437" media="print">
 
-<script src="/assets/js/header.js?v=1793566011"></script>
+<script src="/assets/js/header.js?v=1793566437"></script>
 <meta name="publication-revision" content="fa22a3bbdc68fe37dee506bc0e0259db9e7c4b5014e5677c74cb57fcbe7e2457">
-<script defer src="/assets/js/publication.js?v=1793566011"></script>
+<script defer src="/assets/js/publication.js?v=1793566437"></script>
 </head>
 <body class="article-page">
 <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -120,7 +120,7 @@
 <h1>Aprendizaje automático informado por la física: de las leyes físicas a los solvers neuronales</h1><p class="page-lede">Cómo orienta la física el aprendizaje, cómo resuelven las PINN ecuaciones diferenciales y cómo comprobar si una solución aprendida es fiable.</p>
 <p class="article-byline"><a rel="author" href="/es/">Por Antonio Ferrer-Sánchez</a></p>
 </header>
-<aside class="article-contents" aria-labelledby="contents-heading"><h2 id="contents-heading">En esta entrada</h2><nav aria-label="Contenido de la entrada"><a href="#aprender-de-las-mediciones-y-de-las-leyes-fisicas">Aprender de las mediciones y de las leyes físicas</a><a href="#de-una-red-neuronal-a-un-solver-de-ecuaciones-diferenciales">De una red neuronal a un solver de ecuaciones diferenciales</a><a href="#un-ejemplo-concreto-difusion-en-una-barra">Un ejemplo concreto: difusión en una barra</a><a href="#construccion-de-la-funcion-de-perdida">Construcción de la función de pérdida</a><a href="#que-ocurre-durante-el-entrenamiento">¿Qué ocurre durante el entrenamiento?</a><a href="#donde-ayuda-el-aprendizaje-informado-por-la-fisica">Dónde ayuda el aprendizaje informado por la física</a><a href="#limitaciones-que-importan-en-la-practica">Limitaciones que importan en la práctica</a><a href="#relacion-con-mi-investigacion">Relación con mi investigación</a><a href="#un-punto-de-partida-practico">Un punto de partida práctico</a></nav></aside>
+<aside class="article-contents" aria-labelledby="contents-heading"><details open><summary><h2 id="contents-heading">En esta entrada</h2></summary><nav aria-label="Contenido de la entrada"><a href="#aprender-de-las-mediciones-y-de-las-leyes-fisicas">Aprender de las mediciones y de las leyes físicas</a><a href="#de-una-red-neuronal-a-un-solver-de-ecuaciones-diferenciales">De una red neuronal a un solver de ecuaciones diferenciales</a><a href="#un-ejemplo-concreto-difusion-en-una-barra">Un ejemplo concreto: difusión en una barra</a><a href="#construccion-de-la-funcion-de-perdida">Construcción de la función de pérdida</a><a href="#que-ocurre-durante-el-entrenamiento">¿Qué ocurre durante el entrenamiento?</a><a href="#donde-ayuda-el-aprendizaje-informado-por-la-fisica">Dónde ayuda el aprendizaje informado por la física</a><a href="#limitaciones-que-importan-en-la-practica">Limitaciones que importan en la práctica</a><a href="#relacion-con-mi-investigacion">Relación con mi investigación</a><a href="#un-punto-de-partida-practico">Un punto de partida práctico</a></nav></details></aside>
 <div class="article-body"><h2 id="aprender-de-las-mediciones-y-de-las-leyes-fisicas">Aprender de las mediciones y de las leyes físicas</h2>
 
 <p>Un sensor de temperatura registra lo que ocurrió en un lugar y en un instante. La ecuación del calor describe cómo puede cambiar la temperatura en todo el dominio. El aprendizaje automático informado por la física reúne ambos tipos de conocimiento en un mismo modelo. Las mediciones restringen el modelo allí donde existen, y la física limita lo que puede predecir entre ellas.</p>
@@ -209,12 +209,12 @@
 </ol>
 
 <figure class="article-animation" id="piml-animation">
-  <video controls="" playsinline="" preload="metadata" width="1920" height="1080" poster="/assets/video/piml-pipeline-es.webp?v=1793566011" aria-labelledby="piml-animation-caption" aria-describedby="piml-animation-transcript">
-    <source src="/assets/video/piml-pipeline-es.mp4?v=1793566011" type="video/mp4" />
+  <video controls="" playsinline="" preload="metadata" width="1920" height="1080" poster="/assets/video/piml-pipeline-es.webp?v=1793566437" aria-labelledby="piml-animation-caption" aria-describedby="piml-animation-transcript">
+    <source src="/assets/video/piml-pipeline-es.mp4?v=1793566437" type="video/mp4" />
     Tu navegador no admite este vídeo. Puedes descargarlo con el enlace siguiente.
   </video>
-  <img class="animation-print" src="/assets/video/piml-pipeline-es.webp?v=1793566011" width="1920" height="1080" alt="Ciclo de entrenamiento: predecir, evaluar la pérdida, actualizar los parámetros y repetir." loading="lazy" />
-  <figcaption id="piml-animation-caption">El entrenamiento de una PINN: de la predicción a la actualización de los parámetros. <a href="/assets/video/piml-pipeline-es.mp4?v=1793566011" download="">Descargar vídeo (MP4)</a>.</figcaption>
+  <img class="animation-print" src="/assets/video/piml-pipeline-es.webp?v=1793566437" width="1920" height="1080" alt="Ciclo de entrenamiento: predecir, evaluar la pérdida, actualizar los parámetros y repetir." loading="lazy" />
+  <figcaption id="piml-animation-caption">El entrenamiento de una PINN: de la predicción a la actualización de los parámetros. <a href="/assets/video/piml-pipeline-es.mp4?v=1793566437" download="">Descargar vídeo (MP4)</a>.</figcaption>
   <details class="animation-transcript" id="piml-animation-transcript">
     <summary>Descripción del vídeo</summary>
 
@@ -270,8 +270,8 @@
 <p>Empieza por un problema cuya solución puedas comprobar de forma independiente, como la barra anterior. Anota las unidades, el dominio y todas las condiciones antes de elegir una red. Sigue cada término de la pérdida por separado y mide el error en puntos que no se hayan usado en el entrenamiento. Los datos dispersos, los coeficientes desconocidos y las ecuaciones más difíciles pueden venir después, cuando esta base funcione.</p>
 <footer class="article-end"><a href="/es/blog/">← Todas las entradas</a><a href="/es/investigacion/">Ver la investigación →</a></footer></div>
 </article>
-<script src="/assets/js/article-contents.js?v=1793566011" defer></script>
-<script src="/assets/js/article-plots.js?v=1793566011" defer></script>
+<script src="/assets/js/article-contents.js?v=1793566437" defer></script>
+<script src="/assets/js/article-plots.js?v=1793566437" defer></script>
 
 
 </main>

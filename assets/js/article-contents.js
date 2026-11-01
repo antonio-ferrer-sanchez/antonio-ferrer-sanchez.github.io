@@ -1,5 +1,6 @@
-// Marks the contents link of the section currently being read.
-// Without JavaScript the contents list is unchanged.
+// Marks the contents link of the section currently being read, and keeps
+// the list folded on narrow screens, where it would otherwise push the text
+// a screen down. Without JavaScript the list stays open.
 (() => {
   "use strict";
   const links = [
@@ -36,6 +37,19 @@
     if (queued) return;
     queued = true;
     requestAnimationFrame(update);
+  }
+
+  const toggle = document.querySelector(".article-contents details");
+  const narrow = matchMedia("(max-width: 1000px)");
+  if (toggle) {
+    const fold = () => (toggle.open = !narrow.matches);
+    fold();
+    narrow.addEventListener("change", fold);
+    // Choosing a section on a phone folds the list again behind the reader.
+    for (const link of links)
+      link.addEventListener("click", () => {
+        if (narrow.matches) toggle.open = false;
+      });
   }
 
   addEventListener("scroll", schedule, { passive: true });

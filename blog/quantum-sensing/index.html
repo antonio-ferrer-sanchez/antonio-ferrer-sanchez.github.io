@@ -91,12 +91,12 @@
 <link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/quantum-sensing/">
 <link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/sensores-cuanticos/">
 <link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/quantum-sensing/">
-<link rel="stylesheet" href="/assets/css/site.css?v=1793566011">
-<link rel="stylesheet" href="/assets/css/print.css?v=1793566011" media="print">
+<link rel="stylesheet" href="/assets/css/site.css?v=1793566437">
+<link rel="stylesheet" href="/assets/css/print.css?v=1793566437" media="print">
 
-<script src="/assets/js/header.js?v=1793566011"></script>
+<script src="/assets/js/header.js?v=1793566437"></script>
 <meta name="publication-revision" content="fa22a3bbdc68fe37dee506bc0e0259db9e7c4b5014e5677c74cb57fcbe7e2457">
-<script defer src="/assets/js/publication.js?v=1793566011"></script>
+<script defer src="/assets/js/publication.js?v=1793566437"></script>
 </head>
 <body class="article-page">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -119,7 +119,7 @@
 <h1>Designing quantum sensors with physics-informed neural networks</h1><p class="page-lede">From a magnetic-field sensor to learned controls: how PINNs use physics to guide training and improve quantum sensing protocols.</p>
 <p class="article-byline"><a rel="author" href="/">By Antonio Ferrer-Sánchez</a></p>
 </header>
-<aside class="article-contents" aria-labelledby="contents-heading"><h2 id="contents-heading">In this post</h2><nav aria-label="Post contents"><a href="#a-spin-as-a-sensor">A spin as a magnetic-field sensor</a><a href="#information-and-precision">How much information does the state carry?</a><a href="#what-noise-takes-away">What noise takes away</a><a href="#from-example-to-controls">From the example to a control problem</a><a href="#what-the-pinn-learns">What the PINN learns</a><a href="#how-physics-guides-training">How physics guides training</a><a href="#inside-the-training-loop">Inside the training loop</a><a href="#what-the-experiments-show">What the numerical experiments show</a><a href="#from-training-to-sensing">Using learned controls in a sensing experiment</a></nav></aside>
+<aside class="article-contents" aria-labelledby="contents-heading"><details open><summary><h2 id="contents-heading">In this post</h2></summary><nav aria-label="Post contents"><a href="#a-spin-as-a-sensor">A spin as a magnetic-field sensor</a><a href="#information-and-precision">How much information does the state carry?</a><a href="#what-noise-takes-away">What noise takes away</a><a href="#from-example-to-controls">From the example to a control problem</a><a href="#what-the-pinn-learns">What the PINN learns</a><a href="#how-physics-guides-training">How physics guides training</a><a href="#inside-the-training-loop">Inside the training loop</a><a href="#what-the-experiments-show">What the numerical experiments show</a><a href="#from-training-to-sensing">Using learned controls in a sensing experiment</a></nav></details></aside>
 <div class="article-body"><p>In the <a href="/blog/counterdiabatic-driving/">quantum-control post</a>, we asked how to steer a quantum system along a desired path. For sensing, the aim changes: make a small change in an unknown quantity leave a measurable trace. The control pulses become part of the measurement design.</p>
 
 <p>Scientific machine learning offers a way to search for those pulses. A physics-informed neural network (PINN) represents time-dependent controls and adjusts them using the equations of the sensor and a measure of its sensitivity. We will start with a single spin to establish what a useful signal looks like, then follow the PINN from its inputs and outputs through training to the evaluation of a learned protocol.</p>
@@ -160,7 +160,7 @@
 
 </math></div>
 
-<figure data-plot="ramsey" data-interactive-caption="Explore the analytic Ramsey response at a fixed interrogation time. Adjust contrast and phase offset; the markers follow the selected phase on each curve. Blue: ideal contrast of 1. Orange dashed: selected contrast, initially 0.6. Use the sliders with a pointer or arrow keys, and hover or touch the curves to inspect probabilities. At high magnification, scroll the chart horizontally if needed. These curves illustrate the model; they are not learned controls or experimental results."><picture><source media="(max-width: 650px)" srcset="/assets/figures/qs-ramsey-mobile.svg?v=1793566011" width="480" height="450" /><img src="/assets/figures/qs-ramsey.svg?v=1793566011" width="760" height="440" alt="Positive-outcome probability versus phase offset. The ideal blue solid curve is steeper than the orange dashed curve with contrast 0.6. Both pass through probability one half at zero offset." loading="lazy" decoding="async" /></picture><figcaption>Analytic Ramsey responses at the same interrogation time. Blue: ideal contrast of 1. Orange dashed: dephased contrast of 0.6. The dot marks the common working point, where both have the same binary-outcome variance. These curves are an illustrative model, not learned controls or experimental results.</figcaption></figure>
+<figure data-plot="ramsey" data-interactive-caption="Explore the analytic Ramsey response at a fixed interrogation time. Adjust contrast and phase offset; the markers follow the selected phase on each curve. Blue: ideal contrast of 1. Orange dashed: selected contrast, initially 0.6. Use the sliders with a pointer or arrow keys, and hover or touch the curves to inspect probabilities. At high magnification, scroll the chart horizontally if needed. These curves illustrate the model; they are not learned controls or experimental results."><picture><source media="(max-width: 650px)" srcset="/assets/figures/qs-ramsey-mobile.svg?v=1793566437" width="480" height="450" /><img src="/assets/figures/qs-ramsey.svg?v=1793566437" width="760" height="440" alt="Positive-outcome probability versus phase offset. The ideal blue solid curve is steeper than the orange dashed curve with contrast 0.6. Both pass through probability one half at zero offset." loading="lazy" decoding="async" /></picture><figcaption>Analytic Ramsey responses at the same interrogation time. Blue: ideal contrast of 1. Orange dashed: dephased contrast of 0.6. The dot marks the common working point, where both have the same binary-outcome variance. These curves are an illustrative model, not learned controls or experimental results.</figcaption></figure>
 
 <p>At zero offset, the chosen readout attains the QFI locally. Reducing the contrast to 0.6 leaves 36% of the ideal information and makes the uncertainty bound about 67% larger. The flatter response carries less information despite having the same outcome noise at that point. Increasing interrogation time helps only while enough coherence survives.</p>
 
@@ -242,8 +242,8 @@
 <p>The PINN’s role is therefore concrete: represent a constrained family of control functions, use physics and sensing objectives to select a protocol, and provide functions that can be tested independently. That is the connection between scientific machine learning and the design of a quantum sensor.</p>
 <footer class="article-end"><a href="/blog/">← All posts</a><a href="/research/">Explore the research →</a></footer></div>
 </article>
-<script src="/assets/js/article-contents.js?v=1793566011" defer></script>
-<script src="/assets/js/article-plots.js?v=1793566011" defer></script>
+<script src="/assets/js/article-contents.js?v=1793566437" defer></script>
+<script src="/assets/js/article-plots.js?v=1793566437" defer></script>
 
 
 </main>
