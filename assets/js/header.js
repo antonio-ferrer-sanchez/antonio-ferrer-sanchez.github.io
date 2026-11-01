@@ -109,16 +109,19 @@
   addEventListener("DOMContentLoaded", () => {
     const items = [
       ...document.querySelectorAll(
-        ".section-heading > *, .section-title, .article-list-heading, .direction-text, .direction-figure, .article-preview-meta, .article-preview-text, .article-preview-figure, .publication, .contact-grid > *, .research-topic > div, .project > div, .related-links, .cv-section, .activity-section > h2, .activity-row, .teaching-row",
+        ".intro > *, .research-list > *, .ledger > *, .ledger-rows li, .article-list-heading, .article-preview-meta, .article-preview-text, .article-preview-figure, .publication, .contact-grid > *, .research-topic > div, .project > div, .related-links, .cv-section, .activity-section > h2, .activity-row, .teaching-row",
       ),
     ].filter((el) => el.getBoundingClientRect().top > innerHeight);
     const seen = new IntersectionObserver(
       (entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          entry.target.classList.add("is-in");
-          seen.unobserve(entry.target);
-        }
+        // Parts that enter together arrive in reading order, 70 ms apart.
+        entries
+          .filter((entry) => entry.isIntersecting)
+          .forEach(({ target }, i) => {
+            target.style.transitionDelay = `${Math.min(i, 6) * 70}ms`;
+            target.classList.add("is-in");
+            seen.unobserve(target);
+          });
       },
       { rootMargin: "0px 0px -8% 0px" },
     );
