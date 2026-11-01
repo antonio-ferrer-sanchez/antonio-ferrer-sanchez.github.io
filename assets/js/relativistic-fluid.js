@@ -33,9 +33,10 @@ const TEXT_COLORS = ["#00684c", "#9e4500", "#005b8f"];
 const INK = "#1a1a1a";
 const FONT = "Arial, Helvetica, sans-serif";
 const SYMBOLS = ["ρ / ρL", "p / (ρL c²)", "v / c"];
-const CAMERA = { eye: { x: 1.65, y: -1.65, z: 1.3 }, up: { x: 0, y: 0, z: 1 } };
+// Far enough back that the WebGL-drawn axis titles stay inside the scene.
+const CAMERA = { eye: { x: 2.05, y: -2.05, z: 1.5 }, up: { x: 0, y: 0, z: 1 } };
 function cameraFor(width) {
-  const scale = Math.min(2.5, Math.max(1, 500 / width));
+  const scale = Math.min(2.2, Math.max(1, 420 / width));
   return {
     ...CAMERA,
     eye: Object.fromEntries(
@@ -166,7 +167,11 @@ function surfaceLayout(field, width) {
       camera: cameraFor(width),
       aspectmode: "manual",
       aspectratio: { x: 1.4, y: 1, z: 0.85 },
-      xaxis: sceneAxis(`${L.position} x`, [-0.5, 0.5]),
+      // No tick at the corner x = -0.5, where the vertical axis's lowest tick sits.
+      xaxis: {
+        ...sceneAxis(`${L.position} x`, [-0.5, 0.5]),
+        tickvals: [-0.4, 0, 0.4],
+      },
       yaxis: sceneAxis(`${L.time} t`, [0, 0.5]),
       zaxis: {
         ...sceneAxis(SYMBOLS[field], [0, field === 2 ? 0.85 : 1.05]),
