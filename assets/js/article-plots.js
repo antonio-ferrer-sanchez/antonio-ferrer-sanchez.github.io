@@ -59,13 +59,13 @@
     },
   };
   const L = TEXT[document.documentElement.lang] || TEXT.en;
-  const INK = "#203c33";
-  const MUTED = "#415950";
+  const INK = "#1a1a1a";
+  const MUTED = "#4d4d4d";
   const BLUE = "#0072B2";
-  const ORANGE = "#A65313";
+  const ORANGE = "#D55E00";
   const FONT = {
-    family: '"Source Sans 3", Arial, sans-serif',
-    size: 15,
+    family: "Arial, Helvetica, sans-serif",
+    size: 13,
     color: INK,
   };
   const CONFIG = {
@@ -80,14 +80,18 @@
 
   function axis(title, range) {
     return {
-      title: { text: title, standoff: 10 },
+      title: { text: title, standoff: 10, font: { size: 14 } },
       range,
       zeroline: false,
       showline: true,
-      linecolor: MUTED,
+      mirror: false,
+      linecolor: INK,
+      linewidth: 1,
       ticks: "outside",
-      tickcolor: MUTED,
-      gridcolor: "rgba(21, 63, 54, 0.12)",
+      ticklen: 4,
+      tickcolor: INK,
+      tickfont: { size: 12 },
+      showgrid: false,
     };
   }
 
@@ -106,9 +110,14 @@
         y: 1.02,
         yanchor: "bottom",
         bgcolor: "rgba(0,0,0,0)",
+        borderwidth: 0,
       },
       hovermode: "x unified",
-      hoverlabel: { font: { family: FONT.family, size: 14 } },
+      hoverlabel: {
+        bgcolor: "#ffffff",
+        bordercolor: INK,
+        font: { family: FONT.family, size: 13, color: INK },
+      },
     };
   }
 
@@ -252,7 +261,7 @@
             name: L.required,
             line: { color: INK, width: 3 },
             fill: "tonexty",
-            fillcolor: "rgba(166, 83, 19, 0.14)",
+            fillcolor: "rgba(213, 94, 0, 0.14)",
             hovertemplate: "%{y:.3f}<extra>sin(πx)</extra>",
           },
         ],

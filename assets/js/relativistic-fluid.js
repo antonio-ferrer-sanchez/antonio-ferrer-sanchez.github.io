@@ -27,7 +27,11 @@ const L = ES
       contact: "Contact position",
       shock: "Shock position",
     };
-const COLORS = ["#177563", "#B35420", "#0072B2"];
+const COLORS = ["#009E73", "#D55E00", "#0072B2"];
+// Darker steps of the same hues for heading text, so it meets WCAG AA on the paper.
+const TEXT_COLORS = ["#00684c", "#9e4500", "#005b8f"];
+const INK = "#1a1a1a";
+const FONT = "Arial, Helvetica, sans-serif";
 const SYMBOLS = ["ρ / ρL", "p / (ρL c²)", "v / c"];
 const CAMERA = { eye: { x: 1.65, y: -1.65, z: 1.3 }, up: { x: 0, y: 0, z: 1 } };
 function cameraFor(width) {
@@ -55,10 +59,11 @@ const CONFIG = {
 const BASE = {
   paper_bgcolor: "rgba(0,0,0,0)",
   plot_bgcolor: "rgba(0,0,0,0)",
-  font: {
-    family: "Source Sans 3, Arial, sans-serif",
-    size: 14,
-    color: "#203c33",
+  font: { family: FONT, size: 13, color: INK },
+  hoverlabel: {
+    bgcolor: "#ffffff",
+    bordercolor: INK,
+    font: { family: FONT, size: 13, color: INK },
   },
 };
 function element(tag, cls, text) {
@@ -93,13 +98,31 @@ function loadPlotly() {
 }
 function axis(title, range) {
   return {
-    title: { text: title, font: { family: '"Source Sans 3"' } },
+    title: { text: title, font: { size: 14 } },
     range,
-    gridcolor: "#dce5e0",
+    showgrid: false,
     zeroline: false,
-    tickfont: { size: 12, family: '"Source Sans 3"' },
+    showline: true,
+    mirror: false,
+    linecolor: INK,
+    linewidth: 1,
+    ticks: "outside",
+    ticklen: 4,
+    tickcolor: INK,
+    tickfont: { size: 12 },
     nticks: 4,
     automargin: true,
+  };
+}
+// 3D scenes: transparent box, thin light grid kept so the orientation stays readable.
+function sceneAxis(title, range) {
+  return {
+    ...axis(title, range),
+    showgrid: true,
+    gridcolor: "rgba(26, 26, 26, 0.12)",
+    linecolor: "#4d4d4d",
+    showbackground: false,
+    backgroundcolor: "rgba(0,0,0,0)",
   };
 }
 function surfaceData(data, field, time) {
@@ -110,7 +133,7 @@ function surfaceData(data, field, time) {
     cmin: 0,
     cmax: maximum,
     colorscale: [
-      [0, "#e8f3ef"],
+      [0, "#f0f0f0"],
       [1, COLORS[field]],
     ],
     showscale: false,
@@ -127,7 +150,7 @@ function surfaceData(data, field, time) {
     y: slice.x.map(() => time),
     z: slice.q.map((q) => q[field]),
     name: L.slice,
-    line: { color: "#172e28", width: 6 },
+    line: { color: INK, width: 6 },
     hoverinfo: "skip",
     showlegend: false,
   });
@@ -139,13 +162,14 @@ function surfaceLayout(field, width) {
     margin: { l: 5, r: 5, t: 5, b: 5 },
     uirevision: "fluid-camera",
     scene: {
+      bgcolor: "rgba(0,0,0,0)",
       camera: cameraFor(width),
       aspectmode: "manual",
       aspectratio: { x: 1.4, y: 1, z: 0.85 },
-      xaxis: axis(`${L.position} x`, [-0.5, 0.5]),
-      yaxis: axis(`${L.time} t`, [0, 0.5]),
+      xaxis: sceneAxis(`${L.position} x`, [-0.5, 0.5]),
+      yaxis: sceneAxis(`${L.time} t`, [0, 0.5]),
       zaxis: {
-        ...axis(SYMBOLS[field], [0, field === 2 ? 0.85 : 1.05]),
+        ...sceneAxis(SYMBOLS[field], [0, field === 2 ? 0.85 : 1.05]),
         tickvals:
           field === 0
             ? [0.125, 0.5, 1]
@@ -193,7 +217,7 @@ function sliceLayout(data, field, time) {
         x1: b,
         y0: 0,
         y1: 1,
-        fillcolor: "#e6efe9",
+        fillcolor: "rgba(77, 77, 77, 0.1)",
         line: { width: 0 },
         layer: "below",
       },
@@ -206,7 +230,7 @@ function sliceLayout(data, field, time) {
         y0: 0,
         y1: 1,
         line: {
-          color: i ? "#535e68" : "#9f4f89",
+          color: i ? "#4d4d4d" : "#CC79A7",
           width: 1.5,
           dash: i ? "dot" : "dash",
         },
@@ -318,7 +342,7 @@ async function enhance(figure) {
     const profileCharts = L.names.map((name, field) => {
       const panel = element("section", "fluid-panel");
       const heading = element("h4", "", name);
-      heading.style.color = COLORS[field];
+      heading.style.color = TEXT_COLORS[field];
       const chart = element("div", "fluid-chart");
       chart.setAttribute("role", "img");
       chart.setAttribute("aria-label", `${name}: ${L.slice}`);

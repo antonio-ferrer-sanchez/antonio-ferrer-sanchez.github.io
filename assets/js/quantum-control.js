@@ -34,6 +34,9 @@ const labels = {
   },
 };
 
+const INK = "#1a1a1a";
+const FONT = "Arial, Helvetica, sans-serif";
+
 async function enhance(figure) {
   const L = labels[document.documentElement.lang] || labels.en;
   const picture = figure.querySelector("picture");
@@ -62,23 +65,24 @@ async function enhance(figure) {
   const fraction = slider("fraction", L.fraction, 0, 1, 0.05, 0.5);
   const xs = Array.from({ length: 401 }, (_, i) => i / 400);
   const axis = (title, range) => ({
-    title: { text: title, standoff: 8 },
+    title: { text: title, standoff: 8, font: { size: 14 } },
     range,
     fixedrange: true,
     zeroline: false,
     showline: true,
-    linecolor: "#415950",
+    mirror: false,
+    linecolor: INK,
+    linewidth: 1,
     ticks: "outside",
-    gridcolor: "rgba(21,63,54,0.12)",
+    ticklen: 4,
+    tickcolor: INK,
+    tickfont: { size: 12 },
+    showgrid: false,
   });
   const layout = {
     paper_bgcolor: "rgba(0,0,0,0)",
     plot_bgcolor: "rgba(0,0,0,0)",
-    font: {
-      family: '"Source Sans 3", Arial, sans-serif',
-      size: 14,
-      color: "#203c33",
-    },
+    font: { family: FONT, size: 13, color: INK },
     margin: { l: 62, r: 14, t: 100, b: 58 },
     xaxis: axis(L.time, [0, 1]),
     yaxis: axis(L.fidelity, [-0.03, 1.04]),
@@ -88,8 +92,15 @@ async function enhance(figure) {
       y: 1.03,
       yanchor: "bottom",
       xanchor: "left",
+      bgcolor: "rgba(0,0,0,0)",
+      borderwidth: 0,
     },
     hovermode: "x unified",
+    hoverlabel: {
+      bgcolor: "#ffffff",
+      bordercolor: INK,
+      font: { family: FONT, size: 13, color: INK },
+    },
   };
   const config = {
     responsive: true,
@@ -108,9 +119,9 @@ async function enhance(figure) {
       controlStrength(T, eta).toFixed(3),
     );
     const traces = [
-      [0, L.bare, "#A65313", "dash"],
+      [0, L.bare, "#D55E00", "dash"],
       [eta, L.partial, "#0072B2", "dot"],
-      [1, L.ideal, "#153f36", "solid"],
+      [1, L.ideal, INK, "solid"],
     ].map(([strength, name, color, dash]) => ({
       type: "scatter",
       mode: "lines",

@@ -109,7 +109,7 @@
   addEventListener("DOMContentLoaded", () => {
     const items = [
       ...document.querySelectorAll(
-        ".intro > *, .research-list > *, .ledger > *, .ledger-rows li, .article-list-heading, .article-preview-meta, .article-preview-text, .article-preview-figure, .publication, .contact-grid > *, .research-topic > div, .project > div, .related-links, .cv-section, .activity-section > h2, .activity-row, .teaching-row",
+        ".home-heading, .theme, .citations li, .post-list li, .home-contact .contact-links, .article-list-heading, .article-preview-meta, .article-preview-text, .article-preview-figure, .publication, .contact-grid > *, .research-topic > div, .project > div, .related-links, .cv-section, .activity-section > h2, .activity-row, .teaching-row",
       ),
     ].filter((el) => el.getBoundingClientRect().top > innerHeight);
     const seen = new IntersectionObserver(
@@ -129,42 +129,5 @@
       el.classList.add("reveal");
       seen.observe(el);
     }
-  });
-})();
-
-// The research frame marked with data-loop-src plays its explainer
-// animation, muted and looped, only while it is on screen. Without
-// JavaScript or under reduced motion the poster frame stays.
-(() => {
-  "use strict";
-  if (
-    !("IntersectionObserver" in window) ||
-    matchMedia("(prefers-reduced-motion: reduce)").matches
-  )
-    return;
-  addEventListener("DOMContentLoaded", () => {
-    const watch = new IntersectionObserver(
-      (entries) => {
-        for (const { target: video, isIntersecting } of entries) {
-          if (!isIntersecting) {
-            video.pause();
-            continue;
-          }
-          if (!video.src) {
-            // Open on the frame the still shows, not on the empty first frame.
-            video.addEventListener(
-              "loadedmetadata",
-              () => (video.currentTime = Number(video.dataset.start || 0)),
-              { once: true },
-            );
-            video.src = video.dataset.loopSrc;
-          }
-          video.play().catch(() => {});
-        }
-      },
-      { threshold: 0.35 },
-    );
-    for (const video of document.querySelectorAll("video[data-loop-src]"))
-      watch.observe(video);
   });
 })();
