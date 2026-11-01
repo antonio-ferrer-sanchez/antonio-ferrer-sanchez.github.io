@@ -2108,3 +2108,17 @@ main {
     display: none;
   }
 }
+
+/* Figures unveil from the bottom as they enter, once: a clip-path reveal
+   instead of the text's rise, so a plot reads as drawn into place. */
+.post-figure-plate.reveal,
+.article-preview-figure.reveal {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 700ms var(--ease-out);
+}
+.post-figure-plate.reveal.is-in,
+.article-preview-figure.reveal.is-in {
+  clip-path: inset(0 0 0 0);
+}
