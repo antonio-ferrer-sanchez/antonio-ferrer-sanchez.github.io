@@ -109,7 +109,7 @@
   addEventListener("DOMContentLoaded", () => {
     const items = [
       ...document.querySelectorAll(
-        ".section-heading > *, .section-title, .direction-text, .direction-figure, .article-preview, .publication, .contact-grid > *, .research-topic, .project, .cv-section, .activity-row",
+        ".section-heading > *, .section-title, .article-list-heading, .direction-text, .direction-figure, .article-preview-meta, .article-preview-text, .article-preview-figure, .publication, .contact-grid > *, .research-topic > div, .project, .cv-section, .activity-row",
       ),
     ].filter((el) => el.getBoundingClientRect().top > innerHeight);
     const seen = new IntersectionObserver(
@@ -126,5 +126,34 @@
       el.classList.add("reveal");
       seen.observe(el);
     }
+  });
+})();
+
+// The research frame marked with data-loop-src plays its explainer
+// animation, muted and looped, only while it is on screen. Without
+// JavaScript or under reduced motion the poster frame stays.
+(() => {
+  "use strict";
+  if (
+    !("IntersectionObserver" in window) ||
+    matchMedia("(prefers-reduced-motion: reduce)").matches
+  )
+    return;
+  addEventListener("DOMContentLoaded", () => {
+    const watch = new IntersectionObserver(
+      (entries) => {
+        for (const { target: video, isIntersecting } of entries) {
+          if (!isIntersecting) {
+            video.pause();
+            continue;
+          }
+          if (!video.src) video.src = video.dataset.loopSrc;
+          video.play().catch(() => {});
+        }
+      },
+      { threshold: 0.35 },
+    );
+    for (const video of document.querySelectorAll("video[data-loop-src]"))
+      watch.observe(video);
   });
 })();
