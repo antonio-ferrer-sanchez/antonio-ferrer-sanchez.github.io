@@ -2010,3 +2010,34 @@ a:active {
 .updated {
   letter-spacing: 0.01em;
 }
+
+/* Short pages keep the footer at the bottom of the screen. */
+body {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1 0 auto;
+}
+.page-heading .button {
+  margin-top: 28px;
+}
+
+/* Raised contrast (an OS setting): secondary text moves toward the ink,
+   tone steps deepen, links carry a heavier underline and focus a wider ring. */
+@media (prefers-contrast: more) {
+  :root {
+    --muted: #2c3036;
+    --surface: #e3e3dc;
+    --line: #8f939b;
+  }
+  a {
+    text-decoration-thickness: 2px;
+  }
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible {
+    outline-width: 4px;
+  }
+}

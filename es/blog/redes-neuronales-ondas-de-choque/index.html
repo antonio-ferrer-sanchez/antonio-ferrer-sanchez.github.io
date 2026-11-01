@@ -92,12 +92,12 @@
 <link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/">
 <link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/redes-neuronales-ondas-de-choque/">
 <link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/neural-networks-shock-waves/">
-<link rel="stylesheet" href="/assets/css/site.css?v=1793566682">
-<link rel="stylesheet" href="/assets/css/print.css?v=1793566682" media="print">
-<link rel="stylesheet" href="/assets/css/relativistic-fluid.css?v=1793566682">
-<script src="/assets/js/header.js?v=1793566682"></script>
+<link rel="stylesheet" href="/assets/css/site.css?v=1793566961">
+<link rel="stylesheet" href="/assets/css/print.css?v=1793566961" media="print">
+<link rel="stylesheet" href="/assets/css/relativistic-fluid.css?v=1793566961">
+<script src="/assets/js/header.js?v=1793566961"></script>
 <meta name="publication-revision" content="fa22a3bbdc68fe37dee506bc0e0259db9e7c4b5014e5677c74cb57fcbe7e2457">
-<script defer src="/assets/js/publication.js?v=1793566682"></script>
+<script defer src="/assets/js/publication.js?v=1793566961"></script>
 </head>
 <body class="article-page">
 <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -184,7 +184,7 @@
 
 <p>La diferencia de presión modifica el flujo. Las superficies representan muestras de la solución exacta de Riemann en posición y tiempo. Selecciona una variable, gira la vista y mueve el control de tiempo para examinar su perfil.</p>
 
-<figure id="fluid-explorer" class="figure-wide"><picture><source media="(max-width: 650px)" srcset="/assets/figures/relativistic-surfaces-mobile-es.svg?v=1793566682" width="450" height="1260" /><img src="/assets/figures/relativistic-surfaces-es.svg?v=1793566682" width="1200" height="480" alt="Superficies de densidad, presión y velocidad en posición y tiempo. Un abanico de rarefacción se expande, un contacto separa dos densidades y un choque avanza a la derecha." loading="lazy" decoding="async" /></picture><figcaption>Evolución del tubo de choque relativista. Las coordenadas horizontales son posición y tiempo; la altura representa la variable del fluido seleccionada.</figcaption></figure>
+<figure id="fluid-explorer" class="figure-wide"><picture><source media="(max-width: 650px)" srcset="/assets/figures/relativistic-surfaces-mobile-es.svg?v=1793566961" width="450" height="1260" /><img src="/assets/figures/relativistic-surfaces-es.svg?v=1793566961" width="1200" height="480" alt="Superficies de densidad, presión y velocidad en posición y tiempo. Un abanico de rarefacción se expande, un contacto separa dos densidades y un choque avanza a la derecha." loading="lazy" decoding="async" /></picture><figcaption>Evolución del tubo de choque relativista. Las coordenadas horizontales son posición y tiempo; la altura representa la variable del fluido seleccionada.</figcaption></figure>
 
 <h2 id="three-waves">Interpretar las tres ondas</h2>
 
@@ -198,7 +198,7 @@
 
 <p>El contacto avanza aproximadamente a 0,769 veces la velocidad de la luz; el choque, a 0,936. Por tanto, la onda puede avanzar más deprisa que el material que deja detrás. El panel de velocidad muestra esta diferencia: la velocidad del fluido entre la rarefacción y el choque es aproximadamente 0,769, distinta de la velocidad del choque.</p>
 
-<figure id="fluid-profiles-fallback" class="figure-wide"><picture><source media="(max-width: 650px)" srcset="/assets/figures/relativistic-profiles-mobile-es.svg?v=1793566682" width="450" height="960" /><img src="/assets/figures/relativistic-profiles-es.svg?v=1793566682" width="900" height="720" alt="Densidad, presión y velocidad en el instante 0.4. La densidad salta en el contacto, donde presión y velocidad son continuas. Las tres cambian en el choque." loading="lazy" decoding="async" /></picture><figcaption>Perfiles en el instante 0,4. La zona sombreada marca la rarefacción; las líneas discontinuas y punteadas indican el contacto y el choque.</figcaption></figure>
+<figure id="fluid-profiles-fallback" class="figure-wide"><picture><source media="(max-width: 650px)" srcset="/assets/figures/relativistic-profiles-mobile-es.svg?v=1793566961" width="450" height="960" /><img src="/assets/figures/relativistic-profiles-es.svg?v=1793566961" width="900" height="720" alt="Densidad, presión y velocidad en el instante 0.4. La densidad salta en el contacto, donde presión y velocidad son continuas. Las tres cambian en el choque." loading="lazy" decoding="async" /></picture><figcaption>Perfiles en el instante 0,4. La zona sombreada marca la rarefacción; las líneas discontinuas y punteadas indican el contacto y el choque.</figcaption></figure>
 
 <p>En un choque, las derivadas ordinarias no bastan. Integrar las leyes de conservación a través del frente móvil da</p>
 
@@ -231,12 +231,12 @@
 <p>Tras el ejemplo de ponderación, la animación compara una predicción GA-PINN con la solución analítica exacta en <math xmlns="http://www.w3.org/1998/Math/MathML" class="inline-math" display="inline"><mi>t</mi><mo>=</mo><mn>0.5</mn></math>. Las curvas negras muestran la referencia; las curvas de color y los círculos abiertos, la predicción. Una vista ampliada permite examinar cómo la red resuelve el contacto y el choque. La predicción procede del <a href="https://github.com/Netzuel/GA_PINNs_Repository/tree/434e059b28b8df89dc84443ce122d8ea5404512f/Sod_Shock_tube" target="_blank" rel="noopener noreferrer" aria-describedby="external-link-note" title="Se abre en una pestaña nueva">modelo guardado en el repositorio público</a>, que añade ponderación causal al método del artículo.</p>
 
 <figure class="article-animation" id="relativistic-animation">
-  <video controls="" playsinline="" preload="metadata" width="1920" height="1080" poster="/assets/video/relativistic-pinn-es.webp?v=1793566682" aria-labelledby="relativistic-animation-caption" aria-describedby="relativistic-animation-transcript">
-    <source src="/assets/video/relativistic-pinn-es.mp4?v=1793566682" type="video/mp4" />
+  <video controls="" playsinline="" preload="metadata" width="1920" height="1080" poster="/assets/video/relativistic-pinn-es.webp?v=1793566961" aria-labelledby="relativistic-animation-caption" aria-describedby="relativistic-animation-transcript">
+    <source src="/assets/video/relativistic-pinn-es.mp4?v=1793566961" type="video/mp4" />
     Puedes descargar el vídeo con el enlace siguiente.
   </video>
-  <img class="animation-print" src="/assets/video/relativistic-pinn-es.webp?v=1793566682" width="1920" height="1080" alt="Solución analítica exacta en negro y predicción GA-PINN en color para densidad, presión y velocidad." loading="lazy" />
-  <figcaption id="relativistic-animation-caption">Ondas relativistas, ponderación por gradientes y predicción GA-PINN frente a la referencia analítica. <a href="/assets/video/relativistic-pinn-es.mp4?v=1793566682" download="">Descargar vídeo (MP4)</a>.</figcaption>
+  <img class="animation-print" src="/assets/video/relativistic-pinn-es.webp?v=1793566961" width="1920" height="1080" alt="Solución analítica exacta en negro y predicción GA-PINN en color para densidad, presión y velocidad." loading="lazy" />
+  <figcaption id="relativistic-animation-caption">Ondas relativistas, ponderación por gradientes y predicción GA-PINN frente a la referencia analítica. <a href="/assets/video/relativistic-pinn-es.mp4?v=1793566961" download="">Descargar vídeo (MP4)</a>.</figcaption>
   <details class="animation-transcript" id="relativistic-animation-transcript">
     <summary>Descripción del vídeo</summary>
     
@@ -248,10 +248,10 @@
 <p>Tras el entrenamiento, comprueba las posiciones de las ondas y los tres balances de conservación en puntos separados de los usados para entrenar. Comprueba también la positividad de densidad y presión, la cota de velocidad y el balance a través del choque. La solución exacta del tubo ofrece una referencia para cada prueba, incluido el contacto que aparece en la densidad, pero no en la presión ni en la velocidad.</p>
 <footer class="article-end"><a href="/es/blog/">← Todas las entradas</a><a href="/es/investigacion/">Ver la investigación →</a></footer></div>
 </article>
-<script src="/assets/js/article-contents.js?v=1793566682" defer></script>
+<script src="/assets/js/article-contents.js?v=1793566961" defer></script>
 
 
-<script type="module" src="/assets/js/relativistic-fluid.js?v=1793566682"></script>
+<script type="module" src="/assets/js/relativistic-fluid.js?v=1793566961"></script>
 </main>
 <footer class="site-footer">
 <div class="footer-bar wrap">
