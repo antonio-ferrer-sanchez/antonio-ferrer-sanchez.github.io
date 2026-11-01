@@ -95,3 +95,36 @@
     update();
   });
 })();
+
+// Sections below the first screen rise into place once as they enter the
+// viewport. Content stays visible without JavaScript, without
+// IntersectionObserver and under reduced motion.
+(() => {
+  "use strict";
+  if (
+    !("IntersectionObserver" in window) ||
+    matchMedia("(prefers-reduced-motion: reduce)").matches
+  )
+    return;
+  addEventListener("DOMContentLoaded", () => {
+    const items = [
+      ...document.querySelectorAll(
+        ".section-heading > *, .section-title, .direction-text, .direction-figure, .article-preview, .publication, .contact-grid > *, .research-topic, .project, .cv-section, .activity-row",
+      ),
+    ].filter((el) => el.getBoundingClientRect().top > innerHeight);
+    const seen = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          entry.target.classList.add("is-in");
+          seen.unobserve(entry.target);
+        }
+      },
+      { rootMargin: "0px 0px -8% 0px" },
+    );
+    for (const el of items) {
+      el.classList.add("reveal");
+      seen.observe(el);
+    }
+  });
+})();
