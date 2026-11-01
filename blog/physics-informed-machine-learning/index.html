@@ -86,18 +86,18 @@
 ]}
 </script>
 
-<meta name="theme-color" content="#f7f7f4">
+<meta name="theme-color" content="#f5f6f7">
 <meta name="color-scheme" content="light">
 <link rel="canonical" href="https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/">
 <link rel="alternate" hreflang="en" href="https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/">
 <link rel="alternate" hreflang="es" href="https://antonio-ferrer-sanchez.github.io/es/blog/aprendizaje-automatico-informado-por-la-fisica/">
 <link rel="alternate" hreflang="x-default" href="https://antonio-ferrer-sanchez.github.io/blog/physics-informed-machine-learning/">
-<link rel="stylesheet" href="/assets/css/site.css?v=1793566961">
-<link rel="stylesheet" href="/assets/css/print.css?v=1793566961" media="print">
+<link rel="stylesheet" href="/assets/css/site.css?v=1793567673">
+<link rel="stylesheet" href="/assets/css/print.css?v=1793567673" media="print">
 
-<script src="/assets/js/header.js?v=1793566961"></script>
+<script src="/assets/js/header.js?v=1793567673"></script>
 <meta name="publication-revision" content="fa22a3bbdc68fe37dee506bc0e0259db9e7c4b5014e5677c74cb57fcbe7e2457">
-<script defer src="/assets/js/publication.js?v=1793566961"></script>
+<script defer src="/assets/js/publication.js?v=1793567673"></script>
 </head>
 <body class="article-page">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -116,8 +116,8 @@
 <main id="main" tabindex="-1"><article class="wrap article-shell">
 <header class="page-heading article-heading">
 <a class="text-link article-back" href="/blog/">← All posts</a>
-<p class="article-meta"><span>Scientific machine learning</span><time datetime="2026-09-26">26 September 2026</time><span>12 min read</span></p>
 <h1>Physics-informed machine learning: from physical laws to neural solvers</h1><p class="page-lede">How physical knowledge shapes learning, how PINNs solve differential equations, and how to check whether a learned solution is reliable.</p>
+<p class="article-meta"><span>Scientific machine learning</span><time datetime="2026-09-26">26 September 2026</time><span>12 min read</span></p>
 <p class="article-byline"><a rel="author" href="/">By Antonio Ferrer-Sánchez</a></p>
 </header>
 <aside class="article-contents" aria-labelledby="contents-heading"><details open><summary><h2 id="contents-heading">In this post</h2></summary><nav aria-label="Post contents"><a href="#learning-from-measurements-and-physical-laws">Learning from measurements and physical laws</a><a href="#from-a-neural-network-to-a-differential-equation-solver">From a neural network to a differential-equation solver</a><a href="#a-concrete-example-diffusion-along-a-rod">A concrete example: diffusion along a rod</a><a href="#building-the-loss-function">Building the loss function</a><a href="#what-happens-during-training">What happens during training?</a><a href="#where-physics-informed-learning-helps">Where physics-informed learning helps</a><a href="#limitations-that-matter-in-practice">Limitations that matter in practice</a><a href="#connections-to-my-research">Connections to my research</a><a href="#a-practical-starting-point">A practical starting point</a></nav></details></aside>
@@ -209,12 +209,12 @@
 </ol>
 
 <figure class="article-animation" id="piml-animation">
-  <video controls="" playsinline="" preload="metadata" width="1920" height="1080" poster="/assets/video/piml-pipeline-en.webp?v=1793566961" aria-labelledby="piml-animation-caption" aria-describedby="piml-animation-transcript">
-    <source src="/assets/video/piml-pipeline-en.mp4?v=1793566961" type="video/mp4" />
+  <video controls="" playsinline="" preload="metadata" width="1920" height="1080" poster="/assets/video/piml-pipeline-en.webp?v=1793567673" aria-labelledby="piml-animation-caption" aria-describedby="piml-animation-transcript">
+    <source src="/assets/video/piml-pipeline-en.mp4?v=1793567673" type="video/mp4" />
     Your browser does not support this video. You can download it with the link below.
   </video>
-  <img class="animation-print" src="/assets/video/piml-pipeline-en.webp?v=1793566961" width="1920" height="1080" alt="Training loop: predict, evaluate the loss, update the parameters and repeat." loading="lazy" />
-  <figcaption id="piml-animation-caption">PINN training: from prediction to parameter updates. <a href="/assets/video/piml-pipeline-en.mp4?v=1793566961" download="">Download video (MP4)</a>.</figcaption>
+  <img class="animation-print" src="/assets/video/piml-pipeline-en.webp?v=1793567673" width="1920" height="1080" alt="Training loop: predict, evaluate the loss, update the parameters and repeat." loading="lazy" />
+  <figcaption id="piml-animation-caption">PINN training: from prediction to parameter updates. <a href="/assets/video/piml-pipeline-en.mp4?v=1793567673" download="">Download video (MP4)</a>.</figcaption>
   <details class="animation-transcript" id="piml-animation-transcript">
     <summary>Video description</summary>
 
@@ -270,8 +270,8 @@
 <p>Start with a problem whose solution you can check independently, such as the rod above. Write down the units, the domain and every condition before choosing a network. Track each loss term on its own, and measure the error on points that were not used for training. Sparse data, unknown coefficients and harder equations can follow once this baseline works.</p>
 <footer class="article-end"><a href="/blog/">← All posts</a><a href="/research/">Explore the research →</a></footer></div>
 </article>
-<script src="/assets/js/article-contents.js?v=1793566961" defer></script>
-<script src="/assets/js/article-plots.js?v=1793566961" defer></script>
+<script src="/assets/js/article-contents.js?v=1793567673" defer></script>
+<script src="/assets/js/article-plots.js?v=1793567673" defer></script>
 
 
 </main>
