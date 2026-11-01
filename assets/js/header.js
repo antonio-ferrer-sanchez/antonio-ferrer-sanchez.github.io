@@ -109,7 +109,7 @@
   addEventListener("DOMContentLoaded", () => {
     const items = [
       ...document.querySelectorAll(
-        ".section-heading > *, .section-title, .article-list-heading, .direction-text, .direction-figure, .article-preview-meta, .article-preview-text, .article-preview-figure, .publication, .contact-grid > *, .research-topic > div, .project, .cv-section, .activity-row",
+        ".section-heading > *, .section-title, .article-list-heading, .direction-text, .direction-figure, .article-preview-meta, .article-preview-text, .article-preview-figure, .publication, .contact-grid > *, .research-topic > div, .project > div, .related-links, .cv-section, .activity-section > h2, .activity-row, .teaching-row",
       ),
     ].filter((el) => el.getBoundingClientRect().top > innerHeight);
     const seen = new IntersectionObserver(

@@ -499,8 +499,8 @@ main:focus {
 }
 .hero-lede {
   font-family: var(--serif);
-  font-size: clamp(1.9rem, 2.9vw, 2.75rem);
-  line-height: 1.06;
+  font-size: clamp(2.1rem, 3.6vw, 3.4rem);
+  line-height: 1.02;
   letter-spacing: -0.02em;
 }
 .hero-description {
@@ -1213,11 +1213,7 @@ main:focus {
   display: grid;
   grid-template-columns: 1fr 1.4fr;
   gap: 70px;
-  border-top: 1px solid var(--line);
   padding-block: 48px;
-}
-.project h2 {
-  font-size: 37px;
 }
 .project > div > p:not(.intro-line) {
   font-size: 22px;
@@ -1235,16 +1231,16 @@ main:focus {
   grid-template-columns: 100px 1fr;
   gap: 35px;
   padding-block: 29px;
-  border-top: 1px solid var(--line);
 }
 .activity-date {
   font-size: 19px;
 }
-.activity-type {
-  font-size: 14px;
+.activity-type,
+.project-category {
+  font-size: 15px;
   color: var(--primary);
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
 .activity-row h3 {
   font-size: 23px;
@@ -1264,7 +1260,6 @@ main:focus {
   justify-content: space-between;
   gap: 25px;
   padding-block: 20px;
-  border-top: 1px solid var(--line);
 }
 .teaching-row h3 {
   font-size: 23px;
@@ -1375,6 +1370,10 @@ main:focus {
   .research-topic,
   .project {
     gap: 35px;
+  }
+  .project {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
   .section {
     padding-block: 65px;
