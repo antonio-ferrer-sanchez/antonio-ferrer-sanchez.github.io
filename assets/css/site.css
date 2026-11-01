@@ -23,6 +23,13 @@
   font-weight: 400 700;
   font-display: swap;
 }
+@font-face {
+  font-family: "STIX Two Text";
+  src: url("../fonts/stix-two-text-italic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+}
 :root {
   --gutter: 48px;
   --bg: oklch(0.985 0.004 190);
@@ -560,7 +567,7 @@ main:focus {
   display: flex;
   align-items: flex-end;
   gap: 0.2em;
-  font-size: clamp(2.7rem, 8.95vw, 8.6rem);
+  font-size: clamp(2.7rem, 8.5vw, 8.2rem);
   padding-top: clamp(28px, 3.5vw, 56px);
   padding-bottom: clamp(32px, 3.2vw, 52px);
 }
@@ -575,8 +582,8 @@ main:focus {
 }
 .profile-portrait {
   flex: none;
-  width: 0.7em;
-  margin: 0 0 0.1em;
+  width: 0.8em;
+  margin: 0 0 0.02em;
   background: var(--field-deep);
 }
 .profile-portrait img {
@@ -787,6 +794,15 @@ main:focus {
 .section {
   padding-block: clamp(80px, 10vw, 144px);
 }
+.section:not(.work-section) + .section:not(.work-section) {
+  padding-top: 0;
+}
+.section .article-preview-featured {
+  margin-bottom: 0;
+}
+.work-section {
+  padding-bottom: clamp(64px, 7vw, 104px);
+}
 .section-heading {
   display: grid;
   grid-template-columns: 1.25fr 1fr;
@@ -819,7 +835,7 @@ main:focus {
   order: 2;
 }
 .direction h3 {
-  font-size: clamp(1.9rem, 2.9vw, 2.75rem);
+  font-size: clamp(1.3rem, 1.9vw, 1.7rem);
   line-height: 1.05;
 }
 .direction p {
@@ -849,14 +865,14 @@ main:focus {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
   transition: transform 500ms var(--ease-out);
 }
 .direction-figure video {
   position: absolute;
   inset: 0;
   height: 100%;
+  object-fit: cover;
+  object-position: top;
 }
 .direction-figure:hover img,
 .direction-figure:hover video {
@@ -926,6 +942,44 @@ main:focus {
 .publication .publication-description {
   max-width: 68ch;
 }
+@media (min-width: 1001px) {
+  .publication {
+    grid-template-columns: 155px minmax(0, 1fr) minmax(0, 300px);
+    column-gap: clamp(32px, 4vw, 64px);
+    row-gap: 0;
+    align-items: start;
+  }
+  .publication-body {
+    display: contents;
+  }
+  .publication-meta {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+  }
+  .publication h3 {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .publication .publication-description {
+    grid-column: 2;
+    grid-row: 2;
+    margin-bottom: 0;
+  }
+  .publication .paper-links {
+    grid-column: 2;
+    grid-row: 3;
+  }
+  .publication .authors {
+    grid-column: 3;
+    grid-row: 2;
+    margin-top: 14px;
+  }
+  .publication .venue {
+    grid-column: 3;
+    grid-row: 3;
+    margin-top: 10px;
+  }
+}
 .publication h3 {
   font-size: clamp(1.3rem, 1.9vw, 1.7rem);
   line-height: 1.2;
@@ -951,9 +1005,10 @@ main:focus {
   max-width: 1000px;
 }
 .venue {
-  font-size: 15px;
-  margin-top: 4px;
+  font-family: var(--serif);
+  font-size: 17px;
   font-style: italic;
+  margin-top: 4px;
 }
 .paper-links {
   display: flex;
@@ -1580,6 +1635,7 @@ main:focus {
 .article-preview-featured.has-figure {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   grid-template-rows: auto auto auto 1fr;
+  row-gap: 20px;
   align-items: start;
 }
 .article-preview-featured .article-preview-text {
@@ -1594,17 +1650,17 @@ main:focus {
 }
 .article-preview-featured p {
   grid-column: 1;
-  grid-row: 2;
+  grid-row: 3;
   margin: 0;
 }
 .article-preview-featured .text-link {
   grid-column: 1;
-  grid-row: 3;
+  grid-row: 4;
   justify-self: start;
 }
 .article-preview-featured .article-preview-meta {
   grid-column: 1;
-  grid-row: 4;
+  grid-row: 2;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 6px 20px;
@@ -1612,6 +1668,7 @@ main:focus {
 .article-preview-featured.has-figure .article-preview-figure {
   grid-column: 2;
   grid-row: 2 / span 3;
+  align-self: start;
 }
 @media (max-width: 1000px) {
   .article-preview.has-figure {

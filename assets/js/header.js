@@ -147,7 +147,15 @@
             video.pause();
             continue;
           }
-          if (!video.src) video.src = video.dataset.loopSrc;
+          if (!video.src) {
+            // Open on the frame the still shows, not on the empty first frame.
+            video.addEventListener(
+              "loadedmetadata",
+              () => (video.currentTime = Number(video.dataset.start || 0)),
+              { once: true },
+            );
+            video.src = video.dataset.loopSrc;
+          }
           video.play().catch(() => {});
         }
       },
