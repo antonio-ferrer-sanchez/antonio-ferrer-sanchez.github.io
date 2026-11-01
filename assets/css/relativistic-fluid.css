@@ -16,7 +16,7 @@
 }
 .fluid-table:focus-visible,
 .fluid-surface:focus-visible {
-  outline: 3px solid #0072b2;
+  outline: 3px solid var(--primary, #1a43b0);
   outline-offset: 3px;
 }
 .fluid-ui {
@@ -51,8 +51,8 @@
 .fluid-controls button {
   min-height: 44px;
   padding: 0.5rem 0.9rem;
-  border: 1px solid #789088;
-  border-radius: 0.3rem;
+  border: 1px solid #8f939b;
+  border-radius: 0;
   font: inherit;
   background: #fff;
   color: var(--ink);
@@ -62,10 +62,15 @@
 }
 .fluid-controls button {
   cursor: pointer;
+  transition: transform 160ms var(--ease-out, ease-out);
+}
+.fluid-controls button:active {
+  transform: scale(0.97);
+  transition-duration: 100ms;
 }
 .fluid-controls :focus-visible,
 .fluid-time input:focus-visible {
-  outline: 3px solid #0072b2;
+  outline: 3px solid var(--primary, #1a43b0);
   outline-offset: 3px;
 }
 .fluid-surface {

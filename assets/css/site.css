@@ -74,8 +74,10 @@ a {
   text-underline-offset: 4px;
   text-decoration-thickness: 1px;
 }
-a:hover {
-  color: var(--primary);
+@media (hover: hover) and (pointer: fine) {
+  a:hover {
+    color: var(--primary);
+  }
 }
 a:focus-visible,
 button:focus-visible {
@@ -244,9 +246,13 @@ h3 {
   background: var(--line);
   transform: rotate(20deg);
 }
-.lang-switch a:hover,
 .lang-switch a[aria-current] {
   color: var(--ink);
+}
+@media (hover: hover) and (pointer: fine) {
+  .lang-switch a:hover {
+    color: var(--ink);
+  }
 }
 .lang-switch .flag,
 .lang-label {
@@ -291,9 +297,13 @@ h3 {
     cursor: pointer;
     transition: background-color 200ms var(--ease-out);
   }
-  .js .menu-toggle:hover,
   .js .is-open .menu-toggle {
     background: var(--line);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .js .menu-toggle:hover {
+      background: var(--line);
+    }
   }
   .menu-icon {
     position: relative;
@@ -333,8 +343,18 @@ h3 {
     max-height: calc(100dvh - 100%);
     overflow-y: auto;
     padding: 4px var(--gutter) 28px;
+    overscroll-behavior: contain;
     background: var(--bg);
-    box-shadow: 0 22px 30px -26px oklch(0.25 0.12 265 / 0.35); /* taste-skill-ignore: open menu is an overlay */
+  }
+  /* The open menu dims the page behind it; the header (z-index 20) stays
+     above the scrim. Tapping the scrim closes the menu (header.js). */
+  .js body:has(.site-header.is-open)::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 15;
+    background: rgb(22 24 29 / 0.32);
+    animation: scrim-in 200ms var(--ease-out);
   }
   .js .is-open .site-menu {
     display: block;
@@ -390,6 +410,11 @@ h3 {
     width: auto;
     height: auto;
     clip-path: none;
+  }
+}
+@keyframes scrim-in {
+  from {
+    opacity: 0;
   }
 }
 @keyframes menu-open {
@@ -477,44 +502,52 @@ main:focus {
     background-color 200ms var(--ease-out),
     transform 200ms var(--ease-out);
 }
-.button:hover {
-  background: var(--primary);
-  color: var(--white);
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    background: var(--primary);
+    color: var(--white);
+  }
 }
 .button:active {
-  transform: translateY(1px);
+  transform: scale(0.97);
+  transition-duration: 100ms;
 }
 .button span[aria-hidden] {
   transition: transform 240ms var(--ease-out);
 }
-.button:hover span[aria-hidden] {
-  transform: translate(2px, -2px);
+@media (hover: hover) and (pointer: fine) {
+  .button:hover span[aria-hidden] {
+    transform: translate(2px, -2px);
+  }
 }
 .text-link {
   font-size: 17px;
   font-weight: 600;
 }
 
-.site-footer a:hover {
-  color: var(--primary);
+@media (hover: hover) and (pointer: fine) {
+  .site-footer a:hover {
+    color: var(--primary);
+  }
 }
 
 .name-last {
   display: inline-block;
+  white-space: nowrap;
 }
 
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(14px);
   }
 }
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(16px);
   transition:
-    opacity 800ms var(--ease-out),
-    transform 800ms var(--ease-out);
+    opacity 520ms var(--ease-out),
+    transform 520ms var(--ease-out);
 }
 .reveal.is-in {
   opacity: 1;
@@ -603,8 +636,10 @@ main:focus {
 .publication h3 > a {
   text-decoration: none;
 }
-.publication h3 > a:hover {
-  text-decoration: underline;
+@media (hover: hover) and (pointer: fine) {
+  .publication h3 > a:hover {
+    text-decoration: underline;
+  }
 }
 .arrow {
   white-space: nowrap;
@@ -657,8 +692,10 @@ main:focus {
   cursor: pointer;
   transition: background-color 200ms var(--ease-out);
 }
-.copy-email:hover {
-  background: var(--line);
+@media (hover: hover) and (pointer: fine) {
+  .copy-email:hover {
+    background: var(--line);
+  }
 }
 
 .contact-actions {
@@ -698,7 +735,7 @@ main:focus {
   margin-bottom: clamp(24px, 3vw, 48px);
 }
 .page-heading:not(.article-heading) > * {
-  animation: rise 1000ms var(--ease-out) backwards;
+  animation: rise 700ms var(--ease-out) backwards;
 }
 .page-heading:not(.article-heading) > :nth-child(2) {
   animation-delay: 110ms;
@@ -1059,8 +1096,10 @@ main:focus {
 .article-preview h3 a {
   text-decoration: none;
 }
-.article-preview h3 a:hover {
-  text-decoration: underline;
+@media (hover: hover) and (pointer: fine) {
+  .article-preview h3 a:hover {
+    text-decoration: underline;
+  }
 }
 .article-preview p {
   max-width: 62ch;
@@ -1076,8 +1115,10 @@ main:focus {
   width: 100%;
   transition: transform 500ms var(--ease-out);
 }
-.article-preview:hover .article-preview-figure img {
-  transform: scale(1.02);
+@media (hover: hover) and (pointer: fine) {
+  .article-preview:hover .article-preview-figure img {
+    transform: scale(1.02);
+  }
 }
 .article-preview-featured {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -1204,7 +1245,7 @@ main:focus {
   position: sticky;
   top: calc(var(--header-offset, 0px) + 32px);
   max-width: 240px;
-  max-height: calc(100vh - 64px - var(--header-offset, 0px));
+  max-height: calc(100dvh - 64px - var(--header-offset, 0px));
   transition: top 280ms cubic-bezier(0.22, 1, 0.36, 1);
   overflow-y: auto;
   padding-top: 22px;
@@ -1236,8 +1277,10 @@ main:focus {
   border-radius: 50%;
   background: transparent;
 }
-.article-contents nav a:hover {
-  color: var(--ink);
+@media (hover: hover) and (pointer: fine) {
+  .article-contents nav a:hover {
+    color: var(--ink);
+  }
 }
 .article-contents nav a[aria-current="true"] {
   color: var(--primary);
@@ -1588,8 +1631,10 @@ main:focus {
     color 200ms var(--ease-out),
     text-decoration-color 200ms var(--ease-out);
 }
-.intro-text a:hover {
-  text-decoration-color: currentColor;
+@media (hover: hover) and (pointer: fine) {
+  .intro-text a:hover {
+    text-decoration-color: currentColor;
+  }
 }
 .intro-links {
   display: flex;
@@ -1616,7 +1661,7 @@ main:focus {
 /* The one orchestrated moment: the introduction settles in on load. */
 .intro-text > *,
 .intro-portrait {
-  animation: rise 900ms var(--ease-out) backwards;
+  animation: rise 700ms var(--ease-out) backwards;
 }
 .intro-role {
   animation-delay: 80ms;
@@ -1631,7 +1676,7 @@ main:focus {
   animation-delay: 280ms;
 }
 .intro-portrait {
-  animation: portrait-in 1100ms var(--ease-out) 120ms backwards;
+  animation: portrait-in 800ms var(--ease-out) 120ms backwards;
 }
 @keyframes portrait-in {
   from {
@@ -1675,17 +1720,21 @@ main:focus {
   height: auto;
   transition: transform 500ms var(--ease-out);
 }
-.post-figure:hover img {
-  transform: scale(1.015);
+@media (hover: hover) and (pointer: fine) {
+  .post-figure:hover img {
+    transform: scale(1.015);
+  }
 }
 .post-figure-caption {
   display: block;
   margin-top: 14px;
   font-size: 15px;
 }
-.post-figure:hover .post-figure-caption {
-  color: var(--primary);
-  text-decoration: underline;
+@media (hover: hover) and (pointer: fine) {
+  .post-figure:hover .post-figure-caption {
+    color: var(--primary);
+    text-decoration: underline;
+  }
 }
 /* Research lines: the figure from the line's tutorial beside its text. */
 .themes {
@@ -1717,8 +1766,10 @@ main:focus {
 .theme-papers a {
   text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
 }
-.theme-papers a:hover {
-  text-decoration-color: currentColor;
+@media (hover: hover) and (pointer: fine) {
+  .theme-papers a:hover {
+    text-decoration-color: currentColor;
+  }
 }
 .theme-papers span {
   color: var(--muted);
@@ -1742,9 +1793,11 @@ main:focus {
 .citation-title a {
   text-decoration: none;
 }
-.citation-title a:hover {
-  color: var(--primary);
-  text-decoration: underline;
+@media (hover: hover) and (pointer: fine) {
+  .citation-title a:hover {
+    color: var(--primary);
+    text-decoration: underline;
+  }
 }
 .citation-authors {
   margin-top: 6px;
@@ -1790,9 +1843,11 @@ main:focus {
   line-height: 1.3;
   text-decoration: none;
 }
-.post-list a:hover {
-  color: var(--primary);
-  text-decoration: underline;
+@media (hover: hover) and (pointer: fine) {
+  .post-list a:hover {
+    color: var(--primary);
+    text-decoration: underline;
+  }
 }
 .post-list p {
   margin-top: 6px;
@@ -1810,7 +1865,7 @@ main:focus {
   }
   .intro-portrait {
     grid-row: 1;
-    width: min(220px, 56vw);
+    width: min(176px, 46vw);
   }
   .theme {
     grid-template-columns: minmax(0, 1fr);
@@ -1831,5 +1886,68 @@ main:focus {
   .intro-text > *,
   .intro-portrait {
     animation: none;
+  }
+}
+
+/* Touch: no grey tap flash, no tap delay, no long-press selection on
+   controls, and an immediate response on press for every pressable thing.
+   Body text stays selectable. */
+html {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+a,
+button,
+summary,
+label:has(input) {
+  touch-action: manipulation;
+}
+button,
+.button,
+.lang-switch a,
+.site-header nav a {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+a {
+  transition: opacity 120ms var(--ease-out);
+}
+a:active {
+  opacity: 0.6;
+  transition-duration: 0ms;
+}
+.button:active,
+.post-figure:active,
+.article-preview-figure:active {
+  opacity: 1;
+}
+.menu-toggle,
+.copy-email {
+  transition:
+    transform 160ms var(--ease-out),
+    background-color 200ms var(--ease-out);
+}
+.menu-toggle:active,
+.copy-email:active {
+  transform: scale(0.96);
+  transition-duration: 100ms;
+}
+.post-figure-plate,
+.article-preview-figure {
+  transition: transform 160ms var(--ease-out);
+}
+.post-figure:active .post-figure-plate,
+.article-preview-figure:active {
+  transform: scale(0.99);
+  transition-duration: 100ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  .button:active,
+  .menu-toggle:active,
+  .copy-email:active,
+  .post-figure:active .post-figure-plate,
+  .article-preview-figure:active {
+    transform: none;
   }
 }
